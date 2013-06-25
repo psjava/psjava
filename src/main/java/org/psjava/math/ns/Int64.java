@@ -22,10 +22,14 @@ public class Int64  {
 			return new Int64(v);
 	}
 	
-	public final long v; // TODO to private
+	final long v;
 
 	private Int64(long v) {
 		this.v = v;
+	}
+
+	public long toPrimitive() {
+		return v;
 	}
 
 	@Override
