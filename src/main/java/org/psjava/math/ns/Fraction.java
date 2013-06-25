@@ -21,7 +21,11 @@ public class Fraction<T> implements EqualityTester<Fraction<T>> {
 
 	@Override
 	public String toString() {
-		return numerator + "/" + denominator;
+		String denom = denominator.toString();
+		if (denom.equals("1"))
+			return numerator.toString();
+		else
+			return numerator + "/" + denom;
 	}
 	
 	@Override
