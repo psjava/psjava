@@ -19,7 +19,7 @@ public class ConvertedDataIterableTest {
 	}
 	
 	@Test
-	public void test() { // TODO 이 테스트는 iterator로 옮기는게 좋겠자?
+	public void test() { // TODO move to iterator's test
 		List<Wrapper> list = toArrayList(new Wrapper(1), new Wrapper(2));
 		Iterable<Integer> iterable = ConvertedDataIterable.create(list, new DataConverter<Wrapper, Integer>() {
 			@Override
