@@ -4,9 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-public class Int64SystemTest {
+public class Int64NumberSystemTest {
 	
-	private static final Int64System NS = new Int64System();
+	private static final Int64NumberSystem NS = new Int64NumberSystem();
 	
 	@Test
 	public void testAdd() {

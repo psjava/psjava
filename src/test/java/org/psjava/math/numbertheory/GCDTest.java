@@ -3,11 +3,11 @@ package org.psjava.math.numbertheory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.math.ns.Int32;
-import org.psjava.math.ns.Int32System;
+import org.psjava.math.ns.Int32NumberSystem;
 
 public class GCDTest {
 
-	private static final Int32System NS = new Int32System();
+	private static final Int32NumberSystem NS = new Int32NumberSystem();
 
 	@Test
 	public void test1() {

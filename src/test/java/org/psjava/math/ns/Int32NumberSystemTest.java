@@ -4,9 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-public class Int32SystemTest {
+public class Int32NumberSystemTest {
 
-	IntegerDivisableNumberSystem<Int32> ns = new Int32System();
+	IntegerDivisableNumberSystem<Int32> ns = new Int32NumberSystem();
 
 	@Test (expected=ArithmeticException.class)
 	public void testAddOverflow() {

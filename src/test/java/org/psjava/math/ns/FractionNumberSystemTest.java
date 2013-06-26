@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class FractionNumberSystemTest {
 
-	private static final FractionNumberSystem<Int32> NS = new FractionNumberSystem<Int32>(new Int32System());
+	private static final FractionNumberSystem<Int32> NS = new FractionNumberSystem<Int32>(new Int32NumberSystem());
 
 	@Test
 	public void testBasicMath() {

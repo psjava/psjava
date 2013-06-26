@@ -1,6 +1,6 @@
 package org.psjava.math.ns;
 
-public class Int64System implements IntegerDivisableNumberSystem<Int64> {
+public class Int64NumberSystem implements IntegerDivisableNumberSystem<Int64> {
 
 	public Int64 valueOf(long v) {
 		return Int64.valueOf(v);

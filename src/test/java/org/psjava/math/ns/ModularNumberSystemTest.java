@@ -20,7 +20,7 @@ public class ModularNumberSystemTest {
 	}
 	
 	private static ModularNumberSystem<Int32> create() {
-		return new ModularNumberSystem<Int32>(new Int32System(), Int32.valueOf(10));
+		return new ModularNumberSystem<Int32>(new Int32NumberSystem(), Int32.valueOf(10));
 	}
 
 }

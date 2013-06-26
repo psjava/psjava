@@ -1,6 +1,6 @@
 package org.psjava.math.ns;
 
-public class Int32System implements IntegerDivisableNumberSystem<Int32> {
+public class Int32NumberSystem implements IntegerDivisableNumberSystem<Int32> {
 
 	@Override
 	public Int32 getZero() {

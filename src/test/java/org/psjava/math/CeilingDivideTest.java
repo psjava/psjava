@@ -3,12 +3,12 @@ package org.psjava.math;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.math.ns.Int64;
-import org.psjava.math.ns.Int64System;
+import org.psjava.math.ns.Int64NumberSystem;
 
 
 public class CeilingDivideTest {
 
-	private static final Int64System NS = new Int64System();
+	private static final Int64NumberSystem NS = new Int64NumberSystem();
 
 	@Test
 	public void testPositive() {
