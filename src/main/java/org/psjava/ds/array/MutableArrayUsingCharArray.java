@@ -6,7 +6,7 @@ import org.psjava.javautil.IterableToString;
 
 
 
-public class StaticArrayUsingCharArray {
+public class MutableArrayUsingCharArray {
 	
 	public static MutableArray<Character> create(final char[] a) {
 		final int n = a.length;
@@ -42,7 +42,7 @@ public class StaticArrayUsingCharArray {
 		};
 	}
 
-	private StaticArrayUsingCharArray() {
+	private MutableArrayUsingCharArray() {
 	}
 
 }
