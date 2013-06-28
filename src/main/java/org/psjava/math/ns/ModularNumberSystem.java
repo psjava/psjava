@@ -24,27 +24,27 @@ public class ModularNumberSystem<T> implements MultipliableNumberSystem<T> {
 	
 	@Override
 	public boolean isOne(T v) {
-		return ns.isOne(v);
+		return ns.isOne(modulo(v));
 	}
 	
 	@Override
 	public boolean isPositive(T v) {
-		return ns.isPositive(v);
+		return ns.isPositive(modulo(v));
 	}
 	
 	@Override
 	public boolean isNegative(T v) {
-		return ns.isNegative(v);
+		return false;
 	}
 	
 	@Override
 	public boolean isZero(T v) {
-		return ns.isZero(v);
+		return ns.isZero(modulo(v));
 	}
 	
 	@Override
 	public int getSign(T v) {
-		return ns.getSign(v);
+		return ns.getSign(modulo(v));
 	}
 	
 	@Override
@@ -71,4 +71,9 @@ public class ModularNumberSystem<T> implements MultipliableNumberSystem<T> {
 		return Modulo.calc(ns, v, m);
 	}
 	
+	@Override
+	public int compare(T o1, T o2) {
+		return ns.compare(modulo(o1), modulo(o2));
+	}
+
 }
