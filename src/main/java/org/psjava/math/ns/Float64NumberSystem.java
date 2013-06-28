@@ -10,6 +10,9 @@ public class Float64NumberSystem implements DivisableNumberSystem<Float64>, Comp
 		return INSTANCE;
 	}
 
+	private Float64NumberSystem() {
+	}
+
 	@Override
 	public Float64 getOne() {
 		return Float64.valueOf(1);

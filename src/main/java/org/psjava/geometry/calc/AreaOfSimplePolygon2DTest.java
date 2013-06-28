@@ -12,7 +12,7 @@ import org.psjava.math.ns.Float64NumberSystem;
 
 public class AreaOfSimplePolygon2DTest {
 
-	private static final Float64NumberSystem NS = new Float64NumberSystem();
+	private static final Float64NumberSystem NS = Float64NumberSystem.getInstance();
 
 	@Test
 	public void testArea() {

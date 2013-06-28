@@ -5,7 +5,7 @@ import org.junit.Test;
 
 
 public class Float64NumberSystemTest {
-	private static final Float64NumberSystem NS = new Float64NumberSystem();
+	private static final Float64NumberSystem NS = Float64NumberSystem.getInstance();
 
 	@Test
 	public void test() {
