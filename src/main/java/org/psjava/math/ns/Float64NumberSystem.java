@@ -4,6 +4,12 @@ import java.util.Comparator;
 
 public class Float64NumberSystem implements DivisableNumberSystem<Float64>, Comparator<Float64> {
 
+	private static Float64NumberSystem INSTANCE = new Float64NumberSystem();
+
+	public static Float64NumberSystem getInstance() {
+		return INSTANCE;
+	}
+
 	@Override
 	public Float64 getOne() {
 		return Float64.valueOf(1);
