@@ -60,7 +60,7 @@ public class DynamicArray<T> implements MutableArray<T>, EqualityTester<DynamicA
 		a[asize++] = value;						
 	}
 	
-	public void addToLastAll(Iterable<? extends T> values) {
+	public void addToLastAll(Iterable<? extends T> values) { // TODO inline
 		DynamicArrayUtil.addToLast(this, values);
 	}
 
