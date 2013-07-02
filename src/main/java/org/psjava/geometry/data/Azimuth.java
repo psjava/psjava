@@ -49,7 +49,7 @@ public class Azimuth implements EqualityTester<Azimuth> {
 	}
 
 	public String toString() {
-		return "Dir(" + String.format("%.2f", radian) + "pi)";
+		return "Azimuth(" + String.format("%.2f", radian) + "pi)";
 	}
 
 }
