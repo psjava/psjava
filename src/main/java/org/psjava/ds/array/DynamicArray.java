@@ -65,7 +65,7 @@ public class DynamicArray<T> implements MutableArray<T>, EqualityTester<DynamicA
 	}
 
 	public T removeLast() {
-		T r = ArrayUtil.getLast(this);
+		T r = LastInArray.getLast(this);
 		a[--asize] = null;
 		return r;
 	}
