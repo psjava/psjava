@@ -84,6 +84,8 @@ public class FractionNumberSystem<T> implements DivisableNumberSystem<Fraction<T
 
 	@Override
 	public int compare(Fraction<T> o1, Fraction<T> o2) {
+		o1 = reduce(o1);
+		o2 = reduce(o2);
 		T v1 = ns.multiply(o1.numerator, o2.denominator);
 		T v2 = ns.multiply(o2.numerator, o1.denominator);
 		return ns.compare(v1, v2);
