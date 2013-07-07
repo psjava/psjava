@@ -2,6 +2,7 @@ package org.psjava.ds.array;
 
 import java.util.Iterator;
 
+import org.psjava.javautil.IterableToString;
 
 public class MutableSubArray {
 	public static <T> MutableArray<T> create(final MutableArray<T> original, final int start, final int size) {
@@ -25,7 +26,12 @@ public class MutableSubArray {
 			@Override
 			public int size() {
 				return size;
-			}			
+			}
+
+			@Override
+			public String toString() {
+				return IterableToString.toString(this);
+			}
 		};
 	}
 }
