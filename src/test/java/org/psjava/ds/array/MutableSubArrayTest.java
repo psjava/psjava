@@ -10,7 +10,7 @@ public class MutableSubArrayTest {
 	@Test
 	public void test() {
 		DynamicArray<Integer> a = DynamicArray.create();
-		a.addToLastAll(TestUtil.toArrayList(1, 2, 3, 4));
+		AddToLastAll.add(a, TestUtil.toArrayList(1, 2, 3, 4));
 		MutableArray<Integer> sub = MutableSubArray.create(a, 1, 2);
 		Assert.assertEquals(TestUtil.toArrayList(2,3), TestUtil.toArrayListFromIterable(sub));
 		sub.set(1, 100);

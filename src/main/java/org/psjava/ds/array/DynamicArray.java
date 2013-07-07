@@ -23,14 +23,17 @@ public class DynamicArray<T> implements MutableArray<T>, EqualityTester<DynamicA
 		a = (T[])new Object[1];
 	}
 
+	@Override
 	public T get(int index) {
 		return a[index];
 	}	
 	
+	@Override
 	public void set(int index, T value) {
 		a[index] = value;		
 	}
 	
+	@Override
 	public int size() {
 		return asize;
 	}
@@ -60,10 +63,6 @@ public class DynamicArray<T> implements MutableArray<T>, EqualityTester<DynamicA
 		a[asize++] = value;						
 	}
 	
-	public void addToLastAll(Iterable<? extends T> values) { // TODO inline
-		DynamicArrayUtil.addToLast(this, values);
-	}
-
 	public T removeLast() {
 		T r = LastInArray.getLast(this);
 		a[--asize] = null;
