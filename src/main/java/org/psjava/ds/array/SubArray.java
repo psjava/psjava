@@ -6,7 +6,7 @@ import org.psjava.javautil.IterableToString;
 
 public class SubArray {
 
-	public static <T> Array<T> create(final Array<T> original, final int start, final int end) {
+	public static <T> Array<T> wrap(final Array<T> original, final int start, final int end) {
 		return new Array<T>() {
 			@Override
 			public T get(int index) {
