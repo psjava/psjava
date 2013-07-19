@@ -23,7 +23,7 @@ public class ArrayRotatorTest {
 	}
 
 	private MutableArray<Integer> toArray(int... a2) {
-		return MutableArrayUsingIntArray.create(a2);
+		return MutableArrayUsingIntArray.wrap(a2);
 	}
 
 }

@@ -8,7 +8,7 @@ import org.psjava.javautil.IterableToString;
 
 public class MutableArrayUsingIntArray {
 	
-	public static MutableArray<Integer> create(final int[] a) {
+	public static MutableArray<Integer> wrap(final int[] a) {
 		return new MutableArray<Integer>() {
 			public Integer get(int i) {
 				return a[i];
