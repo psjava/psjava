@@ -2,12 +2,12 @@ package org.psjava.math.calc;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.math.ns.JavaIntegerNumberSystem;
+import org.psjava.math.ns.IntegerNumberSystem;
 
 
 public class FloorDivideTest {
 
-	private static final JavaIntegerNumberSystem NS = JavaIntegerNumberSystem.getInstance();
+	private static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
 
 	@Test
 	public void test() {

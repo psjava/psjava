@@ -1,14 +1,14 @@
 package org.psjava.math.ns;
 
-public class JavaIntegerNumberSystem implements IntegerDivisableNumberSystem<Integer> {
+public class IntegerNumberSystem implements IntegerDivisableNumberSystem<Integer> {
 
-	public static final JavaIntegerNumberSystem INSTANCE = new JavaIntegerNumberSystem();
+	private static final IntegerNumberSystem INSTANCE = new IntegerNumberSystem();
 
-	public static JavaIntegerNumberSystem getInstance() {
+	public static IntegerNumberSystem getInstance() {
 		return INSTANCE;
 	}
 
-	private JavaIntegerNumberSystem() {
+	private IntegerNumberSystem() {
 	}
 
 	@Override
