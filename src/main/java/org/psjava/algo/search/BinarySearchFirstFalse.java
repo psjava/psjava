@@ -2,10 +2,10 @@ package org.psjava.algo.search;
 
 import org.psjava.math.ns.IntegerDivisableNumberSystem;
 
-public class BinarySearchLastTrue {
+public class BinarySearchFirstFalse {
 
 	public static <K> K search(final IntegerDivisableNumberSystem<K> keyNumberSystem, K beginKey, K endKey, final Function<K, Boolean> nonIncreasingFunction, K def) {
-		return BinarySearchLastFalse.search(keyNumberSystem, beginKey, endKey, InvertedFunction.wrap(nonIncreasingFunction), def);
+		return BinarySearchFirstTrue.search(keyNumberSystem, beginKey, endKey, InvertedFunction.wrap(nonIncreasingFunction), def);
 	}
 
 }
