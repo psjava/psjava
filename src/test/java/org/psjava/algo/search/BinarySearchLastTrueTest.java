@@ -5,16 +5,16 @@ import org.junit.Test;
 import org.psjava.math.ns.JavaIntegerNumberSystem;
 
 
-public class SearchLastTrueTest {
+public class BinarySearchLastTrueTest {
 
 	@Test
 	public void test() {
-		int index = SearchLastTrue.search(JavaIntegerNumberSystem.getInstance(), -10000, 10000, new IndexBinarySearcherData<Integer>() {
+		int index = BinarySearchLastTrue.search(JavaIntegerNumberSystem.getInstance(), -10000, 10000, new Function<Integer, Boolean>() {
 			@Override
-			public boolean get(Integer index) {
+			public Boolean get(Integer index) {
 				return index <= 400;
 			}
-		}).getIndex();
+		}, -1);
 		Assert.assertEquals(400, index);
 	}
 
