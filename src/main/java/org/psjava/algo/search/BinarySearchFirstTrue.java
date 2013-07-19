@@ -13,8 +13,7 @@ public class BinarySearchFirstTrue {
 		return r;
 	}
 
-	private static <T> T searchFirstPositionTrueCanBeInserted(IntegerDivisableNumberSystem<T> keyNumberSystem, T beginKey, T endKey, Function<T, Boolean> nonDecreasingFunction) {
-		IntegerDivisableNumberSystem<T> ns = keyNumberSystem;
+	private static <T> T searchFirstPositionTrueCanBeInserted(IntegerDivisableNumberSystem<T> ns, T beginKey, T endKey, Function<T, Boolean> nonDecreasingFunction) {
 		T one = ns.getOne();
 		T two = ns.add(one, one);
 		while (ns.compare(beginKey, endKey) < 0) {
