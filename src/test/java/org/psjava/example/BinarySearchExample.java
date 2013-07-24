@@ -28,11 +28,13 @@ public class BinarySearchExample {
 		MutableArray<Integer> array1 = MutableArrayFromValues.create(1, 3, 5, 7, 9);
 		int res1 = BinarySearchFirstInArray.search(array1, new DefaultComparator<Integer>(), 5, -1);
 
+
 		// Following is a example for decresing array.
 		// You can use the reversed comparator.
 
 		MutableArray<Integer> array2 = MutableArrayFromValues.create(9, 7, 5, 3, 1);
 		int res2 = BinarySearchFirstInArray.search(array2, ReversedComparator.wrap(new DefaultComparator<Integer>()), 3, -1);
+
 
 		// You don't need an array. Any function is fine
 		
@@ -42,6 +44,7 @@ public class BinarySearchExample {
 				return input * 8;
 			}
 		}, new DefaultComparator<Integer>(), 100, 200, 888, -1);
+
 
 		// And, there are many alternatives. check them
 
