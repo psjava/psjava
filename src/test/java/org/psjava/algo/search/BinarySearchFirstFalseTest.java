@@ -9,12 +9,12 @@ public class BinarySearchFirstFalseTest {
 
 	@Test
 	public void test() {
-		int index = BinarySearchFirstFalse.search(IntegerNumberSystem.getInstance(), -10000, 10000, new Function<Integer, Boolean>() {
+		int index = BinarySearchFirstFalse.search(IntegerNumberSystem.getInstance(), new Function<Integer, Boolean>() {
 			@Override
 			public Boolean get(Integer index) {
 				return index < 400;
 			}
-		}, -1);
+		}, -10000, 10000, -1);
 		Assert.assertEquals(400, index);
 	}
 

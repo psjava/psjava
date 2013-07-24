@@ -11,35 +11,13 @@ public class BinarySearchFirstTrueTest {
 
 	@Test
 	public void test() {
-		int actual = BinarySearchFirstTrue.search(NS, -10000, 10000, new Function<Integer, Boolean>() {
+		int actual = BinarySearchFirstTrue.search(NS, new Function<Integer, Boolean>() {
 			@Override
 			public Boolean get(Integer index) {
 				return index >= 100;
 			}			
-		}, null);
+		}, -10000, 10000, -1);
 		Assert.assertEquals(100, actual);
-	}
-	
-	@Test
-	public void testNagativeCase() {
-		int actual = BinarySearchFirstTrue.search(NS, -10000, 10000, new Function<Integer, Boolean>() {
-			@Override
-			public Boolean get(Integer index) {
-				return index >= -1000;
-			}			
-		}, null);
-		Assert.assertEquals(-1000, actual);
-	}
-	
-	@Test
-	public void testNotFoundCase() {
-		Integer actual = BinarySearchFirstTrue.search(NS, -10, 10, new Function<Integer, Boolean>() {
-			@Override
-			public Boolean get(Integer index) {
-				return false;
-			}			
-		}, null);
-		Assert.assertNull(actual);
 	}
 	
 }

@@ -1,11 +1,16 @@
 package org.psjava.algo.search;
 
+import java.util.Comparator;
+
+import org.psjava.javautil.ReversedComparator;
+import org.psjava.math.BooleanDefaultComparator;
 import org.psjava.math.ns.IntegerDivisableNumberSystem;
 
 public class BinarySearchLastTrue {
 
-	public static <K> K search(final IntegerDivisableNumberSystem<K> keyNumberSystem, K beginKey, K endKey, final Function<K, Boolean> nonIncreasingFunction, K def) {
-		return BinarySearchLastFalse.search(keyNumberSystem, beginKey, endKey, InvertedFunction.wrap(nonIncreasingFunction), def);
+	public static <I> I search(final IntegerDivisableNumberSystem<I> inputNumberSystem, Function<I, Boolean> trueToFalseOrderedFunction, I begin, I end, I def) {
+		Comparator<Boolean> comp = ReversedComparator.wrap(BooleanDefaultComparator.getInstance());
+		return BinarySearchLast.search(inputNumberSystem, trueToFalseOrderedFunction, comp, begin, end, Boolean.TRUE, def);
 	}
 
 }
