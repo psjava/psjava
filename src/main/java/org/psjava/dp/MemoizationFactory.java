@@ -15,16 +15,16 @@ public class MemoizationFactory {
 		this.setFactory = setFactory;
 	}
 
-	public <I, V> Memoization<I, V> create(final MemoizationFunction<I, V> f) {
-		final MutableMap<I, V> table = mapFactory.create();
+	public <I, O> Memoization<I, O> create(final MemoizationFunction<I, O> f) {
+		final MutableMap<I, O> table = mapFactory.create();
 		final MutableSet<I> inStack = setFactory.create();
-		return new Memoization<I, V>() {
+		return new Memoization<I, O>() {
 			@Override
-			public V get(I input) {
+			public O get(I input) {
 				if (inStack.contains(input))
 					throw new IllegalArgumentException("The function calls infinite recursion. check the logic.");
 				inStack.insert(input);
-				V v = table.get(input, null);
+				O v = table.get(input, null);
 				if (v == null) {
 					v = f.get(input, this);
 					table.put(input, v);
