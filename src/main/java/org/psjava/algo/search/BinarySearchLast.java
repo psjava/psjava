@@ -3,6 +3,7 @@ package org.psjava.algo.search;
 import java.util.Comparator;
 
 import org.psjava.javautil.ReversedComparator;
+import org.psjava.math.Function;
 import org.psjava.math.ReflectionOnYAxis;
 import org.psjava.math.calc.Decrease;
 import org.psjava.math.calc.Increase;

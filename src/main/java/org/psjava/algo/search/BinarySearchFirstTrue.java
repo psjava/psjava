@@ -1,6 +1,7 @@
 package org.psjava.algo.search;
 
 import org.psjava.math.BooleanDefaultComparator;
+import org.psjava.math.Function;
 import org.psjava.math.ns.IntegerDivisableNumberSystem;
 
 public class BinarySearchFirstTrue {

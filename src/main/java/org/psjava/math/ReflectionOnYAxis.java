@@ -1,6 +1,5 @@
 package org.psjava.math;
 
-import org.psjava.algo.search.Function;
 import org.psjava.math.ns.AddInvert;
 import org.psjava.math.ns.IntegerDivisableNumberSystem;
 

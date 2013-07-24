@@ -2,6 +2,7 @@ package org.psjava.algo.search;
 
 import java.util.Comparator;
 
+import org.psjava.math.Function;
 import org.psjava.math.calc.FloorDivide;
 import org.psjava.math.ns.IntegerDivisableNumberSystem;
 

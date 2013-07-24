@@ -3,6 +3,7 @@ package org.psjava.algo.search;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.psjava.math.Function;
 import org.psjava.math.ns.IntegerNumberSystem;
 
 public class BinarySearchFirstTrueTest {

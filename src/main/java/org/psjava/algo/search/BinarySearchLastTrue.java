@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import org.psjava.javautil.ReversedComparator;
 import org.psjava.math.BooleanDefaultComparator;
+import org.psjava.math.Function;
 import org.psjava.math.ns.IntegerDivisableNumberSystem;
 
 public class BinarySearchLastTrue {
