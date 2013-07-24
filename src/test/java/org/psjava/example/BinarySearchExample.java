@@ -43,7 +43,7 @@ public class BinarySearchExample {
 			}
 		}, new DefaultComparator<Integer>(), 100, 200, 888, -1);
 
-		// There are many alternatives. check them
+		// And, there are many alternatives. check them
 
 		BinarySearchFirst.class.getClass();
 		BinarySearchFirstTrue.class.getClass();
