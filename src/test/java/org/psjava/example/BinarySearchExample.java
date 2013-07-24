@@ -34,7 +34,7 @@ public class BinarySearchExample {
 		MutableArray<Integer> array2 = MutableArrayFromValues.create(9, 7, 5, 3, 1);
 		int res2 = BinarySearchFirstInArray.search(array2, ReversedComparator.wrap(new DefaultComparator<Integer>()), 3, -1);
 
-		// You don't need a array. Any function is fine
+		// You don't need an array. Any function is fine
 		
 		int res3 = BinarySearchFirst.search(IntegerNumberSystem.getInstance(), new Function<Integer, Integer>() {
 			@Override
