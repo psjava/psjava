@@ -11,7 +11,7 @@ public class RandomizedQuickSortTest {
 	@Test
 	public void test() {
 		MutableArray<Integer> a = MutableArrayFromValues.create(3, 1, 2);
-		new RandomizedQuickSort().sort(a, new DefaultComparator<Integer>());
+		RandomizedQuickSort.getInstance().sort(a, new DefaultComparator<Integer>());
 	}
 
 }
