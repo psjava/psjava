@@ -6,7 +6,7 @@ import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableSubArray;
 import org.psjava.javautil.DefaultComparator;
 
-public class SortUtil {
+public class SortHelper {
 
 	public static <T extends Comparable<T>> void sort(Sort sort, MutableArray<T> a) {
 		sort.sort(MutableSubArray.create(a, 0, a.size()), new DefaultComparator<T>());
