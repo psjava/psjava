@@ -6,12 +6,12 @@ import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.javautil.DefaultComparator;
 
 
-public class QuickSortTest {
+public class RandomizedQuickSortTest {
 
 	@Test
 	public void test() {
 		MutableArray<Integer> a = MutableArrayFromValues.create(3, 1, 2);
-		new QuickSort().sort(a, new DefaultComparator<Integer>());
+		new RandomizedQuickSort().sort(a, new DefaultComparator<Integer>());
 	}
 
 }

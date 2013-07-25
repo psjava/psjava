@@ -12,7 +12,7 @@ public class SortUtilTest {
 	
 	@Test
 	public void test() {
-		Sort s = new QuickSort();
+		Sort s = new RandomizedQuickSort();
 		DynamicArray<Integer> d = DynamicArray.create();
 		for(int v : new int[] {4,3,1,2})
 			d.addToLast(v);		
