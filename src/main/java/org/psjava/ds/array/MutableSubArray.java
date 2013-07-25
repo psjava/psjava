@@ -5,7 +5,7 @@ import java.util.Iterator;
 import org.psjava.javautil.IterableToString;
 
 public class MutableSubArray {
-	public static <T> MutableArray<T> create(final MutableArray<T> original, final int start, final int size) {
+	public static <T> MutableArray<T> wrap(final MutableArray<T> original, final int start, final int size) {
 		return new MutableArray<T>() {
 			@Override
 			public T get(int index) {
