@@ -3,12 +3,13 @@ package org.psjava.ds.array;
 import java.util.Iterator;
 
 import org.psjava.javautil.EqualityTester;
+import org.psjava.javautil.IterableEqualityTester;
+import org.psjava.javautil.IterableHash;
 import org.psjava.javautil.IterableToString;
 import org.psjava.javautil.StrictEqualityTester;
-import org.psjava.math.ThomasWangHash;
 
 
-public class DynamicArray<T> implements MutableArray<T>, EqualityTester<DynamicArray<T>> {
+public class DynamicArray<T> implements MutableArray<T>, EqualityTester<Array<T>> {
 	
 	public static <T> DynamicArray<T> create() {
 		return new DynamicArray<T>();
@@ -75,21 +76,13 @@ public class DynamicArray<T> implements MutableArray<T>, EqualityTester<DynamicA
 	}
 
 	@Override
-	public boolean areEqual(DynamicArray<T> o1, DynamicArray<T> o2) {
-		if(o1.size() != o2.size())
-			return false;
-		for(int i=0;i<o1.size();i++)
-			if(!o1.get(i).equals(o2.get(i)))
-				return false;		
-		return true;
+	public boolean areEqual(Array<T> o1, Array<T> o2) {
+		return IterableEqualityTester.areEqual(o1, o2);
 	}
 
 	@Override
 	public int hashCode() {
-		int r = 0;
-		for(int i=0;i<size();i++)
-			r ^= ThomasWangHash.hash32bit(get(i).hashCode());
-		return r;
+		return IterableHash.hash(this);
 	}
 
 	@Override
