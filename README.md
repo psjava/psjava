@@ -10,5 +10,6 @@ Examples
 
 ### Algorithms
 * [Binary Search](src/test/java/org/psjava/example/BinarySearchExample.java)
+* [Sort](src/test/java/org/psjava/example/SortExample.java)
 * [Memoization](src/test/java/org/psjava/example/MemoizationExample.java)
 
