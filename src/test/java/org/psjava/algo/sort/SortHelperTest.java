@@ -16,7 +16,7 @@ public class SortHelperTest {
 		DynamicArray<Integer> d = DynamicArray.create();
 		for(int v : new int[] {4,3,1,2})
 			d.addToLast(v);		
-		SortHelper.sort(GoodSort.getInstance(), d, 1, 2);
+		SortHelper.sort(GoodSort.getInstance(), d, 1, 3);
 		Assert.assertEquals(TestUtil.toArrayList(4,1,3,2), TestUtil.toArrayListFromIterable(d));
 	}
 

@@ -31,7 +31,7 @@ public class SortExample {
 		// Let'ss do partial sort.
 		
 		MutableArray<Integer> array2 = MutableArrayFromValues.create(100, 3, 2, 1, 0);
-		SortHelper.sort(GoodSort.getInstance(), array2, 1, 3);
+		SortHelper.sort(GoodSort.getInstance(), array2, 1, 4);
 
 		// The result is,
 		Assert.assertEquals("(100,1,2,3,0)", array2.toString());

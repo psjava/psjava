@@ -5,7 +5,9 @@ import java.util.Iterator;
 import org.psjava.javautil.IterableToString;
 
 public class MutableSubArray {
-	public static <T> MutableArray<T> wrap(final MutableArray<T> original, final int start, final int size) {
+	// TODO impl equals
+
+	public static <T> MutableArray<T> wrap(final MutableArray<T> original, final int start, final int end) {
 		return new MutableArray<T>() {
 			@Override
 			public T get(int index) {
@@ -17,7 +19,7 @@ public class MutableSubArray {
 			}
 			@Override
 			public boolean isEmpty() {
-				return size == 0;
+				return size() == 0;
 			}
 			@Override
 			public Iterator<T> iterator() {
@@ -25,7 +27,7 @@ public class MutableSubArray {
 			}
 			@Override
 			public int size() {
-				return size;
+				return end - start;
 			}
 
 			@Override
