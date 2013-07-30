@@ -24,19 +24,19 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<compileSource>1.6</compileSource>
-		<compileTarget>1.6</compileTarget>
 	</properties>
 
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
 				<configuration>
 					<debug>true</debug>
 					<encoding>UTF-8</encoding>
-					<source>${compileSource}</source>
-					<target>${compileTarget}</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 		</plugins>
