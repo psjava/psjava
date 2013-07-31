@@ -24,9 +24,9 @@
 
 
 	<scm>
-		<connection>scm:git:https://github.com:psjava/psjava.git</connection>
-		<developerConnection>scm:git:https://github.com:psjava/psjava.git</developerConnection>
-		<url>https://github.com:psjava/psjava.git</url>
+		<connection>scm:git:git@github.com:psjava/psjava.git</connection>
+		<developerConnection>scm:git:git@github.com:psjava/psjava.git</developerConnection>
+		<url>git@github.com:psjava/psjava.git</url>
 	</scm>
 
 	<developers>
