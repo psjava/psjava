@@ -30,21 +30,22 @@ public class TrieExample {
 
 		// To get a child node by key, use following methods.
 
-		boolean exist = trie.getRoot().hasChild('A');
-		TrieNode<Character> child = trie.getRoot().getChild('A');
+		boolean hasChild = trie.getRoot().hasChild('A');
+		TrieNode<Character> nodeA = trie.getRoot().getChild('A');
 		
 		// To iterate available children, use getEdges() method.
 		// There will be two edge('1', '2') for 'A' node.
 
-		MutableSet<Character> edges = GoodMutableSetFactory.getInstance().create();
-		for (Character c : child.getEdges()) {
-			edges.insert(c);
+		MutableSet<TrieNode<Character>> children = GoodMutableSetFactory.getInstance().create();
+		for (Character c : nodeA.getEdges()) {
+			TrieNode<Character> child = nodeA.getChild(c);
+			children.insert(child);
 		}
 
 		// (assertions)
 		Assert.assertEquals(2, count);
-		Assert.assertTrue(exist);
-		Assert.assertEquals(2, edges.size());
+		Assert.assertTrue(hasChild);
+		Assert.assertEquals(2, children.size());
 	}
 
 }
