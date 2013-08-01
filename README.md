@@ -17,6 +17,7 @@ Examples
 --------------------------------------------------
 ### Data Structures
 * [Disjoint Set] (src/test/java/org/psjava/example/DisjointSetExample.java) (A.K.A. Union-Find)
+* [Trie] (src/test/java/org/psjava/example/TrieExample.java)
 
 ### Algorithms
 * [Binary Search](src/test/java/org/psjava/example/BinarySearchExample.java)
