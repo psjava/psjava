@@ -1,5 +1,16 @@
 Install
 --------------------------------------------------
+### Plain old Jar 
+[download](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.psjava%22%20a%3A%22psjava%22)
+
+### Maven
+```
+<dependency>
+  <groupId>org.psjava</groupId>
+	<artifactId>psjava</artifactId>
+	<version>0.1.1</version>
+</dependency>
+```
 
 
 Examples
