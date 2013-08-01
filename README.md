@@ -6,7 +6,7 @@ Install
 ### Maven
 ```
 <dependency>
-  <groupId>org.psjava</groupId>
+	<groupId>org.psjava</groupId>
 	<artifactId>psjava</artifactId>
 	<version>0.1.1</version>
 </dependency>

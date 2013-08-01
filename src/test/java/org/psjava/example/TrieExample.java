@@ -32,7 +32,7 @@ public class TrieExample {
 
 		boolean hasChild = trie.getRoot().hasChild('A');
 		TrieNode<Character> nodeA = trie.getRoot().getChild('A');
-		
+
 		// To iterate available children, use getEdges() method.
 		// There will be two edge('1', '2') for 'A' node.
 
