@@ -1,9 +1,9 @@
 Install
 --------------------------------------------------
-### Plain old Jar 
+#### Plain old Jar 
 [Download](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.psjava%22%20a%3A%22psjava%22)
 
-### Maven
+#### Maven
 ```
 <dependency>
 	<groupId>org.psjava</groupId>
@@ -15,12 +15,20 @@ Install
 
 Examples
 --------------------------------------------------
-### Data Structures
+#### Data Structures
 * [Disjoint Set] (src/test/java/org/psjava/example/DisjointSetExample.java) (A.K.A. Union-Find)
 * [Trie] (src/test/java/org/psjava/example/TrieExample.java)
 
-### Algorithms
+#### Algorithms
 * [Binary Search](src/test/java/org/psjava/example/BinarySearchExample.java)
 * [Sort](src/test/java/org/psjava/example/SortExample.java)
 * [Memoization](src/test/java/org/psjava/example/MemoizationExample.java)
 
+
+Implementations
+--------------------------------------------------
+psjava can be a good java code snippet. Check them!
+
+[`Randomized Quick Sort`](/src/main/java/org/psjava/algo/sort/RandomizedQuickSort.java)
+[`Merge Sort`](/src/main/java/org/psjava/algo/sort/MergeSort.java)
+[`Bubble Sort`](/src/main/java/org/psjava/algo/sort/BubbleSort.java)
