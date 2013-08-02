@@ -35,6 +35,7 @@ public class Trie<T> {
 		return getNodeString(root);
 	}
 
+	// TODO separate to some helper class
 	private String getNodeString(final TrieNode<T> node) {
 		String r = "";
 		if (node == root)
