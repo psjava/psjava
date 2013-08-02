@@ -10,7 +10,7 @@ Install
 	<artifactId>psjava</artifactId>
 	<version>0.1.1</version>
 </dependency>
-```
+```https://github.com/psjava/psjava
 
 
 Examples
@@ -29,6 +29,14 @@ Implementations
 --------------------------------------------------
 psjava can be a good java code snippet. Check them!
 
-[`Randomized Quick Sort`](/src/main/java/org/psjava/algo/sort/RandomizedQuickSort.java)
-[`Merge Sort`](/src/main/java/org/psjava/algo/sort/MergeSort.java)
 [`Bubble Sort`](/src/main/java/org/psjava/algo/sort/BubbleSort.java)
+[`Merge Sort`](/src/main/java/org/psjava/algo/sort/MergeSort.java)
+[`Randomized Quick Sort`](/src/main/java/org/psjava/algo/sort/RandomizedQuickSort.java)
+
+[`Insertion Sort`](/src/main/java/org/psjava/algo/sort/InsertionSort.java)
+[`Binary Search First`](/src/main/java/org/psjava/algo/search)
+[`Dynamic Array`](/src/main/java/org/psjava/ds/array/DynamicArray.java)
+[`Trie`](/src/main/java/org/psjava/ds/trie/Trie.java)
+[`GCD`](/src/main/java/org/psjava/math/numbertheory/GCD.java)
+
+
