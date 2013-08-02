@@ -10,7 +10,7 @@ Install
 	<artifactId>psjava</artifactId>
 	<version>0.1.1</version>
 </dependency>
-```https://github.com/psjava/psjava
+```
 
 
 Examples
