@@ -34,7 +34,7 @@ psjava can be a good java code snippet. Check them!
 [`Randomized Quick Sort`](/src/main/java/org/psjava/algo/sort/RandomizedQuickSort.java)
 
 [`Insertion Sort`](/src/main/java/org/psjava/algo/sort/InsertionSort.java)
-[`Binary Search First`](/src/main/java/org/psjava/algo/search)
+[`Binary Search First`](/src/main/java/org/psjava/algo/search/BinarySearchFirst.java)
 [`Dynamic Array`](/src/main/java/org/psjava/ds/array/DynamicArray.java)
 [`Trie`](/src/main/java/org/psjava/ds/trie/Trie.java)
 [`GCD`](/src/main/java/org/psjava/math/numbertheory/GCD.java)
