@@ -35,5 +35,5 @@ psjava can be a good java code snippet. Check them!
 [`GCD`](/src/main/java/org/psjava/math/numbertheory/GCD.java)
 [`Insertion Sort`](/src/main/java/org/psjava/algo/sort/InsertionSort.java)
 [`Merge Sort`](/src/main/java/org/psjava/algo/sort/MergeSort.java)
-[`Randomized Quick Sort`](/src/main/java/org/psjava/algo/sort/RandomizedQuickSort.java)
+[`Quick Sort (Randomized)`](/src/main/java/org/psjava/algo/sort/RandomizedQuickSort.java)
 [`Trie`](/src/main/java/org/psjava/ds/trie/Trie.java)
