@@ -25,7 +25,7 @@ Examples
 * [Memoization](src/test/java/org/psjava/example/MemoizationExample.java)
 
 
-Implementations
+Source Codes
 --------------------------------------------------
 psjava can be a good java code snippet. Check them!
 
