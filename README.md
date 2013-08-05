@@ -1,33 +1,12 @@
-Install
+psjava - Problem Solving Library for Java
 --------------------------------------------------
-#### Plain old Jar 
-[Download](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.psjava%22%20a%3A%22psjava%22)
+For more information, please visit http://psjava.org
 
-#### Maven
-```
-<dependency>
-	<groupId>org.psjava</groupId>
-	<artifactId>psjava</artifactId>
-	<version>0.1.1</version>
-</dependency>
-```
+#### Examples
 
+See the [list of examples](/EXAMPLES.md)
 
-Examples
---------------------------------------------------
-#### Data Structures
-* [Disjoint Set] (src/test/java/org/psjava/example/DisjointSetExample.java) (A.K.A. Union-Find)
-* [Trie] (src/test/java/org/psjava/example/TrieExample.java)
-
-#### Algorithms
-* [Binary Search](src/test/java/org/psjava/example/BinarySearchExample.java)
-* [Sort](src/test/java/org/psjava/example/SortExample.java)
-* [Memoization](src/test/java/org/psjava/example/MemoizationExample.java)
-
-
-Source Codes
---------------------------------------------------
-psjava can be a good java code snippet. Check them!
+#### Keyword List of Implementations
 
 [`Binary Search First`](/src/main/java/org/psjava/algo/search/BinarySearchFirst.java)
 [`Bubble Sort`](/src/main/java/org/psjava/algo/sort/BubbleSort.java)
