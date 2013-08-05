@@ -28,12 +28,16 @@ public class BinarySearchExample {
 		MutableArray<Integer> array1 = MutableArrayFromValues.create(1, 3, 5, 7, 9);
 		int res1 = BinarySearchFirstInArray.search(array1, new DefaultComparator<Integer>(), 5, -1);
 
+		Assert.assertEquals(2, res1);
+
 
 		// Following is an example for decresing array.
 		// You can use the reversed comparator.
 
 		MutableArray<Integer> array2 = MutableArrayFromValues.create(9, 7, 5, 3, 1);
 		int res2 = BinarySearchFirstInArray.search(array2, ReversedComparator.wrap(new DefaultComparator<Integer>()), 3, -1);
+
+		Assert.assertEquals(3, res2);
 
 
 		// You don't have to prepare an array. Any function is enough.
@@ -45,8 +49,10 @@ public class BinarySearchExample {
 			}
 		}, new DefaultComparator<Integer>(), 100, 200, 888, -1);
 
+		Assert.assertEquals(111, res3);
 
-		// And, there are many alternatives. check them
+
+		// And, there are many alternatives interfaces. check them
 
 		BinarySearchFirst.class.getClass();
 		BinarySearchFirstTrue.class.getClass();
@@ -56,14 +62,6 @@ public class BinarySearchExample {
 		BinarySearchLastInArray.class.getClass();
 		BinarySearchLastTrue.class.getClass();
 		BinarySearchLastFalse.class.getClass();
-		
-		
-		
-
-		// these are assertion
-		Assert.assertEquals(2, res1);
-		Assert.assertEquals(3, res2);
-		Assert.assertEquals(111, res3);
 	}
 
 }
