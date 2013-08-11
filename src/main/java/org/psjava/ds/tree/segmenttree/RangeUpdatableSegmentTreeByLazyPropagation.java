@@ -58,7 +58,7 @@ public class RangeUpdatableSegmentTreeByLazyPropagation<T> implements RangeUpdat
 		if (rangeStart == nodeStart && rangeEnd == nodeEnd) {
 			return node.getData().merged;
 		} else {
-			ensureNotLazy(node, nodeStart, nodeEnd);
+			propagateIfLazy(node, nodeStart, nodeEnd);
 			int mid = calcMiddle(nodeStart, nodeEnd);
 			if (rangeEnd <= mid)
 				return query(node.getLeft(), nodeStart, mid, rangeStart, rangeEnd);
@@ -85,7 +85,7 @@ public class RangeUpdatableSegmentTreeByLazyPropagation<T> implements RangeUpdat
 		} else if (rangeStart == nodeStart && rangeEnd == nodeEnd) {
 			makeAsLazy(node, rangeStart, rangeEnd, value);
 		} else {
-			ensureNotLazy(node, nodeStart, nodeEnd);
+			propagateIfLazy(node, nodeStart, nodeEnd);
 			int mid = calcMiddle(nodeStart, nodeEnd);
 			if (rangeStart < mid)
 				updateRange(node.getLeft(), nodeStart, mid, rangeStart, Math.min(mid, rangeEnd), value);
@@ -110,7 +110,7 @@ public class RangeUpdatableSegmentTreeByLazyPropagation<T> implements RangeUpdat
 		node.getData().propagationValue = value;
 	}
 
-	private void ensureNotLazy(BinaryTreeNode<NodeData> node, int start, int end) {
+	private void propagateIfLazy(BinaryTreeNode<NodeData> node, int start, int end) {
 		if (node.getData().lazy) {
 			T value = node.getData().propagationValue;
 			int mid = calcMiddle(start, end);
