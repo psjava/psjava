@@ -117,6 +117,7 @@ public class RangeUpdatableSegmentTreeByLazyPropagation<T> implements RangeUpdat
 			makeAsLazy(node.getLeft(), start, mid, value);
 			makeAsLazy(node.getRight(), mid, end, value);
 			node.getData().lazy = false;
+			node.getData().propagationValue = null;
 		}
 	}
 
