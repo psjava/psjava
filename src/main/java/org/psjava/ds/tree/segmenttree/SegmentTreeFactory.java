@@ -1,4 +1,4 @@
-package org.psjava.ds.tree;
+package org.psjava.ds.tree.segmenttree;
 
 import org.psjava.ds.array.Array;
 import org.psjava.math.BinaryOperator;

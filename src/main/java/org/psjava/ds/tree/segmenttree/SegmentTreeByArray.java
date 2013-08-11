@@ -1,6 +1,7 @@
-package org.psjava.ds.tree;
+package org.psjava.ds.tree.segmenttree;
 
 import org.psjava.ds.array.Array;
+import org.psjava.ds.tree.BinaryTreeByArray;
 import org.psjava.math.BinaryOperator;
 
 public class SegmentTreeByArray<T> implements SegmentTree<T> {

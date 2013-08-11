@@ -1,9 +1,10 @@
-package org.psjava.ds.tree;
+package org.psjava.ds.tree.segmenttree;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.MutableArrayFromValues;
+import org.psjava.ds.tree.segmenttree.SegmentTreeByNodeStructure;
 import org.psjava.math.BinaryOperator;
 
 public class SegmentTreeByNodeStructureTest {

@@ -1,4 +1,4 @@
-package org.psjava.ds.tree;
+package org.psjava.ds.tree.segmenttree;
 
 public interface SegmentTree<T> {
 
