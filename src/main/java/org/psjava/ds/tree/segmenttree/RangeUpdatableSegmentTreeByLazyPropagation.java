@@ -14,7 +14,8 @@ public class RangeUpdatableSegmentTreeByLazyPropagation<T> implements RangeUpdat
 
 	class NodeData {
 		T merged;
-		T lazyPropagationValueOrNull = null;
+		boolean lazy = false;
+		T propagationValue = null; // should not be null if lazy is true
 
 		NodeData(T merged) {
 			this.merged = merged;
@@ -105,16 +106,17 @@ public class RangeUpdatableSegmentTreeByLazyPropagation<T> implements RangeUpdat
 	private void makeAsLazy(BinaryTreeNode<NodeData> node, int start, int end, T value) {
 		T m = Power.calc(value, end - start, operator);
 		node.getData().merged = m;
-		node.getData().lazyPropagationValueOrNull = value;
+		node.getData().lazy = true;
+		node.getData().propagationValue = value;
 	}
 
 	private void ensureNotLazy(BinaryTreeNode<NodeData> node, int start, int end) {
-		T lazy = node.getData().lazyPropagationValueOrNull;
-		if (lazy != null) {
+		if (node.getData().lazy) {
+			T value = node.getData().propagationValue;
 			int mid = calcMiddle(start, end);
-			makeAsLazy(node.getLeft(), start, mid, lazy);
-			makeAsLazy(node.getRight(), mid, end, lazy);
-			node.getData().lazyPropagationValueOrNull = null;
+			makeAsLazy(node.getLeft(), start, mid, value);
+			makeAsLazy(node.getRight(), mid, end, value);
+			node.getData().lazy = false;
 		}
 	}
 

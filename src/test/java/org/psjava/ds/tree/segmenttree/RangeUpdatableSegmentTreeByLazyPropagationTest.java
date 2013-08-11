@@ -29,13 +29,13 @@ public class RangeUpdatableSegmentTreeByLazyPropagationTest {
 		tree.updateRange(2, 4, 100);
 
 		RangeUpdatableSegmentTreeByLazyPropagation<Integer>.NodeData data = tree.root.getLeft().getRight().getData();
-		Assert.assertNotNull(data.lazyPropagationValueOrNull);
+		Assert.assertTrue(data.lazy);
 		Assert.assertEquals(200, (int) data.merged);
 
 		int r = tree.query(1, 3);
 
 		Assert.assertEquals(102, r);
-		Assert.assertNull(data.lazyPropagationValueOrNull);
+		Assert.assertFalse(data.lazy);
 	}
 
 	private RangeUpdatableSegmentTreeByLazyPropagation<Integer> createInitTree() {
