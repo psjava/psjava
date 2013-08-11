@@ -5,10 +5,10 @@ import org.junit.Test;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
-import org.psjava.ds.tree.segmenttree.SegmentTreeByArray;
+import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
 import org.psjava.math.BinaryOperator;
 
-public class SegmentTreeByArrayTest {
+public class SegmentTreeByArrayImplementationTest {
 	@Test
 	public void testQuery() {
 		SegmentTree<Integer> tree = createInitTree();
@@ -24,7 +24,7 @@ public class SegmentTreeByArrayTest {
 
 	private SegmentTree<Integer> createInitTree() {
 		Array<Integer> init = MutableArrayFromValues.create(1, 2, 3, 4, 5, 6, 7, 8);
-		return new SegmentTreeByArray<Integer>(init, new BinaryOperator<Integer>() {
+		return new SegmentTreeByArrayImplementation<Integer>(init, new BinaryOperator<Integer>() {
 			@Override
 			public Integer calc(Integer a, Integer b) {
 				return a + b;

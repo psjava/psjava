@@ -4,7 +4,7 @@ import org.psjava.ds.array.Array;
 import org.psjava.ds.tree.BinaryTreeByArray;
 import org.psjava.math.BinaryOperator;
 
-public class SegmentTreeByArray<T> implements SegmentTree<T> {
+public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 
 	/**
 	 * We didn't implement lazy propagation. because it disables the advantage
@@ -15,7 +15,7 @@ public class SegmentTreeByArray<T> implements SegmentTree<T> {
 	private final BinaryTreeByArray<T> tree;
 	private final int size;
 
-	public SegmentTreeByArray(final Array<T> initialData, final BinaryOperator<T> merger) {
+	public SegmentTreeByArrayImplementation(final Array<T> initialData, final BinaryOperator<T> merger) {
 		this.merger = merger;
 		size = initialData.size();
 		tree = new BinaryTreeByArray<T>();
