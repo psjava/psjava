@@ -6,6 +6,11 @@ import org.psjava.javautil.BooleanIterable;
 
 public class BinaryTreeByArray<T> {
 
+	/**
+	 * This is a rooted binary tree implementation which is specialized for
+	 * speed.
+	 */
+
 	private DynamicArray<T> array = DynamicArray.create();
 
 	public int createRoot(T value) {
