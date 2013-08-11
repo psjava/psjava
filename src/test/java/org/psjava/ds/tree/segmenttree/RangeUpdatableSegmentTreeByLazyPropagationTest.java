@@ -4,31 +4,31 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.MutableArrayFromValues;
-import org.psjava.ds.tree.segmenttree.SegmentTreeByNodeStructure;
+import org.psjava.ds.tree.segmenttree.RangeUpdatableSegmentTreeByLazyPropagation;
 import org.psjava.math.BinaryOperator;
 
-public class SegmentTreeByNodeStructureTest {
+public class RangeUpdatableSegmentTreeByLazyPropagationTest {
 
 	@Test
 	public void testQuery() {
-		SegmentTreeByNodeStructure<Integer> tree = createInitTree();
+		RangeUpdatableSegmentTreeByLazyPropagation<Integer> tree = createInitTree();
 		Assert.assertEquals(10, (int) tree.query(0, 4));
 	}
 
 	@Test
 	public void testUpdateSingle() {
-		SegmentTreeByNodeStructure<Integer> tree = createInitTree();
+		RangeUpdatableSegmentTreeByLazyPropagation<Integer> tree = createInitTree();
 		tree.update(0, 2);
 		Assert.assertEquals(37, (int) tree.query(0, 8));
 	}
 
 	@Test
 	public void testLazyUpdate() {
-		SegmentTreeByNodeStructure<Integer> tree = createInitTree();
+		RangeUpdatableSegmentTreeByLazyPropagation<Integer> tree = createInitTree();
 
 		tree.updateRange(2, 4, 100);
 
-		SegmentTreeByNodeStructure<Integer>.NodeData data = tree.root.getLeft().getRight().getData();
+		RangeUpdatableSegmentTreeByLazyPropagation<Integer>.NodeData data = tree.root.getLeft().getRight().getData();
 		Assert.assertNotNull(data.lazyPropagationValueOrNull);
 		Assert.assertEquals(200, (int) data.merged);
 
@@ -38,9 +38,9 @@ public class SegmentTreeByNodeStructureTest {
 		Assert.assertNull(data.lazyPropagationValueOrNull);
 	}
 
-	private SegmentTreeByNodeStructure<Integer> createInitTree() {
+	private RangeUpdatableSegmentTreeByLazyPropagation<Integer> createInitTree() {
 		Array<Integer> init = MutableArrayFromValues.create(1, 2, 3, 4, 5, 6, 7, 8);
-		return new SegmentTreeByNodeStructure<Integer>(init, new BinaryOperator<Integer>() {
+		return new RangeUpdatableSegmentTreeByLazyPropagation<Integer>(init, new BinaryOperator<Integer>() {
 			@Override
 			public Integer calc(Integer a, Integer b) {
 				return a + b;

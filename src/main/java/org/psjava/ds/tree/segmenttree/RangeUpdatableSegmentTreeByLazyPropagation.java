@@ -6,7 +6,7 @@ import org.psjava.ds.tree.BinaryTreeNodeFactory;
 import org.psjava.math.BinaryOperator;
 import org.psjava.math.Power;
 
-public class SegmentTreeByNodeStructure<T> implements RangeUpdatableSegmentTree<T> {
+public class RangeUpdatableSegmentTreeByLazyPropagation<T> implements RangeUpdatableSegmentTree<T> {
 
 	class NodeData {
 		T merged;
@@ -21,7 +21,7 @@ public class SegmentTreeByNodeStructure<T> implements RangeUpdatableSegmentTree<
 	private final int size;
 	final BinaryTreeNode<NodeData> root;
 
-	public SegmentTreeByNodeStructure(Array<T> initialData, BinaryOperator<T> operator) {
+	public RangeUpdatableSegmentTreeByLazyPropagation(Array<T> initialData, BinaryOperator<T> operator) {
 		this.operator = operator;
 		size = initialData.size();
 		if (size > 0)
