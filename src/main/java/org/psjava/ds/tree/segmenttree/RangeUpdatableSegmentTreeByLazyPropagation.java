@@ -8,6 +8,10 @@ import org.psjava.math.Power;
 
 public class RangeUpdatableSegmentTreeByLazyPropagation<T> implements RangeUpdatableSegmentTree<T> {
 
+	public static final <T> RangeUpdatableSegmentTree<T> create(Array<T> initialData, BinaryOperator<T> operator) {
+		return new RangeUpdatableSegmentTreeByLazyPropagation<T>(initialData, operator);
+	}
+
 	class NodeData {
 		T merged;
 		T lazyPropagationValueOrNull = null;
@@ -21,7 +25,7 @@ public class RangeUpdatableSegmentTreeByLazyPropagation<T> implements RangeUpdat
 	private final int size;
 	final BinaryTreeNode<NodeData> root;
 
-	public RangeUpdatableSegmentTreeByLazyPropagation(Array<T> initialData, BinaryOperator<T> operator) {
+	RangeUpdatableSegmentTreeByLazyPropagation(Array<T> initialData, BinaryOperator<T> operator) {
 		this.operator = operator;
 		size = initialData.size();
 		if (size > 0)
