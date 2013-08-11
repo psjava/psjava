@@ -10,6 +10,8 @@ import org.psjava.math.PairHash;
 
 public class PairHashTest {
 
+	// TODO improve speed.
+
 	@Test
 	public void testRareCollision() {
 		Set<Integer> set = new TreeSet<Integer>(); 

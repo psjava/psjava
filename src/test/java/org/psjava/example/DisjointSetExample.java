@@ -3,15 +3,14 @@ package org.psjava.example;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.set.DisjointSet;
-import org.psjava.ds.set.DisjointSetForest;
-import org.psjava.goods.GoodMutableMapFactory;
+import org.psjava.goods.GoodDisjointSetFactory;
 
 public class DisjointSetExample {
-	
+
 	@Test
 	public void example() {
 
-		DisjointSet<String> dset = DisjointSetForest.create(GoodMutableMapFactory.getInstance());
+		DisjointSet<String> dset = GoodDisjointSetFactory.getInstance().create();
 
 		dset.makeSet("A");
 		dset.makeSet("B");
@@ -19,7 +18,7 @@ public class DisjointSetExample {
 		dset.makeSet("D");
 
 		dset.union("C", "D");
-		
+
 		// Two representiatives are now same.
 
 		String rep1 = dset.find("C");

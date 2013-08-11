@@ -27,7 +27,7 @@ public class SortExample {
 		
 		
 		// There is only one method in Sort interface,
-		// but there are several convenient methods in following class
+		// but there are several convenient methods in SortHelper class
 		// Let'ss do partial sort.
 		
 		MutableArray<Integer> array2 = MutableArrayFromValues.create(100, 3, 2, 1, 0);
