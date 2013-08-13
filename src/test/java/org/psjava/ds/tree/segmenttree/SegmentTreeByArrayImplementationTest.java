@@ -9,6 +9,9 @@ import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
 import org.psjava.math.BinaryOperator;
 
 public class SegmentTreeByArrayImplementationTest {
+
+	// TODO add performance test
+
 	@Test
 	public void testQuery() {
 		SegmentTree<Integer> tree = createInitTree();

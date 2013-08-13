@@ -1,2 +1,3 @@
+assert segment argument start <= end
 solve something using segment tree
 add binary indexed tree

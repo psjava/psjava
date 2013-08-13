@@ -43,7 +43,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 	}
 
 	private T query(int node, int nodeStart, int nodeEnd, int start, int end) {
-		if (nodeEnd - nodeStart == 1) {
+		if (nodeStart == start && nodeEnd == end) {
 			return tree.getValue(node);
 		} else {
 			int mid = (nodeStart + nodeEnd) / 2;
