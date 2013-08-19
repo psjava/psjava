@@ -12,14 +12,16 @@ public class SegmentTreeByArrayImplementationTest {
 
 	// TODO add performance test
 
+	// TODO add performance test
+
 	@Test
-	public void testQuery() {
+	public void testQueryRecursively() {
 		SegmentTree<Integer> tree = createInitTree();
 		Assert.assertEquals(10, (int) tree.query(0, 4));
 	}
 
 	@Test
-	public void testUpdateSingle() {
+	public void testUpdateRecursivelySingle() {
 		SegmentTree<Integer> tree = createInitTree();
 		tree.update(0, 2);
 		Assert.assertEquals(37, (int) tree.query(0, 8));

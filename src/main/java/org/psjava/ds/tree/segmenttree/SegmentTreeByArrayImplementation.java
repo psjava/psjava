@@ -39,29 +39,29 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 
 	@Override
 	public T query(int start, int end) {
-		return query(tree.getRootPointer(), 0, size, start, end);
+		return queryRecursively(tree.getRootPointer(), 0, size, start, end);
 	}
 
-	private T query(int node, int nodeStart, int nodeEnd, int start, int end) {
+	private T queryRecursively(int node, int nodeStart, int nodeEnd, int start, int end) {
 		if (nodeStart == start && nodeEnd == end) {
 			return tree.getValue(node);
 		} else {
 			int mid = (nodeStart + nodeEnd) / 2;
 			if (end <= mid)
-				return query(tree.getLeft(node), nodeStart, mid, start, end);
+				return queryRecursively(tree.getLeft(node), nodeStart, mid, start, end);
 			else if (mid <= start)
-				return query(tree.getRight(node), mid, nodeEnd, start, end);
+				return queryRecursively(tree.getRight(node), mid, nodeEnd, start, end);
 			else
-				return merger.calc(query(tree.getLeft(node), nodeStart, mid, start, mid), query(tree.getRight(node), mid, nodeEnd, mid, end));
+				return merger.calc(queryRecursively(tree.getLeft(node), nodeStart, mid, start, mid), queryRecursively(tree.getRight(node), mid, nodeEnd, mid, end));
 		}
 	}
 
 	@Override
 	public void update(int position, T value) {
-		update(tree.getRootPointer(), 0, size, position, value);
+		updateRecursively(tree.getRootPointer(), 0, size, position, value);
 	}
 
-	private void update(int node, int nodeStart, int nodeEnd, int position, T value) {
+	private void updateRecursively(int node, int nodeStart, int nodeEnd, int position, T value) {
 		if (nodeEnd - nodeStart == 1) {
 			tree.setValue(node, value);
 		} else {
@@ -69,9 +69,9 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 			int right = tree.getRight(node);
 			int mid = (nodeStart + nodeEnd) / 2;
 			if (position < mid)
-				update(left, nodeStart, mid, position, value);
+				updateRecursively(left, nodeStart, mid, position, value);
 			else
-				update(right, mid, nodeEnd, position, value);
+				updateRecursively(right, mid, nodeEnd, position, value);
 			tree.setValue(node, merger.calc(tree.getValue(left), tree.getValue(right)));
 		}
 	}
