@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.ds.tree.segmenttree.RangeUpdatableSegmentTree;
-import org.psjava.ds.tree.segmenttree.RangeUpdatableSegmentTreeByLazyPropagation;
 import org.psjava.math.BinaryOperator;
 
 public class SegmentTreeWhichIsRangeUpdatableExample {
@@ -18,7 +17,7 @@ public class SegmentTreeWhichIsRangeUpdatableExample {
 
 		Array<Integer> init = MutableArrayFromValues.create(1, 1, 1, 1, 1);
 
-		RangeUpdatableSegmentTree<Integer> sumTree = RangeUpdatableSegmentTreeByLazyPropagation.create(init, new BinaryOperator<Integer>() {
+		RangeUpdatableSegmentTree<Integer> sumTree = RangeUpdatableSegmentTree.create(init, new BinaryOperator<Integer>() {
 			@Override
 			public Integer calc(Integer a, Integer b) {
 				return a + b;
