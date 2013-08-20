@@ -2,13 +2,15 @@ package org.psjava.ds.tree.segmenttree;
 
 import org.psjava.ds.array.Array;
 import org.psjava.ds.tree.BinaryTreeByArray;
+import org.psjava.javautil.AssertStatus;
 import org.psjava.math.BinaryOperator;
 
 public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 
 	/**
-	 * We didn't implement lazy propagation. because it disables the advantage
-	 * of BinaryTreeByArray's speed.
+	 * This class is for only simple replacement updating. We didn't implement
+	 * lazy propagation. Because it disables the advantage of
+	 * BinaryTreeByArray's speed.
 	 */
 
 	private final BinaryOperator<T> merger;
@@ -39,6 +41,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 
 	@Override
 	public T query(int start, int end) {
+		AssertStatus.assertTrue(start < end);
 		return queryRecursively(tree.getRootPointer(), 0, size, start, end);
 	}
 
