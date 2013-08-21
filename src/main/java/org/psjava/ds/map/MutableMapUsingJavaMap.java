@@ -2,6 +2,7 @@ package org.psjava.ds.map;
 
 import java.util.Iterator;
 
+import org.psjava.javautil.AssertStatus;
 import org.psjava.javautil.ConvertedDataIterator;
 import org.psjava.javautil.DataConverter;
 import org.psjava.javautil.EqualityTester;
@@ -14,14 +15,15 @@ public class MutableMapUsingJavaMap {
 	public static <K, V> MutableMap<K, V> create(final java.util.Map<K, V> map) {
 		return new MutableMap<K, V>() {
 
+			@Override
 			public boolean containsKey(K key) {
 				return map.containsKey(key);
 			}
 
+			@Override
 			public V get(K key) {
 				V r = map.get(key);
-				if (r == null)
-					throw new RuntimeException();
+				AssertStatus.assertTrue(r != null, "key is not in map");
 				return r;
 			}
 
@@ -34,26 +36,32 @@ public class MutableMapUsingJavaMap {
 					return def;
 			}
 
+			@Override
 			public Iterable<K> keys() {
 				return map.keySet();
 			}
 
+			@Override
 			public void put(K key, V value) {
 				map.put(key, value);
 			}
 
+			@Override
 			public Iterable<V> values() {
 				return map.values();
 			}
 
+			@Override
 			public void clear() {
 				map.clear();
 			}
 
+			@Override
 			public boolean isEmpty() {
 				return map.isEmpty();
 			}
 
+			@Override
 			public Iterator<MutableEntry<K, V>> iterator() {
 				return ConvertedDataIterator.create(map.entrySet().iterator(), new DataConverter<java.util.Map.Entry<K, V>, MutableEntry<K, V>>() {
 					@Override
@@ -63,10 +71,12 @@ public class MutableMapUsingJavaMap {
 				});
 			}
 
+			@Override
 			public int size() {
 				return map.size();
 			}
 
+			@Override
 			public void remove(K key) {
 				map.remove(key);
 			}
