@@ -62,10 +62,10 @@ public class MutableMapUsingJavaMap {
 			}
 
 			@Override
-			public Iterator<MutableEntry<K, V>> iterator() {
-				return ConvertedDataIterator.create(map.entrySet().iterator(), new DataConverter<java.util.Map.Entry<K, V>, MutableEntry<K, V>>() {
+			public Iterator<MapEntry<K, V>> iterator() {
+				return ConvertedDataIterator.create(map.entrySet().iterator(), new DataConverter<java.util.Map.Entry<K, V>, MapEntry<K, V>>() {
 					@Override
-					public MutableEntry<K, V> convert(java.util.Map.Entry<K, V> e) {
+					public MapEntry<K, V> convert(java.util.Map.Entry<K, V> e) {
 						return new EntryWrapper<K, V>(e);
 					}
 				});
@@ -89,7 +89,7 @@ public class MutableMapUsingJavaMap {
 		};
 	}
 
-	private static class EntryWrapper<K, V> implements MutableEntry<K, V>, EqualityTester<EntryWrapper<K,V>> {
+	private static class EntryWrapper<K, V> implements MapEntry<K, V>, EqualityTester<EntryWrapper<K, V>> {
 		private java.util.Map.Entry<K, V> e;
 		private EntryWrapper(java.util.Map.Entry<K, V> e) {
 			this.e = e;
@@ -101,10 +101,6 @@ public class MutableMapUsingJavaMap {
 		@Override
 		public V getValue() { 
 			return e.getValue();
-		}
-		@Override
-		public void setValue(V v) {
-			e.setValue(v);						
 		}
 		@Override
 		public boolean equals(Object obj) {
