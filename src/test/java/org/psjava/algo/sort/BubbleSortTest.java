@@ -7,6 +7,6 @@ import org.junit.Test;
 public class BubbleSortTest {
 	@Test
 	public void test() {
-		SortTestUtil.testSimpleSort(BubbleSort.getInstance());
+		SortTestUtil.testSimpleSort(new BubbleSort());
 	}
 }

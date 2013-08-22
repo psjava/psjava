@@ -37,11 +37,11 @@ public class SortExample {
 		Assert.assertEquals("(100,1,2,3,0)", array2.toString());
 
 		
-		// We recommend to use the good one. but you can use specify algorithm. check them!
+		// We recommend to use the good one. but you can use specify sort algorithm. check them!
 		GoodSort.getInstance();
-		RandomizedQuickSort.getInstance();
-		InsertionSort.getInstance();
-		BubbleSort.getInstance();
-		MergeSort.getInstance();
+		new RandomizedQuickSort();
+		new InsertionSort();
+		new BubbleSort();
+		new MergeSort();
 	}
 }

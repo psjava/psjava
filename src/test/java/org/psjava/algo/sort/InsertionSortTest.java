@@ -6,7 +6,6 @@ import org.junit.Test;
 public class InsertionSortTest {
 	@Test
 	public void test() {
-		Sort sort = InsertionSort.getInstance();
-		SortTestUtil.testSimpleSort(sort);
+		SortTestUtil.testSimpleSort(new InsertionSort());
 	}
 }

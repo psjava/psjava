@@ -7,8 +7,7 @@ public class RandomizedQuickSortTest {
 
 	@Test
 	public void test() {
-		Sort sort = RandomizedQuickSort.getInstance();
-		SortTestUtil.testSimpleSort(sort);
+		SortTestUtil.testSimpleSort(new RandomizedQuickSort());
 	}
 
 }
