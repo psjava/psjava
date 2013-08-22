@@ -22,18 +22,15 @@ public class MutableMapUsingJavaMap {
 
 			@Override
 			public V get(K key) {
-				V r = map.get(key);
-				AssertStatus.assertTrue(r != null, "key is not in map");
-				return r;
+				AssertStatus.assertTrue(containsKey(key));
+				return map.get(key);
 			}
 
 			@Override
 			public V get(K key, V def) {
-				V r = map.get(key);
-				if (r != null)
-					return r;
-				else
+				if (!containsKey(key))
 					return def;
+				return map.get(key);
 			}
 
 			@Override
