@@ -25,7 +25,7 @@ public class RandomizedQuickSort implements Sort {
 		int pos = start;
 		for (int i = start + 1; i < end; i++) {
 			int c = comp.compare(a.get(i), a.get(start));
-			// To prevent big cluster in uniform array, use random.
+			// To prevent big half cluster by same items, use random.
 			if (c < 0 || c == 0 && RANDOM.nextBoolean())
 				ArraySwapper.swap(a, i, ++pos);
 		}
