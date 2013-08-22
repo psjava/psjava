@@ -1,4 +1,4 @@
-package org.psjava.algo.graph;
+package org.psjava.algo.graph.shortestpath;
 
 
 import java.util.Comparator;
@@ -17,22 +17,22 @@ public class Dijkstra implements SingleSourceShortestPath {
 	
 	private static final MutableMapFactory MF = GoodMutableMapFactory.getInstance();
 	
-	private HeapFactory heapFactory;
+	private HeapFactory factory;
 	
 	public Dijkstra(HeapFactory heapFactory) {
-		this.heapFactory = heapFactory;
+		this.factory = heapFactory;
 	}
 	
 	@Override
-	public <W, E extends DirectedWeightedEdge<W>> SingleSourceShortestPathResult<W, E> getResult(DirectedAdjacencyListableGraph<E> g, Object start, final AddableNumberSystem<W> ns) {
+	public <W, E extends DirectedWeightedEdge<W>> SingleSourceShortestPathResult<W, E> calc(DirectedAdjacencyListableGraph<E> g, Object start, final AddableNumberSystem<W> ns) {
 		final MutableMap<Object, W> distance = MF.create();
 		MutableMap<Object, E> previous = MF.create();
 		
 		for(Object v : g.getVertices())
-			distance.put(v, null); // null is infinity
+			distance.put(v, null); // null means infinity
 		distance.put(start, ns.getZero());
 
-		Heap<Object> heap = heapFactory.create(new Comparator<Object>() {
+		Heap<Object> heap = factory.create(new Comparator<Object>() {
 			@Override
 			public int compare(Object o1, Object o2) {
 				return comp(ns, distance.get(o1), distance.get(o2));

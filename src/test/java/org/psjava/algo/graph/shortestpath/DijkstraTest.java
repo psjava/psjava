@@ -1,8 +1,11 @@
-package org.psjava.algo.graph;
+package org.psjava.algo.graph.shortestpath;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.psjava.algo.graph.shortestpath.Dijkstra;
+import org.psjava.algo.graph.shortestpath.SingleSourceShortestPath;
+import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.DirectedWeightedEdgeFactory;
 import org.psjava.ds.graph.MutableDirectedGraph;
@@ -26,7 +29,7 @@ public class DijkstraTest {
 		g.insertVertex("B");
 		g.insertVertex("C");
 		g.addEdge(DirectedWeightedEdgeFactory.create("B", "C", 1));
-		SingleSourceShortestPathResult<Integer, DirectedWeightedEdge<Integer>> r = ALGO.getResult(g, "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<Integer, DirectedWeightedEdge<Integer>> r = ALGO.calc(g, "A", IntegerNumberSystem.getInstance());
 		Assert.assertFalse(r.isReachable("B"));
 	}
 

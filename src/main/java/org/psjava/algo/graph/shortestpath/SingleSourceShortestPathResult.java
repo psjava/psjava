@@ -1,4 +1,4 @@
-package org.psjava.algo.graph;
+package org.psjava.algo.graph.shortestpath;
 
 public interface SingleSourceShortestPathResult<W, E> {
 	Iterable<E> getEdgePath(Object to); 

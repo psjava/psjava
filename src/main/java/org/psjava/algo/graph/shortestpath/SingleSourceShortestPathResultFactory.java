@@ -1,4 +1,4 @@
-package org.psjava.algo.graph;
+package org.psjava.algo.graph.shortestpath;
 
 import java.util.LinkedList;
 import java.util.List;
