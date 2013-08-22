@@ -2,14 +2,13 @@ package org.psjava.ds.set;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.javautil.ZeroTo;
 
 public class DisjointSetForestTest {
 	
 	@Test
 	public void testSet1() {
-		DisjointSet<Integer> ds = DisjointSetForest.create(GoodMutableMapFactory.getInstance());
+		DisjointSet<Integer> ds = new DisjointSetForest<Integer>();
 		MakeSetAll.make(ds, ZeroTo.get(5));
 		Assert.assertTrue(ds.find(1) != ds.find(2));
 		ds.union(1,2);

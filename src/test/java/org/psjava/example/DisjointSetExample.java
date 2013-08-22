@@ -3,14 +3,14 @@ package org.psjava.example;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.set.DisjointSet;
-import org.psjava.goods.GoodDisjointSetFactory;
+import org.psjava.goods.GoodDisjointSet;
 
 public class DisjointSetExample {
 
 	@Test
 	public void example() {
 
-		DisjointSet<String> dset = GoodDisjointSetFactory.getInstance().create();
+		DisjointSet<String> dset = GoodDisjointSet.create();
 
 		dset.makeSet("A");
 		dset.makeSet("B");
