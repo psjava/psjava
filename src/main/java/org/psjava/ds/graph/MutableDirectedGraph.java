@@ -8,6 +8,7 @@ import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.ds.set.MutableSet;
 import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.goods.GoodMutableSetFactory;
+import org.psjava.javautil.AssertStatus;
 import org.psjava.javautil.EmptyIterable;
 import org.psjava.javautil.MergedIterable;
 
@@ -26,6 +27,8 @@ public class MutableDirectedGraph<E extends DirectedEdge> implements DirectedGra
 	}
 
 	public void addEdge(E e) {
+		assertVertexExist(e.from());
+		assertVertexExist(e.to());
 		MutableMap<Object, DynamicArray<E>> submap = data.get(e.from());
 		DynamicArray<E> edges = submap.get(e.to(), null);
 		if (edges == null) {
@@ -33,6 +36,10 @@ public class MutableDirectedGraph<E extends DirectedEdge> implements DirectedGra
 			submap.put(e.to(), edges);
 		}
 		edges.addToLast(e);
+	}
+
+	private void assertVertexExist(Object v) {
+		AssertStatus.assertTrue(vertices.contains(v), "vertex is not in graph");
 	}
 
 	@Override
