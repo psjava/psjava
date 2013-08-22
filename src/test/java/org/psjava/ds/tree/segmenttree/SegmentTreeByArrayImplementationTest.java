@@ -12,8 +12,6 @@ public class SegmentTreeByArrayImplementationTest {
 
 	// TODO add performance test
 
-	// TODO add performance test
-
 	@Test
 	public void testQueryRecursively() {
 		SegmentTree<Integer> tree = createInitTree();

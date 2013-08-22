@@ -8,9 +8,8 @@ import org.psjava.math.BinaryOperator;
 public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 
 	/**
-	 * This class is for only simple replacement updating. We didn't implement
-	 * lazy propagation. Because it disables the advantage of
-	 * BinaryTreeByArray's speed.
+	 * This class is for only simple replacement updating. This class has an
+	 * advantage of BinaryTreeByArray's speed.
 	 */
 
 	private final BinaryOperator<T> merger;
