@@ -1,3 +1,4 @@
+add dijkstra example, a solution.
 add heap example
 assert segment argument start <= end
 add binary indexed tree
