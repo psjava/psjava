@@ -7,7 +7,9 @@ import org.psjava.ds.tree.BinaryTreeNodeFactory;
 public class EnhancedRangeUpdatableSegmentTree<T, U> {
 
 	/**
-	 * implemented by lazy propagation method
+	 * Implemented by lazy propagation method. We did not implement in array
+	 * implementation for tree. Because after all, we need to own node type, so
+	 * there is no advantage for memory allocation.
 	 */
 
 	class NodeData {
