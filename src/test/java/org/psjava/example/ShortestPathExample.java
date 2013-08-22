@@ -16,7 +16,7 @@ public class ShortestPathExample {
 	@Test
 	public void example() {
 
-		// construct graph.
+		// Let's construct a graph.
 
 		MutableDirectedGraph<DirectedWeightedEdge<Integer>> graph = new MutableDirectedGraph<DirectedWeightedEdge<Integer>>();
 		graph.insertVertex("A");
