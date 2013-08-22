@@ -1,3 +1,4 @@
+add graph structure example
 add dijkstra example, a solution.
 add heap example
 assert segment argument start <= end
