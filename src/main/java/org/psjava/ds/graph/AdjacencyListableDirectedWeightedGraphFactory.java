@@ -1,5 +1,6 @@
 package org.psjava.ds.graph;
 
+import org.psjava.ds.Collection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodMutableMapFactory;
@@ -13,7 +14,7 @@ public class AdjacencyListableDirectedWeightedGraphFactory {
 			index.get(e.from()).addToLast(e);
 		return new AdjacencyListableDirectedWeightedGraph<W>() {
 			@Override
-			public Iterable<Object> getVertices() {
+			public Collection<Object> getVertices() {
 				return g.getVertices();
 			}
 
