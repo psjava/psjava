@@ -31,9 +31,8 @@ public class ShortestPathExample {
 		graph.addEdge("B", "C", 20);
 		AdjacencyListableDirectedWeightedGraph<Integer> adjacencyList = AdjacencyListableDirectedWeightedGraphFactory.create(graph);
 
-		// Let's calculate distances from a single source - 'A'.
-		// Choose algorithm, and do it.
-		// algorithm with binary heap.
+		// Then calculate distances from a single source - 'A'.
+		// Choose algorithm, and do it. 
 
 		SingleSourceShortestPath algorithm = GoodSingleSourceShortestPath.getInstance();
 		SingleSourceShortestPathResult<Integer> result = algorithm.calc(adjacencyList, "A", IntegerNumberSystem.getInstance());
@@ -42,7 +41,7 @@ public class ShortestPathExample {
 
 		Assert.assertEquals(30, distanceAToC);
 
-		// The good one should be Dijkstra's Algorithm but you can specify.
+		// The good one should be Dijkstra's Algorithm with binary heap. but you can specify others.
 		new Dijkstra(new BinaryHeapFactory());
 		new BellmanFord();
 	}
