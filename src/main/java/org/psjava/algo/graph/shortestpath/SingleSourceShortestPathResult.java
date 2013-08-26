@@ -1,7 +1,12 @@
 package org.psjava.algo.graph.shortestpath;
 
-public interface SingleSourceShortestPathResult<W, E> {
-	Iterable<E> getEdgePath(Object to); 
-	W getDistance(Object to); // TODO throws if not reachable
-	boolean isReachable(Object to); // TODO assert status
+import org.psjava.ds.graph.DirectedWeightedEdge;
+
+public interface SingleSourceShortestPathResult<W> {
+
+	Iterable<DirectedWeightedEdge<W>> getPath(Object to);
+
+	W getDistance(Object to);
+
+	boolean isReachable(Object to);
 }
