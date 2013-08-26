@@ -3,10 +3,14 @@ package org.psjava.example;
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.psjava.algo.graph.shortestpath.BellmanFord;
+import org.psjava.algo.graph.shortestpath.Dijkstra;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPath;
+import org.psjava.ds.graph.AdjacencyListableDirectedWeightedGraph;
 import org.psjava.ds.graph.AdjacencyListableDirectedWeightedGraphFactory;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
+import org.psjava.ds.heap.BinaryHeapFactory;
 import org.psjava.goods.GoodSingleSourceShortestPath;
 import org.psjava.math.ns.IntegerNumberSystem;
 
@@ -25,16 +29,21 @@ public class ShortestPathExample {
 		graph.addEdge("A", "C", 100);
 		graph.addEdge("A", "B", 10);
 		graph.addEdge("B", "C", 20);
+		AdjacencyListableDirectedWeightedGraph<Integer> adjacencyList = AdjacencyListableDirectedWeightedGraphFactory.create(graph);
 
-		// Let's calculate distances from 'A', the single source.
-		// Choose algorithm, and calculate. The good one should be dijkstra
+		// Let's calculate distances from a single source - 'A'.
+		// Choose algorithm, and do it.
 		// algorithm with binary heap.
 
-		SingleSourceShortestPath algo = GoodSingleSourceShortestPath.getInstance();
-		SingleSourceShortestPathResult<Integer> result = algo.calc(AdjacencyListableDirectedWeightedGraphFactory.create(graph), "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPath algorithm = GoodSingleSourceShortestPath.getInstance();
+		SingleSourceShortestPathResult<Integer> result = algorithm.calc(adjacencyList, "A", IntegerNumberSystem.getInstance());
 
 		int distanceAToC = result.getDistance("C");
 
 		Assert.assertEquals(30, distanceAToC);
+
+		// The good one should be Dijkstra's Algorithm but you can specify.
+		new Dijkstra(new BinaryHeapFactory());
+		new BellmanFord();
 	}
 }
