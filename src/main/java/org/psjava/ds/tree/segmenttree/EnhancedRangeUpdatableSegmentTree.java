@@ -8,8 +8,8 @@ public class EnhancedRangeUpdatableSegmentTree<T, U> {
 
 	/**
 	 * Implemented by lazy propagation method. We did not implement in array
-	 * implementation for tree. Because after all, we need to own node type, so
-	 * there is no advantage for memory allocation.
+	 * implementation for tree. Because after all, we need node objects, so
+	 * there is no advantage for memory allocation number.
 	 */
 
 	class NodeData {
