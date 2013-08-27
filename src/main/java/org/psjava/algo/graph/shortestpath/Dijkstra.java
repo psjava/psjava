@@ -44,8 +44,11 @@ public class Dijkstra implements SingleSourceShortestPath {
 
 		while (!heap.isEmpty()) {
 			Object current = heap.extractMinimum();
-			for (DirectedWeightedEdge<W> edge : graph.getEdges(current))
-				Relax.relax(distance, previous, edge, ns);
+			for (DirectedWeightedEdge<W> edge : graph.getEdges(current)) {
+				boolean relaxed = Relax.relax(distance, previous, edge, ns);
+				if(relaxed)
+					node.get(edge.to()).decreaseKey(edge.to());
+			}
 		}
 
 		return SingleSourceShortestPathResultFactory.create(start, distance, previous);
