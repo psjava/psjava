@@ -13,7 +13,7 @@ public class SegmentTreeExample {
 	@Test
 	public void example() {
 
-		// Create an initial tree by an array, and a binary operator.
+		// Create an initial tree with an array, and a binary operator.
 		// The binary operator can be adder, multiplier or anything you define.
 
 		Array<Integer> init = MutableArrayFromValues.create(4, 3, 1, 5, 2);
