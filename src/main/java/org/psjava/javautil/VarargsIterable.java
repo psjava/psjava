@@ -1,7 +1,7 @@
 package org.psjava.javautil;
 
 
-public class ArrayIterable {
+public class VarargsIterable {
 	
 	public static <T> Iterable<T> create(final T... data) {
 		return ConvertedDataIterable.create(ZeroTo.get(data.length), new DataConverter<Integer, T>() {
@@ -12,7 +12,7 @@ public class ArrayIterable {
 		});
 	}
 
-	private ArrayIterable() {
+	private VarargsIterable() {
 	}
 
 }
