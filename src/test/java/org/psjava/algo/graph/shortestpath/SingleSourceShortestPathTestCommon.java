@@ -1,9 +1,8 @@
 package org.psjava.algo.graph.shortestpath;
 
 import org.junit.Assert;
-import org.psjava.ds.graph.AdjacencyListableDirectedWeightedGraph;
-import org.psjava.ds.graph.AdjacencyListableDirectedWeightedGraphFactory;
 import org.psjava.ds.graph.DirectedWeightedEdge;
+import org.psjava.ds.graph.DirectedWeightedGraph;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.math.ns.IntegerNumberSystem;
 
@@ -44,14 +43,14 @@ public class SingleSourceShortestPathTestCommon {
 		}
 	}
 
-	public static AdjacencyListableDirectedWeightedGraph<Integer> createGraph(int[][] edgeData) {
+	public static DirectedWeightedGraph<Integer> createGraph(int[][] edgeData) {
 		MutableDirectedWeightedGraph<Integer> g = new MutableDirectedWeightedGraph<Integer>();
 		for (int[] e : edgeData) {
 			g.insertVertex(e[0]);
 			g.insertVertex(e[1]);
 			g.addEdge(e[0], e[1], e[2]);
 		}
-		return AdjacencyListableDirectedWeightedGraphFactory.create(g);
+		return g;
 	}
 
 	public static void assertAllResult(int[] expected, SingleSourceShortestPathResult<Integer> actual) {

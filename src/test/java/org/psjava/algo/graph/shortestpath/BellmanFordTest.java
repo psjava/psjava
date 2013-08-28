@@ -3,7 +3,6 @@ package org.psjava.algo.graph.shortestpath;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.BellmanFord;
-import org.psjava.ds.graph.AdjacencyListableDirectedWeightedGraphFactory;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.math.ns.IntegerNumberSystem;
 
@@ -38,7 +37,7 @@ public class BellmanFordTest {
 		g.addEdge(1, 2, -20);
 		g.addEdge(1, 3, 10);
 		g.addEdge(2, 3, 20);
-		SingleSourceShortestPathResult<Integer> r = new BellmanFord().calc(AdjacencyListableDirectedWeightedGraphFactory.create(g), 1, IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<Integer> r = new BellmanFord().calc(g, 1, IntegerNumberSystem.getInstance());
 		Assert.assertEquals(0, (int) r.getDistance(3));
 	}
 }
