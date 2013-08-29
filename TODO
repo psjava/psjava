@@ -1,5 +1,8 @@
+add negative cycle finder example
 add graph structure example
 add dijkstra example, a solution.
 add heap example
 assert segment argument start <= end
 add binary indexed tree
+add Karp minimum mean weight cycle
+Shortest Path Faster Algorithm
