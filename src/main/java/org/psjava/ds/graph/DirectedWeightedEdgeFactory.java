@@ -24,10 +24,7 @@ public class DirectedWeightedEdgeFactory {
 
 			@Override
 			public String toString() {
-				if (weight != null)
-					return to + "(" + weight + ")";
-				else
-					return to + "";
+				return from + "->" + to + "(" + weight + ")";
 			}
 		};
 	}
