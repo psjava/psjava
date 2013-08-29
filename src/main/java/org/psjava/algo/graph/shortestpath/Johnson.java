@@ -1,19 +1,16 @@
 package org.psjava.algo.graph.shortestpath;
 
 import org.psjava.ds.Collection;
-import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.array.SingleElementCollection;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.DirectedWeightedEdgeFactory;
 import org.psjava.ds.graph.DirectedWeightedGraph;
+import org.psjava.ds.graph.MergedGraph;
+import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.map.JavaHashMapFactory;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.javautil.ConvertedDataIterable;
 import org.psjava.javautil.DataConverter;
-import org.psjava.javautil.MergedCollection;
-import org.psjava.javautil.MergedIterable;
-import org.psjava.javautil.VarargsIterable;
 import org.psjava.math.ns.AddableNumberSystem;
 
 public class Johnson implements AllPairShortestPath {
@@ -37,7 +34,7 @@ public class Johnson implements AllPairShortestPath {
 
 	@Override
 	public <W> AllPairShortestPathResult<W> calc(DirectedWeightedGraph<W> graph, AddableNumberSystem<W> ns) {
-		DirectedWeightedGraph<W> augmented = createAugmentedGraph(graph, ns);
+		DirectedWeightedGraph<W> augmented = augment(graph, ns);
 		SingleSourceShortestPathResult<W> bellmanFordResult = bellmanFord.calc(augmented, VIRTUAL_START, ns);
 		DirectedWeightedGraph<W> reweighted = reweight(graph, bellmanFordResult, ns);
 		MutableMap<Object, SingleSourceShortestPathResult<W>> dijsktraResult = MF.create();
@@ -46,22 +43,14 @@ public class Johnson implements AllPairShortestPath {
 		return createUnreweightedResult(bellmanFordResult, dijsktraResult, ns);
 	}
 
-	@SuppressWarnings("unchecked")
-	private static <W> DirectedWeightedGraph<W> createAugmentedGraph(final DirectedWeightedGraph<W> g, final AddableNumberSystem<W> ns) {
-		final DynamicArray<DirectedWeightedEdge<W>> moreEdges = DynamicArray.create();
-		for (Object v : g.getVertices())
-			moreEdges.addToLast(DirectedWeightedEdgeFactory.create(VIRTUAL_START, v, ns.getZero()));
-		return new DirectedWeightedGraph<W>() {
-			@Override
-			public Collection<Object> getVertices() {
-				return MergedCollection.wrap(VarargsIterable.create(g.getVertices(), SingleElementCollection.create(VIRTUAL_START)));
-			}
-
-			@Override
-			public Iterable<DirectedWeightedEdge<W>> getEdges() {
-				return MergedIterable.wrap(VarargsIterable.create(g.getEdges(), moreEdges));
-			}
-		};
+	private static <W> DirectedWeightedGraph<W> augment(final DirectedWeightedGraph<W> g, final AddableNumberSystem<W> ns) {
+		MutableDirectedWeightedGraph<W> extension = MutableDirectedWeightedGraph.create();
+		extension.insertVertex(VIRTUAL_START);
+		for (Object v : g.getVertices()) {
+			extension.insertVertex(v);
+			extension.addEdge(VIRTUAL_START, v, ns.getZero());
+		}
+		return MergedGraph.create(g, extension);
 	}
 
 	// TODO use common code if SuccessiveShortestPathWithPotential can use this.
