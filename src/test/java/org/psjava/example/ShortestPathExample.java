@@ -1,10 +1,14 @@
 package org.psjava.example;
 
-import junit.framework.Assert;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.psjava.algo.graph.shortestpath.AllPairShortestPath;
+import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
 import org.psjava.algo.graph.shortestpath.BellmanFord;
 import org.psjava.algo.graph.shortestpath.Dijkstra;
+import org.psjava.algo.graph.shortestpath.FloydWarshall;
+import org.psjava.algo.graph.shortestpath.Johnson;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPath;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
@@ -31,17 +35,36 @@ public class ShortestPathExample {
 		// Then calculate distances from a single source - 'A'.
 		// Choose algorithm, and do it.
 
-		SingleSourceShortestPath algorithm = GoodSingleSourceShortestPath.getInstance();
-		SingleSourceShortestPathResult<Integer> result = algorithm.calc(graph, "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPath algorithm1 = GoodSingleSourceShortestPath.getInstance();
+		SingleSourceShortestPathResult<Integer> result1 = algorithm1.calc(graph, "A", IntegerNumberSystem.getInstance());
 
-		int distanceAToC = result.getDistance("C");
+		int a2c = result1.getDistance("C");
+		boolean reachableOfD = result1.isReachable("D");
 
-		Assert.assertEquals(30, distanceAToC);
+		assertEquals(30, a2c);
+		assertFalse(reachableOfD);
 
 		// The good one should be Dijkstra's Algorithm with binary heap. but you
 		// can specify to another algorithm. Followings are some possibles.
 
 		new Dijkstra(new BinaryHeapFactory());
-		new BellmanFord();
+		new BellmanFord(); // Capable for negative edge.
+
+		// Let's get the shortest paths of all pairs. Floyd Warshall's algorithm is the simplest implementation.
+
+		AllPairShortestPath algoritm2 = new FloydWarshall();
+		AllPairShortestPathResult<Integer> result2 = algoritm2.calc(graph, IntegerNumberSystem.getInstance());
+
+		int a2b = result2.getDistance("A", "B");
+		int b2a = result2.getDistance("B", "C");
+
+		assertEquals(10, a2b);
+		assertEquals(20, b2a);
+
+		// There are other algorithms to get shortest paths of all pairs.
+
+		new FloydWarshall(); // Most simple.
+		new Johnson(new BellmanFord(), new Dijkstra(new BinaryHeapFactory())); // Good for spase tree. Also capable in negative edges.
+
 	}
 }
