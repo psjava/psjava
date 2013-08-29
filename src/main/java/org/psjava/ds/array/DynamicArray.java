@@ -87,7 +87,7 @@ public class DynamicArray<T> implements MutableArray<T>, EqualityTester<Array<T>
 
 	@Override
 	public final boolean isEmpty() {
-		return size() == 0;
+		return asize == 0;
 	}
 
 	@Override
