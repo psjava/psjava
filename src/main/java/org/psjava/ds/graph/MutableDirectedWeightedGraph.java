@@ -8,6 +8,10 @@ import org.psjava.javautil.AssertStatus;
 
 public class MutableDirectedWeightedGraph<W> implements DirectedWeightedGraph<W> {
 
+	public static <W> MutableDirectedWeightedGraph<W> create() {
+		return new MutableDirectedWeightedGraph<W>();
+	}
+
 	private MutableSet<Object> vertices = GoodMutableSetFactory.getInstance().create();
 	private DynamicArray<DirectedWeightedEdge<W>> edges = DynamicArray.create();
 
