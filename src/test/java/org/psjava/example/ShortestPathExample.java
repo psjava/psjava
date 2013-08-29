@@ -63,7 +63,7 @@ public class ShortestPathExample {
 
 		// There are other algorithms to get shortest paths of all pairs.
 
-		new FloydWarshall(); // Most simple.
+		new FloydWarshall(); // Simplest.
 		new Johnson(new BellmanFord(), new Dijkstra(new BinaryHeapFactory())); // Good for spase tree. Also capable in negative edges.
 
 	}
