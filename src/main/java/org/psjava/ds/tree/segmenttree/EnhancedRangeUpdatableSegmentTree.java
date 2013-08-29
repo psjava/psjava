@@ -5,6 +5,8 @@ import org.psjava.ds.tree.BinaryTreeNode;
 import org.psjava.ds.tree.BinaryTreeNodeFactory;
 
 public class EnhancedRangeUpdatableSegmentTree<T, U> {
+	
+	// TODO rename - LayyPropagatingSegmentTree
 
 	/**
 	 * Implemented by lazy propagation method. We did not implement in array
