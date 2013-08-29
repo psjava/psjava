@@ -17,6 +17,9 @@ public class NegativeCycleFinder {
 
 	private static final Object VIRTUAL_START = new Object();
 
+	/**
+	 * Finds any one of possible negative cycles in a graph.
+	 */
 	public static <W> NegativeCycleFinderResult<W> find(DirectedWeightedGraph<W> graph, AddableNumberSystem<W> ns) {
 		DirectedWeightedGraph<W> augmented = augment(graph, ns);
 		SingleSourceShortestPathCalcStatus<W> status = BellmanFord.createInitialStatus(augmented, VIRTUAL_START, ns);
