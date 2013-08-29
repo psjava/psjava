@@ -1,7 +1,8 @@
 package org.psjava.algo.graph.shortestpath;
 
-import java.util.LinkedList;
-
+import org.psjava.ds.Collection;
+import org.psjava.ds.Deque;
+import org.psjava.ds.DoubleLinkedList;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.DirectedWeightedGraph;
 import org.psjava.ds.graph.MergedGraph;
@@ -53,14 +54,14 @@ public class NegativeCycleFinder {
 			}
 
 			@Override
-			public Iterable<DirectedWeightedEdge<W>> getPath() {
+			public Collection<DirectedWeightedEdge<W>> getPath() {
 				AssertStatus.assertTrue(hasCycle(), "no cycle");
-				LinkedList<DirectedWeightedEdge<W>> path = new LinkedList<DirectedWeightedEdge<W>>();
+				Deque<DirectedWeightedEdge<W>> path = DoubleLinkedList.create();
 				// from vertex is always in a cycle.
 				Object cur = lastRelaxedEdgeOrNull.from();
 				while (true) {
 					DirectedWeightedEdge<W> edge = status.previous.get(cur);
-					path.addFirst(edge);
+					path.addToFirst(edge);
 					if (edge.from().equals(lastRelaxedEdgeOrNull.from()))
 						break;
 					cur = edge.from();
