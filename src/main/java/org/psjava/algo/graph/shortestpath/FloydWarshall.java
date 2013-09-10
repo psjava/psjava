@@ -14,8 +14,8 @@ public class FloydWarshall implements AllPairShortestPath {
 
 	private static class Status<W> {
 		W distance = null;
-		Object p = null;
-		DirectedWeightedEdge<W> previous = null;
+		Object next = null;
+		DirectedWeightedEdge<W> directEdge = null;
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class FloydWarshall implements AllPairShortestPath {
 			Status<W> s = status.get(Pair.create(edge.from(), edge.to()));
 			if (s.distance == null || ns.compare(s.distance, edge.weight()) > 0) {
 				s.distance = edge.weight();
-				s.previous = edge;
+				s.directEdge = edge;
 			}
 		}
 
@@ -47,7 +47,7 @@ public class FloydWarshall implements AllPairShortestPath {
 						Status<W> s = status.get(Pair.create(i, j));
 						if (s.distance == null || ns.compare(s.distance, newd) > 0) {
 							s.distance = newd;
-							s.p = k;
+							s.next = k;
 						}
 					}
 				}
@@ -72,11 +72,11 @@ public class FloydWarshall implements AllPairShortestPath {
 			private void getPathRecursively(LinkedList<DirectedWeightedEdge<W>> list, Object from, Object to) {
 				if (!from.equals(to)) {
 					Status<W> s = status.get(Pair.create(from, to));
-					if (s.p == null) {
-						list.add(s.previous);
+					if (s.next == null) {
+						list.add(s.directEdge);
 					} else {
-						getPathRecursively(list, from, s.p);
-						getPathRecursively(list, s.p, to);
+						getPathRecursively(list, from, s.next);
+						getPathRecursively(list, s.next, to);
 					}
 				}
 			}
@@ -93,7 +93,7 @@ public class FloydWarshall implements AllPairShortestPath {
 
 			@Override
 			public boolean isReachable(Object from, Object to) {
-				Status<W> s = status.get(Pair.create(from, to));
+				Status<W> s = status.get(Pair.create(from, to), null);
 				AssertStatus.assertTrue(s != null, "not valid vertex");
 				return s.distance != null;
 			}
