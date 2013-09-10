@@ -9,9 +9,8 @@ import org.psjava.javautil.EqualityTester;
 import org.psjava.javautil.StrictEqualityTester;
 import org.psjava.math.PairHash;
 
-
 public class MutableMapUsingJavaMap {
-	
+
 	public static <K, V> MutableMap<K, V> create(final java.util.Map<K, V> map) {
 		return new MutableMap<K, V>() {
 
@@ -22,8 +21,13 @@ public class MutableMapUsingJavaMap {
 
 			@Override
 			public V get(K key) {
-				AssertStatus.assertTrue(containsKey(key));
-				return map.get(key);
+				V r = map.get(key);
+				if (r != null) {
+					return r;
+				} else { // because java map's get returns null even if value is null.
+					AssertStatus.assertTrue(containsKey(key), "the key in not int the map");
+					return null;
+				}
 			}
 
 			@Override
@@ -88,25 +92,31 @@ public class MutableMapUsingJavaMap {
 
 	private static class EntryWrapper<K, V> implements MapEntry<K, V>, EqualityTester<EntryWrapper<K, V>> {
 		private java.util.Map.Entry<K, V> e;
+
 		private EntryWrapper(java.util.Map.Entry<K, V> e) {
 			this.e = e;
 		}
+
 		@Override
 		public K getKey() {
 			return e.getKey();
 		}
+
 		@Override
-		public V getValue() { 
+		public V getValue() {
 			return e.getValue();
 		}
+
 		@Override
 		public boolean equals(Object obj) {
 			return StrictEqualityTester.areEqual(this, obj, this);
 		}
+
 		@Override
 		public boolean areEqual(EntryWrapper<K, V> o1, EntryWrapper<K, V> o2) {
 			return o1.getKey().equals(o2.getKey()) && o1.getValue().equals(o2.getValue());
 		}
+
 		@Override
 		public int hashCode() {
 			return PairHash.hash(getKey().hashCode(), getValue().hashCode());
