@@ -1,15 +1,16 @@
 package org.psjava.javautil;
 
+import java.util.Iterator;
 
 public class VarargsIterable {
-	
+
 	public static <T> Iterable<T> create(final T... data) {
-		return ConvertedDataIterable.create(ZeroTo.get(data.length), new DataConverter<Integer, T>() {
+		return new Iterable<T>() {
 			@Override
-			public T convert(Integer v) {
-				return data[v];
+			public Iterator<T> iterator() {
+				return VarargsIterator.create(data);
 			}
-		});
+		};
 	}
 
 	private VarargsIterable() {
