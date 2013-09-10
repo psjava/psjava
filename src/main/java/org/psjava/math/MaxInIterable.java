@@ -2,15 +2,16 @@ package org.psjava.math;
 
 import java.util.Comparator;
 
+import org.psjava.javautil.AssertStatus;
+
 public class MaxInIterable {
 
 	public static <T> T max(Iterable<T> iterable, Comparator<T> comp) {
 		T max = null;
-		for(T a : iterable) 
-			if(max == null || comp.compare(max, a) < 0)
+		for (T a : iterable)
+			if (max == null || comp.compare(max, a) < 0)
 				max = a;
-		if(max == null)
-			throw new IllegalArgumentException("Empty Iterable");			
+		AssertStatus.assertTrue(max != null, "Empty Iterable");
 		return max;
 	}
 
