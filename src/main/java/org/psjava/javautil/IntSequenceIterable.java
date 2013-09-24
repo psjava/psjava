@@ -7,17 +7,7 @@ public class IntSequenceIterable {
 		return new Iterable<Integer>() {
 			@Override
 			public Iterator<Integer> iterator() {
-				return new ReadOnlyIterator<Integer>() {
-					int nextIndex = 0;
-					@Override
-					public boolean hasNext() {
-						return nextIndex < size;
-					}
-					@Override
-					public Integer next() {
-						return from + step * (nextIndex++);
-					}
-				};
+				return IntSequenceIterator.create(from, step, size);
 			}
 		};
 	}
