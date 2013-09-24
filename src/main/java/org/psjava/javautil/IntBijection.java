@@ -4,15 +4,19 @@ import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.set.Set;
 import org.psjava.goods.GoodMutableMapFactory;
 
-public class IntBijection {
+public class IntBijection<V> {
 
-	private final MutableMap<Object, Integer> objectToInt = GoodMutableMapFactory.getInstance().create();
-	private final Object[] intToObject;
+	public static <V> IntBijection<V> create(Set<V> objects) {
+		return new IntBijection<V>(objects);
+	}
 
-	public IntBijection(Set<? extends Object> objects) {
-		intToObject = new Object[objects.size()];
+	private final MutableMap<V, Integer> objectToInt = GoodMutableMapFactory.getInstance().create();
+	private final V[] intToObject;
+
+	private IntBijection(Set<V> objects) {
+		intToObject = Java1DArray.<V> create(Object.class, objects.size());
 		int index = 0;
-		for (Object o : objects) {
+		for (V o : objects) {
 			intToObject[index] = o;
 			objectToInt.put(o, index);
 			index++;
@@ -23,13 +27,13 @@ public class IntBijection {
 		return intToObject.length;
 	}
 
-	public int toInt(Object o) {
-		int r = objectToInt.get(o, -1);
+	public Integer toInt(V o) {
+		Integer r = objectToInt.get(o, -1);
 		AssertStatus.assertTrue(r != -1, "object is not in the set");
 		return r;
 	}
 
-	public Object toObject(int v) {
+	public V toObject(int v) {
 		return intToObject[v];
 	}
 

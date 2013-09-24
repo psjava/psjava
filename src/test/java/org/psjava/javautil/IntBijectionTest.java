@@ -9,7 +9,7 @@ import org.psjava.javautil.IntBijection;
 public class IntBijectionTest {
 	@Test
 	public void test() {
-		IntBijection r = new IntBijection(SetFromVarargs.create("A", "B", "C"));
+		IntBijection<String> r = IntBijection.create(SetFromVarargs.create("A", "B", "C"));
 		Assert.assertEquals(3, r.size());
 		int v1 = r.toInt("A");
 		int v2 = r.toInt("B");
