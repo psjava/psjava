@@ -13,9 +13,17 @@ public class NegativeCycleFinderTest {
 	@Test
 	public void testNegativeCycle() {
 		int[][] data = { { 1, 2, 1 }, { 2, 3, -4 }, { 3, 4, 1 }, { 4, 2, 1 } };
-		NegativeCycleFinderResult<Integer> r = NegativeCycleFinder.find(TestGraphFactory.create(data), IntegerNumberSystem.getInstance());
+		NegativeCycleFinderResult<Integer, Integer> r = NegativeCycleFinder.find(TestGraphFactory.create(data), IntegerNumberSystem.getInstance());
 		assertTrue(r.hasCycle());
-		assertEquals("(2->3(-4),3->4(1),4->2(1))", IterableToString.toString(r.getPath()));
+		assertEquals("(3->4(1),4->2(1),2->3(-4))", IterableToString.toString(r.getPath()));
+	}
+
+	@Test
+	public void testSizeOne() {
+		int[][] data = { { 1, 1, -1 } };
+		NegativeCycleFinderResult<Integer, Integer> r = NegativeCycleFinder.find(TestGraphFactory.create(data), IntegerNumberSystem.getInstance());
+		assertTrue(r.hasCycle());
+		assertEquals("(1->1(-1))", IterableToString.toString(r.getPath()));
 	}
 
 }

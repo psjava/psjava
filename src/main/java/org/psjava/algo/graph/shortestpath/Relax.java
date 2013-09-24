@@ -6,7 +6,7 @@ import org.psjava.math.ns.AddableNumberSystem;
 
 public class Relax {
 
-	public static <E extends DirectedWeightedEdge<W>, W> boolean relax(MutableMap<Object, W> distance, MutableMap<Object, DirectedWeightedEdge<W>> previous, E edge, AddableNumberSystem<W> ns) {
+	public static <V, W> boolean relax(MutableMap<V, W> distance, MutableMap<V, DirectedWeightedEdge<V, W>> previous, DirectedWeightedEdge<V, W> edge, AddableNumberSystem<W> ns) {
 		W fromDistance = distance.get(edge.from());
 		if (fromDistance == null)
 			return false;

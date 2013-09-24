@@ -16,6 +16,7 @@ import org.psjava.math.ns.AddableNumberSystem;
 public class Dijkstra implements SingleSourceShortestPath {
 
 	// TODO assert negative weight.
+	// TODO check performance, and use int indexed graph if it needs.
 
 	private static final MutableMapFactory MF = GoodMutableMapFactory.getInstance();
 
@@ -26,29 +27,29 @@ public class Dijkstra implements SingleSourceShortestPath {
 	}
 
 	@Override
-	public <W> SingleSourceShortestPathResult<W> calc(DirectedWeightedGraph<W> graph, Object start, final AddableNumberSystem<W> ns) {
-		DirectedWeightedAdjacencyList<W> list = DirectedWeightedAdjacencyList.create(graph);
-		final MutableMap<Object, W> distance = MF.create();
-		MutableMap<Object, DirectedWeightedEdge<W>> previous = MF.create();
+	public <V, W> SingleSourceShortestPathResult<V, W> calc(DirectedWeightedGraph<V, W> graph, V start, final AddableNumberSystem<W> ns) {
+		DirectedWeightedAdjacencyList<V, W> list = DirectedWeightedAdjacencyList.create(graph);
+		final MutableMap<V, W> distance = MF.create();
+		MutableMap<V, DirectedWeightedEdge<V, W>> previous = MF.create();
 
-		for (Object v : graph.getVertices())
+		for (V v : graph.getVertices())
 			distance.put(v, null); // null means infinity
 		distance.put(start, ns.getZero());
 
-		Heap<Object> heap = factory.create(new Comparator<Object>() {
+		Heap<V> heap = factory.create(new Comparator<V>() {
 			@Override
-			public int compare(Object o1, Object o2) {
+			public int compare(V o1, V o2) {
 				return NullableDistanceCompare.compare(ns, distance.get(o1), distance.get(o2));
 			}
 		});
 
-		MutableMap<Object, HeapNode<Object>> node = MF.create();
-		for (Object v : graph.getVertices())
+		MutableMap<V, HeapNode<V>> node = MF.create();
+		for (V v : graph.getVertices())
 			node.put(v, heap.insert(v));
 
 		while (!heap.isEmpty()) {
-			Object current = heap.extractMinimum();
-			for (DirectedWeightedEdge<W> edge : list.getEdges(current)) {
+			V current = heap.extractMinimum();
+			for (DirectedWeightedEdge<V, W> edge : list.getEdges(current)) {
 				boolean relaxed = Relax.relax(distance, previous, edge, ns);
 				if (relaxed)
 					node.get(edge.to()).decreaseKey(edge.to());

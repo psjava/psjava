@@ -9,20 +9,20 @@ import org.psjava.javautil.VarargsIterable;
 
 public class MergedGraph {
 
-	public static <W> DirectedWeightedGraph<W> create(final DirectedWeightedGraph<W> g1, final DirectedWeightedGraph<W> g2) {
-		final MutableSet<Object> mergedv = GoodMutableSetFactory.getInstance().create();
+	public static <V, W> DirectedWeightedGraph<V, W> create(final DirectedWeightedGraph<V, W> g1, final DirectedWeightedGraph<V, W> g2) {
+		final MutableSet<V> mergedv = GoodMutableSetFactory.getInstance().create();
 		InsertAllToSet.insertAll(mergedv, g1.getVertices());
 		InsertAllToSet.insertAll(mergedv, g2.getVertices());
-	
-		return new DirectedWeightedGraph<W>() {
+
+		return new DirectedWeightedGraph<V, W>() {
 			@Override
-			public Collection<Object> getVertices() {
+			public Collection<V> getVertices() {
 				return mergedv;
 			}
-	
+
 			@SuppressWarnings("unchecked")
 			@Override
-			public Iterable<DirectedWeightedEdge<W>> getEdges() {
+			public Iterable<DirectedWeightedEdge<V, W>> getEdges() {
 				return MergedIterable.wrap(VarargsIterable.create(g1.getEdges(), g2.getEdges()));
 			}
 		};

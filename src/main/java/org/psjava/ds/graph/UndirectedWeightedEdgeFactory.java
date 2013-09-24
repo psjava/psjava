@@ -2,16 +2,16 @@ package org.psjava.ds.graph;
 
 public class UndirectedWeightedEdgeFactory {
 
-	public static <W> UndirectedWeightedEdge<W> create(final Object v1, final Object v2, final W weight) {
-		return new UndirectedWeightedEdge<W>() {
+	public static <V, W> UndirectedWeightedEdge<V, W> create(final V v1, final V v2, final W weight) {
+		return new UndirectedWeightedEdge<V, W>() {
 
 			@Override
-			public Object v1() {
+			public V v1() {
 				return v1;
 			}
 
 			@Override
-			public Object v2() {
+			public V v2() {
 				return v2;
 			}
 

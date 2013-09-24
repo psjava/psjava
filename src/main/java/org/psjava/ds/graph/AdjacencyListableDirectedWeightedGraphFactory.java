@@ -6,20 +6,20 @@ import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodMutableMapFactory;
 
 public class AdjacencyListableDirectedWeightedGraphFactory {
-	public static <W> AdjacencyListableDirectedWeightedGraph<W> create(final DirectedWeightedGraph<W> g) {
-		final MutableMap<Object, DynamicArray<DirectedWeightedEdge<W>>> index = GoodMutableMapFactory.getInstance().create();
+	public static <V, W> AdjacencyListableDirectedWeightedGraph<V, W> create(final DirectedWeightedGraph<V, W> g) {
+		final MutableMap<Object, DynamicArray<DirectedWeightedEdge<V, W>>> index = GoodMutableMapFactory.getInstance().create();
 		for (Object v : g.getVertices())
-			index.put(v, new DynamicArray<DirectedWeightedEdge<W>>());
-		for (DirectedWeightedEdge<W> e : g.getEdges())
+			index.put(v, new DynamicArray<DirectedWeightedEdge<V, W>>());
+		for (DirectedWeightedEdge<V, W> e : g.getEdges())
 			index.get(e.from()).addToLast(e);
-		return new AdjacencyListableDirectedWeightedGraph<W>() {
+		return new AdjacencyListableDirectedWeightedGraph<V, W>() {
 			@Override
-			public Collection<Object> getVertices() {
+			public Collection<V> getVertices() {
 				return g.getVertices();
 			}
 
 			@Override
-			public Iterable<DirectedWeightedEdge<W>> getEdges(Object from) {
+			public Iterable<DirectedWeightedEdge<V, W>> getEdges(Object from) {
 				return index.get(from);
 			}
 		};

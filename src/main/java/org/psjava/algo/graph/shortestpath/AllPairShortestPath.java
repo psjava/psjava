@@ -4,5 +4,5 @@ import org.psjava.ds.graph.DirectedWeightedGraph;
 import org.psjava.math.ns.AddableNumberSystem;
 
 public interface AllPairShortestPath {
-	<W> AllPairShortestPathResult<W> calc(DirectedWeightedGraph<W> graph, AddableNumberSystem<W> ns);
+	<V, W> AllPairShortestPathResult<V, W> calc(DirectedWeightedGraph<V, W> graph, AddableNumberSystem<W> ns);
 }

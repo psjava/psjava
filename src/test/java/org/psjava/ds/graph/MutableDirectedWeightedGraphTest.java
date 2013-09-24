@@ -6,7 +6,7 @@ public class MutableDirectedWeightedGraphTest {
 
 	@Test(expected = RuntimeException.class)
 	public void testInvalidEdge() {
-		MutableDirectedWeightedGraph<Integer> g = new MutableDirectedWeightedGraph<Integer>();
+		MutableDirectedWeightedGraph<String, Integer> g = new MutableDirectedWeightedGraph<String, Integer>();
 		g.insertVertex("A");
 		g.addEdge("A", "B", 1);
 	}

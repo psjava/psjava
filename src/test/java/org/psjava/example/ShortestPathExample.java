@@ -23,7 +23,7 @@ public class ShortestPathExample {
 
 		// Let's construct a graph.
 
-		MutableDirectedWeightedGraph<Integer> graph = new MutableDirectedWeightedGraph<Integer>();
+		MutableDirectedWeightedGraph<String, Integer> graph = MutableDirectedWeightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");
@@ -36,7 +36,7 @@ public class ShortestPathExample {
 		// Choose algorithm, and do it.
 
 		SingleSourceShortestPath algorithm1 = GoodSingleSourceShortestPath.getInstance();
-		SingleSourceShortestPathResult<Integer> result1 = algorithm1.calc(graph, "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<String, Integer> result1 = algorithm1.calc(graph, "A", IntegerNumberSystem.getInstance());
 
 		int a2c = result1.getDistance("C");
 		boolean reachableOfD = result1.isReachable("D");
@@ -53,7 +53,7 @@ public class ShortestPathExample {
 		// Let's get the shortest paths of all pairs. Floyd Warshall's algorithm is the simplest implementation.
 
 		AllPairShortestPath algoritm2 = new FloydWarshall();
-		AllPairShortestPathResult<Integer> result2 = algoritm2.calc(graph, IntegerNumberSystem.getInstance());
+		AllPairShortestPathResult<String, Integer> result2 = algoritm2.calc(graph, IntegerNumberSystem.getInstance());
 
 		int a2b = result2.getDistance("A", "B");
 		int b2a = result2.getDistance("B", "C");

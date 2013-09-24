@@ -2,10 +2,10 @@ package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
 
-public interface UndirectedWeightedGraph<W> {
+public interface UndirectedWeightedGraph<V, W> {
 
-	Collection<Object> getVertices();
+	Collection<V> getVertices();
 
-	Iterable<UndirectedWeightedEdge<W>> getEdges();
+	Iterable<UndirectedWeightedEdge<V, W>> getEdges();
 
 }

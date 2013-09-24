@@ -1,9 +1,9 @@
 package org.psjava.ds.graph;
 
-public interface UndirectedWeightedEdge<W> {
-	Object v1();
+public interface UndirectedWeightedEdge<V, W> {
+	V v1();
 
-	Object v2();
+	V v2();
 
 	W weight();
 }

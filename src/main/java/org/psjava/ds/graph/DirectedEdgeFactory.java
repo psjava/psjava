@@ -2,14 +2,14 @@ package org.psjava.ds.graph;
 
 public class DirectedEdgeFactory {
 
-	public static DirectedEdge create(final Object from, final Object to) {
-		return new DirectedEdge() {
+	public static <V> DirectedEdge<V> create(final V from, final V to) {
+		return new DirectedEdge<V>() {
 			@Override
-			public Object to() {
+			public V to() {
 				return to;
 			}
 			@Override
-			public Object from() {
+			public V from() {
 				return from;
 			}
 		};

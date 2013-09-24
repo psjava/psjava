@@ -2,8 +2,8 @@ package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
 
-public interface AdjacencyListableDirectedWeightedGraph<W> {
-	Collection<Object> getVertices();
+public interface AdjacencyListableDirectedWeightedGraph<V, W> {
+	Collection<V> getVertices();
 
-	Iterable<DirectedWeightedEdge<W>> getEdges(Object from);
+	Iterable<DirectedWeightedEdge<V, W>> getEdges(Object from);
 }

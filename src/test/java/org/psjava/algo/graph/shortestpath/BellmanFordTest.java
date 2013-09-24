@@ -32,20 +32,20 @@ public class BellmanFordTest {
 
 	@Test
 	public void testNegativeEdgeGraph() {
-		MutableDirectedWeightedGraph<Integer> g = new MutableDirectedWeightedGraph<Integer>();
+		MutableDirectedWeightedGraph<Integer, Integer> g = new MutableDirectedWeightedGraph<Integer, Integer>();
 		g.insertVertex(1);
 		g.insertVertex(2);
 		g.insertVertex(3);
 		g.addEdge(1, 2, -20);
 		g.addEdge(1, 3, 10);
 		g.addEdge(2, 3, 20);
-		SingleSourceShortestPathResult<Integer> r = new BellmanFord().calc(g, 1, IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<Integer, Integer> r = new BellmanFord().calc(g, 1, IntegerNumberSystem.getInstance());
 		Assert.assertEquals(0, (int) r.getDistance(3));
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testNegativeCycle() {
-		DirectedWeightedGraph<Integer> g = TestGraphFactory.create(new int[][] { { 1, 1, -100 } });
+		DirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.create(new int[][] { { 1, 1, -100 } });
 		new BellmanFord().calc(g, 1, IntegerNumberSystem.getInstance());
 	}
 }

@@ -4,16 +4,16 @@ import org.psjava.ds.graph.DirectedWeightedEdge;
 
 public class DirectedWeightedEdgeFactory {
 
-	public static <W> DirectedWeightedEdge<W> create(final Object from, final Object to, final W weight) {
-		return new DirectedWeightedEdge<W>() {
+	public static <V, W> DirectedWeightedEdge<V, W> create(final V from, final V to, final W weight) {
+		return new DirectedWeightedEdge<V, W>() {
 
 			@Override
-			public Object from() {
+			public V from() {
 				return from;
 			}
 
 			@Override
-			public Object to() {
+			public V to() {
 				return to;
 			}
 

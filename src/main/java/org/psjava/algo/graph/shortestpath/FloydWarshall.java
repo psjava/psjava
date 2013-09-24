@@ -11,40 +11,42 @@ import org.psjava.javautil.Pair;
 import org.psjava.math.ns.AddableNumberSystem;
 
 public class FloydWarshall implements AllPairShortestPath {
+	
+	// TODO use int indexed graph for performance.
 
-	private static class Status<W> {
+	private static class Status<V, W> {
 		W distance = null;
-		Object next = null;
-		DirectedWeightedEdge<W> directEdge = null;
+		V next = null;
+		DirectedWeightedEdge<V, W> directEdge = null;
 	}
 
 	@Override
-	public <W> AllPairShortestPathResult<W> calc(DirectedWeightedGraph<W> graph, AddableNumberSystem<W> ns) {
-		MutableMap<Pair<Object, Object>, Status<W>> status = GoodMutableMapFactory.getInstance().create();
+	public <V, W> AllPairShortestPathResult<V, W> calc(DirectedWeightedGraph<V, W> graph, AddableNumberSystem<W> ns) {
+		MutableMap<Pair<V, V>, Status<V, W>> status = GoodMutableMapFactory.getInstance().create();
 
-		for (Object v1 : graph.getVertices())
-			for (Object v2 : graph.getVertices())
-				status.put(Pair.create(v1, v2), new Status<W>());
+		for (V v1 : graph.getVertices())
+			for (V v2 : graph.getVertices())
+				status.put(Pair.create(v1, v2), new Status<V, W>());
 
-		for (Object v : graph.getVertices())
+		for (V v : graph.getVertices())
 			status.get(Pair.create(v, v)).distance = ns.getZero();
 
-		for (DirectedWeightedEdge<W> edge : graph.getEdges()) {
-			Status<W> s = status.get(Pair.create(edge.from(), edge.to()));
+		for (DirectedWeightedEdge<V, W> edge : graph.getEdges()) {
+			Status<V, W> s = status.get(Pair.create(edge.from(), edge.to()));
 			if (s.distance == null || ns.compare(s.distance, edge.weight()) > 0) {
 				s.distance = edge.weight();
 				s.directEdge = edge;
 			}
 		}
 
-		for (Object k : graph.getVertices())
-			for (Object i : graph.getVertices())
-				for (Object j : graph.getVertices()) {
-					Status<W> i2k = status.get(Pair.create(i, k));
-					Status<W> k2j = status.get(Pair.create(k, j));
+		for (V k : graph.getVertices())
+			for (V i : graph.getVertices())
+				for (V j : graph.getVertices()) {
+					Status<V, W> i2k = status.get(Pair.create(i, k));
+					Status<V, W> k2j = status.get(Pair.create(k, j));
 					if (i2k.distance != null && k2j.distance != null) {
 						W newd = ns.add(i2k.distance, k2j.distance);
-						Status<W> s = status.get(Pair.create(i, j));
+						Status<V, W> s = status.get(Pair.create(i, j));
 						if (s.distance == null || ns.compare(s.distance, newd) > 0) {
 							s.distance = newd;
 							s.next = k;
@@ -52,26 +54,26 @@ public class FloydWarshall implements AllPairShortestPath {
 					}
 				}
 
-		for (Object k : graph.getVertices())
+		for (V k : graph.getVertices())
 			AssertStatus.assertTrue(!ns.isNegative(status.get(Pair.create(k, k)).distance), "contains negative cycle");
 
 		return createResult(status);
 	}
 
-	private <W> AllPairShortestPathResult<W> createResult(final MutableMap<Pair<Object, Object>, Status<W>> status) {
-		return new AllPairShortestPathResult<W>() {
+	private <V, W> AllPairShortestPathResult<V, W> createResult(final MutableMap<Pair<V, V>, Status<V, W>> status) {
+		return new AllPairShortestPathResult<V, W>() {
 
 			@Override
-			public Iterable<DirectedWeightedEdge<W>> getPath(Object from, Object to) {
+			public Iterable<DirectedWeightedEdge<V, W>> getPath(V from, V to) {
 				assertReachable(from, to);
-				LinkedList<DirectedWeightedEdge<W>> list = new LinkedList<DirectedWeightedEdge<W>>();
+				LinkedList<DirectedWeightedEdge<V, W>> list = new LinkedList<DirectedWeightedEdge<V, W>>();
 				getPathRecursively(list, from, to);
 				return list;
 			}
 
-			private void getPathRecursively(LinkedList<DirectedWeightedEdge<W>> list, Object from, Object to) {
+			private void getPathRecursively(LinkedList<DirectedWeightedEdge<V, W>> list, V from, V to) {
 				if (!from.equals(to)) {
-					Status<W> s = status.get(Pair.create(from, to));
+					Status<V, W> s = status.get(Pair.create(from, to));
 					if (s.next == null) {
 						list.add(s.directEdge);
 					} else {
@@ -82,18 +84,18 @@ public class FloydWarshall implements AllPairShortestPath {
 			}
 
 			@Override
-			public W getDistance(Object from, Object to) {
+			public W getDistance(V from, V to) {
 				assertReachable(from, to);
 				return status.get(Pair.create(from, to)).distance;
 			}
 
-			private void assertReachable(Object from, Object to) {
+			private void assertReachable(V from, V to) {
 				AssertStatus.assertTrue(isReachable(from, to), "not reachable");
 			}
 
 			@Override
-			public boolean isReachable(Object from, Object to) {
-				Status<W> s = status.get(Pair.create(from, to), null);
+			public boolean isReachable(V from, V to) {
+				Status<V, W> s = status.get(Pair.create(from, to), null);
 				AssertStatus.assertTrue(s != null, "not valid vertex");
 				return s.distance != null;
 			}

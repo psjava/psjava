@@ -2,10 +2,10 @@ package org.psjava.algo.graph.shortestpath;
 
 import org.psjava.ds.graph.DirectedWeightedEdge;
 
-public interface AllPairShortestPathResult<W> {
-	Iterable<DirectedWeightedEdge<W>> getPath(Object from, Object to);
+public interface AllPairShortestPathResult<V, W> {
+	Iterable<DirectedWeightedEdge<V, W>> getPath(V from, V to);
 
-	W getDistance(Object from, Object to);
+	W getDistance(V from, V to);
 
-	boolean isReachable(Object from, Object to);
+	boolean isReachable(V from, V to);
 }

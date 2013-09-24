@@ -16,7 +16,7 @@ public class FindingNegativeCycleExample {
 
 		// Let's consturct a simple graph.
 
-		MutableDirectedWeightedGraph<Integer> g = MutableDirectedWeightedGraph.create();
+		MutableDirectedWeightedGraph<String, Integer> g = MutableDirectedWeightedGraph.create();
 		g.insertVertex("A");
 		g.insertVertex("B");
 		g.insertVertex("C");
@@ -26,7 +26,7 @@ public class FindingNegativeCycleExample {
 
 		// Now, there is no negative cycles yet.
 
-		NegativeCycleFinderResult<Integer> result1 = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance());
+		NegativeCycleFinderResult<String, Integer> result1 = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance());
 		boolean has1 = result1.hasCycle();
 		Assert.assertFalse(has1);
 
@@ -34,9 +34,9 @@ public class FindingNegativeCycleExample {
 
 		g.addEdge("C", "A", -400);
 
-		NegativeCycleFinderResult<Integer> result2 = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance());
+		NegativeCycleFinderResult<String, Integer> result2 = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance());
 		boolean has2 = result2.hasCycle();
-		Collection<DirectedWeightedEdge<Integer>> path = result2.getPath(); // this is the path!
+		Collection<DirectedWeightedEdge<String, Integer>> path = result2.getPath(); // this is the path!
 
 		Assert.assertTrue(has2);
 		Assert.assertEquals(3, path.size());

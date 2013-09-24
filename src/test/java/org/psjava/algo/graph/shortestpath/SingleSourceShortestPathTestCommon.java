@@ -32,19 +32,19 @@ public class SingleSourceShortestPathTestCommon {
 	public static void testCalcEdgePath(SingleSourceShortestPath algo) {
 		int[][] data = { { 0, 1, 100 }, { 1, 2, 200 }, { 0, 2, 400 } };
 		int[][] path = { { 0, 1, 100 }, { 1, 2, 200 } };
-		SingleSourceShortestPathResult<Integer> rr = algo.calc(createGraph(data), 0, NS);
-		Iterable<DirectedWeightedEdge<Integer>> edgePath = rr.getPath(2);
+		SingleSourceShortestPathResult<Integer, Integer> rr = algo.calc(createGraph(data), 0, NS);
+		Iterable<DirectedWeightedEdge<Integer, Integer>> edgePath = rr.getPath(2);
 		int index = 0;
-		for (DirectedWeightedEdge<Integer> e : edgePath) {
-			Assert.assertEquals(path[index][0], e.from());
-			Assert.assertEquals(path[index][1], e.to());
+		for (DirectedWeightedEdge<Integer, Integer> e : edgePath) {
+			Assert.assertEquals(path[index][0], (int) e.from());
+			Assert.assertEquals(path[index][1], (int) e.to());
 			Assert.assertEquals(path[index][2], (int) e.weight());
 			index++;
 		}
 	}
 
-	public static DirectedWeightedGraph<Integer> createGraph(int[][] edgeData) {
-		MutableDirectedWeightedGraph<Integer> g = new MutableDirectedWeightedGraph<Integer>();
+	public static DirectedWeightedGraph<Integer, Integer> createGraph(int[][] edgeData) {
+		MutableDirectedWeightedGraph<Integer, Integer> g = MutableDirectedWeightedGraph.create();
 		for (int[] e : edgeData) {
 			g.insertVertex(e[0]);
 			g.insertVertex(e[1]);
@@ -53,7 +53,7 @@ public class SingleSourceShortestPathTestCommon {
 		return g;
 	}
 
-	public static void assertAllResult(int[] expected, SingleSourceShortestPathResult<Integer> actual) {
+	public static void assertAllResult(int[] expected, SingleSourceShortestPathResult<Integer, Integer> actual) {
 		for (int i = 0; i < expected.length; i++) {
 			if (expected[i] == INF) {
 				Assert.assertEquals(false, actual.isReachable(i));
