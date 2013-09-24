@@ -17,6 +17,8 @@ import org.psjava.math.ns.AddableNumberSystem;
 
 /**
  * This class is an application of Bellman Ford's algorithm.
+ * 
+ * Finds any one of possible negative cycles in a graph.
  */
 
 public class NegativeCycleFinder {
@@ -46,9 +48,6 @@ public class NegativeCycleFinder {
 
 	private static final Object VIRTUAL_START = new Object();
 
-	/**
-	 * Finds any one of possible negative cycles in a graph.
-	 */
 	public static <V, W> NegativeCycleFinderResult<V, W> find(DirectedWeightedGraph<V, W> graph, AddableNumberSystem<W> ns) {
 		DirectedWeightedGraph<Object, W> augmented = augment(graph, ns);
 		SingleSourceShortestPathCalcStatus<Object, W> status = BellmanFord.createInitialStatus(augmented, VIRTUAL_START, ns);
