@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import org.psjava.ds.graph.DirectedWeightedAdjacencyList;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.DirectedWeightedGraph;
+import org.psjava.ds.graph.Graph;
 import org.psjava.ds.heap.Heap;
 import org.psjava.ds.heap.HeapFactory;
 import org.psjava.ds.heap.HeapNode;
@@ -27,10 +27,10 @@ public class Dijkstra implements SingleSourceShortestPath {
 	}
 
 	@Override
-	public <V, W> SingleSourceShortestPathResult<V, W> calc(DirectedWeightedGraph<V, W> graph, V start, final AddableNumberSystem<W> ns) {
-		DirectedWeightedAdjacencyList<V, W> list = DirectedWeightedAdjacencyList.create(graph);
+	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, V start, final AddableNumberSystem<W> ns) {
+		DirectedWeightedAdjacencyList<V, E> list = DirectedWeightedAdjacencyList.create(graph);
 		final MutableMap<V, W> distance = MF.create();
-		MutableMap<V, DirectedWeightedEdge<V, W>> previous = MF.create();
+		MutableMap<V, E> previous = MF.create();
 
 		for (V v : graph.getVertices())
 			distance.put(v, null); // null means infinity
@@ -49,7 +49,7 @@ public class Dijkstra implements SingleSourceShortestPath {
 
 		while (!heap.isEmpty()) {
 			V current = heap.extractMinimum();
-			for (DirectedWeightedEdge<V, W> edge : list.getEdges(current)) {
+			for (E edge : list.getEdges(current)) {
 				boolean relaxed = Relax.relax(distance, previous, edge, ns);
 				if (relaxed)
 					node.get(edge.to()).decreaseKey(edge.to());

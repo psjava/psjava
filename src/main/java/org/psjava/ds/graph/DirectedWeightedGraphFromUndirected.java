@@ -8,8 +8,8 @@ import org.psjava.javautil.VarargsIterable;
 
 public class DirectedWeightedGraphFromUndirected {
 
-	public static <V, W> DirectedWeightedGraph<V, W> wrap(final UndirectedWeightedGraph<V, W> graph) {
-		return new DirectedWeightedGraph<V, W>() {
+	public static <V, W> Graph<V, DirectedWeightedEdge<V, W>> wrap(final UndirectedWeightedGraph<V, W> graph) {
+		return new Graph<V, DirectedWeightedEdge<V, W>>() {
 			@Override
 			public Collection<V> getVertices() {
 				return graph.getVertices();

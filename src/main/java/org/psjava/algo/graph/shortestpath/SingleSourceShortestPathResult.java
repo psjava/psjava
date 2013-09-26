@@ -1,10 +1,8 @@
 package org.psjava.algo.graph.shortestpath;
 
-import org.psjava.ds.graph.DirectedWeightedEdge;
+public interface SingleSourceShortestPathResult<V, W, E> {
 
-public interface SingleSourceShortestPathResult<V, W> {
-
-	Iterable<DirectedWeightedEdge<V, W>> getPath(V to);
+	Iterable<E> getPath(V to);
 
 	W getDistance(V to);
 

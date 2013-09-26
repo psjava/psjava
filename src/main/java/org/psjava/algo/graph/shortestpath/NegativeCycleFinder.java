@@ -3,16 +3,12 @@ package org.psjava.algo.graph.shortestpath;
 import org.psjava.ds.Collection;
 import org.psjava.ds.Deque;
 import org.psjava.ds.DoubleLinkedList;
-import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.array.SingleElementCollection;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.DirectedWeightedEdgeFactory;
-import org.psjava.ds.graph.DirectedWeightedGraph;
+import org.psjava.ds.graph.Graph;
+import org.psjava.ds.graph.MutableGraph;
 import org.psjava.ds.set.MutableSet;
 import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.javautil.AssertStatus;
-import org.psjava.javautil.MergedCollection;
-import org.psjava.javautil.VarargsIterable;
 import org.psjava.math.ns.AddableNumberSystem;
 
 /**
@@ -23,83 +19,84 @@ import org.psjava.math.ns.AddableNumberSystem;
 
 public class NegativeCycleFinder {
 
-	private static final class Edge<V, W> implements DirectedWeightedEdge<Object, W> {
-		private final DirectedWeightedEdge<V, W> original;
+	private static class AugmentedEdge<V, W, E extends DirectedWeightedEdge<V, W>> implements DirectedWeightedEdge<Object, W> {
+		private final Object from;
+		private final Object to;
+		private final W weight;
+		private final E originalOrNull; // to track original graph's path
 
-		private Edge(DirectedWeightedEdge<V, W> e) {
-			this.original = e;
+		AugmentedEdge(Object from, Object to, W w, E originalOrNull) {
+			this.from = from;
+			this.to = to;
+			this.weight = w;
+			this.originalOrNull = originalOrNull;
 		}
 
 		@Override
 		public Object from() {
-			return original.from();
+			return from;
 		}
 
 		@Override
 		public Object to() {
-			return original.to();
+			return to;
 		}
 
 		@Override
 		public W weight() {
-			return original.weight();
+			return weight;
+		}
+
+		public E getOriginal() {
+			AssertStatus.assertTrue(originalOrNull != null);
+			return originalOrNull;
 		}
 	}
 
 	private static final Object VIRTUAL_START = new Object();
 
-	public static <V, W> NegativeCycleFinderResult<V, W> find(DirectedWeightedGraph<V, W> graph, AddableNumberSystem<W> ns) {
-		DirectedWeightedGraph<Object, W> augmented = augment(graph, ns);
-		SingleSourceShortestPathCalcStatus<Object, W> status = BellmanFord.createInitialStatus(augmented, VIRTUAL_START, ns);
-		BellmanFord.relaxEnough(augmented, status, ns);
-		DirectedWeightedEdge<Object, W> relaxed = relaxAnyEdgeIfPossible(augmented, ns, status);
-		return createResult(status, relaxed);
+	public static <V, W, E extends DirectedWeightedEdge<V, W>> NegativeCycleFinderResult<E> find(Graph<V, E> graph, final AddableNumberSystem<W> ns) {
+		Graph<Object, AugmentedEdge<V, W, E>> augmented = augment(graph, ns);
+		SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> bellmanFordStatus = BellmanFord.createInitialStatus(augmented, VIRTUAL_START, ns);
+		BellmanFord.relaxEnough(augmented, bellmanFordStatus, ns);
+		AugmentedEdge<V, W, E> relaxed = relaxAnyEdgeIfPossible(augmented, ns, bellmanFordStatus);
+		return createResult(bellmanFordStatus, relaxed);
 	}
 
-	private static <V, W> DirectedWeightedGraph<Object, W> augment(final DirectedWeightedGraph<V, W> original, AddableNumberSystem<W> ns) {
-		final DynamicArray<DirectedWeightedEdge<Object, W>> edges = DynamicArray.create();
-		for (DirectedWeightedEdge<V, W> e : original.getEdges())
-			edges.addToLast(new Edge<V, W>(e));
+	private static <V, W, E extends DirectedWeightedEdge<V, W>> Graph<Object, AugmentedEdge<V, W, E>> augment(final Graph<V, E> original, AddableNumberSystem<W> ns) {
+		MutableGraph<Object, AugmentedEdge<V, W, E>> r = MutableGraph.create();
 		for (V v : original.getVertices())
-			edges.addToLast(DirectedWeightedEdgeFactory.create(VIRTUAL_START, v, ns.getZero()));
-
-		return new DirectedWeightedGraph<Object, W>() {
-			@SuppressWarnings("unchecked")
-			@Override
-			public Collection<Object> getVertices() {
-				return MergedCollection.wrap(VarargsIterable.create(SingleElementCollection.create(VIRTUAL_START), original.getVertices()));
-			}
-
-			@Override
-			public Iterable<DirectedWeightedEdge<Object, W>> getEdges() {
-				return edges;
-			}
-		};
+			r.insertVertex(v);
+		for (E e : original.getEdges())
+			r.addEdge(new AugmentedEdge<V, W, E>(e.from(), e.to(), e.weight(), e));
+		r.insertVertex(VIRTUAL_START);
+		for (V v : original.getVertices())
+			r.addEdge(new AugmentedEdge<V, W, E>(VIRTUAL_START, v, ns.getZero(), null));
+		return r;
 	}
 
-	private static <V, W> DirectedWeightedEdge<V, W> relaxAnyEdgeIfPossible(DirectedWeightedGraph<V, W> graph, AddableNumberSystem<W> ns, SingleSourceShortestPathCalcStatus<V, W> status) {
-		for (DirectedWeightedEdge<V, W> e : graph.getEdges())
+	private static <V, W, E extends DirectedWeightedEdge<V, W>> AugmentedEdge<V, W, E> relaxAnyEdgeIfPossible(Graph<Object, AugmentedEdge<V, W, E>> graph, AddableNumberSystem<W> ns, SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status) {
+		for (AugmentedEdge<V, W, E> e : graph.getEdges())
 			if (Relax.relax(status.distance, status.previous, e, ns))
 				return e;
 		return null;
 	}
 
-	private static <V, W> NegativeCycleFinderResult<V, W> createResult(final SingleSourceShortestPathCalcStatus<Object, W> status, final DirectedWeightedEdge<Object, W> lastRelaxedEdgeOrNull) {
-		return new NegativeCycleFinderResult<V, W>() {
+	private static <V, W, E extends DirectedWeightedEdge<V, W>> NegativeCycleFinderResult<E> createResult(final SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status, final AugmentedEdge<V, W, E> lastRelaxedEdgeOrNull) {
+		return new NegativeCycleFinderResult<E>() {
 			@Override
 			public boolean hasCycle() {
 				return lastRelaxedEdgeOrNull != null;
 			}
 
-			@SuppressWarnings("unchecked")
 			@Override
-			public Collection<DirectedWeightedEdge<V, W>> getPath() {
+			public Collection<E> getPath() {
 				AssertStatus.assertTrue(hasCycle(), "no cycle");
 				MutableSet<Object> visited = GoodMutableSetFactory.getInstance().create();
-				Deque<DirectedWeightedEdge<V, W>> path = DoubleLinkedList.create();
-				DirectedWeightedEdge<Object, W> curEdge = lastRelaxedEdgeOrNull;
+				Deque<E> path = DoubleLinkedList.create();
+				AugmentedEdge<V, W, E> curEdge = lastRelaxedEdgeOrNull;
 				while (true) {
-					path.addToFirst(((Edge<V, W>) curEdge).original);
+					path.addToFirst(curEdge.getOriginal());
 					visited.insert(curEdge.to());
 					if (visited.contains(curEdge.from()))
 						break;

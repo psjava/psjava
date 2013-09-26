@@ -1,4 +1,6 @@
 rename directeEdgr to tail hea
+introduce edge generic in undirectedgraphs, remove undirected graph class
+change vertex to String type in tests
 Move hopcroftkarp
 vertex cover - spoj QUEST4
 add example of queue

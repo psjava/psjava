@@ -2,14 +2,14 @@ package org.psjava.algo.graph.shortestpath;
 
 import java.util.LinkedList;
 
-import org.psjava.ds.graph.DirectedWeightedEdge;
+import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.Map;
 import org.psjava.javautil.AssertStatus;
 
 public class SingleSourceShortestPathResultFactory {
 
-	public static <V, W> SingleSourceShortestPathResult<V, W> create(final V start, final Map<V, W> distance, final Map<V, DirectedWeightedEdge<V, W>> previous) {
-		return new SingleSourceShortestPathResult<V, W>() {
+	public static <V, E extends DirectedEdge<V>, W> SingleSourceShortestPathResult<V, W, E> create(final V start, final Map<V, W> distance, final Map<V, E> previous) {
+		return new SingleSourceShortestPathResult<V, W, E>() {
 			@Override
 			public W getDistance(V to) {
 				assertReachable(to);
@@ -17,9 +17,9 @@ public class SingleSourceShortestPathResultFactory {
 			}
 
 			@Override
-			public Iterable<DirectedWeightedEdge<V, W>> getPath(V to) {
+			public Iterable<E> getPath(V to) {
 				assertReachable(to);
-				LinkedList<DirectedWeightedEdge<V, W>> r = new LinkedList<DirectedWeightedEdge<V, W>>();
+				LinkedList<E> r = new LinkedList<E>();
 				for (V v = to; !v.equals(start); v = previous.get(v).from())
 					r.addFirst(previous.get(v));
 				return r;

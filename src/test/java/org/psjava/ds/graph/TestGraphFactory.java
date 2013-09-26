@@ -2,7 +2,7 @@ package org.psjava.ds.graph;
 
 public class TestGraphFactory {
 
-	public static DirectedWeightedGraph<Integer, Integer> create(int[][] edata) {
+	public static MutableDirectedWeightedGraph<Integer, Integer> create(int[][] edata) {
 		MutableDirectedWeightedGraph<Integer, Integer> g = new MutableDirectedWeightedGraph<Integer, Integer>();
 		for (int[] e : edata) {
 			g.insertVertex(e[0]);

@@ -4,22 +4,23 @@ import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodMutableMapFactory;
 
-public class DirectedWeightedAdjacencyList<V, W> {
+public class DirectedWeightedAdjacencyList<V, E extends DirectedEdge<V>> {
+	// TODO rename EdgesByTail
 
-	public static <V, W> DirectedWeightedAdjacencyList<V, W> create(DirectedWeightedGraph<V, W> g) {
-		return new DirectedWeightedAdjacencyList<V, W>(g);
+	public static <V, E extends DirectedEdge<V>> DirectedWeightedAdjacencyList<V, E> create(Graph<V, E> g) {
+		return new DirectedWeightedAdjacencyList<V, E>(g);
 	}
 
-	private final MutableMap<V, DynamicArray<DirectedWeightedEdge<V, W>>> index = GoodMutableMapFactory.getInstance().create();
+	private final MutableMap<V, DynamicArray<E>> index = GoodMutableMapFactory.getInstance().create();
 
-	private DirectedWeightedAdjacencyList(DirectedWeightedGraph<V, W> g) {
+	private DirectedWeightedAdjacencyList(Graph<V, E> g) {
 		for (V v : g.getVertices())
-			index.put(v, new DynamicArray<DirectedWeightedEdge<V, W>>());
-		for (DirectedWeightedEdge<V, W> e : g.getEdges())
+			index.put(v, new DynamicArray<E>());
+		for (E e : g.getEdges())
 			index.get(e.from()).addToLast(e);
 	}
 
-	public Iterable<DirectedWeightedEdge<V, W>> getEdges(V from) {
+	public Iterable<E> getEdges(V from) {
 		return index.get(from);
 	}
 }

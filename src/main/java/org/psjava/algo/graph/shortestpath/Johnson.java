@@ -2,8 +2,7 @@ package org.psjava.algo.graph.shortestpath;
 
 import org.psjava.ds.Collection;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.DirectedWeightedEdgeFactory;
-import org.psjava.ds.graph.DirectedWeightedGraph;
+import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodMutableMapFactory;
@@ -29,52 +28,82 @@ public class Johnson implements AllPairShortestPath {
 		this.dijkstra = dijkstra;
 	}
 
+	private static class ReweightedEdge<V, W, E extends DirectedWeightedEdge<V, W>> implements DirectedWeightedEdge<V, W> {
+		private final W weight;
+		private final E original;
+
+		ReweightedEdge(W w, E original) {
+			this.weight = w;
+			this.original = original;
+		}
+
+		@Override
+		public V from() {
+			return original.from();
+		}
+
+		@Override
+		public V to() {
+			return original.to();
+		}
+
+		@Override
+		public W weight() {
+			return weight;
+		}
+
+		public E getOriginal() {
+			return original;
+		}
+	}
+
 	@Override
-	public <V, W> AllPairShortestPathResult<V, W> calc(DirectedWeightedGraph<V, W> graph, AddableNumberSystem<W> ns) {
-		DirectedWeightedGraph<Object, W> augmented = augment(graph, ns);
-		SingleSourceShortestPathResult<Object, W> bellmanFordResult = bellmanFord.calc(augmented, VIRTUAL_START, ns);
-		DirectedWeightedGraph<V, W> reweighted = reweight(graph, bellmanFordResult, ns);
-		MutableMap<V, SingleSourceShortestPathResult<V, W>> dijsktraResult = GoodMutableMapFactory.getInstance().create();
+	public <V, W, E extends DirectedWeightedEdge<V, W>> AllPairShortestPathResult<V, W, E> calc(Graph<V, E> graph, AddableNumberSystem<W> ns) {
+		Graph<Object, DirectedWeightedEdge<Object, W>> augmented = augment(graph, ns);
+		SingleSourceShortestPathResult<Object, W, DirectedWeightedEdge<Object, W>> bellmanFordResult = bellmanFord.calc(augmented, VIRTUAL_START, ns);
+		Graph<V, ReweightedEdge<V, W, E>> reweighted = reweight(graph, bellmanFordResult, ns);
+		MutableMap<V, SingleSourceShortestPathResult<V, W, ReweightedEdge<V, W, E>>> dijsktraResult = GoodMutableMapFactory.getInstance().create();
 		for (V v : graph.getVertices())
 			dijsktraResult.put(v, dijkstra.calc(reweighted, v, ns));
 		return createUnreweightedResult(bellmanFordResult, dijsktraResult, ns);
 	}
 
-	private static <V, W> DirectedWeightedGraph<Object, W> augment(final DirectedWeightedGraph<V, W> g, final AddableNumberSystem<W> ns) {
+	private static <V, W, E extends DirectedWeightedEdge<V, W>> Graph<Object, DirectedWeightedEdge<Object, W>> augment(Graph<V, E> original, final AddableNumberSystem<W> ns) {
 		MutableDirectedWeightedGraph<Object, W> res = MutableDirectedWeightedGraph.create();
 		res.insertVertex(VIRTUAL_START);
-		for (Object v : g.getVertices()) {
+		for (Object v : original.getVertices()) {
 			res.insertVertex(v);
 			res.addEdge(VIRTUAL_START, v, ns.getZero());
 		}
-		for (DirectedWeightedEdge<V, W> e : g.getEdges())
+		for (E e : original.getEdges())
 			res.addEdge(e.from(), e.to(), e.weight());
 		return res;
 	}
 
 	// TODO use common code if SuccessiveShortestPathWithPotential can use this.
-	private static <V, W> DirectedWeightedGraph<V, W> reweight(final DirectedWeightedGraph<V, W> graph, final SingleSourceShortestPathResult<Object, W> bellmanFordResult, final AddableNumberSystem<W> ns) {
-		return new DirectedWeightedGraph<V, W>() {
+	private static <V, W, E extends DirectedWeightedEdge<V, W>> Graph<V, ReweightedEdge<V, W, E>> reweight(final Graph<V, E> original, final SingleSourceShortestPathResult<Object, W, DirectedWeightedEdge<Object, W>> bellmanFordResult, final AddableNumberSystem<W> ns) {
+		return new Graph<V, ReweightedEdge<V, W, E>>() {
 			@Override
 			public Collection<V> getVertices() {
-				return graph.getVertices();
+				return original.getVertices();
 			}
 
 			@Override
-			public Iterable<DirectedWeightedEdge<V, W>> getEdges() {
-				return ConvertedDataIterable.create(graph.getEdges(), new DataConverter<DirectedWeightedEdge<V, W>, DirectedWeightedEdge<V, W>>() {
+			public Iterable<ReweightedEdge<V, W, E>> getEdges() {
+				return ConvertedDataIterable.create(original.getEdges(), new DataConverter<E, ReweightedEdge<V, W, E>>() {
 					@Override
-					public DirectedWeightedEdge<V, W> convert(DirectedWeightedEdge<V, W> e) {
+					public ReweightedEdge<V, W, E> convert(E e) {
 						W adjust = ns.subtract(bellmanFordResult.getDistance(e.from()), bellmanFordResult.getDistance(e.to()));
-						return DirectedWeightedEdgeFactory.create(e.from(), e.to(), ns.add(e.weight(), adjust));
+						return new ReweightedEdge<V, W, E>(ns.add(e.weight(), adjust), e);
 					}
 				});
 			}
 		};
 	}
 
-	private static <V, W> AllPairShortestPathResult<V, W> createUnreweightedResult(final SingleSourceShortestPathResult<Object, W> bellmanFordResult, final MutableMap<V, SingleSourceShortestPathResult<V, W>> dijkstraResult, final AddableNumberSystem<W> ns) {
-		return new AllPairShortestPathResult<V, W>() {
+	private static <V, W, E extends DirectedWeightedEdge<V, W>> AllPairShortestPathResult<V, W, E> createUnreweightedResult(final SingleSourceShortestPathResult<Object, W, DirectedWeightedEdge<Object, W>> bellmanFordResult,
+			final MutableMap<V, SingleSourceShortestPathResult<V, W, ReweightedEdge<V, W, E>>> dijkstraResult, final AddableNumberSystem<W> ns) {
+		return new AllPairShortestPathResult<V, W, E>() {
 			@Override
 			public W getDistance(V from, V to) {
 				W adjust = ns.subtract(bellmanFordResult.getDistance(to), bellmanFordResult.getDistance(from));
@@ -82,11 +111,11 @@ public class Johnson implements AllPairShortestPath {
 			}
 
 			@Override
-			public Iterable<DirectedWeightedEdge<V, W>> getPath(final V from, V to) {
-				return ConvertedDataIterable.create(dijkstraResult.get(from).getPath(to), new DataConverter<DirectedWeightedEdge<V, W>, DirectedWeightedEdge<V, W>>() {
+			public Iterable<E> getPath(final V from, V to) {
+				return ConvertedDataIterable.create(dijkstraResult.get(from).getPath(to), new DataConverter<ReweightedEdge<V, W, E>, E>() {
 					@Override
-					public DirectedWeightedEdge<V, W> convert(DirectedWeightedEdge<V, W> v) {
-						return DirectedWeightedEdgeFactory.create(v.from(), v.to(), getDistance(v.from(), v.to()));
+					public E convert(ReweightedEdge<V, W, E> v) {
+						return v.getOriginal();
 					}
 				});
 			}

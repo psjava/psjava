@@ -3,7 +3,6 @@ package org.psjava.example;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.NegativeCycleFinder;
-import org.psjava.algo.graph.shortestpath.NegativeCycleFinderResult;
 import org.psjava.ds.Collection;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
@@ -26,19 +25,15 @@ public class FindingNegativeCycleExample {
 
 		// Now, there is no negative cycles yet.
 
-		NegativeCycleFinderResult<String, Integer> result1 = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance());
-		boolean has1 = result1.hasCycle();
-		Assert.assertFalse(has1);
+		boolean hasCycle = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance()).hasCycle();
+		Assert.assertFalse(hasCycle);
 
-		// Add another edge to make a cycle.
+		// Add another edge to create a negative cycle.
 
 		g.addEdge("C", "A", -400);
 
-		NegativeCycleFinderResult<String, Integer> result2 = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance());
-		boolean has2 = result2.hasCycle();
-		Collection<DirectedWeightedEdge<String, Integer>> path = result2.getPath(); // this is the path!
-
-		Assert.assertTrue(has2);
+		// this is the path!
+		Collection<DirectedWeightedEdge<String, Integer>> path = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance()).getPath(); 
 		Assert.assertEquals(3, path.size());
 	}
 }

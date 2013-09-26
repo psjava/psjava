@@ -11,6 +11,7 @@ import org.psjava.algo.graph.shortestpath.FloydWarshall;
 import org.psjava.algo.graph.shortestpath.Johnson;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPath;
+import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.heap.BinaryHeapFactory;
 import org.psjava.goods.GoodSingleSourceShortestPath;
@@ -36,13 +37,13 @@ public class ShortestPathExample {
 		// Choose algorithm, and do it.
 
 		SingleSourceShortestPath algorithm1 = GoodSingleSourceShortestPath.getInstance();
-		SingleSourceShortestPathResult<String, Integer> result1 = algorithm1.calc(graph, "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result1 = algorithm1.calc(graph, "A", IntegerNumberSystem.getInstance());
 
-		int a2c = result1.getDistance("C");
-		boolean reachableOfD = result1.isReachable("D");
+		int distanceAToC = result1.getDistance("C");
+		boolean reachabilityOfD = result1.isReachable("D");
 
-		assertEquals(30, a2c);
-		assertFalse(reachableOfD);
+		assertEquals(30, distanceAToC);
+		assertFalse(reachabilityOfD);
 
 		// The good one should be Dijkstra's Algorithm with binary heap. but you
 		// can specify to another algorithm. Followings are some possibles.
@@ -53,13 +54,13 @@ public class ShortestPathExample {
 		// Let's get the shortest paths of all pairs. Floyd Warshall's algorithm is the simplest implementation.
 
 		AllPairShortestPath algoritm2 = new FloydWarshall();
-		AllPairShortestPathResult<String, Integer> result2 = algoritm2.calc(graph, IntegerNumberSystem.getInstance());
+		AllPairShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result2 = algoritm2.calc(graph, IntegerNumberSystem.getInstance());
 
-		int a2b = result2.getDistance("A", "B");
-		int b2a = result2.getDistance("B", "C");
+		int distanceAToB = result2.getDistance("A", "B");
+		int distanceBToC = result2.getDistance("B", "C");
 
-		assertEquals(10, a2b);
-		assertEquals(20, b2a);
+		assertEquals(10, distanceAToB);
+		assertEquals(20, distanceBToC);
 
 		// There are other algorithms to get shortest paths of all pairs.
 
