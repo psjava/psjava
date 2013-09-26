@@ -1,5 +1,7 @@
-change vertex to String type in tests
+move dfs, solve a problem.
+move bfs, solve a problem.
 improve and move hopcroftkarp
+change vertex to String type in tests
 vertex cover - spoj QUEST4
 add example of queue
 add example of doublelinkedlist, array, heap
