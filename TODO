@@ -1,4 +1,3 @@
-rename directeEdgr to tail hea
 change vertex to String type in tests
 improve and move hopcroftkarp
 vertex cover - spoj QUEST4

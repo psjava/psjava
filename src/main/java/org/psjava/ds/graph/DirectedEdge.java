@@ -1,7 +1,7 @@
 package org.psjava.ds.graph;
 
 public interface DirectedEdge<V> {
-	V from(); // TODO rename to tail
+	V from();
 
-	V to(); // TODO rename to head
+	V to();
 }
