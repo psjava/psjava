@@ -8,7 +8,7 @@ import org.psjava.javautil.VarargsIterable;
 
 public class DirectedWeightedGraphFromUndirected {
 
-	public static <V, W> Graph<V, DirectedWeightedEdge<V, W>> wrap(final UndirectedWeightedGraph<V, W> graph) {
+	public static <V, W, E extends UndirectedWeightedEdge<V, W>> Graph<V, DirectedWeightedEdge<V, W>> wrap(final Graph<V, E> graph) {
 		return new Graph<V, DirectedWeightedEdge<V, W>>() {
 			@Override
 			public Collection<V> getVertices() {
@@ -18,14 +18,14 @@ public class DirectedWeightedGraphFromUndirected {
 			@SuppressWarnings("unchecked")
 			@Override
 			public Iterable<DirectedWeightedEdge<V, W>> getEdges() {
-				return MergedIterable.wrap(VarargsIterable.create(ConvertedDataIterable.create(graph.getEdges(), new DataConverter<UndirectedWeightedEdge<V, W>, DirectedWeightedEdge<V, W>>() {
+				return MergedIterable.wrap(VarargsIterable.create(ConvertedDataIterable.create(graph.getEdges(), new DataConverter<E, DirectedWeightedEdge<V, W>>() {
 					@Override
-					public DirectedWeightedEdge<V, W> convert(UndirectedWeightedEdge<V, W> original) {
+					public DirectedWeightedEdge<V, W> convert(E original) {
 						return DirectedWeightedEdgeFactory.create(original.v1(), original.v2(), original.weight());
 					}
-				}), ConvertedDataIterable.create(graph.getEdges(), new DataConverter<UndirectedWeightedEdge<V, W>, DirectedWeightedEdge<V, W>>() {
+				}), ConvertedDataIterable.create(graph.getEdges(), new DataConverter<E, DirectedWeightedEdge<V, W>>() {
 					@Override
-					public DirectedWeightedEdge<V, W> convert(UndirectedWeightedEdge<V, W> original) {
+					public DirectedWeightedEdge<V, W> convert(E original) {
 						return DirectedWeightedEdgeFactory.create(original.v2(), original.v1(), original.weight());
 					}
 				})));

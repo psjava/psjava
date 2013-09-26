@@ -6,7 +6,7 @@ import org.psjava.ds.set.MutableSet;
 import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.javautil.AssertStatus;
 
-public class MutableUndirectedWeightedGraph<V, W> implements UndirectedWeightedGraph<V, W> {
+public class MutableUndirectedWeightedGraph<V, W> implements Graph<V, UndirectedWeightedEdge<V, W>> {
 
 	public static <V, W> MutableUndirectedWeightedGraph<V, W> create() {
 		return new MutableUndirectedWeightedGraph<V, W>();
@@ -40,7 +40,7 @@ public class MutableUndirectedWeightedGraph<V, W> implements UndirectedWeightedG
 	}
 
 	@Override
-	public String toString() {
+	public String toString() { // TODO extract util class
 		String r = "";
 		for (UndirectedWeightedEdge<V, W> e : getEdges()) {
 			if (r.length() != 0)

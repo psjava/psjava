@@ -1,7 +1,7 @@
 package org.psjava.ds.graph;
 
-public interface UndirectedEdge {
-	Object v1();
+public interface UndirectedEdge<V> {
+	V v1();
 
-	Object v2();
+	V v2();
 }
