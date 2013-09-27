@@ -2,7 +2,7 @@ package org.psjava.algo.graph.shortestpath;
 
 import java.util.Comparator;
 
-import org.psjava.ds.graph.DirectedWeightedAdjacencyList;
+import org.psjava.ds.graph.IndexedEdgesByFrom;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.heap.Heap;
@@ -28,7 +28,7 @@ public class Dijkstra implements SingleSourceShortestPath {
 
 	@Override
 	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, V start, final AddableNumberSystem<W> ns) {
-		DirectedWeightedAdjacencyList<V, E> list = DirectedWeightedAdjacencyList.create(graph);
+		IndexedEdgesByFrom<V, E> edges = IndexedEdgesByFrom.create(graph);
 		final MutableMap<V, W> distance = MF.create();
 		MutableMap<V, E> previous = MF.create();
 
@@ -49,7 +49,7 @@ public class Dijkstra implements SingleSourceShortestPath {
 
 		while (!heap.isEmpty()) {
 			V current = heap.extractMinimum();
-			for (E edge : list.getEdges(current)) {
+			for (E edge : edges.getEdges(current)) {
 				boolean relaxed = Relax.relax(distance, previous, edge, ns);
 				if (relaxed)
 					node.get(edge.to()).decreaseKey(edge.to());
