@@ -1,8 +1,8 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.Collection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.set.MutableSet;
+import org.psjava.ds.set.Set;
 import org.psjava.goods.GoodMutableSetFactory;
 
 public class MutableGraph<V, E> implements Graph<V, E> {
@@ -23,7 +23,7 @@ public class MutableGraph<V, E> implements Graph<V, E> {
 	}
 
 	@Override
-	public Collection<V> getVertices() {
+	public Set<V> getVertices() {
 		return vertices;
 	}
 
@@ -33,14 +33,8 @@ public class MutableGraph<V, E> implements Graph<V, E> {
 	}
 
 	@Override
-	public String toString() { // TODO extract to util class
-		String r = "";
-		for (E e : getEdges()) {
-			if (r.length() != 0)
-				r += ", ";
-			r += e.toString();
-		}
-		return "Graph: " + r;
+	public String toString() {
+		return GraphToString.toString(this);
 	}
 
 }
