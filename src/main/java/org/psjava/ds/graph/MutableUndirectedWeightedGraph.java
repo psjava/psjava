@@ -40,13 +40,7 @@ public class MutableUndirectedWeightedGraph<V, W> implements Graph<V, Undirected
 	}
 
 	@Override
-	public String toString() { // TODO extract util class
-		String r = "";
-		for (UndirectedWeightedEdge<V, W> e : getEdges()) {
-			if (r.length() != 0)
-				r += ", ";
-			r += e.toString();
-		}
-		return "Graph: " + r;
+	public String toString() {
+		return GraphToString.toString(this);
 	}
 }

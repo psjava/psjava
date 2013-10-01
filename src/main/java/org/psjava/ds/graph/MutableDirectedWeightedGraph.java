@@ -7,8 +7,8 @@ import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.javautil.AssertStatus;
 
 public class MutableDirectedWeightedGraph<V, W> implements Graph<V, DirectedWeightedEdge<V, W>> {
-	
-	// TODO extend or use MutableGraph 
+
+	// TODO use MutableGraph
 
 	public static <V, W> MutableDirectedWeightedGraph<V, W> create() {
 		return new MutableDirectedWeightedGraph<V, W>();
@@ -42,14 +42,8 @@ public class MutableDirectedWeightedGraph<V, W> implements Graph<V, DirectedWeig
 	}
 
 	@Override
-	public String toString() { // TODO extract to a util
-		String r = "";
-		for (DirectedWeightedEdge<V, W> e : getEdges()) {
-			if (r.length() != 0)
-				r += ", ";
-			r += e.toString();
-		}
-		return "Graph: " + r;
+	public String toString() {
+		return GraphToString.toString(this);
 	}
 
 }
