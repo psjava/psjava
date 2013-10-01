@@ -8,9 +8,15 @@ public class DirectedEdgeFactory {
 			public V to() {
 				return to;
 			}
+
 			@Override
 			public V from() {
 				return from;
+			}
+
+			@Override
+			public String toString() {
+				return to + "->" + from;
 			}
 		};
 	}
