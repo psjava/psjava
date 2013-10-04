@@ -24,14 +24,10 @@ public class FilteredIterator {
 			}
 
 			private void tryToStepNext() {
-				if (next == null) {
-					while (cursor.hasNext()) {
-						T value = cursor.next();
-						if (filter.isAccepted(value)) {
-							next = value;
-							break;
-						}
-					}
+				while (next == null && cursor.hasNext()) {
+					T value = cursor.next();
+					if (filter.isAccepted(value))
+						next = value;
 				}
 			}
 
