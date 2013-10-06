@@ -1,5 +1,16 @@
+add a dfs problem, modify site.
+add stack example, problem
+move bfs, solve a problem.
+improve and move hopcroftkarp
+change vertex to String type in tests
+vertex cover - spoj QUEST4
+add example of queue
+add example of doublelinkedlist, array, heap
+add array deque ds
 add graph structure example
 add dijkstra example, a solution.
-add heap example
 assert segment argument start <= end
 add binary indexed tree
+add Karp minimum mean weight cycle
+Shortest Path Faster Algorithm
+dinic'S ALGORITHM 

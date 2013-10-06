@@ -1,6 +1,7 @@
 package org.psjava.ds.graph;
 
-public interface DirectedEdge {
-	Object from();
-	Object to();
+public interface DirectedEdge<V> {
+	V from();
+
+	V to();
 }

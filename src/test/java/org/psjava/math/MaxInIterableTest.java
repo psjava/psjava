@@ -12,17 +12,17 @@ import org.psjava.javautil.DefaultComparator;
 
 public class MaxInIterableTest {
 
+	private static final Comparator<Integer> COMP = new DefaultComparator<Integer>();
+
 	@Test
 	public void testMax() {
 		Array<Integer> a = MutableArrayFromValues.create(1, 3, 2);
 		assertEquals(3, (int) MaxInIterable.max(a, COMP));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RuntimeException.class)
 	public void testEmpty() {
-		MaxInIterable.max(DynamicArray.<Integer>create(), COMP);
+		MaxInIterable.max(DynamicArray.<Integer> create(), COMP);
 	}
-
-	private static final Comparator<Integer> COMP = new DefaultComparator<Integer>();
 
 }

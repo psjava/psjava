@@ -13,37 +13,32 @@ public class IntegerNumberSystem implements IntegerDivisableNumberSystem<Integer
 
 	@Override
 	public Integer getZero() {
-		return 0;
+		return Integer.valueOf(0);
 	}
 
 	@Override
 	public boolean isPositive(Integer v) {
-		return v > 0;
+		return v.intValue() > 0;
 	}
 
 	@Override
 	public boolean isZero(Integer v) {
-		return v == 0;
+		return v.intValue() == 0;
 	}
 
 	@Override
 	public boolean isNegative(Integer v) {
-		return v < 0;
+		return v.intValue() < 0;
 	}
 
 	@Override
 	public int getSign(Integer v) {
-		if (v > 0)
-			return 1;
-		else if (v < 0)
-			return -1;
-		else
-			return 0;
+		return Integer.signum(v);
 	}
 	
 	@Override
 	public boolean areEqual(Integer o1, Integer o2) {
-		return o1 == o2;
+		return o1.equals(o2);
 	}
 
 	@Override
@@ -53,25 +48,22 @@ public class IntegerNumberSystem implements IntegerDivisableNumberSystem<Integer
 
 	@Override
 	public boolean isOne(Integer v) {
-		return v == 1;
+		return v.intValue() == 1;
 	}
 	
 	@Override
 	public Integer add(Integer v1, Integer v2) {
-		long res = (long) v1 + (long) v2;
-		return safeCastFromLong(res);
+		return safeCastFromLong((long) v1 + (long) v2);
 	}
 
 	@Override
 	public Integer subtract(Integer minuend, Integer subtrahend) {
-		long res = (long) minuend - (long) subtrahend;
-		return safeCastFromLong(res);
+		return safeCastFromLong((long) minuend - (long) subtrahend);
 	}
 
 	@Override
 	public Integer multiply(Integer v1, Integer v2) {
-		long r = (long) v1 * (long) v2;
-		return safeCastFromLong(r);
+		return safeCastFromLong((long) v1 * (long) v2);
 	}
 
 	@Override
@@ -92,12 +84,7 @@ public class IntegerNumberSystem implements IntegerDivisableNumberSystem<Integer
 
 	@Override
 	public int compare(Integer o1, Integer o2) {
-		if (o1 > o2)
-			return 1;
-		else if (o1 < o2)
-			return -1;
-		else
-			return 0;
+		return o1.compareTo(o2);
 	}
 
 }

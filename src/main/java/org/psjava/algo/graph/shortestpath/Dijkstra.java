@@ -1,10 +1,10 @@
 package org.psjava.algo.graph.shortestpath;
 
-
 import java.util.Comparator;
 
-import org.psjava.ds.graph.DirectedAdjacencyListableGraph;
+import org.psjava.ds.graph.AdjacencyListOfDirectedGraph;
 import org.psjava.ds.graph.DirectedWeightedEdge;
+import org.psjava.ds.graph.Graph;
 import org.psjava.ds.heap.Heap;
 import org.psjava.ds.heap.HeapFactory;
 import org.psjava.ds.heap.HeapNode;
@@ -14,56 +14,49 @@ import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.math.ns.AddableNumberSystem;
 
 public class Dijkstra implements SingleSourceShortestPath {
-	
+
+	// TODO assert negative weight.
+	// TODO check performance, and use int indexed graph if it needs.
+
 	private static final MutableMapFactory MF = GoodMutableMapFactory.getInstance();
-	
+
 	private HeapFactory factory;
-	
+
 	public Dijkstra(HeapFactory heapFactory) {
 		this.factory = heapFactory;
 	}
-	
+
 	@Override
-	public <W, E extends DirectedWeightedEdge<W>> SingleSourceShortestPathResult<W, E> calc(DirectedAdjacencyListableGraph<E> g, Object start, final AddableNumberSystem<W> ns) {
-		final MutableMap<Object, W> distance = MF.create();
-		MutableMap<Object, E> previous = MF.create();
-		
-		for(Object v : g.getVertices())
+	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, V start, final AddableNumberSystem<W> ns) {
+		AdjacencyListOfDirectedGraph<V, E> adj = AdjacencyListOfDirectedGraph.create(graph);
+		final MutableMap<V, W> distance = MF.create();
+		MutableMap<V, E> previous = MF.create();
+
+		for (V v : graph.getVertices())
 			distance.put(v, null); // null means infinity
 		distance.put(start, ns.getZero());
 
-		Heap<Object> heap = factory.create(new Comparator<Object>() {
+		Heap<V> heap = factory.create(new Comparator<V>() {
 			@Override
-			public int compare(Object o1, Object o2) {
-				return comp(ns, distance.get(o1), distance.get(o2));
+			public int compare(V o1, V o2) {
+				return NullableDistanceCompare.compare(ns, distance.get(o1), distance.get(o2));
 			}
 		});
-		
-		MutableMap<Object, HeapNode<Object>> node = MF.create();
-		for(Object v : g.getVertices()) 
+
+		MutableMap<V, HeapNode<V>> node = MF.create();
+		for (V v : graph.getVertices())
 			node.put(v, heap.insert(v));
-		
-		while(!heap.isEmpty()) {
-			Object current = heap.extractMinimum();
-			W currentDistance = distance.get(current);
-			if(currentDistance == null) // infinity
-				break;
-			for(E edge : g.getOutEdges(current)) {
-				W newDistance = ns.add(currentDistance, edge.weight());
-				Object next = edge.to();
-				if(comp(ns, newDistance, distance.get(next)) < 0){
-					distance.put(next, newDistance);
-					previous.put(next, edge);
-					node.get(next).decreaseKey(next);
-				}
+
+		while (!heap.isEmpty()) {
+			V current = heap.extractMinimum();
+			for (E edge : adj.getEdges(current)) {
+				boolean relaxed = Relax.relax(distance, previous, edge, ns);
+				if (relaxed)
+					node.get(edge.to()).decreaseKey(edge.to());
 			}
 		}
-		
-		return SingleSourceShortestPathResultFactory.wrap(start, distance, previous);
-	}
 
-	private <W> int comp(final AddableNumberSystem<W> ns, W d1, W d2) {
-		return NullableDistanceCompare.compare(ns, d1, d2);
+		return SingleSourceShortestPathResultFactory.create(start, distance, previous);
 	}
 
 }
