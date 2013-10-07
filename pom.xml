@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.psjava</groupId>
 	<artifactId>psjava</artifactId>
-	<version>0.1.7-SNAPSHOT</version>
+	<version>0.1.8-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>psjava</name>
 	<description>Problem Solving Library for Java</description>
@@ -31,9 +31,9 @@
 
 	<developers>
 		<developer>
-			<id>psjava</id>
-			<name>psjava leader</name>
-			<email>psjava.leader@gmail.com</email>
+			<id>abbajoa</id>
+			<name>abbajoa</name>
+			<email>abbajoa@gmail.com</email>
 		</developer>
 	</developers>
 
