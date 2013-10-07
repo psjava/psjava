@@ -14,10 +14,10 @@ public class DFSVisitorBase<V, E> implements DFSVisitor<V, E> {
 	}
 
 	@Override
-	public void onWalkDown(E outEdge) {
+	public void onWalkDown(E edge) {
 	}
 
 	@Override
-	public void onWalkUp(E edge) {
+	public void onWalkUp(E downedEdge) {
 	}
 }
