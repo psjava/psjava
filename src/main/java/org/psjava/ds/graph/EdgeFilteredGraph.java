@@ -6,6 +6,8 @@ import org.psjava.javautil.FilteredIterable;
 
 public class EdgeFilteredGraph {
 
+	// TODO introduce SubGraph and replace this
+
 	public static <V, E> Graph<V, E> wrap(final Graph<V, E> original, final DataFilter<E> filter) {
 		return new Graph<V, E>() {
 			@Override
@@ -16,6 +18,11 @@ public class EdgeFilteredGraph {
 			@Override
 			public Iterable<E> getEdges() {
 				return FilteredIterable.create(original.getEdges(), filter);
+			}
+
+			@Override
+			public String toString() {
+				return GraphToString.toString(this);
 			}
 		};
 	}
