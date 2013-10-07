@@ -16,7 +16,7 @@ public class DirectedEdgeFactory {
 
 			@Override
 			public String toString() {
-				return to + "->" + from;
+				return from + "->" + to;
 			}
 		};
 	}
