@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.psjava.algo.graph.dfs.DFSVisitor;
-import org.psjava.ds.graph.AdjacencyListOfDirectedGraph;
+import org.psjava.ds.graph.AdjacencyListFromGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.TestGraphFactory;
@@ -18,8 +18,8 @@ public class DFSCoreTest {
 	public void testSimpleTraverseScenario() {
 		Graph<String, DirectedEdge<String>> tg = TestGraphFactory.createDirected(new String[][] { { "1", "2" }, { "2", "3" }, { "3", "1" } });
 		res = "";
-		MutableMap<String, DFSStatus> status = DFSCore.createInitialStatus(tg);
-		DFSCore.traverse(AdjacencyListOfDirectedGraph.create(tg), status, "1", new DFSVisitor<String, DirectedEdge<String>>() {
+		MutableMap<String, DFSStatus> status = DFSCore.createInitialStatus(tg.getVertices());
+		DFSCore.traverse(AdjacencyListFromGraph.create(tg), status, "1", new DFSVisitor<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscovered(String vertex, int depth) {
 				res += "N" + vertex;

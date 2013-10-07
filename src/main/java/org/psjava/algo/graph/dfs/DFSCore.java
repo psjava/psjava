@@ -2,9 +2,9 @@ package org.psjava.algo.graph.dfs;
 
 import java.util.Iterator;
 
+import org.psjava.ds.Collection;
+import org.psjava.ds.graph.AdjacencyList;
 import org.psjava.ds.graph.DirectedEdge;
-import org.psjava.ds.graph.AdjacencyListOfDirectedGraph;
-import org.psjava.ds.graph.Graph;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.stack.GoodStackFactory;
 import org.psjava.ds.stack.Stack;
@@ -33,14 +33,14 @@ public class DFSCore {
 		}
 	}
 
-	public static <V, E extends DirectedEdge<V>> MutableMap<V, DFSStatus> createInitialStatus(Graph<V, E> graph) {
+	public static <V> MutableMap<V, DFSStatus> createInitialStatus(Collection<V> vertices) {
 		MutableMap<V, DFSStatus> r = GoodMutableMapFactory.getInstance().create();
-		for (V v : graph.getVertices())
+		for (V v : vertices)
 			r.put(v, DFSStatus.NOT_DISCOVERED);
 		return r;
 	}
 
-	public static <V, E extends DirectedEdge<V>> void traverse(AdjacencyListOfDirectedGraph<V, E> adj, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
+	public static <V, E extends DirectedEdge<V>> void traverse(AdjacencyList<V, E> adj, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
 		Stack<StackItem<V, E>> stack = STACK_FACTORY.create();
 		status.put(start, DFSStatus.DISCOVERED);
 		visitor.onDiscovered(start, 0);
