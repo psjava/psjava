@@ -9,6 +9,12 @@ import org.psjava.ds.set.MutableSetFactory;
 import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.goods.GoodQueueFactory;
 
+/**
+ * Implementation of Breadth-first search
+ * 
+ * http://en.wikipedia.org/wiki/Breadth-first_search
+ */
+
 public class BFS {
 
 	private static final QueueFactory QF = GoodQueueFactory.getInstance();
