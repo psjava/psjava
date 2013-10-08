@@ -4,9 +4,7 @@ import org.psjava.ds.Collection;
 import org.psjava.javautil.DataFilter;
 import org.psjava.javautil.FilteredIterable;
 
-public class EdgeFilteredGraph {
-
-	// TODO introduce SubGraph and replace this
+public class EdgeFilteredSubGraph {
 
 	public static <V, E> Graph<V, E> wrap(final Graph<V, E> original, final DataFilter<E> filter) {
 		return new Graph<V, E>() {
