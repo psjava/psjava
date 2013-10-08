@@ -1,8 +1,4 @@
-add bfs example.
-update site for bfs. problem is SPOJ PPATH
-update site of seiveoferatosthenes. problem is SPOJ PPATH
 add trivial division for primality test.
-update site for primality test. problem is SPOJ PPATH
 respect categiry in http://en.wikipedia.org/wiki/List_of_algorithms
 solve a hopcroftkarp problem TAXI, move it.
 add stack example, problem
@@ -19,3 +15,8 @@ add Karp minimum mean weight cycle
 Shortest Path Faster Algorithm
 dinic'S ALGORITHM 
 study sieves - http://en.wikipedia.org/wiki/Sieve_of_Atkin, http://en.wikipedia.org/wiki/Wheel_factorization
+update site for primality test. problem is SPOJ PPATH
+
+- after release
+update site for bfs. problem is SPOJ PPATH, example is exist.
+update site for seiveoferatosthenes. problem is SPOJ PPATH, example is exist.
