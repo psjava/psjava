@@ -1,8 +1,9 @@
+add bfs example.
+update site for bfs. problem is SPOJ PPATH
 update site of seiveoferatosthenes. problem is SPOJ PPATH
 add trivial division for primality test.
 update site for primality test. problem is SPOJ PPATH
 respect categiry in http://en.wikipedia.org/wiki/List_of_algorithms
-solve a bfs problem - spoj PPATH. move bfs,  
 solve a hopcroftkarp problem TAXI, move it.
 add stack example, problem
 change vertex to String type in tests
