@@ -1,5 +1,5 @@
-add trivial division for primality test.
 respect categiry in http://en.wikipedia.org/wiki/List_of_algorithms
+move trivial division for primality test.
 solve a hopcroftkarp problem TAXI, move it.
 add stack example, problem
 change vertex to String type in tests
