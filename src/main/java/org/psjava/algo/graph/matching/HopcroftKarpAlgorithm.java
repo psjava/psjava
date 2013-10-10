@@ -32,6 +32,23 @@ import org.psjava.util.ZeroTo;
 
 public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
 
+	public static MaximumBipartiteMatching getInstance() {
+		return new HopcroftKarpAlgorithm();
+	}
+
+	@Override
+	public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> bg) {
+		AdjacencyList<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);
+		while (true) {
+			Object bfsMark = new Object();
+			Collection<Vertex<V>> bfsFinishes = bfs(adj, bfsMark);
+			if (bfsFinishes.isEmpty())
+				break;
+			dfs(adj, bfsFinishes, bfsMark);
+		}
+		return createResult(adj);
+	}
+
 	private enum Side {
 		LEFT, RIGHT
 	}
@@ -72,19 +89,6 @@ public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
 			return to;
 		}
 
-	}
-
-	@Override
-	public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> bg) {
-		AdjacencyList<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);
-		while (true) {
-			Object bfsMark = new Object();
-			Collection<Vertex<V>> bfsFinishes = bfs(adj, bfsMark);
-			if (bfsFinishes.isEmpty())
-				break;
-			dfs(adj, bfsFinishes, bfsMark);
-		}
-		return createResult(adj);
 	}
 
 	private <V> AdjacencyList<Vertex<V>, Edge<V>> wrapAsGraph(BipartiteGraph<V> bg) {
@@ -189,17 +193,23 @@ public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
 					match.put(e.from().original, e.to().original);
 
 		return new MaximumBipartiteMatchingResult<V>() {
+			@Override
 			public V getMatchedVertex(V v) {
 				return match.get(v);
 			}
 
+			@Override
 			public int getMaxMatchCount() {
 				return match.size() / 2;
 			}
 
+			@Override
 			public boolean hasMatch(V v) {
 				return match.containsKey(v);
 			}
 		};
+	}
+
+	private HopcroftKarpAlgorithm() {
 	}
 }

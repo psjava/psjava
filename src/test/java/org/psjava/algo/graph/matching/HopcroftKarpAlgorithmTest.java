@@ -19,7 +19,7 @@ public class HopcroftKarpAlgorithmTest {
 			g.addEdge(subd[0], subd[1]);
 		}
 
-		MaximumBipartiteMatchingResult<Integer> r = new HopcroftKarpAlgorithm().calc(g);
+		MaximumBipartiteMatchingResult<Integer> r = HopcroftKarpAlgorithm.getInstance().calc(g);
 		Assert.assertEquals(3, r.getMaxMatchCount());
 
 		Set<Integer> rightSet = new TreeSet<Integer>();
