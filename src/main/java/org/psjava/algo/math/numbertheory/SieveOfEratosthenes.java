@@ -4,6 +4,12 @@ import java.util.Arrays;
 
 public class SieveOfEratosthenes {
 
+	/**
+	 * Implementation of Sieve of Eratosthenes
+	 * 
+	 * http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+	 */
+
 	public static PrimeNumberSieve getInstance() {
 		return new PrimeNumberSieve() {
 			@Override
