@@ -2,7 +2,7 @@ package org.psjava.ds.heap;
 
 import java.util.Comparator;
 
-import org.psjava.javautil.EmptyIterable;
+import org.psjava.util.EmptyIterable;
 
 public class BinaryHeapFactory implements HeapFactory {
 	

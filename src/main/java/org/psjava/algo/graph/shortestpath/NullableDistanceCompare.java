@@ -1,6 +1,6 @@
 package org.psjava.algo.graph.shortestpath;
 
-import org.psjava.math.ns.AddableNumberSystem;
+import org.psjava.ds.numbersystrem.AddableNumberSystem;
 
 public class NullableDistanceCompare {
 

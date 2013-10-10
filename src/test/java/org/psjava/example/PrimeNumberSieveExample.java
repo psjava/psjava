@@ -3,8 +3,8 @@ package org.psjava.example;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.psjava.math.numbertheory.PrimeNumberSieve;
-import org.psjava.math.numbertheory.SieveOfEratosthenes;
+import org.psjava.algo.math.numbertheory.PrimeNumberSieve;
+import org.psjava.algo.math.numbertheory.SieveOfEratosthenes;
 
 public class PrimeNumberSieveExample {
 

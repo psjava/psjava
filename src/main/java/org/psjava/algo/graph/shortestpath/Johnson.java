@@ -5,10 +5,10 @@ import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.map.MutableMap;
+import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
-import org.psjava.javautil.ConvertedDataIterable;
-import org.psjava.javautil.DataConverter;
-import org.psjava.math.ns.AddableNumberSystem;
+import org.psjava.util.ConvertedDataIterable;
+import org.psjava.util.DataConverter;
 
 /**
  * Johnson's algorithm allows negative edge weight. but not negative cycles.

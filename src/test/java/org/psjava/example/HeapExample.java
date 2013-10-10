@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.psjava.ds.heap.BinaryHeapFactory;
 import org.psjava.ds.heap.Heap;
 import org.psjava.ds.heap.HeapNode;
-import org.psjava.javautil.DefaultComparator;
+import org.psjava.util.DefaultComparator;
 
 public class HeapExample {
 

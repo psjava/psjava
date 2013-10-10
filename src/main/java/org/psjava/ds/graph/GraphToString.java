@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-import org.psjava.javautil.IterableToString;
+import org.psjava.util.IterableToString;
 
 public class GraphToString {
 

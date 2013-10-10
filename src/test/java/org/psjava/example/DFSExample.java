@@ -9,8 +9,8 @@ import org.psjava.algo.graph.dfs.MultiSourceDFS;
 import org.psjava.algo.graph.dfs.SingleSourceDFS;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.MutableDirectedGraph;
-import org.psjava.javautil.DataKeeper;
-import org.psjava.javautil.VarargsIterable;
+import org.psjava.util.DataKeeper;
+import org.psjava.util.VarargsIterable;
 
 public class DFSExample {
 

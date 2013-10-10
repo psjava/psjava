@@ -1,8 +1,8 @@
 package org.psjava.ds.tree;
 
 import org.psjava.ds.array.DynamicArray;
-import org.psjava.javautil.AssertStatus;
-import org.psjava.javautil.BooleanIterable;
+import org.psjava.util.AssertStatus;
+import org.psjava.util.BooleanIterable;
 
 public class BinaryTreeByArray<T> {
 

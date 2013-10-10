@@ -1,7 +1,7 @@
 package org.psjava.goods;
 
-import org.psjava.ds.Deque;
-import org.psjava.ds.DoubleLinkedList;
+import org.psjava.ds.deque.Deque;
+import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.queue.Queue;
 import org.psjava.ds.queue.QueueFactory;
 

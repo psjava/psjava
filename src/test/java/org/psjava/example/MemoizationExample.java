@@ -2,10 +2,10 @@ package org.psjava.example;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.dp.Memoization;
-import org.psjava.dp.MemoizationFunction;
+import org.psjava.algo.math.optimization.Memoization;
+import org.psjava.algo.math.optimization.MemoizationFunction;
 import org.psjava.goods.GoodMemoizationFactory;
-import org.psjava.javautil.Index2D;
+import org.psjava.util.Index2D;
 
 public class MemoizationExample {
 

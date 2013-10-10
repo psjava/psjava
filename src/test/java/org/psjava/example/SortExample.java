@@ -3,15 +3,15 @@ package org.psjava.example;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.psjava.algo.sort.BubbleSort;
-import org.psjava.algo.sort.InsertionSort;
-import org.psjava.algo.sort.MergeSort;
-import org.psjava.algo.sort.RandomizedQuickSort;
-import org.psjava.algo.sort.SortHelper;
+import org.psjava.algo.sequence.sort.BubbleSort;
+import org.psjava.algo.sequence.sort.InsertionSort;
+import org.psjava.algo.sequence.sort.MergeSort;
+import org.psjava.algo.sequence.sort.RandomizedQuickSort;
+import org.psjava.algo.sequence.sort.SortHelper;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.goods.GoodSort;
-import org.psjava.javautil.DefaultComparator;
+import org.psjava.util.DefaultComparator;
 
 public class SortExample {
 	@Test

@@ -1,15 +1,15 @@
 package org.psjava.algo.graph.shortestpath;
 
 import org.psjava.ds.Collection;
-import org.psjava.ds.Deque;
-import org.psjava.ds.DoubleLinkedList;
+import org.psjava.ds.deque.Deque;
+import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.MutableGraph;
+import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.set.MutableSet;
 import org.psjava.goods.GoodMutableSetFactory;
-import org.psjava.javautil.AssertStatus;
-import org.psjava.math.ns.AddableNumberSystem;
+import org.psjava.util.AssertStatus;
 
 /**
  * This class is an application of Bellman Ford's algorithm.

@@ -1,8 +1,8 @@
 package org.psjava.ds.tree.segmenttree;
 
+import org.psjava.algo.math.Power;
 import org.psjava.ds.array.Array;
-import org.psjava.math.BinaryOperator;
-import org.psjava.math.Power;
+import org.psjava.ds.math.BinaryOperator;
 
 public class RangeUpdatableSegmentTree<T> implements SegmentTree<T> {
 

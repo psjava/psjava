@@ -1,8 +1,8 @@
 package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
-import org.psjava.javautil.DataFilter;
-import org.psjava.javautil.FilteredIterable;
+import org.psjava.util.DataFilter;
+import org.psjava.util.FilteredIterable;
 
 public class EdgeFilteredSubGraph {
 

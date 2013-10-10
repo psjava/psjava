@@ -1,6 +1,6 @@
 package org.psjava.ds.array;
 
-import org.psjava.javautil.ZeroTo;
+import org.psjava.util.ZeroTo;
 
 public class MutableArrayFactory {
 	public static <T> MutableArray<T> create(int size, T init) {

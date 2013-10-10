@@ -1,7 +1,7 @@
 package org.psjava.goods;
 
-import org.psjava.ds.trie.TrieFactory;
-import org.psjava.ds.trie.TrieFactoryUsingMap;
+import org.psjava.ds.tree.trie.TrieFactory;
+import org.psjava.ds.tree.trie.TrieFactoryUsingMap;
 
 public class GoodTrieFactory {
 	private static final TrieFactory INSTANCE = TrieFactoryUsingMap.create(GoodMutableMapFactory.getInstance());

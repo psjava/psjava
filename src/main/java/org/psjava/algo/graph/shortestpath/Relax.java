@@ -2,7 +2,7 @@ package org.psjava.algo.graph.shortestpath;
 
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.math.ns.AddableNumberSystem;
+import org.psjava.ds.numbersystrem.AddableNumberSystem;
 
 public class Relax {
 

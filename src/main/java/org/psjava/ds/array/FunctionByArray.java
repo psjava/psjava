@@ -1,6 +1,6 @@
 package org.psjava.ds.array;
 
-import org.psjava.math.Function;
+import org.psjava.ds.math.Function;
 
 public class FunctionByArray {
 

@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-import org.psjava.javautil.DataConverter;
+import org.psjava.util.DataConverter;
 
 public class DirectedWeightedGraphFromUndirected {
 

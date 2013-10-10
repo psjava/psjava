@@ -8,7 +8,7 @@ import org.psjava.ds.graph.AdjacencyListFromGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.TestGraphFactory;
-import org.psjava.javautil.VarargsIterable;
+import org.psjava.util.VarargsIterable;
 
 public class BFSTest {
 

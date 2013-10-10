@@ -14,8 +14,8 @@ import org.psjava.algo.graph.shortestpath.SingleSourceShortestPath;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.heap.BinaryHeapFactory;
+import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodSingleSourceShortestPath;
-import org.psjava.math.ns.IntegerNumberSystem;
 
 public class ShortestPathExample {
 

@@ -4,7 +4,7 @@ import org.psjava.ds.Collection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.set.MutableSet;
 import org.psjava.goods.GoodMutableSetFactory;
-import org.psjava.javautil.AssertStatus;
+import org.psjava.util.AssertStatus;
 
 public class MutableUndirectedWeightedGraph<V, W> implements Graph<V, UndirectedWeightedEdge<V, W>> {
 

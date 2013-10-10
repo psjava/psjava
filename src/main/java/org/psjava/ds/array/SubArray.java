@@ -2,7 +2,7 @@ package org.psjava.ds.array;
 
 import java.util.Iterator;
 
-import org.psjava.javautil.IterableToString;
+import org.psjava.util.IterableToString;
 
 public class SubArray {
 

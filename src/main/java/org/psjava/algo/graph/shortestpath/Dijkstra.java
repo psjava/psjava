@@ -11,8 +11,8 @@ import org.psjava.ds.heap.HeapFactory;
 import org.psjava.ds.heap.HeapNode;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
+import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
-import org.psjava.math.ns.AddableNumberSystem;
 
 public class Dijkstra implements SingleSourceShortestPath {
 

@@ -5,8 +5,8 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.ds.set.MutableSet;
-import org.psjava.ds.trie.Trie;
-import org.psjava.ds.trie.TrieNode;
+import org.psjava.ds.tree.trie.Trie;
+import org.psjava.ds.tree.trie.TrieNode;
 import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.goods.GoodTrieFactory;
 

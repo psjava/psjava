@@ -3,20 +3,20 @@ package org.psjava.example;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.psjava.algo.search.BinarySearchFirst;
-import org.psjava.algo.search.BinarySearchFirstFalse;
-import org.psjava.algo.search.BinarySearchFirstInArray;
-import org.psjava.algo.search.BinarySearchFirstTrue;
-import org.psjava.algo.search.BinarySearchLast;
-import org.psjava.algo.search.BinarySearchLastFalse;
-import org.psjava.algo.search.BinarySearchLastInArray;
-import org.psjava.algo.search.BinarySearchLastTrue;
+import org.psjava.algo.sequence.search.BinarySearchFirst;
+import org.psjava.algo.sequence.search.BinarySearchFirstFalse;
+import org.psjava.algo.sequence.search.BinarySearchFirstInArray;
+import org.psjava.algo.sequence.search.BinarySearchFirstTrue;
+import org.psjava.algo.sequence.search.BinarySearchLast;
+import org.psjava.algo.sequence.search.BinarySearchLastFalse;
+import org.psjava.algo.sequence.search.BinarySearchLastInArray;
+import org.psjava.algo.sequence.search.BinarySearchLastTrue;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFromValues;
-import org.psjava.javautil.DefaultComparator;
-import org.psjava.javautil.ReversedComparator;
-import org.psjava.math.Function;
-import org.psjava.math.ns.IntegerNumberSystem;
+import org.psjava.ds.math.Function;
+import org.psjava.ds.numbersystrem.IntegerNumberSystem;
+import org.psjava.util.DefaultComparator;
+import org.psjava.util.ReversedComparator;
 
 public class BinarySearchExample {
 

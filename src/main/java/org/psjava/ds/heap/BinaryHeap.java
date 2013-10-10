@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import org.psjava.ds.array.ArraySwapper;
 import org.psjava.ds.array.DynamicArray;
-import org.psjava.javautil.AssertStatus;
+import org.psjava.util.AssertStatus;
 
 public class BinaryHeap<T> implements Heap<T> {
 

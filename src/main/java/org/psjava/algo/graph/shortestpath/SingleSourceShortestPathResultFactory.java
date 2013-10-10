@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.Map;
-import org.psjava.javautil.AssertStatus;
+import org.psjava.util.AssertStatus;
 
 public class SingleSourceShortestPathResultFactory {
 

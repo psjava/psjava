@@ -2,7 +2,7 @@ package org.psjava.ds.array;
 
 import java.util.Iterator;
 
-import org.psjava.javautil.ReadOnlyIterator;
+import org.psjava.util.ReadOnlyIterator;
 
 
 public class ArrayIterator {

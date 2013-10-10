@@ -4,9 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.MutableArrayFromValues;
+import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
 import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
-import org.psjava.math.BinaryOperator;
 
 public class SegmentTreeByArrayImplementationTest {
 

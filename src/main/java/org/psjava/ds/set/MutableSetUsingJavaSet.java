@@ -2,7 +2,7 @@ package org.psjava.ds.set;
 
 import java.util.Iterator;
 
-import org.psjava.javautil.IterableToString;
+import org.psjava.util.IterableToString;
 
 public class MutableSetUsingJavaSet<T> implements MutableSet<T> {
 	

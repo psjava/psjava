@@ -6,7 +6,7 @@ import org.psjava.algo.graph.shortestpath.BellmanFord;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.graph.TestGraphFactory;
-import org.psjava.math.ns.IntegerNumberSystem;
+import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 public class BellmanFordTest {
 

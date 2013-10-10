@@ -2,11 +2,11 @@ package org.psjava.ds.array;
 
 import java.util.Iterator;
 
-import org.psjava.javautil.EqualityTester;
-import org.psjava.javautil.IterableEqualityTester;
-import org.psjava.javautil.IterableHash;
-import org.psjava.javautil.IterableToString;
-import org.psjava.javautil.StrictEqualityTester;
+import org.psjava.util.EqualityTester;
+import org.psjava.util.IterableEqualityTester;
+import org.psjava.util.IterableHash;
+import org.psjava.util.IterableToString;
+import org.psjava.util.StrictEqualityTester;
 
 
 public class DynamicArray<T> implements MutableArray<T>, EqualityTester<Array<T>> {

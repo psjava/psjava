@@ -1,10 +1,10 @@
 package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
-import org.psjava.javautil.ConvertedDataIterable;
-import org.psjava.javautil.DataConverter;
-import org.psjava.javautil.MergedIterable;
-import org.psjava.javautil.VarargsIterable;
+import org.psjava.util.ConvertedDataIterable;
+import org.psjava.util.DataConverter;
+import org.psjava.util.MergedIterable;
+import org.psjava.util.VarargsIterable;
 
 public class EdgeDoubledGraph {
 

@@ -1,7 +1,7 @@
 package org.psjava.goods;
 
-import org.psjava.ds.trie.TrieNodeFactory;
-import org.psjava.ds.trie.TrieNodeFactoryUsingMap;
+import org.psjava.ds.tree.trie.TrieNodeFactory;
+import org.psjava.ds.tree.trie.TrieNodeFactoryUsingMap;
 
 public class GoodTrieNodeFactory {
 

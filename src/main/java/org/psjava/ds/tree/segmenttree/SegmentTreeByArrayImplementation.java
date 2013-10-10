@@ -1,9 +1,9 @@
 package org.psjava.ds.tree.segmenttree;
 
 import org.psjava.ds.array.Array;
+import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.BinaryTreeByArray;
-import org.psjava.javautil.AssertStatus;
-import org.psjava.math.BinaryOperator;
+import org.psjava.util.AssertStatus;
 
 public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 

@@ -2,7 +2,7 @@ package org.psjava.goods;
 
 
 
-import org.psjava.dp.MemoizationFactory;
+import org.psjava.algo.math.optimization.MemoizationFactory;
 
 public class GoodMemoizationFactory {
 

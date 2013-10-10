@@ -1,7 +1,7 @@
 package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
-import org.psjava.javautil.AssertStatus;
+import org.psjava.util.AssertStatus;
 
 public class MutableDirectedGraph<V> implements Graph<V, DirectedEdge<V>> {
 

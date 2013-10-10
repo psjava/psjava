@@ -1,6 +1,6 @@
 package org.psjava.ds.map;
 
-import org.psjava.javautil.DataGetter;
+import org.psjava.util.DataGetter;
 
 public class DataGetterFromMap {
 

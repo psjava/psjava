@@ -5,10 +5,10 @@ import org.junit.Test;
 import org.psjava.algo.graph.bfs.BFS;
 import org.psjava.algo.graph.bfs.BFSStopper;
 import org.psjava.algo.graph.bfs.BFSVisitor;
-import org.psjava.ds.array.SingleElementCollection;
 import org.psjava.ds.graph.AdjacencyListFromGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.MutableDirectedGraph;
+import org.psjava.util.SingleElementCollection;
 
 public class BFSExample {
 

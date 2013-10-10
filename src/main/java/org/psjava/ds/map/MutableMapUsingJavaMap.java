@@ -2,12 +2,12 @@ package org.psjava.ds.map;
 
 import java.util.Iterator;
 
-import org.psjava.javautil.AssertStatus;
-import org.psjava.javautil.ConvertedDataIterator;
-import org.psjava.javautil.DataConverter;
-import org.psjava.javautil.EqualityTester;
-import org.psjava.javautil.StrictEqualityTester;
-import org.psjava.math.PairHash;
+import org.psjava.algo.math.PairHash;
+import org.psjava.util.AssertStatus;
+import org.psjava.util.ConvertedDataIterator;
+import org.psjava.util.DataConverter;
+import org.psjava.util.EqualityTester;
+import org.psjava.util.StrictEqualityTester;
 
 public class MutableMapUsingJavaMap {
 

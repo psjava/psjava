@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.ds.array.UniformArray;
-import org.psjava.javautil.FromTo;
+import org.psjava.util.FromTo;
 
 public class EnhancedRangeUpdatableSegmentTreeTest {
 

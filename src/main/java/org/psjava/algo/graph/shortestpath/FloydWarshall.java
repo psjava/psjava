@@ -5,10 +5,10 @@ import java.util.LinkedList;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.map.MutableMap;
+import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
-import org.psjava.javautil.AssertStatus;
-import org.psjava.javautil.Pair;
-import org.psjava.math.ns.AddableNumberSystem;
+import org.psjava.util.AssertStatus;
+import org.psjava.util.Pair;
 
 public class FloydWarshall implements AllPairShortestPath {
 

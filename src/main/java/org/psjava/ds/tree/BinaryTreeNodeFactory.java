@@ -1,6 +1,6 @@
 package org.psjava.ds.tree;
 
-import org.psjava.javautil.AssertStatus;
+import org.psjava.util.AssertStatus;
 
 public class BinaryTreeNodeFactory {
 

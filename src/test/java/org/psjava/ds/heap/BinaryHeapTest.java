@@ -2,8 +2,8 @@ package org.psjava.ds.heap;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.javautil.DefaultComparator;
-import org.psjava.javautil.EmptyIterable;
+import org.psjava.util.DefaultComparator;
+import org.psjava.util.EmptyIterable;
 
 
 

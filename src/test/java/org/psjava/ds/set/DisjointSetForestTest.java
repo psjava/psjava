@@ -2,7 +2,7 @@ package org.psjava.ds.set;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.javautil.ZeroTo;
+import org.psjava.util.ZeroTo;
 
 public class DisjointSetForestTest {
 	

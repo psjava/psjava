@@ -1,7 +1,7 @@
 package org.psjava.ds.map;
 
-import org.psjava.javautil.ConvertedDataIterable;
-import org.psjava.javautil.DataConverter;
+import org.psjava.util.ConvertedDataIterable;
+import org.psjava.util.DataConverter;
 
 public class ValuesInMap {
 	public static <K, V> Iterable<V> get(Map<K, V> map) {
