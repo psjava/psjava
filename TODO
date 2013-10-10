@@ -1,4 +1,3 @@
-solve a hopcroftkarp problem TAXI, move it.
 add stack example, problem
 change vertex to String type in tests
 vertex cover - spoj QUEST4
@@ -18,3 +17,4 @@ move trivial division for primality test.
 
 - after release
 update site for seiveoferatosthenes. problem is SPOJ PPATH, example is exist.
+update site for matching, hopcroft-karp. Problem is TAXI. example exist.
