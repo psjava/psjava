@@ -1,5 +1,3 @@
-respect categiry in http://en.wikipedia.org/wiki/List_of_algorithms
-move trivial division for primality test.
 solve a hopcroftkarp problem TAXI, move it.
 add stack example, problem
 change vertex to String type in tests
@@ -16,6 +14,7 @@ Shortest Path Faster Algorithm
 dinic'S ALGORITHM 
 study sieves - http://en.wikipedia.org/wiki/Sieve_of_Atkin, http://en.wikipedia.org/wiki/Wheel_factorization
 update site for primality test. problem is SPOJ PPATH
+move trivial division for primality test.
 
 - after release
 update site for seiveoferatosthenes. problem is SPOJ PPATH, example is exist.
