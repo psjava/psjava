@@ -2,9 +2,9 @@ package org.psjava.algo.sequence.search;
 
 import java.util.Comparator;
 
-import org.psjava.algo.math.FloorDivide;
 import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerDivisableNumberSystem;
+import org.psjava.formula.FloorDivide;
 
 public class BinarySearchFirst {
 

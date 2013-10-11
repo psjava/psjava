@@ -1,6 +1,6 @@
 package org.psjava.ds.numbersystrem;
 
-import org.psjava.algo.math.Modulo;
+import org.psjava.formula.Modulo;
 
 public class ModularNumberSystem<T> implements MultipliableNumberSystem<T> {
 	

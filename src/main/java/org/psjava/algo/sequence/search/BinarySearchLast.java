@@ -2,12 +2,12 @@ package org.psjava.algo.sequence.search;
 
 import java.util.Comparator;
 
-import org.psjava.algo.math.Decrease;
-import org.psjava.algo.math.ReflectionOnYAxis;
-import org.psjava.algo.math.numbertheory.Increase;
 import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddInvert;
 import org.psjava.ds.numbersystrem.IntegerDivisableNumberSystem;
+import org.psjava.formula.Decrease;
+import org.psjava.formula.Increase;
+import org.psjava.formula.ReflectionOnYAxis;
 import org.psjava.util.ReversedComparator;
 
 public class BinarySearchLast {
