@@ -1,3 +1,4 @@
+rename edge factory to simple~
 add stack example, problem
 change vertex to String type in tests
 vertex cover - spoj QUEST4
