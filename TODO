@@ -1,4 +1,4 @@
-add max flow example. 
+move push relabel. 
 rename BFSStopper to VisitorStopper and apply to dfs, dfspathfinder
 rename all edge factory to simple~
 add stack example, problem
