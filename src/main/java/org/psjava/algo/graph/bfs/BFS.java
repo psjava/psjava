@@ -8,6 +8,7 @@ import org.psjava.ds.set.MutableSet;
 import org.psjava.ds.set.MutableSetFactory;
 import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.goods.GoodQueueFactory;
+import org.psjava.util.VisitorStopper;
 
 /**
  * Implementation of Breadth-first search
@@ -20,7 +21,7 @@ public class BFS {
 	private static final QueueFactory QF = GoodQueueFactory.getInstance();
 	private static final MutableSetFactory SF = GoodMutableSetFactory.getInstance();
 
-	private static class Stopper implements BFSStopper {
+	private static class Stopper implements VisitorStopper {
 		boolean stopped;
 
 		@Override

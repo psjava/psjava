@@ -3,12 +3,12 @@ package org.psjava.example;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.bfs.BFS;
-import org.psjava.algo.graph.bfs.BFSStopper;
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.ds.graph.AdjacencyListFromGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.MutableDirectedGraph;
 import org.psjava.util.SingleElementCollection;
+import org.psjava.util.VisitorStopper;
 
 public class BFSExample {
 
@@ -29,7 +29,7 @@ public class BFSExample {
 
 		BFS.traverse(AdjacencyListFromGraph.create(g), SingleElementCollection.create("A"), new BFSVisitor<String, DirectedEdge<String>>() {
 			@Override
-			public void onDiscover(String vertex, int depth, BFSStopper stopper) {
+			public void onDiscover(String vertex, int depth, VisitorStopper stopper) {
 				if (vertex.equals("D")) {
 					// the depth is 2, because there is a path : A->B->D
 					Assert.assertEquals(2, depth);

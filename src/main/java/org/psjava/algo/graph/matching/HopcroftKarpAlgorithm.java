@@ -1,7 +1,6 @@
 package org.psjava.algo.graph.matching;
 
 import org.psjava.algo.graph.bfs.BFS;
-import org.psjava.algo.graph.bfs.BFSStopper;
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.MultiSourceDFS;
@@ -20,6 +19,7 @@ import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.util.DataFilter;
 import org.psjava.util.FilteredIterable;
+import org.psjava.util.VisitorStopper;
 import org.psjava.util.ZeroTo;
 
 /**
@@ -129,7 +129,7 @@ public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
 			int finishDepth = -1;
 
 			@Override
-			public void onDiscover(Vertex<V> vertex, int depth, BFSStopper stopper) {
+			public void onDiscover(Vertex<V> vertex, int depth, VisitorStopper stopper) {
 				if (finishDepth == -1 || depth <= finishDepth) {
 					if (vertex.side == Side.RIGHT && vertex.free) {
 						finishDepth = depth;

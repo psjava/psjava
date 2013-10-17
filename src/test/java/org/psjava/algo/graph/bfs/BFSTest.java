@@ -9,6 +9,7 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.TestGraphFactory;
 import org.psjava.util.VarargsIterable;
+import org.psjava.util.VisitorStopper;
 
 public class BFSTest {
 
@@ -19,7 +20,7 @@ public class BFSTest {
 		final DynamicArray<String> log = DynamicArray.create();
 		BFS.traverse(AdjacencyListFromGraph.create(g), VarargsIterable.create("A"), new BFSVisitor<String, DirectedEdge<String>>() {
 			@Override
-			public void onDiscover(String vertex, int depth, BFSStopper stopper) {
+			public void onDiscover(String vertex, int depth, VisitorStopper stopper) {
 				log.addToLast(vertex + "(" + depth + ")");
 			}
 
