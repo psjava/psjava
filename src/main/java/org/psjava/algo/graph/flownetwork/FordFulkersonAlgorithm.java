@@ -9,6 +9,13 @@ import org.psjava.ds.graph.FlowNetworkEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 
+/**
+ * Implementation of Ford–Fulkerson algorithm.
+ * 
+ * http://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm
+ * 
+ */
+
 public class FordFulkersonAlgorithm {
 
 	public static MaximumFlowAlgorithm getInstance(final PathFinder pathFinder) {

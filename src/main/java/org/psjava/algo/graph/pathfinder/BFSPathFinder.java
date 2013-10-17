@@ -12,26 +12,31 @@ import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.util.SingleElementCollection;
 
-public class BFSPathFinder implements PathFinder {
+public class BFSPathFinder {
 
-	@Override
-	public <V, E extends DirectedEdge<V>> Collection<E> find(AdjacencyList<V, E> adj, V start, final V target, Collection<E> def) {
-		final MutableMap<V, E> walked = GoodMutableMapFactory.getInstance().create();
-		BFS.traverse(adj, SingleElementCollection.create(start), new BFSVisitor<V, E>() {
+	public static PathFinder getInstance() {
+		return new PathFinder() {
 			@Override
-			public void onDiscover(V vertex, int d, BFSStopper s) {
-				if (vertex.equals(target))
-					s.stop();
+			public <V, E extends DirectedEdge<V>> Collection<E> find(AdjacencyList<V, E> adj, V start, final V target, Collection<E> def) {
+				final MutableMap<V, E> walked = GoodMutableMapFactory.getInstance().create();
+				BFS.traverse(adj, SingleElementCollection.create(start), new BFSVisitor<V, E>() {
+					@Override
+					public void onDiscover(V vertex, int d, BFSStopper s) {
+						if (vertex.equals(target))
+							s.stop();
+					}
+
+					@Override
+					public void onWalk(E e) {
+						walked.put(e.to(), e);
+					}
+				});
+				if (!walked.containsKey(target))
+					return def;
+				return extractPath(target, walked);
 			}
 
-			@Override
-			public void onWalk(E e) {
-				walked.put(e.to(), e);
-			}
-		});
-		if (!walked.containsKey(target))
-			return def;
-		return extractPath(target, walked);
+		};
 	}
 
 	private static <V, E extends DirectedEdge<V>> Collection<E> extractPath(final V target, final MutableMap<V, E> walked) {

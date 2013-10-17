@@ -5,6 +5,6 @@ import org.psjava.algo.graph.pathfinder.DFSPathFinder;
 
 public class FordFulkersonAlgorithmTest extends MaximumFlowAlgorithmTestBase {
 	public FordFulkersonAlgorithmTest() {
-		super(FordFulkersonAlgorithm.getInstance(new DFSPathFinder()));
+		super(FordFulkersonAlgorithm.getInstance(DFSPathFinder.getInstance()));
 	}
 }
