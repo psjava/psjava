@@ -1,5 +1,6 @@
+add max flow example. 
 rename BFSStopper to VisitorStopper and apply to dfs, dfspathfinder
-rename edge factory to simple~
+rename all edge factory to simple~
 add stack example, problem
 change vertex to String type in tests
 vertex cover - spoj QUEST4
