@@ -18,7 +18,7 @@ public class MutableUndirectedGraph<V> implements Graph<V, UndirectedEdge<V>> {
 	public void addEdge(V v1, V v2) {
 		assertVertexExist(v1);
 		assertVertexExist(v2);
-		g.addEdge(UndirectedEdgeFactory.create(v1, v2));
+		g.addEdge(SimpleUndirectedEdge.create(v1, v2));
 	}
 
 	@Override

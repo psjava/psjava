@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-public class UndirectedWeightedEdgeFactory {
+public class SimpleUndirectedWeightedEdge {
 
 	public static <V, W> UndirectedWeightedEdge<V, W> create(final V v1, final V v2, final W weight) {
 		return new UndirectedWeightedEdge<V, W>() {

@@ -18,7 +18,7 @@ public class MutableDirectedGraph<V> implements Graph<V, DirectedEdge<V>> {
 	public void addEdge(V from, V to) {
 		assertVertexExist(from);
 		assertVertexExist(to);
-		graph.addEdge(DirectedEdgeFactory.create(from, to));
+		graph.addEdge(SimpleDirectedEdge.create(from, to));
 	}
 
 	private void assertVertexExist(V v) {

@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-public class BipartiteGraphEdgeFactory {
+public class SimpleBipartiteGraphEdge {
 
 	public static <V> BipartiteGraphEdge<V> create(final V leftv, final V rightv) {
 		return new BipartiteGraphEdge<V>() {
@@ -8,12 +8,12 @@ public class BipartiteGraphEdgeFactory {
 			public V right() {
 				return rightv;
 			}
-		
+
 			@Override
 			public V left() {
 				return leftv;
 			}
-		
+
 			@Override
 			public String toString() {
 				return leftv + "->" + rightv;

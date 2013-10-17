@@ -8,12 +8,12 @@ public class DirectedWeightedGraphFromUndirected {
 		return EdgeDoubledGraph.wrap(original, new DataConverter<E1, DirectedWeightedEdge<V, W>>() {
 			@Override
 			public DirectedWeightedEdge<V, W> convert(E1 original) {
-				return DirectedWeightedEdgeFactory.create(original.v1(), original.v2(), original.weight());
+				return SimpleDirectedWeightedEdge.create(original.v1(), original.v2(), original.weight());
 			}
 		}, new DataConverter<E1, DirectedWeightedEdge<V, W>>() {
 			@Override
 			public DirectedWeightedEdge<V, W> convert(E1 original) {
-				return DirectedWeightedEdgeFactory.create(original.v2(), original.v1(), original.weight());
+				return SimpleDirectedWeightedEdge.create(original.v2(), original.v1(), original.weight());
 			}
 		});
 	}

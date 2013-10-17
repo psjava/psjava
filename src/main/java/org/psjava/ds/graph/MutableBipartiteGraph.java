@@ -30,7 +30,7 @@ public class MutableBipartiteGraph<V> implements BipartiteGraph<V> {
 	public void addEdge(final V leftv, final V rightv) {
 		assertVertexExist(leftv, left);
 		assertVertexExist(rightv, right);
-		edges.addToLast(BipartiteGraphEdgeFactory.create(leftv, rightv));
+		edges.addToLast(SimpleBipartiteGraphEdge.create(leftv, rightv));
 	}
 
 	private void assertVertexExist(V v, MutableSet<V> set) {

@@ -22,7 +22,7 @@ public class MutableUndirectedWeightedGraph<V, W> implements Graph<V, Undirected
 	public void addEdge(V v1, V v2, W weight) {
 		assertVertexExist(v1);
 		assertVertexExist(v2);
-		edges.addToLast(UndirectedWeightedEdgeFactory.create(v1, v2, weight));
+		edges.addToLast(SimpleUndirectedWeightedEdge.create(v1, v2, weight));
 	}
 
 	private void assertVertexExist(V v) {

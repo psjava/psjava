@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-public class DirectedEdgeFactory {
+public class SimpleDirectedEdge {
 
 	public static <V> DirectedEdge<V> create(final V from, final V to) {
 		return new DirectedEdge<V>() {

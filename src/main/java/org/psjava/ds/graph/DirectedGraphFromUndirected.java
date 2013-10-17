@@ -8,12 +8,12 @@ public class DirectedGraphFromUndirected {
 		return EdgeDoubledGraph.wrap(original, new DataConverter<E, DirectedEdge<V>>() {
 			@Override
 			public DirectedEdge<V> convert(E original) {
-				return DirectedEdgeFactory.create(original.v1(), original.v2());
+				return SimpleDirectedEdge.create(original.v1(), original.v2());
 			}
 		}, new DataConverter<E, DirectedEdge<V>>() {
 			@Override
 			public DirectedEdge<V> convert(E original) {
-				return DirectedEdgeFactory.create(original.v2(), original.v1());
+				return SimpleDirectedEdge.create(original.v2(), original.v1());
 			}
 		});
 	}

@@ -24,7 +24,7 @@ public class MutableDirectedWeightedGraph<V, W> implements Graph<V, DirectedWeig
 	public void addEdge(V from, V to, W weight) {
 		assertVertexExist(from);
 		assertVertexExist(to);
-		edges.addToLast(DirectedWeightedEdgeFactory.create(from, to, weight));
+		edges.addToLast(SimpleDirectedWeightedEdge.create(from, to, weight));
 	}
 
 	private void assertVertexExist(V v) {

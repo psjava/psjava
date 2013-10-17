@@ -2,7 +2,7 @@ package org.psjava.ds.graph;
 
 import org.psjava.ds.graph.DirectedWeightedEdge;
 
-public class DirectedWeightedEdgeFactory {
+public class SimpleDirectedWeightedEdge {
 
 	public static <V, W> DirectedWeightedEdge<V, W> create(final V from, final V to, final W weight) {
 		return new DirectedWeightedEdge<V, W>() {
