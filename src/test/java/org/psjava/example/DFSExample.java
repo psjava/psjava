@@ -7,6 +7,7 @@ import org.psjava.algo.graph.dfs.DFSVisitor;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.MultiSourceDFS;
 import org.psjava.algo.graph.dfs.SingleSourceDFS;
+import org.psjava.ds.graph.AdjacencyListFromGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.MutableDirectedGraph;
 import org.psjava.util.DataKeeper;
@@ -18,23 +19,23 @@ public class DFSExample {
 	@Test
 	public void example() {
 
-		MutableDirectedGraph<String> g = MutableDirectedGraph.create();
-		g.insertVertex("A");
-		g.insertVertex("B");
-		g.insertVertex("C");
-		g.insertVertex("D");
+		MutableDirectedGraph<String> graph = MutableDirectedGraph.create();
+		graph.insertVertex("A");
+		graph.insertVertex("B");
+		graph.insertVertex("C");
+		graph.insertVertex("D");
 
-		g.addEdge("A", "B");
-		g.addEdge("B", "C");
-		g.addEdge("C", "D");
-		g.addEdge("C", "A");
+		graph.addEdge("A", "B");
+		graph.addEdge("B", "C");
+		graph.addEdge("C", "D");
+		graph.addEdge("C", "A");
 
 		// Use Visitor for receiving visiting events.
 		// Here we will find the back-edge
 
 		final DataKeeper<String> backEdgeSource = DataKeeper.create("");
 
-		SingleSourceDFS.traverse(g, "A", new DFSVisitor<String, DirectedEdge<String>>() {
+		SingleSourceDFS.traverse(AdjacencyListFromGraph.create(graph), "A", new DFSVisitor<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
 			}
@@ -57,13 +58,13 @@ public class DFSExample {
 			}
 		});
 
-		// Here, We found that C->A is back-edge.
+		// We found that the edge:C->A is a back-edge.
 
 		Assert.assertEquals("C", backEdgeSource.get());
 
 		// You can do multi sourced DFS. followings are the examples.
 
-		MultiSourceDFS.traverse(g, VarargsIterable.create("A", "B"), new DFSVisitorBase<String, DirectedEdge<String>>());
-		AllSourceDFS.traverse(g, new DFSVisitorBase<String, DirectedEdge<String>>());
+		MultiSourceDFS.traverse(graph, VarargsIterable.create("A", "B"), new DFSVisitorBase<String, DirectedEdge<String>>());
+		AllSourceDFS.traverse(graph, new DFSVisitorBase<String, DirectedEdge<String>>());
 	}
 }
