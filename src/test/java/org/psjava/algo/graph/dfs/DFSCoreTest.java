@@ -2,6 +2,7 @@ package org.psjava.algo.graph.dfs;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.dfs.DFSVisitor;
 import org.psjava.ds.graph.AdjacencyListFromGraph;
@@ -9,6 +10,7 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.TestGraphFactory;
 import org.psjava.ds.map.MutableMap;
+import org.psjava.util.VisitorStopper;
 
 public class DFSCoreTest {
 
@@ -21,7 +23,7 @@ public class DFSCoreTest {
 		MutableMap<String, DFSStatus> status = DFSCore.createInitialStatus(tg.getVertices());
 		DFSCore.traverse(AdjacencyListFromGraph.create(tg), status, "1", new DFSVisitor<String, DirectedEdge<String>>() {
 			@Override
-			public void onDiscovered(String vertex, int depth) {
+			public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
 				res += "N" + vertex;
 			}
 
@@ -46,6 +48,22 @@ public class DFSCoreTest {
 			}
 		});
 		assertEquals("N1D12N2D23N3B31F3U32F2U21F1", res);
+	}
+
+	@Test
+	public void testStopper() {
+		Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirected(new String[][] { { "A", "B" }, { "B", "C" }, { "C", "D" } });
+		MutableMap<String, DFSStatus> status = DFSCore.createInitialStatus(g.getVertices());
+		res = "";
+		DFSCore.traverse(AdjacencyListFromGraph.create(g), status, "A", new DFSVisitorBase<String, DirectedEdge<String>>() {
+			@Override
+			public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
+				res += vertex;
+				if (vertex.equals("C"))
+					stopper.stop();
+			};
+		});
+		Assert.assertEquals("ABC", res);
 	}
 
 }

@@ -8,6 +8,7 @@ import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.graph.AdjacencyList;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.util.DataKeeper;
+import org.psjava.util.VisitorStopper;
 
 public class DFSPathFinder {
 
@@ -28,7 +29,7 @@ public class DFSPathFinder {
 					}
 
 					@Override
-					public void onDiscovered(Object vertex, int d) {
+					public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
 						if (vertex.equals(end)) {
 							DynamicArray<E> copy = new DynamicArray<E>();
 							AddToLastAll.add(copy, history); // TODO copy is no need after stopper applied.

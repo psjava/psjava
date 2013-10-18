@@ -169,7 +169,7 @@ public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
 			}
 
 			@Override
-			public void onDiscovered(Vertex<V> v, int depth) {
+			public void onDiscovered(Vertex<V> v, int depth, VisitorStopper stopper) {
 				if (wasBfsStart(v)) {
 					for (int index : ZeroTo.get(path.size()))
 						path.get(index).status.inMatch = (index % 2 == 0);

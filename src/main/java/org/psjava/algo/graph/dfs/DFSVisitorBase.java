@@ -1,8 +1,11 @@
 package org.psjava.algo.graph.dfs;
 
+import org.psjava.util.VisitorStopper;
+
 public class DFSVisitorBase<V, E> implements DFSVisitor<V, E> {
+
 	@Override
-	public void onDiscovered(V vertex, int depth) {
+	public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
 	}
 
 	@Override

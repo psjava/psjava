@@ -2,6 +2,7 @@ package org.psjava.algo.graph.dfs;
 
 import java.util.Iterator;
 
+import org.psjava.algo.graph.bfs.SimpleStopper;
 import org.psjava.ds.Collection;
 import org.psjava.ds.graph.AdjacencyList;
 import org.psjava.ds.graph.DirectedEdge;
@@ -43,11 +44,12 @@ public class DFSCore {
 	public static <V, E extends DirectedEdge<V>> void traverse(AdjacencyList<V, E> adj, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
 		Stack<StackItem<V, E>> stack = STACK_FACTORY.create();
 		status.put(start, DFSStatus.DISCOVERED);
-		visitor.onDiscovered(start, 0);
+		SimpleStopper stopper = new SimpleStopper();
+		visitor.onDiscovered(start, 0, stopper);
 		Iterator<E> iterator = adj.getEdges(start).iterator();
 		stack.push(new StackItem<V, E>(start, null, 0, iterator));
 
-		while (!stack.isEmpty()) {
+		while (!stack.isEmpty() && !stopper.isStopped()) {
 			StackItem<V, E> item = stack.top();
 
 			if (item.iter.hasNext()) {
@@ -57,7 +59,7 @@ public class DFSCore {
 				if (nextc == DFSStatus.NOT_DISCOVERED) {
 					visitor.onWalkDown(edge);
 					status.put(item.v, DFSStatus.DISCOVERED);
-					visitor.onDiscovered(nextv, item.depth + 1);
+					visitor.onDiscovered(nextv, item.depth + 1, stopper);
 					stack.push(new StackItem<V, E>(nextv, edge, item.depth + 1, adj.getEdges(nextv).iterator()));
 				} else if (nextc == DFSStatus.DISCOVERED) {
 					visitor.onBackEdgeFound(edge);

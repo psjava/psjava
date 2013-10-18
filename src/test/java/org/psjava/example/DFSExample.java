@@ -11,6 +11,7 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.MutableDirectedGraph;
 import org.psjava.util.DataKeeper;
 import org.psjava.util.VarargsIterable;
+import org.psjava.util.VisitorStopper;
 
 public class DFSExample {
 
@@ -35,7 +36,7 @@ public class DFSExample {
 
 		SingleSourceDFS.traverse(g, "A", new DFSVisitor<String, DirectedEdge<String>>() {
 			@Override
-			public void onDiscovered(String vertex, int depth) {
+			public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
 			}
 
 			@Override
