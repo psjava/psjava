@@ -17,11 +17,11 @@ public class EmptyFlowNetworkGraph {
 			g.insertVertex(v);
 		for (E edge : capacityGraph.getEdges()) {
 			FlowNetworkEdge<V, T, E> original = SimpleFlowNetworkEdge.create(edge.from(), edge.to(), new FlowStatus<T>(edge.capacity(), ns.getZero()), edge);
-			FlowNetworkEdge<V, T, E> symmetry = SimpleFlowNetworkEdge.create(edge.to(), edge.from(), new FlowStatus<T>(ns.getZero(), ns.getZero()), null);
-			original.setSymmetryEdge(symmetry);
-			symmetry.setSymmetryEdge(original);
+			FlowNetworkEdge<V, T, E> skewSymmetry = SimpleFlowNetworkEdge.create(edge.to(), edge.from(), new FlowStatus<T>(ns.getZero(), ns.getZero()), null);
+			original.setOpposite(skewSymmetry);
+			skewSymmetry.setOpposite(original);
 			g.addEdge(original);
-			g.addEdge(symmetry);
+			g.addEdge(skewSymmetry);
 		}
 		return g;
 	}

@@ -1,14 +1,13 @@
 package org.psjava.ds.graph;
 
-
 public interface FlowNetworkEdge<V, F, E> extends DirectedEdge<V> {
 	FlowStatus<F> getFlowStatus();
 
-	FlowNetworkEdge<V, F, E> getSymmetryEdge();
+	void setOpposite(FlowNetworkEdge<V, F, E> edge);
 
-	void setSymmetryEdge(FlowNetworkEdge<V, F, E> symmetry);
+	FlowNetworkEdge<V, F, E> getOpposite();
 
-	boolean hasOriginalCapacityEdge();
+	boolean isSkewSymmetryEdge();
 
 	E getOriginalCapacityEdge();
 }
