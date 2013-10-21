@@ -28,4 +28,9 @@ public class MutableCapacityGraph<V, F> implements Graph<V, CapacityEdge<V, F>> 
 	public void addEdge(V from, V to, F capacity) {
 		g.addEdge(SimpleCapacityEdge.create(from, to, capacity));
 	}
+
+	@Override
+	public String toString() {
+		return GraphToString.toString(this);
+	}
 }

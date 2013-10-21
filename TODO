@@ -1,8 +1,5 @@
-move push relabel. 
-rename BFSStopper to VisitorStopper and apply to dfs, dfspathfinder
-rename all edge factory to simple~
 add stack example, problem
-change vertex to String type in tests
+change vertex to String type in graph unit tests
 vertex cover - spoj QUEST4
 add example of queue
 add example of doublelinkedlist, array
@@ -15,4 +12,5 @@ Shortest Path Faster Algorithm
 dinic'S ALGORITHM 
 study sieves - http://en.wikipedia.org/wiki/Sieve_of_Atkin, http://en.wikipedia.org/wiki/Wheel_factorization
 move trivial division for primality test. solve a problem. update site.
+improve and move push relabel. and solve exist max flow problem. before see the topcoder articles for improving.
 

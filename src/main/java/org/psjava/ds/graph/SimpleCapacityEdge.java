@@ -19,6 +19,11 @@ public class SimpleCapacityEdge {
 			public W capacity() {
 				return capacity;
 			}
+
+			@Override
+			public String toString() {
+				return DirectedEdgeToString.toString(this) + "(" + capacity() + ")";
+			}
 		};
 	}
 	

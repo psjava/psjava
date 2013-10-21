@@ -4,6 +4,7 @@ import org.psjava.ds.Collection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodMutableMapFactory;
+import org.psjava.util.IterableToString;
 
 public class AdjacencyListFromGraph {
 
@@ -22,6 +23,14 @@ public class AdjacencyListFromGraph {
 			@Override
 			public Iterable<E> getEdges(V from) {
 				return index.get(from);
+			}
+
+			@Override
+			public String toString() {
+				String r = "Graph({" + IterableToString.toString(g.getVertices()) + "},{";
+				for(V v : getVertices())
+					r += IterableToString.toString(getEdges(v));
+				return r + "})";
 			}
 		};
 	}
