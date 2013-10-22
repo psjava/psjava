@@ -13,7 +13,7 @@ public class QueueExample {
 	@Test
 	public void example() {
 
-		QueueFactory queueFactory = QueueFactoryUsingDeque.getInstance(new DoubleLinkedListFactory());
+		QueueFactory queueFactory = QueueFactoryUsingDeque.getInstance(DoubleLinkedListFactory.getInstance());
 
 		Queue<String> queue = queueFactory.create();
 
@@ -29,7 +29,7 @@ public class QueueExample {
 
 		// There are several implementations.
 
-		QueueFactoryUsingDeque.getInstance(new DoubleLinkedListFactory());
+		QueueFactoryUsingDeque.getInstance(DoubleLinkedListFactory.getInstance());
 		GoodQueueFactory.getInstance(); // We choose a good one.
 
 		Assert.assertEquals("A", deque1);
