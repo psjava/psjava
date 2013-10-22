@@ -28,9 +28,9 @@ public class StackExample {
 
 		// There are several stack factories.
 
+		GoodStackFactory.getInstance(); // We choose a good one.
 		StackFactoryUsingDynamicArray.getInstance();
 		StackFactoryUsingLinkedList.getInstance();
-		GoodStackFactory.getInstance(); // We choose the good one for you.
 
 		Assert.assertEquals("C", top);
 		Assert.assertFalse(empty);
