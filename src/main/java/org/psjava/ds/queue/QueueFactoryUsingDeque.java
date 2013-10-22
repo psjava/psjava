@@ -5,7 +5,7 @@ import org.psjava.ds.deque.DequeFactory;
 
 public class QueueFactoryUsingDeque {
 
-	public static QueueFactory create(final DequeFactory dequeFactory) {
+	public static QueueFactory getInstance(final DequeFactory dequeFactory) {
 		return new QueueFactory() {
 			@Override
 			public <T> Queue<T> create() {
