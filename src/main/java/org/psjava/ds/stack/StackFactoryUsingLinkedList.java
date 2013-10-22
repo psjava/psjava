@@ -1,46 +1,45 @@
 package org.psjava.ds.stack;
 
-import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.array.LastInArray;
+import org.psjava.ds.deque.DoubleLinkedList;
 
-public class StackFactoryUsingDynamicArray {
+public class StackFactoryUsingLinkedList {
 
 	public static StackFactory getInstance() {
 		return new StackFactory() {
 			@Override
 			public <T> Stack<T> create() {
 				return new Stack<T>() {
-					DynamicArray<T> a = DynamicArray.create();
+					DoubleLinkedList<T> linkedList = DoubleLinkedList.create();
 
 					@Override
 					public boolean isEmpty() {
-						return a.isEmpty();
+						return linkedList.isEmpty();
 					}
 
 					@Override
 					public T pop() {
-						return a.removeLast();
+						return linkedList.removeLast();
 					}
 
 					@Override
 					public void push(T v) {
-						a.addToLast(v);
+						linkedList.addToLast(v);
 					}
 
 					@Override
 					public T top() {
-						return LastInArray.getLast(a);
+						return linkedList.getLast();
 					}
 
 					@Override
 					public String toString() {
-						return a.toString();
+						return linkedList.toString();
 					}
 				};
 			}
 		};
 	}
 
-	private StackFactoryUsingDynamicArray() {
+	private StackFactoryUsingLinkedList() {
 	}
 }
