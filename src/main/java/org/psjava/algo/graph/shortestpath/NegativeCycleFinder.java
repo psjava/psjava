@@ -1,13 +1,12 @@
 package org.psjava.algo.graph.shortestpath;
 
 import org.psjava.ds.Collection;
-import org.psjava.ds.deque.Deque;
+import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.MutableGraph;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.set.MutableSet;
-import org.psjava.goods.GoodDequeFactory;
 import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.util.AssertStatus;
 
@@ -93,7 +92,7 @@ public class NegativeCycleFinder {
 			public Collection<E> getPath() {
 				AssertStatus.assertTrue(hasCycle(), "no cycle");
 				MutableSet<Object> visited = GoodMutableSetFactory.getInstance().create();
-				Deque<E> path = GoodDequeFactory.getInstance().create();
+				DoubleLinkedList<E> path = DoubleLinkedList.create();
 				AugmentedEdge<V, W, E> curEdge = lastRelaxedEdgeOrNull;
 				while (true) {
 					path.addToFirst(curEdge.getOriginal());

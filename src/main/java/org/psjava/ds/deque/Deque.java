@@ -1,14 +1,10 @@
 package org.psjava.ds.deque;
 
-import org.psjava.ds.Collection;
-
-public interface Deque<T> extends Collection<T> {
-
-	void addToLast(T e);
-
-	void clear();
+public interface Deque<T> {
 
 	void addToFirst(T v);
+
+	void addToLast(T e);
 
 	T getFirst();
 
@@ -17,5 +13,9 @@ public interface Deque<T> extends Collection<T> {
 	T removeFirst();
 
 	T removeLast();
+
+	boolean isEmpty();
+
+	void clear();
 
 }

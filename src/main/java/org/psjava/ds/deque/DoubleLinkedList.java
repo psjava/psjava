@@ -2,10 +2,11 @@ package org.psjava.ds.deque;
 
 import java.util.Iterator;
 
+import org.psjava.ds.Collection;
 import org.psjava.util.IterableToString;
 import org.psjava.util.ReadOnlyIterator;
 
-public class DoubleLinkedList<T> implements Deque<T> {
+public class DoubleLinkedList<T> implements Deque<T>, Collection<T> {
 
 	public static <T> DoubleLinkedList<T> create() {
 		return new DoubleLinkedList<T>();
