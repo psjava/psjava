@@ -1,7 +1,7 @@
 - migration
+add deque example
 change vertex to String type in graph unit tests
 vertex cover - spoj QUEST4
-add array deque ds
 add graph structure example
 assert segment argument start <= end
 
