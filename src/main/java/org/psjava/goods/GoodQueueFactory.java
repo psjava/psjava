@@ -1,7 +1,6 @@
 package org.psjava.goods;
 
 import org.psjava.ds.deque.Deque;
-import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.queue.Queue;
 import org.psjava.ds.queue.QueueFactory;
 
@@ -10,7 +9,7 @@ public class GoodQueueFactory {
 	private static QueueFactory instance = new QueueFactory() {
 		@Override
 		public <T> Queue<T> create() {
-			final Deque<T> deque = DoubleLinkedList.create(); // TODO use good deque factory when it's prepared.. and extract to class
+			final Deque<T> deque = GoodDequeFactory.getInstance().create();
 			return new Queue<T>() {
 				@Override
 				public void enque(T v) {
