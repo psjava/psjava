@@ -8,7 +8,7 @@ import org.psjava.util.IterableToString;
 
 public class MutableArrayUsingCharArray {
 	
-	public static MutableArray<Character> create(final char[] a) {
+	public static MutableArray<Character> wrap(final char[] a) {
 		final int n = a.length;
 		return new MutableArray<Character>() {
 
