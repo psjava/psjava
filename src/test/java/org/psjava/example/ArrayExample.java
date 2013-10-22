@@ -17,26 +17,27 @@ public class ArrayExample {
 	@Test
 	public void example() {
 
-		// Array is a simple data structure..
+		// Array interface has only methods for reading.
+		// MutableArray is modifiable..
 
 		MutableArray<String> array = MutableArrayFactory.create(10, "");
-		array.set(0, "A"); // 0 indexed one is the first value
-		array.set(9, "B"); // last value
+		array.set(0, "A"); // 0 indexed element is the first value
+		array.set(9, "B"); // set last value
 		String first = array.get(0); // must be "A"
 		int size = array.size(); // 10
 
 		// There are several ways to create mutable arrays.
 
 		MutableArrayFromValues.create("A", "B", "C", "D");
-		MutableArrayUsingIntArray.wrap(new int[] { 1, 2, 3, 4 }); // There are wrappers for Java arrays.
+		MutableArrayUsingIntArray.wrap(new int[] { 1, 2, 3, 4 }); // There are similar wrappers for Java arrays.
 		MutableArrayUsingCharArray.wrap(new char[] { 'A', 'B', 'C' });
 
-		// Array is read-only interface. there are also several ways to create them.
+		// Array has only reading methods. There are also several ways to create them.
 
 		ArrayFromValues.create("A", "B", "C");
 		CharacterArrayUsingString.create("ABC");
 		UniformArray.create("A", 3);
-		SubArray.wrap(ArrayFromValues.create("A", "B", "C"), 0, 2); // wraps as 2 sized array ("A", "B")
+		SubArray.wrap(array, 3, 5); // wraps as 2 sized array
 
 		// assertions.
 		Assert.assertEquals("A", first);

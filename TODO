@@ -4,6 +4,7 @@ change vertex to String type in graph unit tests
 vertex cover - spoj QUEST4
 add graph structure example
 assert segment argument start <= end
+introduce static factory method in sort algorithms.
 
 - almost new features 
 add binary indexed tree
