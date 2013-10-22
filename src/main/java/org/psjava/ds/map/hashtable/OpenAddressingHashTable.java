@@ -2,10 +2,8 @@ package org.psjava.ds.map.hashtable;
 
 import java.util.Iterator;
 
-import org.psjava.ds.map.KeysInMap;
 import org.psjava.ds.map.MapEntry;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.ds.map.ValuesInMap;
 import org.psjava.util.AssertStatus;
 import org.psjava.util.ConvertedDataIterator;
 import org.psjava.util.DataConverter;
@@ -192,16 +190,6 @@ public class OpenAddressingHashTable<K, V> implements MutableMap<K, V> {
 				return v;
 			}
 		});
-	}
-
-	@Override
-	public Iterable<K> keys() {
-		return KeysInMap.get(this);
-	}
-
-	@Override
-	public Iterable<V> values() {
-		return ValuesInMap.get(this);
 	}
 
 	private boolean isKeyInBucket(int pos, K key, int keyHash) {

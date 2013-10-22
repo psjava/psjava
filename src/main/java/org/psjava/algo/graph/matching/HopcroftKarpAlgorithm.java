@@ -16,6 +16,7 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.EdgeFilteredSubAdjacencyList;
 import org.psjava.ds.graph.MutableGraph;
 import org.psjava.ds.map.MutableMap;
+import org.psjava.ds.map.ValuesInMap;
 import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.util.DataFilter;
 import org.psjava.util.FilteredIterable;
@@ -98,7 +99,7 @@ public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
 		for (V v : bg.getRightVertices())
 			vertex.put(v, new Vertex<V>(v, Side.RIGHT));
 		MutableGraph<Vertex<V>, Edge<V>> graph = MutableGraph.create();
-		for (Vertex<V> v : vertex.values())
+		for (Vertex<V> v : ValuesInMap.get(vertex))
 			graph.insertVertex(v);
 		for (BipartiteGraphEdge<V> e : bg.getEdges()) {
 			EdgeStatus status = new EdgeStatus();

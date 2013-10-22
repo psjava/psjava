@@ -1,4 +1,6 @@
 package org.psjava.ds.tree.trie;
+
+import org.psjava.ds.map.KeysInMap;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
 
@@ -53,7 +55,7 @@ public class TrieNodeFactoryUsingMap {
 		
 		@Override
 		public Iterable<T> getEdges() {
-			return children.keys();
+			return KeysInMap.get(children);
 		}
 
 	}

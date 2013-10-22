@@ -40,20 +40,10 @@ public class MutableMapUsingJavaMap {
 			}
 
 			@Override
-			public Iterable<K> keys() {
-				return map.keySet();
-			}
-
-			@Override
 			public void put(K key, V value) {
 				if (value == null)
 					nullValuePut = true;
 				map.put(key, value);
-			}
-
-			@Override
-			public Iterable<V> values() {
-				return map.values();
 			}
 
 			@Override
