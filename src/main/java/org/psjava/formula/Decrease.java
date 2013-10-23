@@ -4,8 +4,8 @@ import org.psjava.ds.numbersystrem.MultipliableNumberSystem;
 
 public class Decrease {
 
-	public static <T> T calc(MultipliableNumberSystem<T> ns, T endKey) {
-		return ns.subtract(endKey, ns.getOne());
+	public static <T> T calc(MultipliableNumberSystem<T> ns, T value) {
+		return ns.subtract(value, ns.getOne());
 	}
 
 }
