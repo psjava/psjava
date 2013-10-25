@@ -1,7 +1,7 @@
 package org.psjava.algo.math.numbertheory;
 
+import org.psjava.ds.array.Array;
+
 public interface PrimeNumberSieve {
-
-	boolean[] calcPrimeMap(int limit);
-
+	Array<Integer> calcList(int max);
 }

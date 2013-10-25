@@ -1,17 +1,18 @@
 package org.psjava.algo.math.numbertheory;
 
+import org.psjava.ds.set.Set;
+import org.psjava.ds.set.SetFromIterable;
 import org.psjava.util.AssertStatus;
 
 public class PrimalityTestBySieve {
 
-	public static PrimalityTester create(final PrimeNumberSieve sieve, final int limit) {
+	public static PrimalityTester create(PrimeNumberSieve sieve, final int max) {
+		final Set<Integer> set = SetFromIterable.create(sieve.calcList(max));
 		return new PrimalityTester() {
-			boolean[] prime = sieve.calcPrimeMap(limit);;
-
 			@Override
 			public boolean isPrime(long v) {
-				AssertStatus.assertTrue(v < prime.length, "Too big number. adjust limit");
-				return prime[(int) v];
+				AssertStatus.assertTrue(v <= max, "Too big number. adjust limit");
+				return set.contains((int) v);
 			}
 		};
 	}
