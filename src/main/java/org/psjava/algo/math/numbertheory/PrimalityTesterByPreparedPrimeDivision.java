@@ -15,18 +15,15 @@ public class PrimalityTesterByPreparedPrimeDivision {
 	public static PrimalityTester getInstance(long max, PrimeNumberSieve sieve) {
 		final Array<Integer> primes = sieve.calcList((int) Math.sqrt(max) + 1);
 		return new PrimalityTester() {
-
 			@Override
 			public boolean isPrime(long v) {
 				if (v <= 1)
 					return false;
 				for (long p : primes) {
-					if (p * p <= v) {
-						if (v % p == 0)
-							return false;
-					} else {
+					if (p * p > v)
 						break;
-					}
+					if (v % p == 0)
+						return false;
 				}
 				return true;
 			}
