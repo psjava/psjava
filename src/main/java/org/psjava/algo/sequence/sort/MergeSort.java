@@ -4,7 +4,7 @@ import java.util.Comparator;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFactory;
 
-public class MergeSort implements Sort {
+public class MergeSort implements SortingAlgorithm {
 
 	@Override
 	public <T> void sort(MutableArray<T> a, Comparator<T> comparator) {

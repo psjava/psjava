@@ -6,42 +6,40 @@ import org.junit.Test;
 import org.psjava.algo.sequence.sort.BubbleSort;
 import org.psjava.algo.sequence.sort.InsertionSort;
 import org.psjava.algo.sequence.sort.MergeSort;
-import org.psjava.algo.sequence.sort.RandomizedQuickSort;
-import org.psjava.algo.sequence.sort.SortHelper;
+import org.psjava.algo.sequence.sort.RandomizedQuicksort;
+import org.psjava.algo.sequence.sort.SortingHelper;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFromValues;
-import org.psjava.goods.GoodSort;
+import org.psjava.goods.GoodSortingAlgorithm;
 import org.psjava.util.DefaultComparator;
 
-public class SortExample {
+public class SortingExample {
 	@Test
 	public void example() {
 
 		// Following example is normal usage.
 
 		MutableArray<Integer> array1 = MutableArrayFromValues.create(2, 1, 3);
-		GoodSort.getInstance().sort(array1, new DefaultComparator<Integer>());
-		
+		new MergeSort().sort(array1, new DefaultComparator<Integer>());
+
 		// The result is,
 		Assert.assertEquals("(1,2,3)", array1.toString());
-		
-		
+
 		// There is only one method in Sort interface,
 		// but there are several convenient methods in SortHelper class
 		// Let'ss do partial sort.
-		
+
 		MutableArray<Integer> array2 = MutableArrayFromValues.create(100, 3, 2, 1, 0);
-		SortHelper.sort(GoodSort.getInstance(), array2, 1, 4);
+		SortingHelper.sort(new MergeSort(), array2, 1, 4);
 
 		// The result is,
 		Assert.assertEquals("(100,1,2,3,0)", array2.toString());
 
-		
-		// We recommend to use the good one. but you can use specify sort algorithm. check them!
-		GoodSort.getInstance();
-		new RandomizedQuickSort();
+		// There are several implementations.
+		new RandomizedQuicksort();
 		new InsertionSort();
 		new BubbleSort();
 		new MergeSort();
+		GoodSortingAlgorithm.getInstance(); // We choose a good one for you.
 	}
 }

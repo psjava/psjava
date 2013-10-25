@@ -6,7 +6,7 @@ import java.util.Random;
 import org.psjava.ds.array.ArraySwapper;
 import org.psjava.ds.array.MutableArray;
 
-public class RandomizedQuickSort implements Sort {
+public class RandomizedQuicksort implements SortingAlgorithm {
 
 	// TODO do heap sort when level becomes deep
 

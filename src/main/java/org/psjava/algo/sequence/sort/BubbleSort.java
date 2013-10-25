@@ -6,7 +6,7 @@ import org.psjava.ds.array.ArraySwapper;
 import org.psjava.ds.array.MutableArray;
 
 
-public class BubbleSort implements Sort {
+public class BubbleSort implements SortingAlgorithm {
 	
 	@Override
 	public <T> void sort(MutableArray<T> a, Comparator<T> comparator) {

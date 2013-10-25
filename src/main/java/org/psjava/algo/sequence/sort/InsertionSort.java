@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import org.psjava.ds.array.MutableArray;
 
-public class InsertionSort implements Sort {
+public class InsertionSort implements SortingAlgorithm {
 
 	@Override
 	public <T> void sort(MutableArray<T> a, Comparator<T> comparator) {

@@ -7,6 +7,6 @@ import org.psjava.algo.sequence.sort.InsertionSort;
 public class InsertionSortTest {
 	@Test
 	public void test() {
-		SortTestUtil.testSimpleSort(new InsertionSort());
+		SortingAlgorithmTestCommon.testSimpleSort(new InsertionSort());
 	}
 }

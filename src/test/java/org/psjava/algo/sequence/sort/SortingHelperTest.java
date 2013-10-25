@@ -5,19 +5,19 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.psjava.TestUtil;
-import org.psjava.algo.sequence.sort.SortHelper;
+import org.psjava.algo.sequence.sort.SortingHelper;
 import org.psjava.ds.array.DynamicArray;
-import org.psjava.goods.GoodSort;
+import org.psjava.goods.GoodSortingAlgorithm;
 
 
-public class SortHelperTest {
+public class SortingHelperTest {
 	
 	@Test
 	public void test() {
 		DynamicArray<Integer> d = DynamicArray.create();
 		for(int v : new int[] {4,3,1,2})
 			d.addToLast(v);		
-		SortHelper.sort(GoodSort.getInstance(), d, 1, 3);
+		SortingHelper.sort(GoodSortingAlgorithm.getInstance(), d, 1, 3);
 		Assert.assertEquals(TestUtil.toArrayList(4,1,3,2), TestUtil.toArrayListFromIterable(d));
 	}
 

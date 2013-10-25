@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 import org.psjava.ds.array.MutableArray;
 
-
-public interface Sort {
+public interface SortingAlgorithm {
 	<T> void sort(MutableArray<T> a, Comparator<T> comparator);
 }
