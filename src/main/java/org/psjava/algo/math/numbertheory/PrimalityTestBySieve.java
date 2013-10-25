@@ -4,8 +4,8 @@ import org.psjava.util.AssertStatus;
 
 public class PrimalityTestBySieve {
 
-	public static PrimalityTest create(final PrimeNumberSieve sieve, final int limit) {
-		return new PrimalityTest() {
+	public static PrimalityTester create(final PrimeNumberSieve sieve, final int limit) {
+		return new PrimalityTester() {
 			boolean[] prime = sieve.calcPrimeMap(limit);;
 
 			@Override
@@ -14,6 +14,9 @@ public class PrimalityTestBySieve {
 				return prime[(int) v];
 			}
 		};
+	}
+
+	private PrimalityTestBySieve() {
 	}
 
 }
