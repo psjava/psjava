@@ -6,18 +6,22 @@ import java.util.Random;
 import org.psjava.ds.array.ArraySwapper;
 import org.psjava.ds.array.MutableArray;
 
-public class RandomizedQuicksort implements SortingAlgorithm {
+public class RandomizedQuicksort {
 
 	// TODO do heap sort when level becomes deep
 
 	private static Random RANDOM = new Random();
 
-	@Override
-	public <T> void sort(MutableArray<T> a, Comparator<T> comparator) {
-		sortRecursively(a, 0, a.size(), comparator);
+	public static SortingAlgorithm getInstance() {
+		return new SortingAlgorithm() {
+			@Override
+			public <T> void sort(MutableArray<T> a, Comparator<T> comparator) {
+				sortRecursively(a, 0, a.size(), comparator);
+			}
+		};
 	}
 
-	private <T> void sortRecursively(MutableArray<T> a, int start, int end, Comparator<T> comp) {
+	private static <T> void sortRecursively(MutableArray<T> a, int start, int end, Comparator<T> comp) {
 		if (end - start <= 1)
 			return;
 		int randomIndex = RANDOM.nextInt(end - start) + start;
@@ -32,6 +36,9 @@ public class RandomizedQuicksort implements SortingAlgorithm {
 		ArraySwapper.swap(a, start, pos);
 		sortRecursively(a, start, pos, comp);
 		sortRecursively(a, pos + 1, end, comp);
+	}
+
+	private RandomizedQuicksort() {
 	}
 
 }

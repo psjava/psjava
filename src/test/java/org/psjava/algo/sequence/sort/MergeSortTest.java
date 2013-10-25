@@ -6,6 +6,6 @@ import org.psjava.algo.sequence.sort.MergeSort;
 public class MergeSortTest {
 	@Test
 	public void test() {
-		SortingAlgorithmTestCommon.testSimpleSort(new MergeSort());
+		SortingAlgorithmTestCommon.testSimpleSort(MergeSort.getInstance());
 	}
 }

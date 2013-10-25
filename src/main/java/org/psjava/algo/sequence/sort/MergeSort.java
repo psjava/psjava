@@ -4,15 +4,19 @@ import java.util.Comparator;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFactory;
 
-public class MergeSort implements SortingAlgorithm {
+public class MergeSort {
 
-	@Override
-	public <T> void sort(MutableArray<T> a, Comparator<T> comparator) {
-		MutableArray<T> temp = MutableArrayFactory.create(a.size(), null);
-		sortRecursively(a, 0, a.size(), comparator, temp);
+	public static SortingAlgorithm getInstance() {
+		return new SortingAlgorithm() {
+			@Override
+			public <T> void sort(MutableArray<T> a, Comparator<T> comparator) {
+				MutableArray<T> temp = MutableArrayFactory.create(a.size(), null);
+				sortRecursively(a, 0, a.size(), comparator, temp);
+			}
+		};
 	}
 
-	private <T> void sortRecursively(MutableArray<T> array, int start, int end, Comparator<T> comparator, MutableArray<T> temp) {
+	private static <T> void sortRecursively(MutableArray<T> array, int start, int end, Comparator<T> comparator, MutableArray<T> temp) {
 		if (end - start <= 1)
 			return;
 		int mid = (start + end) / 2;
@@ -34,6 +38,9 @@ public class MergeSort implements SortingAlgorithm {
 			temp.set(p++, array.get(p2++));
 		for (int i = start; i < end; i++)
 			array.set(i, temp.get(i - start));
+	}
+
+	private MergeSort() {
 	}
 
 }

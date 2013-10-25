@@ -5,7 +5,7 @@ import org.psjava.algo.sequence.sort.SortingAlgorithm;
 
 public class GoodSortingAlgorithm {
 
-	private static final SortingAlgorithm INSTANCE = new RandomizedQuicksort();
+	private static final SortingAlgorithm INSTANCE = RandomizedQuicksort.getInstance();
 
 	public static SortingAlgorithm getInstance() {
 		return INSTANCE;

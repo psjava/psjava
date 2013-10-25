@@ -20,7 +20,7 @@ public class SortingExample {
 		// Following example is normal usage.
 
 		MutableArray<Integer> array1 = MutableArrayFromValues.create(2, 1, 3);
-		new MergeSort().sort(array1, new DefaultComparator<Integer>());
+		MergeSort.getInstance().sort(array1, new DefaultComparator<Integer>());
 
 		// The result is,
 		Assert.assertEquals("(1,2,3)", array1.toString());
@@ -30,16 +30,16 @@ public class SortingExample {
 		// Let'ss do partial sort.
 
 		MutableArray<Integer> array2 = MutableArrayFromValues.create(100, 3, 2, 1, 0);
-		SortingHelper.sort(new MergeSort(), array2, 1, 4);
+		SortingHelper.sort(MergeSort.getInstance(), array2, 1, 4);
 
 		// The result is,
 		Assert.assertEquals("(100,1,2,3,0)", array2.toString());
 
 		// There are several implementations.
-		new RandomizedQuicksort();
-		new InsertionSort();
-		new BubbleSort();
-		new MergeSort();
+		RandomizedQuicksort.getInstance();
+		InsertionSort.getInstance();
+		BubbleSort.getInstance();
+		MergeSort.getInstance();
 		GoodSortingAlgorithm.getInstance(); // We choose a good one for you.
 	}
 }
