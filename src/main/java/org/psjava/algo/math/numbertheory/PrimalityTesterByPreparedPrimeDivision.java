@@ -17,11 +17,10 @@ public class PrimalityTesterByPreparedPrimeDivision {
 		return new PrimalityTester() {
 
 			@Override
-			public boolean isPrime(long longv) {
-				int v = (int) longv;
+			public boolean isPrime(long v) {
 				if (v <= 1)
 					return false;
-				for (int p : primes) {
+				for (long p : primes) {
 					if (p * p <= v) {
 						if (v % p == 0)
 							return false;
