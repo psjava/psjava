@@ -4,7 +4,7 @@ import org.psjava.ds.set.Set;
 import org.psjava.ds.set.SetFromIterable;
 import org.psjava.util.AssertStatus;
 
-public class PrimalityTestBySieve {
+public class PrimalityTesterBySieve {
 
 	public static PrimalityTester create(PrimeNumberSieve sieve, final int max) {
 		final Set<Integer> set = SetFromIterable.create(sieve.calcList(max));
@@ -17,7 +17,7 @@ public class PrimalityTestBySieve {
 		};
 	}
 
-	private PrimalityTestBySieve() {
+	private PrimalityTesterBySieve() {
 	}
 
 }
