@@ -23,6 +23,11 @@ public class FractionNumberSystem<T> implements DivisableNumberSystem<Fraction<T
 	}
 
 	@Override
+	public Fraction<T> getByInt(int v) {
+		return Fraction.valueOf(ns.getByInt(v), ns.getOne());
+	}
+
+	@Override
 	public Fraction<T> add(Fraction<T> v1, Fraction<T> v2) {
 		T num = ns.add(ns.multiply(v1.numerator, v2.denominator), ns.multiply(v2.numerator, v1.denominator));
 		T denom = ns.multiply(v1.denominator, v2.denominator);

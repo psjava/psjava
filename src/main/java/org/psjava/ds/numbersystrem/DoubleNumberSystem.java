@@ -24,6 +24,11 @@ public class DoubleNumberSystem implements DivisableNumberSystem<Double>, Compar
 	}
 
 	@Override
+	public Double getByInt(int v) {
+		return (double) v;
+	}
+
+	@Override
 	public boolean isNegative(Double v) {
 		return v < 0;
 	}

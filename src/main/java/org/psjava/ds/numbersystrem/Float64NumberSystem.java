@@ -24,6 +24,11 @@ public class Float64NumberSystem implements DivisableNumberSystem<Float64>, Comp
 	}
 
 	@Override
+	public Float64 getByInt(int v) {
+		return Float64.valueOf(v);
+	}
+
+	@Override
 	public boolean isNegative(Float64 v) {
 		return v.toPrimitive() < 0;
 	}

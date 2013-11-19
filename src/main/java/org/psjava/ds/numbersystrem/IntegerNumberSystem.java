@@ -17,6 +17,11 @@ public class IntegerNumberSystem implements IntegerDivisableNumberSystem<Integer
 	}
 
 	@Override
+	public Integer getByInt(int v) {
+		return v;
+	}
+
+	@Override
 	public boolean isPositive(Integer v) {
 		return v.intValue() > 0;
 	}
@@ -35,7 +40,7 @@ public class IntegerNumberSystem implements IntegerDivisableNumberSystem<Integer
 	public int getSign(Integer v) {
 		return Integer.signum(v);
 	}
-	
+
 	@Override
 	public boolean areEqual(Integer o1, Integer o2) {
 		return o1.equals(o2);
@@ -50,7 +55,7 @@ public class IntegerNumberSystem implements IntegerDivisableNumberSystem<Integer
 	public boolean isOne(Integer v) {
 		return v.intValue() == 1;
 	}
-	
+
 	@Override
 	public Integer add(Integer v1, Integer v2) {
 		return safeCastFromLong((long) v1 + (long) v2);
@@ -70,14 +75,14 @@ public class IntegerNumberSystem implements IntegerDivisableNumberSystem<Integer
 	public Integer integerDivide(Integer dividend, Integer divisor) {
 		return Integer.valueOf(dividend / divisor);
 	}
-	
+
 	@Override
 	public Integer integerRemainder(Integer dividend, Integer divisor) {
 		return Integer.valueOf(dividend % divisor);
 	}
 
 	private Integer safeCastFromLong(long v) {
-		if(v != (int)v)
+		if (v != (int) v)
 			throw OverflowException.create();
 		return Integer.valueOf((int) v);
 	}

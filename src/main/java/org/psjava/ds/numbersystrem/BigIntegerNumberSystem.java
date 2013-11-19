@@ -19,6 +19,11 @@ public class BigIntegerNumberSystem implements IntegerDivisableNumberSystem<BigI
 	}
 
 	@Override
+	public BigInteger getByInt(int v) {
+		return BigInteger.valueOf(v);
+	}
+
+	@Override
 	public boolean isPositive(BigInteger v) {
 		return v.signum() > 0;
 	}
@@ -37,7 +42,7 @@ public class BigIntegerNumberSystem implements IntegerDivisableNumberSystem<BigI
 	public int getSign(BigInteger v) {
 		return v.signum();
 	}
-	
+
 	@Override
 	public boolean areEqual(BigInteger o1, BigInteger o2) {
 		return o1.equals(o2);
@@ -52,7 +57,7 @@ public class BigIntegerNumberSystem implements IntegerDivisableNumberSystem<BigI
 	public boolean isOne(BigInteger v) {
 		return v.equals(BigInteger.ONE);
 	}
-	
+
 	@Override
 	public BigInteger add(BigInteger v1, BigInteger v2) {
 		return v1.add(v2);
@@ -72,7 +77,7 @@ public class BigIntegerNumberSystem implements IntegerDivisableNumberSystem<BigI
 	public BigInteger integerDivide(BigInteger dividend, BigInteger divisor) {
 		return dividend.divide(divisor);
 	}
-	
+
 	@Override
 	public BigInteger integerRemainder(BigInteger dividend, BigInteger divisor) {
 		return dividend.remainder(divisor);

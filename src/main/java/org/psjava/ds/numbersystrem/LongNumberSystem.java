@@ -17,6 +17,11 @@ public class LongNumberSystem implements IntegerDivisableNumberSystem<Long> {
 	}
 
 	@Override
+	public Long getByInt(int v) {
+		return (long) v;
+	}
+
+	@Override
 	public boolean isPositive(Long v) {
 		return v > 0;
 	}
@@ -35,7 +40,7 @@ public class LongNumberSystem implements IntegerDivisableNumberSystem<Long> {
 	public int getSign(Long v) {
 		return Long.signum(v);
 	}
-	
+
 	@Override
 	public boolean areEqual(Long o1, Long o2) {
 		return o1.equals(o2);
@@ -50,7 +55,7 @@ public class LongNumberSystem implements IntegerDivisableNumberSystem<Long> {
 	public boolean isOne(Long v) {
 		return v == 1;
 	}
-	
+
 	@Override
 	public Long add(Long v1, Long v2) {
 		return GuavasLongMath.checkedAdd(v1, v2);
@@ -70,7 +75,7 @@ public class LongNumberSystem implements IntegerDivisableNumberSystem<Long> {
 	public Long integerDivide(Long dividend, Long divisor) {
 		return Long.valueOf(dividend / divisor);
 	}
-	
+
 	@Override
 	public Long integerRemainder(Long dividend, Long divisor) {
 		return Long.valueOf(dividend % divisor);

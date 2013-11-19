@@ -22,6 +22,11 @@ public class Int64NumberSystem implements IntegerDivisableNumberSystem<Int64> {
 	}
 
 	@Override
+	public Int64 getByInt(int v) {
+		return Int64.valueOf(v);
+	}
+
+	@Override
 	public boolean isPositive(Int64 v) {
 		return v.v > 0;
 	}
@@ -40,7 +45,7 @@ public class Int64NumberSystem implements IntegerDivisableNumberSystem<Int64> {
 	public int getSign(Int64 v) {
 		return Long.signum(v.v);
 	}
-	
+
 	@Override
 	public boolean areEqual(Int64 o1, Int64 o2) {
 		return o1.v == o2.v;
@@ -55,7 +60,7 @@ public class Int64NumberSystem implements IntegerDivisableNumberSystem<Int64> {
 	public boolean isOne(Int64 v) {
 		return v.v == 1;
 	}
-	
+
 	@Override
 	public Int64 add(Int64 o1, Int64 o2) {
 		return valueOf(GuavasLongMath.checkedAdd(o1.v, o2.v));
@@ -75,7 +80,7 @@ public class Int64NumberSystem implements IntegerDivisableNumberSystem<Int64> {
 	public Int64 integerDivide(Int64 dividend, Int64 divisor) {
 		return Int64.valueOf(dividend.v / divisor.v);
 	}
-	
+
 	@Override
 	public Int64 integerRemainder(Int64 dividend, Int64 divisor) {
 		return Int64.valueOf(dividend.v % divisor.v);

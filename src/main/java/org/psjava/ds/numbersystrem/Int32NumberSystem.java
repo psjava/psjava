@@ -8,6 +8,11 @@ public class Int32NumberSystem implements IntegerDivisableNumberSystem<Int32> {
 	}
 
 	@Override
+	public Int32 getByInt(int v) {
+		return Int32.valueOf(v);
+	}
+
+	@Override
 	public boolean isPositive(Int32 v) {
 		return v.v > 0;
 	}
@@ -31,7 +36,7 @@ public class Int32NumberSystem implements IntegerDivisableNumberSystem<Int32> {
 		else
 			return 0;
 	}
-	
+
 	@Override
 	public boolean areEqual(Int32 o1, Int32 o2) {
 		return o1.v == o2.v;
@@ -46,22 +51,22 @@ public class Int32NumberSystem implements IntegerDivisableNumberSystem<Int32> {
 	public boolean isOne(Int32 v) {
 		return v.v == 1;
 	}
-	
+
 	@Override
 	public Int32 add(Int32 v1, Int32 v2) {
-		long res = (long)v1.v + (long)v2.v;
+		long res = (long) v1.v + (long) v2.v;
 		return safeCastFromLong(res);
 	}
 
 	@Override
 	public Int32 subtract(Int32 minuend, Int32 subtrahend) {
-		long res = (long)minuend.v - (long)subtrahend.v;
+		long res = (long) minuend.v - (long) subtrahend.v;
 		return safeCastFromLong(res);
 	}
 
 	@Override
 	public Int32 multiply(Int32 v1, Int32 v2) {
-		long r = (long)v1.v * (long)v2.v;
+		long r = (long) v1.v * (long) v2.v;
 		return safeCastFromLong(r);
 	}
 
@@ -69,16 +74,16 @@ public class Int32NumberSystem implements IntegerDivisableNumberSystem<Int32> {
 	public Int32 integerDivide(Int32 dividend, Int32 divisor) {
 		return Int32.valueOf(dividend.v / divisor.v);
 	}
-	
+
 	@Override
 	public Int32 integerRemainder(Int32 dividend, Int32 divisor) {
 		return Int32.valueOf(dividend.v % divisor.v);
 	}
 
 	private Int32 safeCastFromLong(long v) {
-		if(v != (int)v)
+		if (v != (int) v)
 			throw OverflowException.create();
-		return Int32.valueOf((int)v);
+		return Int32.valueOf((int) v);
 	}
 
 	@Override
