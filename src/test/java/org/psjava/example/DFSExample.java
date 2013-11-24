@@ -30,8 +30,8 @@ public class DFSExample {
 		graph.addEdge("C", "D");
 		graph.addEdge("C", "A");
 
-		// Use Visitor for receiving visiting events.
-		// Here we will find the back-edge
+		// Use Visitor for handling visit events.
+		// Here, we will find the back-edge in the graph.
 
 		final DataKeeper<String> backEdgeSource = DataKeeper.create("");
 
