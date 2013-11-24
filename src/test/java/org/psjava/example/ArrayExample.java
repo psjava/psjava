@@ -18,7 +18,7 @@ public class ArrayExample {
 	public void example() {
 
 		// Array interface has only methods for reading.
-		// MutableArray is modifiable..
+		// Use MutableArray for modification.
 
 		MutableArray<String> array = MutableArrayFactory.create(10, "");
 		array.set(0, "A"); // 0 indexed element is the first value
@@ -29,10 +29,10 @@ public class ArrayExample {
 		// There are several ways to create mutable arrays.
 
 		MutableArrayFromValues.create("A", "B", "C", "D");
-		MutableArrayUsingIntArray.wrap(new int[] { 1, 2, 3, 4 }); // There are similar wrappers for Java arrays.
+		MutableArrayUsingIntArray.wrap(new int[] { 1, 2, 3, 4 }); // There are wrappers for Java's array.
 		MutableArrayUsingCharArray.wrap(new char[] { 'A', 'B', 'C' });
 
-		// Array has only reading methods. There are also several ways to create them.
+		// There are also several ways to create read only array.
 
 		ArrayFromValues.create("A", "B", "C");
 		CharacterArrayUsingString.create("ABC");
