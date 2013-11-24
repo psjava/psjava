@@ -34,14 +34,14 @@ public class BFSExample {
 					// the depth is 2, because there is a path : A->B->D
 					Assert.assertEquals(2, depth);
 
-					// when you call the stopper, BFS is stop. So no other vertex will be discovered.
+					// when you call the stopper, BFS stops. So no other vertex will be discovered.
 					stopper.stop();
 				}
 			}
 
 			@Override
 			public void onWalk(DirectedEdge<String> e) {
-				// You can also track the edge if you need.
+				// You can also track the edges if you need.
 			}
 		});
 
