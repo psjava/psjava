@@ -23,7 +23,7 @@ public class BinarySearchExample {
 	@Test
 	public void example() {
 
-		// Search a value 5 in increasing int array. result is the position = 2
+		// Search a value 5 in increasing int array. result is 2. that is the position in array.
 
 		MutableArray<Integer> array1 = MutableArrayFromValues.create(1, 3, 5, 7, 9);
 		int res1 = BinarySearchFirstInArray.search(array1, new DefaultComparator<Integer>(), 5, -1);
@@ -32,7 +32,7 @@ public class BinarySearchExample {
 
 
 		// Following is an example for decresing array.
-		// You can use the reversed comparator.
+		// In this case, you can use a reversed comparator.
 
 		MutableArray<Integer> array2 = MutableArrayFromValues.create(9, 7, 5, 3, 1);
 		int res2 = BinarySearchFirstInArray.search(array2, ReversedComparator.wrap(new DefaultComparator<Integer>()), 3, -1);

@@ -13,7 +13,7 @@ public class FindingNegativeCycleExample {
 	@Test
 	public void test() {
 
-		// Let's consturct a simple graph.
+		// consturct a simple graph.
 
 		MutableDirectedWeightedGraph<String, Integer> g = MutableDirectedWeightedGraph.create();
 		g.insertVertex("A");
@@ -23,16 +23,17 @@ public class FindingNegativeCycleExample {
 		g.addEdge("B", "C", 200);
 		g.addEdge("C", "A", -100);
 
-		// Now, there is no negative cycles yet.
+		// there is no negative cycles yet.
 
 		boolean hasCycle = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance()).hasCycle();
 		Assert.assertFalse(hasCycle);
 
-		// Add another edge to create a negative cycle.
+		// now, insert another edge to create a negative cycle.
 
 		g.addEdge("C", "A", -400);
 
-		// this is the path!
+		// then, there is a negative cycle.
+		
 		Collection<DirectedWeightedEdge<String, Integer>> path = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance()).getPath(); 
 		Assert.assertEquals(3, path.size());
 	}

@@ -20,7 +20,7 @@ public class HeapExample {
 		heap.insert(200);
 
 
-		// This is most basic operation. Extract minimum.
+		// This is most basic operation. Extraction of minimum.
 
 		int extracted = heap.extractMinimum();
 		Assert.assertEquals(100, extracted);
@@ -33,8 +33,8 @@ public class HeapExample {
 
 
 		// Let's do decrease-key operation.
-		// Get the node as like a pointer when you insert, and decreasing is
-		// done by the node.
+		// Get the node as a pointer when you insert. and decreasing is
+		// done with the node.
 
 		HeapNode<Integer> node = heap.insert(400);
 		node.decreaseKey(10); // decrease 400 -> 10
