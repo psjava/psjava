@@ -4,10 +4,8 @@ import java.util.Iterator;
 
 import org.psjava.util.IterableToString;
 
-
-
 public class CharacterArrayUsingString {
-	
+
 	public static Array<Character> create(final String s) {
 		return new Array<Character>() {
 
