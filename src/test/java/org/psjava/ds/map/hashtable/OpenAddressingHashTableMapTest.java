@@ -59,15 +59,15 @@ public class OpenAddressingHashTableMapTest {
 	}
 
 	@Test
-		public void testFindEntry() {
-			OpenAddressingHashTableMap<Integer, String> table = create(2);
-			table.put(1, "A");
-			assertEquals("A", table.get(1, null));
-			table.put(5, "B");
-			assertEquals("A", table.get(1, null));
-			assertEquals("B", table.get(5, null));
-			assertNull(table.get(2, null));
-		}
+	public void testFindEntry() {
+		OpenAddressingHashTableMap<Integer, String> table = create(2);
+		table.put(1, "A");
+		assertEquals("A", table.get(1, null));
+		table.put(5, "B");
+		assertEquals("A", table.get(1, null));
+		assertEquals("B", table.get(5, null));
+		assertNull(table.get(2, null));
+	}
 
 	@Test
 	public void testSize() {

@@ -2,14 +2,19 @@ package org.psjava.ds.map.hashtable;
 
 import java.util.Iterator;
 
+import org.psjava.ds.map.Map;
 import org.psjava.ds.map.MapEntry;
+import org.psjava.ds.map.MapEqualityTester;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.util.AssertStatus;
 import org.psjava.util.ConvertedDataIterator;
 import org.psjava.util.DataConverter;
 import org.psjava.util.DataFilter;
+import org.psjava.util.EqualityTester;
 import org.psjava.util.FilteredIterator;
 import org.psjava.util.Java1DArray;
+import org.psjava.util.OrderFreeIterableHash;
+import org.psjava.util.StrictEqualityTester;
 import org.psjava.util.VarargsIterator;
 
 public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
@@ -202,4 +207,18 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 		return load == 0;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return StrictEqualityTester.areEqual(this, obj, new EqualityTester<Map<K, V>>() {
+			@Override
+			public boolean areEqual(Map<K, V> o1, Map<K, V> o2) {
+				return MapEqualityTester.areEqual(o1, o2);
+			}
+		});
+	}
+
+	@Override
+	public int hashCode() {
+		return OrderFreeIterableHash.hash(this);
+	}
 }
