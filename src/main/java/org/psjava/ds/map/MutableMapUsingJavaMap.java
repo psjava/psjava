@@ -11,8 +11,7 @@ import org.psjava.util.StrictEqualityTester;
 
 public class MutableMapUsingJavaMap {
 
-	// TODO rename to wrap
-	public static <K, V> MutableMap<K, V> create(final java.util.Map<K, V> map) {
+	public static <K, V> MutableMap<K, V> wrap(final java.util.Map<K, V> map) {
 		return new MutableMap<K, V>() {
 
 			boolean nullValuePut = false;

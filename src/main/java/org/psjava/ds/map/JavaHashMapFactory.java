@@ -8,7 +8,7 @@ public class JavaHashMapFactory {
 		return new MutableMapFactory() {
 			@Override
 			public <K, V> MutableMap<K, V> create() {
-				return MutableMapUsingJavaMap.create(new HashMap<K, V>());
+				return MutableMapUsingJavaMap.wrap(new HashMap<K, V>());
 			}
 		};
 	}
