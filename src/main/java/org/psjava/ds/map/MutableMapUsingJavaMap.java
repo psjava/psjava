@@ -2,15 +2,16 @@ package org.psjava.ds.map;
 
 import java.util.Iterator;
 
-import org.psjava.algo.math.PairHash;
 import org.psjava.util.AssertStatus;
 import org.psjava.util.ConvertedDataIterator;
 import org.psjava.util.DataConverter;
 import org.psjava.util.EqualityTester;
+import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.StrictEqualityTester;
 
 public class MutableMapUsingJavaMap {
 
+	// TODO rename to wrap
 	public static <K, V> MutableMap<K, V> create(final java.util.Map<K, V> map) {
 		return new MutableMap<K, V>() {
 
@@ -81,6 +82,21 @@ public class MutableMapUsingJavaMap {
 				return map.toString();
 			}
 
+			@Override
+			public boolean equals(Object obj) {
+				return StrictEqualityTester.areEqual(this, obj, new EqualityTester<Map<K, V>>() {
+					@Override
+					public boolean areEqual(Map<K, V> m1, Map<K, V> m2) {
+						return MapEqualityTester.areEqual(m1, m2);
+					}
+				});
+			}
+
+			@Override
+			public int hashCode() {
+				return OrderFreeIterableHash.hash(this);
+			}
+
 		};
 	}
 
@@ -108,12 +124,12 @@ public class MutableMapUsingJavaMap {
 
 		@Override
 		public boolean areEqual(EntryWrapper<K, V> o1, EntryWrapper<K, V> o2) {
-			return o1.getKey().equals(o2.getKey()) && o1.getValue().equals(o2.getValue());
+			return MapEntryEqualityTester.are(o1, o2);
 		}
 
 		@Override
 		public int hashCode() {
-			return PairHash.hash(getKey().hashCode(), getValue().hashCode());
+			return MapEntryHash.hash(this);
 		}
 	}
 
