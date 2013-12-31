@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import org.psjava.util.EqualityTester;
 import org.psjava.util.IterableEqualityTester;
-import org.psjava.util.IterableHash;
+import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.IterableToString;
 import org.psjava.util.StrictEqualityTester;
 
@@ -54,7 +54,7 @@ public class MutableArrayUsingJavaArray {
 
 			@Override
 			public int hashCode() {
-				return IterableHash.hash(this);
+				return OrderFreeIterableHash.hash(this);
 			}
 		};
 	}

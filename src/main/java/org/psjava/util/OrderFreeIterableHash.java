@@ -2,7 +2,7 @@ package org.psjava.util;
 
 import org.psjava.algo.math.ThomasWangHash;
 
-public class IterableHash {
+public class OrderFreeIterableHash {
 
 	public static <T> int hash(Iterable<T> iterable) {
 		int r = 0;
