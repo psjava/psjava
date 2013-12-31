@@ -12,7 +12,7 @@ import org.psjava.util.FilteredIterator;
 import org.psjava.util.Java1DArray;
 import org.psjava.util.VarargsIterator;
 
-public class OpenAddressingHashTable<K, V> implements MutableMap<K, V> {
+public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 
 	/**
 	 * This is not very fast map. Because it's structure to provide flexibility of probing.
@@ -56,7 +56,7 @@ public class OpenAddressingHashTable<K, V> implements MutableMap<K, V> {
 	protected int load = 0;
 	protected int lazyDeletedCount = 0;
 
-	public OpenAddressingHashTable(HashProber prober, int reserve) {
+	public OpenAddressingHashTableMap(HashProber prober, int reserve) {
 		this.prober = prober;
 		bucket = Java1DArray.create(Entry.class, calcBucketSize(reserve));
 	}
