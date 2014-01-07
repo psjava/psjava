@@ -7,7 +7,6 @@ import org.psjava.ds.geometry.Point2D;
 import org.psjava.ds.numbersystrem.Float64;
 import org.psjava.formula.geometry.AzimuthFromPoint;
 
-
 public class AzimuthFromPointTest {
 	@Test
 	public void test() {

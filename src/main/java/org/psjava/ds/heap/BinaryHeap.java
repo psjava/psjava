@@ -125,7 +125,7 @@ public class BinaryHeap<T> implements Heap<T> {
 		private void assertNotDeleted() {
 			AssertStatus.assertTrue(pos != -1, "Node is not in heap (deleted)");
 		}
-		
+
 		@Override
 		public String toString() {
 			return key.toString();

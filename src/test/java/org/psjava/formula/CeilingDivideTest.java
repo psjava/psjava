@@ -6,7 +6,6 @@ import org.psjava.ds.numbersystrem.Int64;
 import org.psjava.ds.numbersystrem.Int64NumberSystem;
 import org.psjava.formula.CeilingDivide;
 
-
 public class CeilingDivideTest {
 
 	private static final Int64NumberSystem NS = new Int64NumberSystem();

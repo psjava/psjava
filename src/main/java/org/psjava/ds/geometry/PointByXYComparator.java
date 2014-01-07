@@ -5,7 +5,7 @@ import java.util.Comparator;
 import org.psjava.util.SeriesComparator;
 
 public class PointByXYComparator {
-	
+
 	public static <T> Comparator<Point2D<T>> create(Comparator<T> comp) {
 		@SuppressWarnings("unchecked")
 		final Comparator<Point2D<T>> series = SeriesComparator.create(PointByXComparator.create(comp), PointByYComparator.create(comp));

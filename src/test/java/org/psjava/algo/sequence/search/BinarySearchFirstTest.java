@@ -7,7 +7,6 @@ import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.util.DefaultComparator;
 
-
 public class BinarySearchFirstTest {
 
 	private static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();

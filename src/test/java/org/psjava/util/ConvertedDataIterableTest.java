@@ -9,16 +9,16 @@ import org.junit.Test;
 import org.psjava.util.ConvertedDataIterable;
 import org.psjava.util.DataConverter;
 
-
 public class ConvertedDataIterableTest {
-	
+
 	class Wrapper {
 		int v;
+
 		public Wrapper(int v) {
 			this.v = v;
 		}
 	}
-	
+
 	@Test
 	public void test() { // TODO move to iterator's test
 		List<Wrapper> list = toArrayList(new Wrapper(1), new Wrapper(2));
@@ -28,7 +28,7 @@ public class ConvertedDataIterableTest {
 				return v.v;
 			}
 		});
-		Integer[] expected = {1, 2};
-		assertEqualIterable(expected, iterable);		
+		Integer[] expected = { 1, 2 };
+		assertEqualIterable(expected, iterable);
 	}
 }

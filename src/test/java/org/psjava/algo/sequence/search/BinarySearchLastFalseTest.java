@@ -7,7 +7,6 @@ import org.psjava.algo.sequence.search.BinarySearchLastFalse;
 import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
-
 public class BinarySearchLastFalseTest {
 
 	@Test

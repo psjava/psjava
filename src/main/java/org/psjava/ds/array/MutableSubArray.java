@@ -13,18 +13,22 @@ public class MutableSubArray {
 			public T get(int index) {
 				return original.get(start + index);
 			}
+
 			@Override
 			public void set(int index, T value) {
-				original.set(start + index, value);				
+				original.set(start + index, value);
 			}
+
 			@Override
 			public boolean isEmpty() {
 				return size() == 0;
 			}
+
 			@Override
 			public Iterator<T> iterator() {
 				return ArrayIterator.create(this);
 			}
+
 			@Override
 			public int size() {
 				return end - start;

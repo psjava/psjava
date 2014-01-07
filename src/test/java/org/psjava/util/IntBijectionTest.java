@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.psjava.ds.set.SetFromVarargs;
 import org.psjava.util.IntBijection;
 
-
 public class IntBijectionTest {
 	@Test
 	public void test() {

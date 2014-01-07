@@ -30,7 +30,6 @@ public class BinarySearchExample {
 
 		Assert.assertEquals(2, res1);
 
-
 		// Following is an example for decresing array.
 		// In this case, you can use a reversed comparator.
 
@@ -39,9 +38,8 @@ public class BinarySearchExample {
 
 		Assert.assertEquals(3, res2);
 
-
 		// You don't have to prepare an array. Any function is enough.
-		
+
 		int res3 = BinarySearchFirst.search(IntegerNumberSystem.getInstance(), new Function<Integer, Integer>() {
 			@Override
 			public Integer get(Integer input) {
@@ -50,7 +48,6 @@ public class BinarySearchExample {
 		}, new DefaultComparator<Integer>(), 100, 200, 888, -1);
 
 		Assert.assertEquals(111, res3);
-
 
 		// And, there are many alternatives interfaces. check them
 

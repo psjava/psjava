@@ -23,8 +23,8 @@ public class HopcroftKarpAlgorithmTest {
 		Assert.assertEquals(3, r.getMaxMatchCount());
 
 		Set<Integer> rightSet = new TreeSet<Integer>();
-		for (int left : g.getLeftVertices()) 
-			if(r.hasMatch(left))
+		for (int left : g.getLeftVertices())
+			if (r.hasMatch(left))
 				rightSet.add(r.getMatchedVertex(left));
 		Assert.assertEquals(3, rightSet.size());
 	}

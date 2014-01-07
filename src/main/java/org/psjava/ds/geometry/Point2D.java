@@ -6,12 +6,12 @@ import org.psjava.util.StrictEqualityTester;
 public class Point2D<T> implements EqualityTester<Point2D<T>> {
 
 	public static <T> Point2D<T> create(T x, T y) {
-		return new Point2D<T>(x, y); 
+		return new Point2D<T>(x, y);
 	}
-	
+
 	private final T x;
 	private final T y;
-	
+
 	private Point2D(T x, T y) {
 		this.x = x;
 		this.y = y;
@@ -20,7 +20,7 @@ public class Point2D<T> implements EqualityTester<Point2D<T>> {
 	public T x() {
 		return x;
 	}
-	
+
 	public T y() {
 		return y;
 	}
@@ -38,10 +38,10 @@ public class Point2D<T> implements EqualityTester<Point2D<T>> {
 	public final int hashCode() {
 		return x.hashCode() ^ y.hashCode();
 	}
-	
+
 	@Override
 	public String toString() {
 		return "(" + x + "," + y + ")";
 	}
-	
+
 }

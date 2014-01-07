@@ -7,7 +7,6 @@ import org.psjava.ds.array.Array;
 import org.psjava.ds.array.MutableArrayUsingIntArray;
 import org.psjava.util.DefaultComparator;
 
-
 public class BinarySearchFirstInArrayTest {
 
 	private static final DefaultComparator<Integer> COMP = new DefaultComparator<Integer>();

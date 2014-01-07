@@ -5,7 +5,7 @@ import org.psjava.util.EqualityTester;
 import org.psjava.util.FactoryByInt;
 import org.psjava.util.StrictEqualityTester;
 
-public class Int64  {
+public class Int64 {
 
 	private static final CacheByIntegerRange<Int64> CACHE = new CacheByIntegerRange<Int64>(-256, 256, new FactoryByInt<Int64>() {
 		@Override
@@ -15,13 +15,13 @@ public class Int64  {
 	});
 
 	public static Int64 valueOf(long v) {
-		int casted = (int)v;
-		if(v == casted && CACHE.inCache(casted))
+		int casted = (int) v;
+		if (v == casted && CACHE.inCache(casted))
 			return CACHE.get(casted);
 		else
 			return new Int64(v);
 	}
-	
+
 	final long v;
 
 	private Int64(long v) {
@@ -48,10 +48,10 @@ public class Int64  {
 	public int hashCode() {
 		return ThomasWangHash.hash64bit(v);
 	}
-	
+
 	@Override
 	public String toString() {
 		return Long.toString(v);
 	}
-	
+
 }

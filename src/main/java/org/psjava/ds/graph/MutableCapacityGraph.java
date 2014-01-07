@@ -1,6 +1,5 @@
 package org.psjava.ds.graph;
 
-
 import org.psjava.ds.Collection;
 
 public class MutableCapacityGraph<V, F> implements Graph<V, CapacityEdge<V, F>> {

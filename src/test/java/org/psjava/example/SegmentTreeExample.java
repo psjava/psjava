@@ -37,6 +37,5 @@ public class SegmentTreeExample {
 		int max2 = maxTree.query(1, 4); // now, maximum is 99 among (3, 99, 5)
 		Assert.assertEquals(99, max2);
 
-
 	}
 }

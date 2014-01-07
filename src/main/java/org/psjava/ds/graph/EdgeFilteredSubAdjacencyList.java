@@ -12,7 +12,7 @@ public class EdgeFilteredSubAdjacencyList {
 			public Collection<V> getVertices() {
 				return g.getVertices();
 			}
-	
+
 			@Override
 			public Iterable<E> getEdges(V from) {
 				return FilteredIterable.create(g.getEdges(from), filter);

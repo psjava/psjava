@@ -8,7 +8,7 @@ public class FlowStatus<T> {
 		this.capacity = capacity;
 		this.flow = flow;
 	}
-	
+
 	@Override
 	public String toString() {
 		return flow + "/" + capacity;

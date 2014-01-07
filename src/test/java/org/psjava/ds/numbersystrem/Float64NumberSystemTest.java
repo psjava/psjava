@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.psjava.ds.numbersystrem.Float64;
 import org.psjava.ds.numbersystrem.Float64NumberSystem;
 
-
 public class Float64NumberSystemTest {
 	private static final Float64NumberSystem NS = Float64NumberSystem.getInstance();
 

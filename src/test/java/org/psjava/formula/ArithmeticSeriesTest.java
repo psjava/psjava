@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.formula.ArithmeticSeries;
 
-
 public class ArithmeticSeriesTest {
 	@Test
 	public void test() {

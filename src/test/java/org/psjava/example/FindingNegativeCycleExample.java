@@ -33,8 +33,8 @@ public class FindingNegativeCycleExample {
 		g.addEdge("C", "A", -400);
 
 		// then, there is a negative cycle.
-		
-		Collection<DirectedWeightedEdge<String, Integer>> path = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance()).getPath(); 
+
+		Collection<DirectedWeightedEdge<String, Integer>> path = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance()).getPath();
 		Assert.assertEquals(3, path.size());
 	}
 }

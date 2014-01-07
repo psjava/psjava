@@ -13,9 +13,9 @@ abstract public class TestUtil {
 		Assert.assertEquals(toArrayList(expected), actualList);
 	}
 
-	public static <T>ArrayList<T> toArrayListFromIterable(Iterable<T> iterable) {
+	public static <T> ArrayList<T> toArrayListFromIterable(Iterable<T> iterable) {
 		ArrayList<T> r = new ArrayList<T>();
-		for(T v : iterable) 
+		for (T v : iterable)
 			r.add(v);
 		return r;
 	}
@@ -29,21 +29,21 @@ abstract public class TestUtil {
 
 	public static <T> ArrayList<T> toArrayList(T... expected) {
 		ArrayList<T> r = new ArrayList<T>();
-		for(T v : expected)
+		for (T v : expected)
 			r.add(v);
 		return r;
 	}
 
 	public static <T> HashSet<T> toHashSet(Iterable<T> iter) {
 		HashSet<T> r = new HashSet<T>();
-		for(T v : iter)
+		for (T v : iter)
 			r.add(v);
 		return r;
 	}
 
 	public static <T> HashSet<T> toHashSet(T... vs) {
 		HashSet<T> r = new HashSet<T>();
-		for(T v : vs)
+		for (T v : vs)
 			r.add(v);
 		return r;
 	}

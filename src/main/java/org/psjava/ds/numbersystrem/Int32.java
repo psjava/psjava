@@ -5,7 +5,7 @@ import org.psjava.util.EqualityTester;
 import org.psjava.util.FactoryByInt;
 import org.psjava.util.StrictEqualityTester;
 
-public class Int32  {
+public class Int32 {
 
 	private static final CacheByIntegerRange<Int32> CACHE = new CacheByIntegerRange<Int32>(-256, 256, new FactoryByInt<Int32>() {
 		@Override
@@ -15,12 +15,12 @@ public class Int32  {
 	});
 
 	public static Int32 valueOf(int v) {
-		if(CACHE.inCache(v))
+		if (CACHE.inCache(v))
 			return CACHE.get(v);
 		else
 			return new Int32(v);
 	}
-	
+
 	public final int v; // TODO to private
 
 	private Int32(int v) {

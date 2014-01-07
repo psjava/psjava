@@ -15,12 +15,12 @@ public class QueueFactoryUsingDeque {
 					public void enque(T v) {
 						deque.addToLast(v);
 					}
-	
+
 					@Override
 					public boolean isEmpty() {
 						return deque.isEmpty();
 					}
-	
+
 					@Override
 					public T deque() {
 						return deque.removeFirst();

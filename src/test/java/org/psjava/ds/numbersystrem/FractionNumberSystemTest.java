@@ -16,7 +16,7 @@ public class FractionNumberSystemTest {
 		Fraction<Int32> add = NS.add(toFrac(12, 8), toFrac(3, 7));
 		Assert.assertEquals(27, add.numerator.v);
 		Assert.assertEquals(14, add.denominator.v);
-		
+
 		Fraction<Int32> sub = NS.subtract(toFrac(3, 7), toFrac(12, 8));
 		Assert.assertEquals(-15, sub.numerator.v);
 		Assert.assertEquals(14, sub.denominator.v);

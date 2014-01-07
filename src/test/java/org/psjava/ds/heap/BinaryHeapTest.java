@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.psjava.util.DefaultComparator;
 import org.psjava.util.EmptyIterable;
 
-
-
 public class BinaryHeapTest {
 
 	@Test

@@ -6,7 +6,6 @@ import org.psjava.algo.sequence.search.BinarySearchFirstFalse;
 import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
-
 public class BinarySearchFirstFalseTest {
 
 	@Test

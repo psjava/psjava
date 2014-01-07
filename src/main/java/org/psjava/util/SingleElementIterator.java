@@ -2,7 +2,6 @@ package org.psjava.util;
 
 import java.util.Iterator;
 
-
 public class SingleElementIterator {
 
 	public static <T> Iterator<T> create(final T value) {

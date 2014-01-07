@@ -14,9 +14,9 @@ public class PairHashTest {
 
 	@Test
 	public void testRareCollision() {
-		Set<Integer> set = new TreeSet<Integer>(); 
-		for(int i=0;i<1000;i++)
-			for(int j=0;j<1000;j++)
+		Set<Integer> set = new TreeSet<Integer>();
+		for (int i = 0; i < 1000; i++)
+			for (int j = 0; j < 1000; j++)
 				set.add(PairHash.hash(i, j));
 		assertTrue(set.size() >= 1000000 * 0.99);
 	}

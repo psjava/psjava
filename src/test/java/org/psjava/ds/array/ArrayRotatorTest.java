@@ -7,7 +7,7 @@ import org.psjava.TestUtil;
 import org.psjava.ds.array.ArrayRotator;
 
 public class ArrayRotatorTest {
-	
+
 	@Test
 	public void test1() {
 		MutableArray<Integer> a = toArray(1, 2, 3, 4, 5);

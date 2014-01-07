@@ -4,10 +4,8 @@ import java.util.Iterator;
 
 import org.psjava.util.IterableToString;
 
-
-
 public class MutableArrayUsingBooleanArray {
-	
+
 	public static MutableArray<Boolean> create(final boolean[] a) {
 		return new MutableArray<Boolean>() {
 			public Boolean get(int i) {
@@ -38,7 +36,7 @@ public class MutableArrayUsingBooleanArray {
 			}
 		};
 	}
-	
+
 	private MutableArrayUsingBooleanArray() {
 	}
 

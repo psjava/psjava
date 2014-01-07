@@ -8,7 +8,7 @@ import org.psjava.formula.Abs;
 import org.psjava.util.ZeroTo;
 
 public class AreaOfSimplePolygon2D {
-	
+
 	// TODO assert simplicity
 
 	public static <T> T calc(DivisableNumberSystem<T> ns, Polygon2D<T> sp) {

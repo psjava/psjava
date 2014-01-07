@@ -25,7 +25,7 @@ public class GuavasLongMath {
 		assertOverflowCondition(a == 0 || result / a == b);
 		return result;
 	}
-	
+
 	private static void assertOverflowCondition(boolean c) {
 		if (!c)
 			throw OverflowException.create();

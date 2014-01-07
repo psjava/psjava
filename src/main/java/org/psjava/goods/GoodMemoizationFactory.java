@@ -1,7 +1,5 @@
 package org.psjava.goods;
 
-
-
 import org.psjava.algo.math.optimization.MemoizationFactory;
 
 public class GoodMemoizationFactory {

@@ -7,7 +7,7 @@ import org.psjava.ds.numbersystrem.Float64;
 import org.psjava.formula.geometry.DistanceBetweenPoints;
 
 public class DistanceBetweenPointsTest {
-	
+
 	@Test
 	public void testDistanceZero() {
 		Assert.assertEquals(0, DistanceBetweenPoints.calc(toPoint(0, 10), toPoint(0, 10)), 1e-10);

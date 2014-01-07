@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.formula.FloorDivide;
 
-
 public class FloorDivideTest {
 
 	private static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();

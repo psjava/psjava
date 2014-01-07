@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.psjava.TestUtil;
 import org.psjava.util.IterableEqualityTester;
 
-
 public class IterableEqualityTesterTest {
 	@Test
 	public void test() {

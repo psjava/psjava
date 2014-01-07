@@ -31,7 +31,6 @@ public class MemoizationExample {
 		// for n=10, the result is already memoized, so super fast.
 		long res2 = factorial.get(10);
 
-
 		// let's be more complex. this is a memoization to calculate
 		// combinations (http://en.wikipedia.org/wiki/Combination)
 		// by recursion.
@@ -50,8 +49,6 @@ public class MemoizationExample {
 
 		// for (10, 5), the result is 252
 		int res3 = combination.get(new Index2D(10, 5));
-
-
 
 		// these are assertions for the results.
 		Assert.assertEquals(2432902008176640000L, res1);

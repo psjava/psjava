@@ -14,7 +14,7 @@ public class EdgeDoubledGraph {
 			public Collection<V> getVertices() {
 				return original.getVertices();
 			}
-	
+
 			@SuppressWarnings("unchecked")
 			@Override
 			public Iterable<E2> getEdges() {

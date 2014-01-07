@@ -6,7 +6,6 @@ import org.psjava.ds.Collection;
 import org.psjava.ds.array.ArrayFromValues;
 import org.psjava.util.MergedCollection;
 
-
 public class MergedCollectionTest {
 	@Test
 	public void test() {

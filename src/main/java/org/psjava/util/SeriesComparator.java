@@ -3,7 +3,7 @@ package org.psjava.util;
 import java.util.Comparator;
 
 public class SeriesComparator<T> {
-	
+
 	public static <T> Comparator<T> create(final Comparator<T>... compList) {
 		return new Comparator<T>() {
 			@Override

@@ -3,12 +3,12 @@ package org.psjava.util;
 public class StrictEqualityTester {
 	@SuppressWarnings("unchecked")
 	public static <T> boolean areEqual(T me, Object you, EqualityTester<T> tester) {
-		if(me == you)
+		if (me == you)
 			return true;
-		if(you == null)
+		if (you == null)
 			return false;
-		if(you.getClass() != me.getClass())
+		if (you.getClass() != me.getClass())
 			return false;
-		return tester.areEqual(me, (T)you);
+		return tester.areEqual(me, (T) you);
 	}
 }

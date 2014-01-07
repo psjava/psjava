@@ -8,5 +8,4 @@ public class RightTurnFromCCW {
 		return ns.isNegative(ccw);
 	}
 
-
 }

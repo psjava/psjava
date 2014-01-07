@@ -8,7 +8,6 @@ import org.psjava.ds.numbersystrem.Float64;
 import org.psjava.ds.numbersystrem.Float64NumberSystem;
 import org.psjava.formula.geometry.IntersectionOfNonParallelSegments;
 
-
 public class IntersectionOfNonParallelSegmentsTest {
 
 	private static final Float64NumberSystem NS = Float64NumberSystem.getInstance();

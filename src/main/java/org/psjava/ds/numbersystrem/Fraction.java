@@ -3,9 +3,8 @@ package org.psjava.ds.numbersystrem;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
 
-
 public class Fraction<T> implements EqualityTester<Fraction<T>> {
-	
+
 	public static <T> Fraction<T> valueOf(T numerator, T denominator) {
 		// cache? difficult because of generic. :(
 		return new Fraction<T>(numerator, denominator);
@@ -13,7 +12,7 @@ public class Fraction<T> implements EqualityTester<Fraction<T>> {
 
 	public final T numerator;
 	public final T denominator;
-	
+
 	private Fraction(T numerator, T denominator) {
 		this.numerator = numerator;
 		this.denominator = denominator;
@@ -27,7 +26,7 @@ public class Fraction<T> implements EqualityTester<Fraction<T>> {
 		else
 			return numerator + "/" + denom;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		return StrictEqualityTester.areEqual(this, obj, this);
@@ -42,5 +41,5 @@ public class Fraction<T> implements EqualityTester<Fraction<T>> {
 	public int hashCode() {
 		return numerator.hashCode() ^ denominator.hashCode();
 	}
-	
+
 }

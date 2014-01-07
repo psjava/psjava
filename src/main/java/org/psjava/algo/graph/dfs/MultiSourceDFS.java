@@ -15,7 +15,7 @@ public class MultiSourceDFS {
 
 	public static <V, E extends DirectedEdge<V>> void traverse(AdjacencyList<V, E> adj, Iterable<V> visitOrder, DFSVisitor<V, E> visitor) {
 		MutableMap<V, DFSStatus> status = DFSCore.createInitialStatus(adj.getVertices());
-		for (V v : visitOrder) 
+		for (V v : visitOrder)
 			if (status.get(v) == DFSStatus.NOT_DISCOVERED)
 				DFSCore.traverse(adj, status, v, visitor);
 	}

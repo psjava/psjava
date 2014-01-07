@@ -6,7 +6,6 @@ import org.psjava.ds.numbersystrem.Int32;
 import org.psjava.ds.numbersystrem.Int32NumberSystem;
 import org.psjava.formula.Modulo;
 
-
 public class ModuloTest {
 
 	@Test

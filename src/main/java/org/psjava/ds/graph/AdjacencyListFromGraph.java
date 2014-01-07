@@ -28,7 +28,7 @@ public class AdjacencyListFromGraph {
 			@Override
 			public String toString() {
 				String r = "Graph({" + IterableToString.toString(g.getVertices()) + "},{";
-				for(V v : getVertices())
+				for (V v : getVertices())
 					r += IterableToString.toString(getEdges(v));
 				return r + "})";
 			}

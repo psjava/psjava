@@ -4,10 +4,8 @@ import java.util.Iterator;
 
 import org.psjava.util.IterableToString;
 
-
-
 public class MutableArrayUsingLongArray {
-	
+
 	public static MutableArray<Long> wrap(final long[] a) {
 		return new MutableArray<Long>() {
 			@Override

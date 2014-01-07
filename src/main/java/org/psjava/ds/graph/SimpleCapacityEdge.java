@@ -1,6 +1,5 @@
 package org.psjava.ds.graph;
 
-
 public class SimpleCapacityEdge {
 
 	public static <V, W> CapacityEdge<V, W> create(final V from, final V to, final W capacity) {
@@ -26,7 +25,7 @@ public class SimpleCapacityEdge {
 			}
 		};
 	}
-	
+
 	private SimpleCapacityEdge() {
 	}
 
