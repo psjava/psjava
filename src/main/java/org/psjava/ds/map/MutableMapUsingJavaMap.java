@@ -2,6 +2,9 @@ package org.psjava.ds.map;
 
 import java.util.Iterator;
 
+import org.psjava.ds.KeyValuePair;
+import org.psjava.ds.KeyValuePairEqualityTester;
+import org.psjava.ds.KeyValuePairHash;
 import org.psjava.util.AssertStatus;
 import org.psjava.util.ConvertedDataIterator;
 import org.psjava.util.DataConverter;
@@ -57,11 +60,11 @@ public class MutableMapUsingJavaMap {
 			}
 
 			@Override
-			public Iterator<MapEntry<K, V>> iterator() {
-				return ConvertedDataIterator.create(map.entrySet().iterator(), new DataConverter<java.util.Map.Entry<K, V>, MapEntry<K, V>>() {
+			public Iterator<KeyValuePair<K, V>> iterator() {
+				return ConvertedDataIterator.create(map.entrySet().iterator(), new DataConverter<java.util.Map.Entry<K, V>, KeyValuePair<K, V>>() {
 					@Override
-					public MapEntry<K, V> convert(java.util.Map.Entry<K, V> e) {
-						return new EntryWrapper<K, V>(e);
+					public KeyValuePair<K, V> convert(java.util.Map.Entry<K, V> pair) {
+						return new EntryWrapper<K, V>(pair);
 					}
 				});
 			}
@@ -99,7 +102,7 @@ public class MutableMapUsingJavaMap {
 		};
 	}
 
-	private static class EntryWrapper<K, V> implements MapEntry<K, V>, EqualityTester<EntryWrapper<K, V>> {
+	private static class EntryWrapper<K, V> implements KeyValuePair<K, V>, EqualityTester<EntryWrapper<K, V>> {
 		private java.util.Map.Entry<K, V> e;
 
 		private EntryWrapper(java.util.Map.Entry<K, V> e) {
@@ -123,12 +126,12 @@ public class MutableMapUsingJavaMap {
 
 		@Override
 		public boolean areEqual(EntryWrapper<K, V> o1, EntryWrapper<K, V> o2) {
-			return MapEntryEqualityTester.are(o1, o2);
+			return KeyValuePairEqualityTester.are(o1, o2);
 		}
 
 		@Override
 		public int hashCode() {
-			return MapEntryHash.hash(this);
+			return KeyValuePairHash.hash(this);
 		}
 	}
 

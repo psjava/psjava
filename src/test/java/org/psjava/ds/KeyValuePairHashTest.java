@@ -1,13 +1,14 @@
-package org.psjava.ds.map;
+package org.psjava.ds;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.psjava.ds.KeyValuePairHash;
 
-public class MapEntryHashTest {
+public class KeyValuePairHashTest {
 
 	@Test
 	public void test() {
-		int r = MapEntryHash.hash(new MapEntry<Integer, Integer>() {
+		int r = KeyValuePairHash.hash(new KeyValuePair<Integer, Integer>() {
 			@Override
 			public Integer getKey() {
 				return 1;

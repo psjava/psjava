@@ -2,8 +2,8 @@ package org.psjava.ds.map.hashtable;
 
 import java.util.Iterator;
 
+import org.psjava.ds.KeyValuePair;
 import org.psjava.ds.map.Map;
-import org.psjava.ds.map.MapEntry;
 import org.psjava.ds.map.MapEqualityTester;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.util.AssertStatus;
@@ -23,7 +23,7 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 	 * This is not very fast map. Because it's structure to provide flexibility of probing.
 	 */
 
-	private static class Entry<K, V> implements MapEntry<K, V> {
+	private static class Entry<K, V> implements KeyValuePair<K, V> {
 		K keyOrNull; // if null then the entry is lazy deleted.
 		V value;
 		int keyHash;
@@ -183,15 +183,15 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 	}
 
 	@Override
-	public Iterator<MapEntry<K, V>> iterator() {
+	public Iterator<KeyValuePair<K, V>> iterator() {
 		return ConvertedDataIterator.create(FilteredIterator.create(VarargsIterator.create(bucket), new DataFilter<Entry<K, V>>() {
 			@Override
 			public boolean isAccepted(Entry<K, V> v) {
 				return v != null && v.keyOrNull != null;
 			}
-		}), new DataConverter<Entry<K, V>, MapEntry<K, V>>() {
+		}), new DataConverter<Entry<K, V>, KeyValuePair<K, V>>() {
 			@Override
-			public MapEntry<K, V> convert(Entry<K, V> v) {
+			public KeyValuePair<K, V> convert(Entry<K, V> v) {
 				return v;
 			}
 		});
