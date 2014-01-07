@@ -5,8 +5,8 @@ public class IterableToString {
 		StringBuilder sb = new StringBuilder();
 		sb.append('(');
 		boolean first = true;
-		for(T v : iterable) {
-			if(first)
+		for (T v : iterable) {
+			if (first)
 				first = false;
 			else
 				sb.append(',');
