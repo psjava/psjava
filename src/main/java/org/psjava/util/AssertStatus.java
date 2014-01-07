@@ -5,6 +5,14 @@ public class AssertStatus {
 		assertTrue(v, "");
 	}
 
+	public static void assertNotNull(Object v) {
+		assertTrue(v != null, "Object is cannot be a null");
+	}
+
+	public static void assertNotNull(Object v, String message) {
+		assertTrue(v != null);
+	}
+
 	public static void assertTrue(boolean v, String message) {
 		if (!v)
 			throw new RuntimeException(message);
