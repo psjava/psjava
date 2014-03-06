@@ -1,4 +1,4 @@
-package org.psjava.example;
+package org.psjava.example.ds;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,9 +9,13 @@ import org.psjava.ds.array.MutableArrayFactory;
 import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.ds.array.MutableArrayUsingCharArray;
 import org.psjava.ds.array.MutableArrayUsingIntArray;
+import org.psjava.ds.array.MutableArrayUsingJavaArray;
 import org.psjava.ds.array.SubArray;
 import org.psjava.ds.array.UniformArray;
 
+/**
+ * @implementation {@link MutableArrayUsingJavaArray}
+ */
 public class ArrayExample {
 
 	@Test
@@ -39,7 +43,6 @@ public class ArrayExample {
 		UniformArray.create("A", 3);
 		SubArray.wrap(array, 3, 5); // wraps as 2 sized array
 
-		// assertions.
 		Assert.assertEquals("A", first);
 		Assert.assertEquals(10, size);
 	}
