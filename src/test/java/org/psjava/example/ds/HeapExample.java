@@ -1,4 +1,4 @@
-package org.psjava.example;
+package org.psjava.example.ds;
 
 import org.junit.Assert;
 import org.junit.Test;
