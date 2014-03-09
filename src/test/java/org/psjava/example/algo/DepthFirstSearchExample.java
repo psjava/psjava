@@ -1,4 +1,4 @@
-package org.psjava.example;
+package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import org.psjava.util.DataKeeper;
 import org.psjava.util.VarargsIterable;
 import org.psjava.util.VisitorStopper;
 
-public class DFSExample {
+public class DepthFirstSearchExample {
 
 	@Test
 	public void example() {

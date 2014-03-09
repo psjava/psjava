@@ -1,4 +1,4 @@
-package org.psjava.example;
+package org.psjava.example.ds;
 
 import junit.framework.Assert;
 
@@ -8,7 +8,7 @@ import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.segmenttree.RangeUpdatableSegmentTree;
 
-public class SegmentTreeWhichIsRangeUpdatableExample {
+public class SegmentTreeWithLazyPropagationExample {
 	@Test
 	public void example() {
 

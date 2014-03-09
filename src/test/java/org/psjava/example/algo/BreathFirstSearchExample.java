@@ -1,4 +1,4 @@
-package org.psjava.example;
+package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import org.psjava.ds.graph.MutableDirectedGraph;
 import org.psjava.util.SingleElementCollection;
 import org.psjava.util.VisitorStopper;
 
-public class BFSExample {
+public class BreathFirstSearchExample {
 
 	@Test
 	public void example() {
