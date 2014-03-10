@@ -10,7 +10,7 @@ import org.psjava.ds.graph.MutableDirectedGraph;
 import org.psjava.util.SingleElementCollection;
 import org.psjava.util.VisitorStopper;
 
-public class BreathFirstSearchExample {
+public class BreadthFirstSearchExample {
 
 	@Test
 	public void example() {
