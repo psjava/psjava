@@ -35,7 +35,7 @@ public class MaximumFlowExample {
 
 		int maximumFlow = result.calcTotalFlow(); // must be 5
 
-		// Also, you can obtain flows in each edges by flow function.
+		// Also, you can obtain the flows in each edges by retrieved flow function.
 
 		Function<CapacityEdge<String, Integer>, Integer> flowFunction = result.calcFlowFunction();
 		for (CapacityEdge<String, Integer> e : capacityGraph.getEdges()) {
@@ -43,11 +43,9 @@ public class MaximumFlowExample {
 		}
 
 		// There are several maximum flow algorithms.
-
 		FordFulkersonAlgorithm.getInstance(DFSPathFinder.getInstance());
 		EdmondsKarpAlgorithm.getInstance();
 
-		// some assertions.
 		Assert.assertEquals(5, maximumFlow);
 	}
 }

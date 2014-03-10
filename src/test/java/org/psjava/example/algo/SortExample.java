@@ -13,7 +13,13 @@ import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.goods.GoodSortingAlgorithm;
 import org.psjava.util.DefaultComparator;
 
-public class SortingExample {
+/**
+ * @see {@link QuicksortExample}
+ * @see {@link InsertionSortExample}
+ * @see {@link BubbleSortExample}
+ * @see {@link MergeSortExample}
+ */
+public class SortExample {
 	@Test
 	public void example() {
 
@@ -22,18 +28,12 @@ public class SortingExample {
 		MutableArray<Integer> array1 = MutableArrayFromValues.create(2, 1, 3);
 		MergeSort.getInstance().sort(array1, new DefaultComparator<Integer>());
 
-		// The result is,
-		Assert.assertEquals("(1,2,3)", array1.toString());
-
 		// There is only one method in Sort interface,
 		// but there are several convenient methods in SortHelper class
-		// Let'ss do partial sort.
+		// Following is partial sorting.
 
 		MutableArray<Integer> array2 = MutableArrayFromValues.create(100, 3, 2, 1, 0);
 		SortingHelper.sort(MergeSort.getInstance(), array2, 1, 4);
-
-		// The result is,
-		Assert.assertEquals("(100,1,2,3,0)", array2.toString());
 
 		// There are several implementations.
 		RandomizedQuicksort.getInstance();
@@ -41,5 +41,8 @@ public class SortingExample {
 		BubbleSort.getInstance();
 		MergeSort.getInstance();
 		GoodSortingAlgorithm.getInstance(); // We choose a good one for you.
+
+		Assert.assertEquals("(1,2,3)", array1.toString());
+		Assert.assertEquals("(100,1,2,3,0)", array2.toString());
 	}
 }

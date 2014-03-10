@@ -26,7 +26,7 @@ public class MaximumBipartiteMatchingExample {
 		MaximumBipartiteMatchingResult<String> result = HopcroftKarpAlgorithm.getInstance().calc(g);
 
 		int matchCount = result.getMaxMatchCount(); // must be 2
-		String matchOfL1 = result.getMatchedVertex("L1"); // must be R2.
+		String matchOfL1 = result.getMatchedVertex("L1"); // must be "R2".
 
 		Assert.assertEquals(2, matchCount);
 		Assert.assertEquals("R2", matchOfL1);
