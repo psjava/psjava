@@ -4,20 +4,20 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.array.ArrayFromValues;
 import org.psjava.ds.array.CharacterArrayUsingString;
+import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFactory;
 import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.ds.array.MutableArrayUsingCharArray;
 import org.psjava.ds.array.MutableArrayUsingIntArray;
-import org.psjava.ds.array.MutableArrayUsingJavaArray;
 import org.psjava.ds.array.SubArray;
 import org.psjava.ds.array.UniformArray;
 
 /**
- * @implementation {@link MutableArrayUsingJavaArray}
- * @see {@link DynamicArrayExample}
+ * @implementation {@link DynamicArray}
+ * @see {@link ArrayExample}
  */
-public class ArrayExample {
+public class DynamicArrayExample {
 
 	@Test
 	public void example() {

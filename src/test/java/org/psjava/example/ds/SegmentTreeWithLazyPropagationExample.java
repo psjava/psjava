@@ -8,12 +8,15 @@ import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.segmenttree.RangeUpdatableSegmentTree;
 
+/**
+ * @implementation {@link EnhancedRangeUpdatableSegmentTree}
+ */
 public class SegmentTreeWithLazyPropagationExample {
 	@Test
 	public void example() {
 
 		// This is an advanced version of segment tree.
-		// This updates in range in O(logn) time.
+		// This updates the values of given range in O(logn) time.
 
 		Array<Integer> init = MutableArrayFromValues.create(1, 1, 1, 1, 1);
 

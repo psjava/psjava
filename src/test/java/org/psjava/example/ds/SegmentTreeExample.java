@@ -7,8 +7,12 @@ import org.psjava.ds.array.Array;
 import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
+import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
 import org.psjava.goods.GoodSegmentTreeFactory;
 
+/**
+ * @implementation {@link SegmentTreeByArrayImplementation}
+ */
 public class SegmentTreeExample {
 	@Test
 	public void example() {

@@ -3,8 +3,12 @@ package org.psjava.example.ds;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.set.DisjointSet;
+import org.psjava.ds.set.DisjointSetForest;
 import org.psjava.goods.GoodDisjointSet;
 
+/**
+ * @implementation {@link DisjointSetForest}
+ */
 public class DisjointSetExample {
 
 	@Test

@@ -3,16 +3,20 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.math.optimization.Memoization;
+import org.psjava.algo.math.optimization.MemoizationFactory;
 import org.psjava.algo.math.optimization.MemoizationFunction;
 import org.psjava.goods.GoodMemoizationFactory;
 import org.psjava.util.Index2D;
 
+/**
+ * @implementation {@link MemoizationFactory}
+ */
 public class MemoizationExample {
 
 	@Test
 	public void example() {
 
-		// this is a memoization to calculate the factorial of n
+		// This is a memoization to calculate the factorial of n
 
 		Memoization<Integer, Long> factorial = GoodMemoizationFactory.getInstance().create(new MemoizationFunction<Integer, Long>() {
 			@Override
@@ -25,7 +29,6 @@ public class MemoizationExample {
 		});
 
 		// for n=20, the result is 2432902008176640000
-
 		long res1 = factorial.get(20);
 
 		// for n=10, the result is already memoized, so super fast.
@@ -50,7 +53,6 @@ public class MemoizationExample {
 		// for (10, 5), the result is 252
 		int res3 = combination.get(new Index2D(10, 5));
 
-		// these are assertions for the results.
 		Assert.assertEquals(2432902008176640000L, res1);
 		Assert.assertEquals(3628800, res2);
 		Assert.assertEquals(252, res3);

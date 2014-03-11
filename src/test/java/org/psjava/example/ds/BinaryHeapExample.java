@@ -2,12 +2,16 @@ package org.psjava.example.ds;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.psjava.ds.heap.BinaryHeap;
 import org.psjava.ds.heap.BinaryHeapFactory;
 import org.psjava.ds.heap.Heap;
 import org.psjava.ds.heap.HeapNode;
 import org.psjava.util.DefaultComparator;
 
-public class HeapExample {
+/**
+ * @implementation {@link BinaryHeap}
+ */
+public class BinaryHeapExample {
 
 	@Test
 	public void example() {
@@ -24,19 +28,18 @@ public class HeapExample {
 		int extracted = heap.extractMinimum();
 		Assert.assertEquals(100, extracted);
 
-		// You can only get the miminum without extraction.
+		// You can only get the miminum without extraction by 'getMinimum()'.
 
-		int minimum1 = heap.getMinimum();
+		int minimum1 = heap.getMinimum(); // must be 200
 		Assert.assertEquals(200, minimum1);
 
 		// Let's do decrease-key operation.
-		// Get the node as a pointer when you insert. and decreasing is
-		// done with the node.
+		// Keep the node as a pointer when you inserted. And decrease it with the node.
 
 		HeapNode<Integer> node = heap.insert(400);
 		node.decreaseKey(10); // decrease 400 -> 10
 
-		int minimum2 = heap.getMinimum();
+		int minimum2 = heap.getMinimum(); // must be 10
 		Assert.assertEquals(10, minimum2);
 	}
 

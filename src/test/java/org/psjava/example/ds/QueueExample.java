@@ -3,6 +3,7 @@ package org.psjava.example.ds;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.deque.DoubleLinkedListFactory;
+import org.psjava.ds.deque.DynamicArrayDequeFactory;
 import org.psjava.ds.queue.Queue;
 import org.psjava.ds.queue.QueueFactory;
 import org.psjava.ds.queue.QueueFactoryUsingDeque;
@@ -13,27 +14,26 @@ public class QueueExample {
 	@Test
 	public void example() {
 
-		QueueFactory queueFactory = QueueFactoryUsingDeque.getInstance(DoubleLinkedListFactory.getInstance());
-
-		Queue<String> queue = queueFactory.create();
+		Queue<String> queue = GoodQueueFactory.getInstance().create();
 
 		queue.enque("A");
 		queue.enque("B");
 
 		// Here are operations.
 
-		String deque1 = queue.deque();
-		String deque2 = queue.deque();
-
-		boolean empty = queue.isEmpty();
-
-		// There are several implementations.
-
-		QueueFactoryUsingDeque.getInstance(DoubleLinkedListFactory.getInstance());
-		GoodQueueFactory.getInstance(); // We choose a good one.
-
-		Assert.assertEquals("A", deque1);
-		Assert.assertEquals("B", deque2);
+		String dequed1 = queue.deque(); // must be "A"
+		String dequed2 = queue.deque(); // must be "B"
+		boolean empty = queue.isEmpty(); // must be true
+		Assert.assertEquals("A", dequed1);
+		Assert.assertEquals("B", dequed2);
 		Assert.assertTrue(empty);
+
+		// There are several implementations of queue. You can specify deque's implementation.
+
+		QueueFactory factory1 = QueueFactoryUsingDeque.getInstance(DoubleLinkedListFactory.getInstance());
+		QueueFactory factory2 = QueueFactoryUsingDeque.getInstance(DynamicArrayDequeFactory.getInstance());
+		Assert.assertNotNull(factory1);
+		Assert.assertNotNull(factory2);
+
 	}
 }

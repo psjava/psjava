@@ -1,7 +1,6 @@
 package org.psjava.example.algo;
 
-import static org.junit.Assert.*;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPath;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
@@ -17,6 +16,12 @@ import org.psjava.ds.heap.BinaryHeapFactory;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodSingleSourceShortestPath;
 
+/**
+ * @see {@link DijkstraAlgorithmExample}
+ * @see {@link BellmanFordAlgorithmExample}
+ * @see {@link FloydWarshallAlgorithmExample}
+ * @see {@link JohnsonAlgorithmExample}
+ */
 public class ShortestPathExample {
 
 	@Test
@@ -33,39 +38,31 @@ public class ShortestPathExample {
 		graph.addEdge("A", "B", 10);
 		graph.addEdge("B", "C", 20);
 
-		// Then calculate distances from a single source - 'A'.
-		// Choose algorithm, and do it.
+		// Then calculate distances from a single source 'A'
+		// Choose algorithm, and run it.
 
 		SingleSourceShortestPath algorithm1 = GoodSingleSourceShortestPath.getInstance();
-		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result1 = algorithm1.calc(graph, "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res1 = algorithm1.calc(graph, "A", IntegerNumberSystem.getInstance());
 
-		int distanceAToC = result1.getDistance("C");
-		boolean reachabilityOfD = result1.isReachable("D");
-
-		assertEquals(30, distanceAToC);
-		assertFalse(reachabilityOfD);
-
-		// The good one should be Dijkstra's Algorithm with binary heap. but you
-		// can specify to another algorithm. Followings are some possibles.
-
-		new Dijkstra(new BinaryHeapFactory());
-		new BellmanFord(); // Capable for negative edge.
+		int distanceAToC = res1.getDistance("C");
+		boolean reachabilityOfD = res1.isReachable("D");
 
 		// Let's get the shortest paths of all pairs. Floyd Warshall's algorithm is the simplest implementation.
 
 		AllPairShortestPath algoritm2 = new FloydWarshall();
-		AllPairShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result2 = algoritm2.calc(graph, IntegerNumberSystem.getInstance());
+		AllPairShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res2 = algoritm2.calc(graph, IntegerNumberSystem.getInstance());
 
-		int distanceAToB = result2.getDistance("A", "B");
-		int distanceBToC = result2.getDistance("B", "C");
-
-		assertEquals(10, distanceAToB);
-		assertEquals(20, distanceBToC);
+		int distanceAToB = res2.getDistance("A", "B");
+		int distanceBToC = res2.getDistance("B", "C");
 
 		// There are other algorithms to get shortest paths of all pairs.
 
 		new FloydWarshall(); // Simplest.
 		new Johnson(new BellmanFord(), new Dijkstra(new BinaryHeapFactory())); // Good for spase tree. Also capable in negative edges.
 
+		Assert.assertEquals(30, distanceAToC);
+		Assert.assertFalse(reachabilityOfD);
+		Assert.assertEquals(10, distanceAToB);
+		Assert.assertEquals(20, distanceBToC);
 	}
 }
