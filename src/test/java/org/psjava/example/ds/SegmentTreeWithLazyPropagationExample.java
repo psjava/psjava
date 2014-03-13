@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.MutableArrayFromValues;
 import org.psjava.ds.math.BinaryOperator;
+import org.psjava.ds.tree.segmenttree.EnhancedRangeUpdatableSegmentTree;
 import org.psjava.ds.tree.segmenttree.RangeUpdatableSegmentTree;
 
 /**
