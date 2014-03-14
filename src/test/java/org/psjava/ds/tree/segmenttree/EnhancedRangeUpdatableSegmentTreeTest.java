@@ -64,20 +64,6 @@ public class EnhancedRangeUpdatableSegmentTreeTest {
 		}
 	}
 
-	@Test(timeout = 10000)
-	public void testPerformance() {
-		int n = 100000;
-		EnhancedRangeUpdatableSegmentTree<Integer, Integer> tree = createAddTree(UniformArray.create(0, n));
-		for (int i = 0; i < 109000; i++) {
-			int s = RANDOM.nextInt(n);
-			int e = RANDOM.nextInt(n - s) + s + 1;
-			if (i % 2 == 0)
-				tree.updateRange(s, e, RANDOM.nextInt(20));
-			else
-				tree.queryRange(s, e);
-		}
-	}
-
 	private EnhancedRangeUpdatableSegmentTree<Integer, Integer> createAddTree(Array<Integer> init) {
 		return new EnhancedRangeUpdatableSegmentTree<Integer, Integer>(init, new EnhancedRangeUpdatableSegmentTreeOperator<Integer, Integer>() {
 
