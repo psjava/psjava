@@ -13,6 +13,7 @@ import org.psjava.util.VisitorStopper;
 
 /**
  * @implementation {@link BFS}
+ * @see {@link DepthFirstSearchExample}
  */
 public class BreadthFirstSearchExample {
 
@@ -31,16 +32,16 @@ public class BreadthFirstSearchExample {
 		g.addEdge("C", "D");
 		g.addEdge("B", "D");
 
-		// Then find the "D" by BFS.
+		// Then find a path from "A" to "D" by BFS.
 
 		Collection<String> starts = SingleElementCollection.create("A");
 		BFS.traverse(AdjacencyListFromGraph.create(g), starts, new BFSVisitor<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscover(String vertex, int depth, VisitorStopper stopper) {
 				if (vertex.equals("D")) {
-					// There is a path : A->B->D, so depth is 2.
-					int toD = depth;
-					Assert.assertEquals(2, toD);
+					// There is a path: A->B->D, so depth is 2.
+					int pathLength = depth;
+					Assert.assertEquals(2, pathLength);
 					// when you call the stopper, BFS stops. So no other vertex will be discovered.
 					stopper.stop();
 				}
@@ -48,7 +49,7 @@ public class BreadthFirstSearchExample {
 
 			@Override
 			public void onWalk(DirectedEdge<String> e) {
-				// You can also track the edges if you need.
+				// You can also track the sequence of discovering edges.
 			}
 		});
 

@@ -14,19 +14,19 @@ public class DisjointSetExample {
 	@Test
 	public void example() {
 
-		DisjointSet<String> dset = GoodDisjointSet.create();
+		DisjointSet<String> set = GoodDisjointSet.create();
 
-		dset.makeSet("A");
-		dset.makeSet("B");
-		dset.makeSet("C");
-		dset.makeSet("D");
+		set.makeSet("A");
+		set.makeSet("B");
+		set.makeSet("C");
+		set.makeSet("D");
 
-		dset.union("C", "D");
+		set.union("C", "D");
 
-		// Two representiatives are now same.
+		// representiatives for "C", "D" are now same.
 
-		String rep1 = dset.find("C");
-		String rep2 = dset.find("D");
+		String rep1 = set.find("C");
+		String rep2 = set.find("D");
 		Assert.assertEquals(rep1, rep2);
 	}
 

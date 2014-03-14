@@ -4,10 +4,8 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.psjava.ds.array.ArrayFromValues;
-import org.psjava.ds.set.MutableSet;
 import org.psjava.ds.tree.trie.Trie;
 import org.psjava.ds.tree.trie.TrieNode;
-import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.goods.GoodTrieFactory;
 
 /**
@@ -41,13 +39,10 @@ public class TrieExample {
 		// There will be two edge('1', '2') for 'A' node.
 
 		TrieNode<Character> nodeA = trie.getRoot().getChild('A');
-		MutableSet<TrieNode<Character>> children = GoodMutableSetFactory.getInstance().create();
 		for (Character c : nodeA.getEdges()) {
 			TrieNode<Character> child = nodeA.getChild(c);
-			children.insert(child);
+			Assert.assertNotNull(child);
 		}
-
-		Assert.assertEquals(2, children.size());
 	}
 
 }

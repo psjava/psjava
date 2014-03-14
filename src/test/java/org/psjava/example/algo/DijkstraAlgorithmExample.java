@@ -12,14 +12,15 @@ import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 /**
  * @implementation {@link Dijkstra}
- * @see {@link ShortestPathExample}
+ * @see {@link ShortestPathAlgorithmExample}
+ * @see {@link BellmanFordAlgorithmExample}
  */
 public class DijkstraAlgorithmExample {
 
 	@Test
 	public void example() {
 
-		// Let's construct a simple graph.
+		// Dijkstra's algorithm is awesome... Let's construct a simple graph.
 
 		MutableDirectedWeightedGraph<String, Integer> graph = MutableDirectedWeightedGraph.create();
 		graph.insertVertex("A");
@@ -33,14 +34,14 @@ public class DijkstraAlgorithmExample {
 		// Then calculate distances from a single source 'A'
 
 		SingleSourceShortestPath dijkstra = new Dijkstra(new BinaryHeapFactory());
-		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result1 = dijkstra.calc(graph, "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res = dijkstra.calc(graph, "A", IntegerNumberSystem.getInstance());
 
-		boolean reachabilityOfC = result1.isReachable("C"); // must be true
-		int distanceAToC = result1.getDistance("C"); // must be 30
-		boolean reachabilityOfD = result1.isReachable("D"); // must be false
+		boolean reachabilityOfC = res.isReachable("C"); // must be true
+		boolean reachabilityOfD = res.isReachable("D"); // must be false
+		int distanceToC = res.getDistance("C"); // must be 30
 
 		Assert.assertTrue(reachabilityOfC);
-		Assert.assertEquals(30, distanceAToC);
+		Assert.assertEquals(30, distanceToC);
 		Assert.assertFalse(reachabilityOfD);
 	}
 }

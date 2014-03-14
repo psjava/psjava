@@ -11,7 +11,7 @@ import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 /**
  * @implementation {@link FloydWarshall}
- * @see {@link ShortestPathExample}
+ * @see {@link ShortestPathAlgorithmExample}
  */
 public class FloydWarshallAlgorithmExample {
 

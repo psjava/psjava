@@ -6,6 +6,9 @@ import org.psjava.algo.graph.matching.HopcroftKarpAlgorithm;
 import org.psjava.algo.graph.matching.MaximumBipartiteMatchingResult;
 import org.psjava.ds.graph.MutableBipartiteGraph;
 
+/**
+ * @see {@link HopcroftKarpAlgorithmExample}
+ */
 public class MaximumBipartiteMatchingExample {
 
 	@Test
@@ -15,6 +18,7 @@ public class MaximumBipartiteMatchingExample {
 		g.insertLeftVertex("L1");
 		g.insertLeftVertex("L2");
 		g.insertLeftVertex("L3");
+
 		g.insertRightVertex("R1");
 		g.insertRightVertex("R2");
 

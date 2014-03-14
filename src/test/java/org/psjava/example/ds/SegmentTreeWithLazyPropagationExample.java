@@ -30,13 +30,13 @@ public class SegmentTreeWithLazyPropagationExample {
 
 		// Query by range.
 
-		int sum1 = sumTree.query(0, 5);
+		int sum1 = sumTree.query(0, 5); // must be 5=1+1+1+1+1
 		Assert.assertEquals(5, sum1);
 
-		// Update range, this is done fast!
+		// Update by range, this is done fast!
 
 		sumTree.updateRange(1, 4, 100);
-		int sum2 = sumTree.query(0, 5);
+		int sum2 = sumTree.query(0, 5); // must be 302=1+100+100+100+1
 		Assert.assertEquals(302, sum2);
 
 	}

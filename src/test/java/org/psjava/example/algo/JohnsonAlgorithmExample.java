@@ -6,7 +6,6 @@ import org.psjava.algo.graph.shortestpath.AllPairShortestPath;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
 import org.psjava.algo.graph.shortestpath.BellmanFord;
 import org.psjava.algo.graph.shortestpath.Dijkstra;
-import org.psjava.algo.graph.shortestpath.FloydWarshall;
 import org.psjava.algo.graph.shortestpath.Johnson;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
@@ -14,8 +13,8 @@ import org.psjava.ds.heap.BinaryHeapFactory;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 /**
- * @implementation {@link FloydWarshall}
- * @see {@link ShortestPathExample}
+ * @implementation {@link Johnson}
+ * @see {@link ShortestPathAlgorithmExample}
  */
 public class JohnsonAlgorithmExample {
 
@@ -34,6 +33,7 @@ public class JohnsonAlgorithmExample {
 		graph.addEdge("C", "A", 5);
 
 		// Let's get the shortest paths of all pairs.
+		// Johnson's algorithm is a combination of Bellman Ford's and Dijkstra's algorithm.
 
 		AllPairShortestPath johnson = new Johnson(new BellmanFord(), new Dijkstra(new BinaryHeapFactory()));
 		AllPairShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res = johnson.calc(graph, IntegerNumberSystem.getInstance());

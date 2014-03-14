@@ -30,13 +30,14 @@ public class MemoizationExample {
 
 		// for n=20, the result is 2432902008176640000
 		long res1 = factorial.get(20);
+		Assert.assertEquals(2432902008176640000L, res1);
 
 		// for n=10, the result is already memoized, so super fast.
 		long res2 = factorial.get(10);
+		Assert.assertEquals(3628800, res2);
 
 		// let's be more complex. this is a memoization to calculate
-		// combinations (http://en.wikipedia.org/wiki/Combination)
-		// by recursion.
+		// combinations by recursion. (http://en.wikipedia.org/wiki/Combination)
 
 		Memoization<Index2D, Integer> combination = GoodMemoizationFactory.getInstance().create(new MemoizationFunction<Index2D, Integer>() {
 			@Override
@@ -50,11 +51,7 @@ public class MemoizationExample {
 			}
 		});
 
-		// for (10, 5), the result is 252
-		int res3 = combination.get(new Index2D(10, 5));
-
-		Assert.assertEquals(2432902008176640000L, res1);
-		Assert.assertEquals(3628800, res2);
+		int res3 = combination.get(new Index2D(10, 5)); // for (10, 5), the result is 252
 		Assert.assertEquals(252, res3);
 	}
 

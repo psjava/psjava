@@ -11,12 +11,12 @@ import org.psjava.algo.graph.dfs.SingleSourceDFS;
 import org.psjava.ds.graph.AdjacencyListFromGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.MutableDirectedGraph;
-import org.psjava.util.DataKeeper;
 import org.psjava.util.VarargsIterable;
 import org.psjava.util.VisitorStopper;
 
 /**
  * @implementation {@link DFSCore}
+ * @see {@link BreadthFirstSearchExample}
  */
 public class DepthFirstSearchExample {
 
@@ -36,10 +36,8 @@ public class DepthFirstSearchExample {
 		graph.addEdge("C", "D");
 		graph.addEdge("C", "A");
 
-		// Use Visitor for handling searching events.
+		// Use 'Visitor' for handling searching events.
 		// Here, we will find the back-edge in the graph.
-
-		final DataKeeper<String> backEdgeSource = DataKeeper.create("");
 
 		SingleSourceDFS.traverse(AdjacencyListFromGraph.create(graph), "A", new DFSVisitor<String, DirectedEdge<String>>() {
 			@Override
@@ -52,9 +50,11 @@ public class DepthFirstSearchExample {
 
 			@Override
 			public void onBackEdgeFound(DirectedEdge<String> edge) {
-				// Found!
-				// the edge:C->A is a back-edge.
-				backEdgeSource.set(edge.from());
+				// Found! the edge:C->A is a back-edge.
+				edge.from(); // must be "C"
+				edge.to(); // must be "A";
+				Assert.assertEquals("C", edge.from());
+				Assert.assertEquals("A", edge.to());
 			}
 
 			@Override
@@ -66,12 +66,12 @@ public class DepthFirstSearchExample {
 			}
 		});
 
-		// You can do multi-sources DFS. followings are the examples.
+		// You can do DFS from multiple sources.
 
-		Iterable<String> sources = VarargsIterable.create("A", "B");
-		MultiSourceDFS.traverse(graph, sources, new DFSVisitorBase<String, DirectedEdge<String>>());
+		MultiSourceDFS.traverse(graph, VarargsIterable.create("A", "B"), new DFSVisitorBase<String, DirectedEdge<String>>());
+
+		// If you don't mind visiting order but want to visit all, do this.
+
 		AllSourceDFS.traverse(graph, new DFSVisitorBase<String, DirectedEdge<String>>());
-
-		Assert.assertEquals("C", backEdgeSource.get());
 	}
 }

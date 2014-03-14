@@ -4,15 +4,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPath;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
-import org.psjava.algo.graph.shortestpath.BellmanFord;
-import org.psjava.algo.graph.shortestpath.Dijkstra;
 import org.psjava.algo.graph.shortestpath.FloydWarshall;
-import org.psjava.algo.graph.shortestpath.Johnson;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPath;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
-import org.psjava.ds.heap.BinaryHeapFactory;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodSingleSourceShortestPath;
 
@@ -22,7 +18,7 @@ import org.psjava.goods.GoodSingleSourceShortestPath;
  * @see {@link FloydWarshallAlgorithmExample}
  * @see {@link JohnsonAlgorithmExample}
  */
-public class ShortestPathExample {
+public class ShortestPathAlgorithmExample {
 
 	@Test
 	public void example() {
@@ -54,11 +50,6 @@ public class ShortestPathExample {
 
 		int distanceAToB = res2.getDistance("A", "B");
 		int distanceBToC = res2.getDistance("B", "C");
-
-		// There are other algorithms to get shortest paths of all pairs.
-
-		new FloydWarshall(); // Simplest.
-		new Johnson(new BellmanFord(), new Dijkstra(new BinaryHeapFactory())); // Good for spase tree. Also capable in negative edges.
 
 		Assert.assertEquals(30, distanceAToC);
 		Assert.assertFalse(reachabilityOfD);

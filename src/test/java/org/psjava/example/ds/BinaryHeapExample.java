@@ -25,7 +25,7 @@ public class BinaryHeapExample {
 
 		// This is most basic operation. Extraction of minimum.
 
-		int extracted = heap.extractMinimum();
+		int extracted = heap.extractMinimum(); // must be 100
 		Assert.assertEquals(100, extracted);
 
 		// You can only get the miminum without extraction by 'getMinimum()'.
@@ -34,7 +34,7 @@ public class BinaryHeapExample {
 		Assert.assertEquals(200, minimum1);
 
 		// Let's do decrease-key operation.
-		// Keep the node as a pointer when you inserted. And decrease it with the node.
+		// when you insert, keep the node like a pointer . And decrease it with the node.
 
 		HeapNode<Integer> node = heap.insert(400);
 		node.decreaseKey(10); // decrease 400 -> 10

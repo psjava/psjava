@@ -4,13 +4,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.psjava.algo.sequence.search.BinarySearchFirst;
-import org.psjava.algo.sequence.search.BinarySearchFirstFalse;
 import org.psjava.algo.sequence.search.BinarySearchFirstInArray;
-import org.psjava.algo.sequence.search.BinarySearchFirstTrue;
-import org.psjava.algo.sequence.search.BinarySearchLast;
-import org.psjava.algo.sequence.search.BinarySearchLastFalse;
-import org.psjava.algo.sequence.search.BinarySearchLastInArray;
-import org.psjava.algo.sequence.search.BinarySearchLastTrue;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.ArrayFromValues;
 import org.psjava.ds.math.Function;
@@ -20,51 +14,48 @@ import org.psjava.util.ReversedComparator;
 
 /**
  * @implementation {@link BinarySearchFirst}
+ * @see @{link BinarySearchFirst}
+ * @see @{link BinarySearchFirstTrue}
+ * @see @{link BinarySearchFirstFalse}
+ * @see @{link BinarySearchFirstInArray}
+ * @see @{link BinarySearchLast}
+ * @see @{link BinarySearchLastInArray}
+ * @see @{link BinarySearchLastTrue}
+ * @see @{link BinarySearchLastFalse}
  */
 public class BinarySearchExample {
 
 	@Test
 	public void example() {
 
-		// Let's search 5 in increasing integer array.
+		// Let's search 5 in a increasingly sorted array.
 
-		Array<Integer> array1 = ArrayFromValues.create(1, 3, 5, 7, 9);
-		// Result is 2, the index of 5 in the array.
-		int index1 = BinarySearchFirstInArray.search(array1, new DefaultComparator<Integer>(), 5, -1);
+		Array<Integer> inc = ArrayFromValues.create(1, 3, 5, 7, 9);
+		int res1 = BinarySearchFirstInArray.search(inc, new DefaultComparator<Integer>(), 5, -1); // must be 2
+		int res2 = BinarySearchFirstInArray.search(inc, new DefaultComparator<Integer>(), 6, -1); // must be -1, given by argument.
+		Assert.assertEquals(2, res1);
+		Assert.assertEquals(-1, res2);
 
 		// Following is an example for decreasing array.
-		// In the example, you can use a reversed comparator.
+		// In this example, you can use a reversed comparator.
 
-		Array<Integer> array2 = ArrayFromValues.create(9, 7, 5, 3, 1);
-		int index2 = BinarySearchFirstInArray.search(array2, ReversedComparator.wrap(new DefaultComparator<Integer>()), 3, -1);
+		Array<Integer> dec = ArrayFromValues.create(9, 7, 5, 3, 1);
+		int res3 = BinarySearchFirstInArray.search(dec, ReversedComparator.wrap(new DefaultComparator<Integer>()), 3, -1);
+		Assert.assertEquals(3, res3);
 
 		// You don't have to prepare an array. Any function is enough.
-		// Set the function as 'y=8x'.
+		// Create a function 'y=8x', and let's search 'x' for 'y'=800.
 
-		Function<Integer, Integer> func = new Function<Integer, Integer>() {
+		Function<Integer, Integer> f = new Function<Integer, Integer>() {
 			@Override
-			public Integer get(Integer index) {
-				return index * 8;
+			public Integer get(Integer x) {
+				return x * 8;
 			}
 		};
-		// x for 888 is 111
-		int index3 = BinarySearchFirst.search(IntegerNumberSystem.getInstance(), func, new DefaultComparator<Integer>(), 100, 200, 888, -1);
 
-		Assert.assertEquals(111, index3);
-
-		// And, there are many alternatives interfaces. check them
-
-		BinarySearchFirst.class.getClass();
-		BinarySearchFirstTrue.class.getClass();
-		BinarySearchFirstFalse.class.getClass();
-		BinarySearchFirstInArray.class.getClass();
-		BinarySearchLast.class.getClass();
-		BinarySearchLastInArray.class.getClass();
-		BinarySearchLastTrue.class.getClass();
-		BinarySearchLastFalse.class.getClass();
-
-		Assert.assertEquals(2, index1);
-		Assert.assertEquals(3, index2);
+		// x must be 100.
+		int x = BinarySearchFirst.search(IntegerNumberSystem.getInstance(), f, new DefaultComparator<Integer>(), 0, 999999, 800, -1);
+		Assert.assertEquals(100, x);
 	}
 
 }

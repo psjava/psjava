@@ -13,6 +13,9 @@ public class HopcroftKarpAlgorithmExample {
 
 	@Test
 	public void example() {
+
+		// Let's make a simple bipartite graph.
+
 		MutableBipartiteGraph<String> g = MutableBipartiteGraph.create();
 
 		g.insertLeftVertex("L1");
@@ -27,6 +30,8 @@ public class HopcroftKarpAlgorithmExample {
 		g.addEdge("L3", "R1");
 
 		MaximumBipartiteMatchingResult<String> result = HopcroftKarpAlgorithm.getInstance().calc(g);
+
+		// In this example, (L1-R2, L2-R1) is one of the solutions.
 
 		int matchCount = result.getMaxMatchCount(); // must be 2
 		String matchOfL1 = result.getMatchedVertex("L1"); // must be "R2".

@@ -3,15 +3,17 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.flownetwork.EdmondsKarpAlgorithm;
-import org.psjava.algo.graph.flownetwork.FordFulkersonAlgorithm;
 import org.psjava.algo.graph.flownetwork.MaximumFlowAlgorithm;
 import org.psjava.algo.graph.flownetwork.MaximumFlowAlgorithmResult;
-import org.psjava.algo.graph.pathfinder.DFSPathFinder;
 import org.psjava.ds.graph.CapacityEdge;
 import org.psjava.ds.graph.MutableCapacityGraph;
 import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
+/**
+ * @see {@link FordFulkersonAlgorithmExample}
+ * @see {@link EdmondsKarpAlgorithmExample}
+ */
 public class MaximumFlowExample {
 	@Test
 	public void test() {
@@ -34,6 +36,7 @@ public class MaximumFlowExample {
 		MaximumFlowAlgorithmResult<Integer, CapacityEdge<String, Integer>> result = algorithm.calc(capacityGraph, "A", "D", IntegerNumberSystem.getInstance());
 
 		int maximumFlow = result.calcTotalFlow(); // must be 5
+		Assert.assertEquals(5, maximumFlow);
 
 		// Also, you can obtain the flows in each edges by retrieved flow function.
 
@@ -41,11 +44,5 @@ public class MaximumFlowExample {
 		for (CapacityEdge<String, Integer> e : capacityGraph.getEdges()) {
 			flowFunction.get(e);
 		}
-
-		// There are several maximum flow algorithms.
-		FordFulkersonAlgorithm.getInstance(DFSPathFinder.getInstance());
-		EdmondsKarpAlgorithm.getInstance();
-
-		Assert.assertEquals(5, maximumFlow);
 	}
 }
