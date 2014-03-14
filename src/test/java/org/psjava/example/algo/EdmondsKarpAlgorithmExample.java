@@ -3,6 +3,7 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.flownetwork.EdmondsKarpAlgorithm;
+import org.psjava.algo.graph.flownetwork.FordFulkersonAlgorithm;
 import org.psjava.algo.graph.flownetwork.MaximumFlowAlgorithmResult;
 import org.psjava.ds.graph.CapacityEdge;
 import org.psjava.ds.graph.MutableCapacityGraph;
@@ -11,6 +12,7 @@ import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 /**
  * @implementation {@link EdmondsKarpAlgorithm}
+ * @implementation {@link FordFulkersonAlgorithm}
  */
 public class EdmondsKarpAlgorithmExample {
 	@Test
