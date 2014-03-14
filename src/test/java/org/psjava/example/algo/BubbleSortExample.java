@@ -10,7 +10,7 @@ import org.psjava.util.DefaultComparator;
 
 /**
  * @implementation {@link BubbleSort}
- * @see {@link SortExample}
+ * @see {@link SortingAlgorithmExample}
  */
 public class BubbleSortExample {
 	@Test

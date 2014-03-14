@@ -10,7 +10,7 @@ import org.psjava.util.DefaultComparator;
 
 /**
  * @implementation {@link InsertionSort}
- * @see {@link SortExample}
+ * @see {@link SortingAlgorithmExample}
  */
 public class InsertionSortExample {
 	@Test

@@ -10,7 +10,7 @@ import org.psjava.util.DefaultComparator;
 
 /**
  * @implementation {@link RandomizedQuicksort}
- * @see {@link SortExample}
+ * @see {@link SortingAlgorithmExample}
  */
 public class QuicksortExample {
 	@Test

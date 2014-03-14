@@ -15,7 +15,7 @@ import org.psjava.util.DefaultComparator;
  * @see {@link BubbleSortExample}
  * @see {@link MergeSortExample}
  */
-public class SortExample {
+public class SortingAlgorithmExample {
 	@Test
 	public void example() {
 
