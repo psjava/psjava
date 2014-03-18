@@ -2,7 +2,6 @@ package org.psjava.ds.graph;
 
 public class TestGraphFactory {
 
-	// TODO rename createDirectedWeighted
 	public static MutableDirectedWeightedGraph<Integer, Integer> create(int[][] edata) {
 		MutableDirectedWeightedGraph<Integer, Integer> g = new MutableDirectedWeightedGraph<Integer, Integer>();
 		for (int[] e : edata) {
