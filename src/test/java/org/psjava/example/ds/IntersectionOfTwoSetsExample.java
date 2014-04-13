@@ -6,6 +6,9 @@ import org.psjava.ds.set.IntersectionOfTwoSets;
 import org.psjava.ds.set.Set;
 import org.psjava.ds.set.SetFromVarargs;
 
+/**
+ * @implementation {@link IntersectionOfTwoSets}
+ */
 public class IntersectionOfTwoSetsExample {
 
 	@Test
