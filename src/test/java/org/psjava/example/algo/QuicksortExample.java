@@ -6,11 +6,13 @@ import org.junit.Test;
 import org.psjava.algo.sequence.sort.RandomizedQuicksort;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFromValues;
+import org.psjava.example.ds.ArrayExample;
 import org.psjava.util.DefaultComparator;
 
 /**
  * @implementation {@link RandomizedQuicksort}
  * @see {@link SortingAlgorithmExample}
+ * @see {@link ArrayExample}
  */
 public class QuicksortExample {
 	@Test
