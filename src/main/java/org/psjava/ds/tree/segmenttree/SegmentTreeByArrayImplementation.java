@@ -39,7 +39,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 
 	@Override
 	public T query(int start, int end) {
-		AssertStatus.assertTrue(start < end);
+		AssertStatus.assertTrue(start < end, "invalid range");
 		return queryRecursively(tree.getRootPointer(), 0, size, start, end);
 	}
 
