@@ -18,6 +18,11 @@ import org.psjava.util.ZeroTo;
  */
 public class RMQBySquareRootApproach implements RangeMinimumQuery {
 
+	public static RangeMinimumQuery getInstance() {
+		return new RMQBySquareRootApproach();
+	}
+
+	@Override
 	public <T> PreprecessedRMQ preprocess(final Array<T> a, final Comparator<T> comp) {
 		final int partLength = Math.max(1, (int) Math.sqrt(a.size()));
 		final int[] minInPart = new int[CeilingDivide.calc(IntegerNumberSystem.getInstance(), a.size(), partLength)];
@@ -28,6 +33,7 @@ public class RMQBySquareRootApproach implements RangeMinimumQuery {
 		}
 
 		return new PreprecessedRMQ() {
+			@Override
 			public int query(int start, int end) {
 				AssertStatus.assertTrue(start < end);
 				int firstPart = start / partLength;

@@ -16,6 +16,11 @@ import org.psjava.util.ZeroTo;
  */
 public class SparseTableRMQ implements RangeMinimumQuery {
 
+	public static RangeMinimumQuery getInstance() {
+		return new SparseTableRMQ();
+	}
+
+	@Override
 	public <T> PreprecessedRMQ preprocess(final Array<T> a, final Comparator<T> comp) {
 
 		int p = Math.max(0, IntegerBinaryLogarithm.calc(a.size()) + 1);
@@ -31,6 +36,7 @@ public class SparseTableRMQ implements RangeMinimumQuery {
 			}
 
 		return new PreprecessedRMQ() {
+			@Override
 			public int query(int start, int end) {
 				int len = end - start;
 				int sublen = IntegerBinaryLogarithm.calc(len);
