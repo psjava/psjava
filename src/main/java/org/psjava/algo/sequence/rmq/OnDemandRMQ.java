@@ -20,7 +20,7 @@ public class OnDemandRMQ {
 			@Override
 			public <T> PreprecessedRMQ preprocess(final Array<T> array, final Comparator<T> comp) {
 				return new PreprecessedRMQ() {
-					public int query(int start, int end) {
+					public int queryIndex(int start, int end) {
 						AssertStatus.assertTrue(start < end);
 						int r = start;
 						for (int i : FromTo.get(start + 1, end))

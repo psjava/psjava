@@ -34,7 +34,7 @@ public class RMQBySquareRootApproach implements RangeMinimumQuery {
 
 		return new PreprecessedRMQ() {
 			@Override
-			public int query(int start, int end) {
+			public int queryIndex(int start, int end) {
 				AssertStatus.assertTrue(start < end);
 				int firstPart = start / partLength;
 				int lastPart = (end - 1) / partLength;

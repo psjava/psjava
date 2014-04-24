@@ -37,7 +37,7 @@ public class SparseTableRMQ implements RangeMinimumQuery {
 
 		return new PreprecessedRMQ() {
 			@Override
-			public int query(int start, int end) {
+			public int queryIndex(int start, int end) {
 				int len = end - start;
 				int sublen = IntegerBinaryLogarithm.calc(len);
 				int i1 = table[start][sublen];

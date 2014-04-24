@@ -33,7 +33,7 @@ public class RMQUsingSegmentTree {
 					}
 				});
 				return new PreprecessedRMQ() {
-					public int query(int start, int end) {
+					public int queryIndex(int start, int end) {
 						AssertStatus.assertTrue(start < end);
 						return tree.query(start, end);
 					}

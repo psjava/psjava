@@ -56,7 +56,7 @@ public class LowestCommonAncestor {
 			public V query(V v1, V v2) {
 				int i1 = discoverIndex.get(v1);
 				int i2 = discoverIndex.get(v2);
-				return history.get(rmqResult.query(Math.min(i1, i2), Math.max(i1, i2) + 1)).v1;
+				return history.get(rmqResult.queryIndex(Math.min(i1, i2), Math.max(i1, i2) + 1)).v1;
 			}
 		};
 	}

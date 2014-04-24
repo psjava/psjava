@@ -18,7 +18,7 @@ public abstract class RangeMinimumQueryTestBase {
 	@Test(expected = RuntimeException.class)
 	public void testInvalidRange() {
 		PreprecessedRMQ preprecessed = getInstance().preprocess(ArrayFromValues.create(1, 2, 3), new DefaultComparator<Integer>());
-		preprecessed.query(1, 1);
+		preprecessed.queryIndex(1, 1);
 	}
 
 	@Test
@@ -35,7 +35,7 @@ public abstract class RangeMinimumQueryTestBase {
 				for (int k = i; k < j; k++)
 					if (a.get(minIndex) > a.get(k))
 						minIndex = k;
-				Assert.assertEquals(r.query(i, j), minIndex);
+				Assert.assertEquals(r.queryIndex(i, j), minIndex);
 			}
 	}
 
