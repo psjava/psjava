@@ -12,7 +12,7 @@ public class RootedTree<V, E extends DirectedEdge<V>> {
 	public final Graph<V, E> graph;
 	public final V root;
 
-	private RootedTree(Graph<V, E> g, V root) {
+	public RootedTree(Graph<V, E> g, V root) {
 		AssertStatus.assertTrue(RootedTreeCheck.is(g, root), "Given graph is not a rooted tree");
 		this.graph = g;
 		this.root = root;
