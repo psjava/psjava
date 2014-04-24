@@ -1,5 +1,5 @@
 package org.psjava.algo.graph.dfs;
 
-enum DFSStatus {
+public enum DFSStatus {
 	NOT_DISCOVERED, DISCOVERED, EXPLORED,
 }
