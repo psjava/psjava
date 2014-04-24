@@ -18,22 +18,22 @@ import org.psjava.util.ZeroTo;
  * 
  * Space complexity: Space complexity for constructing segment tree. known best is, O(n)
  */
-public class RMQUsingSegmentTree {
+public class RangeMinimumQueryUsingSegmentTree {
 
 	public static RangeMinimumQuery getInstance(final SegmentTreeFactory treeFactory) {
 		return new RangeMinimumQuery() {
 			@Override
-			public <T> PreprecessedRMQ preprocess(final Array<T> a, final Comparator<T> comp) {
+			public <T> RangeMinimumQueryResult preprocess(final Array<T> a, final Comparator<T> comp) {
 				MutableArray<Integer> indexes = MutableArrayFactory.create(a.size(), 0);
 				for (int i : ZeroTo.get(a.size()))
 					indexes.set(i, i);
 				final SegmentTree<Integer> tree = treeFactory.create(indexes, new BinaryOperator<Integer>() {
 					public Integer calc(Integer i1, Integer i2) {
-						return RMQUtil.selectSmallestIndex(a, i1, i2, comp);
+						return RangeMinimumQueryUtil.selectSmallestIndex(a, i1, i2, comp);
 					}
 				});
-				return new PreprecessedRMQ() {
-					public int queryIndex(int start, int end) {
+				return new RangeMinimumQueryResult() {
+					public int getIndex(int start, int end) {
 						AssertStatus.assertTrue(start < end);
 						return tree.query(start, end);
 					}
@@ -42,7 +42,7 @@ public class RMQUsingSegmentTree {
 		};
 	}
 
-	private RMQUsingSegmentTree() {
+	private RangeMinimumQueryUsingSegmentTree() {
 	}
 
 }

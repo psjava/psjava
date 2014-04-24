@@ -13,18 +13,18 @@ import org.psjava.util.FromTo;
  * 
  * Space complexity: O(1)
  */
-public class OnDemandRMQ {
+public class OnDemandRangeMinimumQuery {
 
 	public static RangeMinimumQuery getInstance() {
 		return new RangeMinimumQuery() {
 			@Override
-			public <T> PreprecessedRMQ preprocess(final Array<T> array, final Comparator<T> comp) {
-				return new PreprecessedRMQ() {
-					public int queryIndex(int start, int end) {
+			public <T> RangeMinimumQueryResult preprocess(final Array<T> array, final Comparator<T> comp) {
+				return new RangeMinimumQueryResult() {
+					public int getIndex(int start, int end) {
 						AssertStatus.assertTrue(start < end);
 						int r = start;
 						for (int i : FromTo.get(start + 1, end))
-							r = RMQUtil.selectSmallestIndex(array, r, i, comp);
+							r = RangeMinimumQueryUtil.selectSmallestIndex(array, r, i, comp);
 						return r;
 					}
 				};
@@ -32,7 +32,7 @@ public class OnDemandRMQ {
 		};
 	}
 
-	private OnDemandRMQ() {
+	private OnDemandRangeMinimumQuery() {
 	}
 
 }

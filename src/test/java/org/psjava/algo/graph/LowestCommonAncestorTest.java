@@ -2,7 +2,7 @@ package org.psjava.algo.graph;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.sequence.rmq.OnDemandRMQ;
+import org.psjava.algo.sequence.rmq.OnDemandRangeMinimumQuery;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.RootedTree;
@@ -11,7 +11,7 @@ import org.psjava.ds.map.JavaHashMapFactory;
 
 public class LowestCommonAncestorTest {
 
-	private static final LowestCommonAncestor INSTANCE = new LowestCommonAncestor(OnDemandRMQ.getInstance(), JavaHashMapFactory.getInstance());
+	private static final LowestCommonAncestor INSTANCE = new LowestCommonAncestor(OnDemandRangeMinimumQuery.getInstance(), JavaHashMapFactory.getInstance());
 
 	@Test
 	public void testOne() {

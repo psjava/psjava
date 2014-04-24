@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.SingleSourceDFS;
-import org.psjava.algo.sequence.rmq.PreprecessedRMQ;
+import org.psjava.algo.sequence.rmq.RangeMinimumQueryResult;
 import org.psjava.algo.sequence.rmq.RangeMinimumQuery;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.LastInArray;
@@ -44,7 +44,7 @@ public class LowestCommonAncestor {
 			}
 		});
 
-		final PreprecessedRMQ rmqResult = rmq.preprocess(history, new Comparator<Pair<V, Integer>>() {
+		final RangeMinimumQueryResult rmqResult = rmq.preprocess(history, new Comparator<Pair<V, Integer>>() {
 			@Override
 			public int compare(Pair<V, Integer> o1, Pair<V, Integer> o2) {
 				return o1.v2 - o2.v2;
@@ -56,7 +56,7 @@ public class LowestCommonAncestor {
 			public V query(V v1, V v2) {
 				int i1 = discoverIndex.get(v1);
 				int i2 = discoverIndex.get(v2);
-				return history.get(rmqResult.queryIndex(Math.min(i1, i2), Math.max(i1, i2) + 1)).v1;
+				return history.get(rmqResult.getIndex(Math.min(i1, i2), Math.max(i1, i2) + 1)).v1;
 			}
 		};
 	}

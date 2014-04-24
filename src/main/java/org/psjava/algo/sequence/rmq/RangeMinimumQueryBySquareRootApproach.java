@@ -16,39 +16,39 @@ import org.psjava.util.ZeroTo;
  * 
  * Space complexity: O(sqrt(t))
  */
-public class RMQBySquareRootApproach implements RangeMinimumQuery {
+public class RangeMinimumQueryBySquareRootApproach implements RangeMinimumQuery {
 
 	public static RangeMinimumQuery getInstance() {
-		return new RMQBySquareRootApproach();
+		return new RangeMinimumQueryBySquareRootApproach();
 	}
 
 	@Override
-	public <T> PreprecessedRMQ preprocess(final Array<T> a, final Comparator<T> comp) {
+	public <T> RangeMinimumQueryResult preprocess(final Array<T> a, final Comparator<T> comp) {
 		final int partLength = Math.max(1, (int) Math.sqrt(a.size()));
 		final int[] minInPart = new int[CeilingDivide.calc(IntegerNumberSystem.getInstance(), a.size(), partLength)];
 		for (int i : ZeroTo.get(minInPart.length)) {
 			minInPart[i] = i * partLength;
 			for (int j : FromTo.get(i * partLength + 1, Math.min((i + 1) * partLength, a.size())))
-				minInPart[i] = RMQUtil.selectSmallestIndex(a, j, minInPart[i], comp);
+				minInPart[i] = RangeMinimumQueryUtil.selectSmallestIndex(a, j, minInPart[i], comp);
 		}
 
-		return new PreprecessedRMQ() {
+		return new RangeMinimumQueryResult() {
 			@Override
-			public int queryIndex(int start, int end) {
+			public int getIndex(int start, int end) {
 				AssertStatus.assertTrue(start < end);
 				int firstPart = start / partLength;
 				int lastPart = (end - 1) / partLength;
 				int r = start;
 				if (firstPart == lastPart) {
 					for (int i : FromTo.get(start, end))
-						r = RMQUtil.selectSmallestIndex(a, i, r, comp);
+						r = RangeMinimumQueryUtil.selectSmallestIndex(a, i, r, comp);
 				} else {
 					for (int i : FromTo.get(start, partLength * (firstPart + 1)))
-						r = RMQUtil.selectSmallestIndex(a, i, r, comp);
+						r = RangeMinimumQueryUtil.selectSmallestIndex(a, i, r, comp);
 					for (int i : FromTo.get(firstPart + 1, lastPart))
-						r = RMQUtil.selectSmallestIndex(a, minInPart[i], r, comp);
+						r = RangeMinimumQueryUtil.selectSmallestIndex(a, minInPart[i], r, comp);
 					for (int i : FromTo.get(partLength * lastPart, end))
-						r = RMQUtil.selectSmallestIndex(a, i, r, comp);
+						r = RangeMinimumQueryUtil.selectSmallestIndex(a, i, r, comp);
 				}
 				return r;
 			}
