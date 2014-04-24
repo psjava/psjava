@@ -25,7 +25,7 @@ public abstract class RangeMinimumQueryTestBase {
 	public void testRandom() {
 		int n = 100;
 		DynamicArray<Integer> a = DynamicArray.create();
-		AddToLastAll.add(a, ZeroTo.get(100));
+		AddToLastAll.add(a, ZeroTo.get(n));
 		Shuffler.shuffle(a);
 
 		PreprecessedRMQ r = getInstance().preprocess(a, new DefaultComparator<Integer>());
