@@ -110,6 +110,11 @@ public class BinaryHeap<T> implements Heap<T> {
 		}
 
 		@Override
+		public boolean isInHeap() {
+			return pos != -1;
+		}
+
+		@Override
 		public void decreaseKey(T key) {
 			assertNotDeleted();
 			this.key = key;
