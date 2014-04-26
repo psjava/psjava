@@ -5,7 +5,7 @@ import org.psjava.algo.sequence.rmq.RangeMinimumQuery;
 public class RangeMinimumQueryBySquareRootApproachTest extends RangeMinimumQueryTestBase {
 
 	protected RangeMinimumQuery getInstance() {
-		return new RangeMinimumQueryBySquareRootApproach();
+		return RangeMinimumQueryBySquareRootApproach.getInstance();
 	}
 
 }

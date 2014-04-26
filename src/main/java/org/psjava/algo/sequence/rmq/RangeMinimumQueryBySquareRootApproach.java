@@ -16,42 +16,46 @@ import org.psjava.util.ZeroTo;
  * 
  * Space complexity: O(sqrt(t))
  */
-public class RangeMinimumQueryBySquareRootApproach implements RangeMinimumQuery {
+public class RangeMinimumQueryBySquareRootApproach {
 
 	public static RangeMinimumQuery getInstance() {
-		return new RangeMinimumQueryBySquareRootApproach();
-	}
-
-	@Override
-	public <T> RangeMinimumQueryResult preprocess(final Array<T> a, final Comparator<T> comp) {
-		final int partLength = Math.max(1, (int) Math.sqrt(a.size()));
-		final int[] minInPart = new int[CeilingDivide.calc(IntegerNumberSystem.getInstance(), a.size(), partLength)];
-		for (int i : ZeroTo.get(minInPart.length)) {
-			minInPart[i] = i * partLength;
-			for (int j : FromTo.get(i * partLength + 1, Math.min((i + 1) * partLength, a.size())))
-				minInPart[i] = RangeMinimumQueryUtil.selectSmallestIndex(a, j, minInPart[i], comp);
-		}
-
-		return new RangeMinimumQueryResult() {
+		return new RangeMinimumQuery() {
 			@Override
-			public int getIndex(int start, int end) {
-				AssertStatus.assertTrue(start < end);
-				int firstPart = start / partLength;
-				int lastPart = (end - 1) / partLength;
-				int r = start;
-				if (firstPart == lastPart) {
-					for (int i : FromTo.get(start, end))
-						r = RangeMinimumQueryUtil.selectSmallestIndex(a, i, r, comp);
-				} else {
-					for (int i : FromTo.get(start, partLength * (firstPart + 1)))
-						r = RangeMinimumQueryUtil.selectSmallestIndex(a, i, r, comp);
-					for (int i : FromTo.get(firstPart + 1, lastPart))
-						r = RangeMinimumQueryUtil.selectSmallestIndex(a, minInPart[i], r, comp);
-					for (int i : FromTo.get(partLength * lastPart, end))
-						r = RangeMinimumQueryUtil.selectSmallestIndex(a, i, r, comp);
+			public <T> RangeMinimumQueryResult preprocess(final Array<T> a, final Comparator<T> comp) {
+				final int partLength = Math.max(1, (int) Math.sqrt(a.size()));
+				final int[] minInPart = new int[CeilingDivide.calc(IntegerNumberSystem.getInstance(), a.size(), partLength)];
+				for (int i : ZeroTo.get(minInPart.length)) {
+					minInPart[i] = i * partLength;
+					for (int j : FromTo.get(i * partLength + 1, Math.min((i + 1) * partLength, a.size())))
+						minInPart[i] = RangeMinimumQueryUtil.selectSmallestIndex(a, j, minInPart[i], comp);
 				}
-				return r;
+
+				return new RangeMinimumQueryResult() {
+					@Override
+					public int getIndex(int start, int end) {
+						AssertStatus.assertTrue(start < end);
+						int firstPart = start / partLength;
+						int lastPart = (end - 1) / partLength;
+						int r = start;
+						if (firstPart == lastPart) {
+							for (int i : FromTo.get(start, end))
+								r = RangeMinimumQueryUtil.selectSmallestIndex(a, i, r, comp);
+						} else {
+							for (int i : FromTo.get(start, partLength * (firstPart + 1)))
+								r = RangeMinimumQueryUtil.selectSmallestIndex(a, i, r, comp);
+							for (int i : FromTo.get(firstPart + 1, lastPart))
+								r = RangeMinimumQueryUtil.selectSmallestIndex(a, minInPart[i], r, comp);
+							for (int i : FromTo.get(partLength * lastPart, end))
+								r = RangeMinimumQueryUtil.selectSmallestIndex(a, i, r, comp);
+						}
+						return r;
+					}
+				};
 			}
 		};
 	}
+
+	private RangeMinimumQueryBySquareRootApproach() {
+	}
+
 }
