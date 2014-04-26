@@ -11,4 +11,7 @@ public class StrictEqualityTester {
 			return false;
 		return tester.areEqual(me, (T) you);
 	}
+
+	private StrictEqualityTester() {
+	}
 }
