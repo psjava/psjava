@@ -9,16 +9,9 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.stack.GoodStackFactory;
 import org.psjava.ds.stack.Stack;
-import org.psjava.ds.stack.StackFactory;
 import org.psjava.goods.GoodMutableMapFactory;
 
-/**
- * Implementation of DFS (Depth First Search)
- */
-
 public class DFSCore {
-
-	private static final StackFactory STACK_FACTORY = GoodStackFactory.getInstance();
 
 	private static class StackItem<V, E> {
 		public V v;
@@ -42,7 +35,7 @@ public class DFSCore {
 	}
 
 	public static <V, E extends DirectedEdge<V>> void traverse(AdjacencyList<V, E> adj, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
-		Stack<StackItem<V, E>> stack = STACK_FACTORY.create();
+		Stack<StackItem<V, E>> stack = GoodStackFactory.getInstance().create();
 		status.put(start, DFSStatus.DISCOVERED);
 		SimpleStopper stopper = new SimpleStopper();
 		visitor.onDiscovered(start, 0, stopper);
@@ -72,6 +65,9 @@ public class DFSCore {
 					visitor.onWalkUp(item.e);
 			}
 		}
+	}
+
+	private DFSCore() {
 	}
 
 }

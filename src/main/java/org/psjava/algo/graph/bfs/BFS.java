@@ -3,22 +3,11 @@ package org.psjava.algo.graph.bfs;
 import org.psjava.ds.graph.AdjacencyList;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.queue.Queue;
-import org.psjava.ds.queue.QueueFactory;
 import org.psjava.ds.set.MutableSet;
-import org.psjava.ds.set.MutableSetFactory;
 import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.goods.GoodQueueFactory;
 
-/**
- * Implementation of Breadth-first search
- * 
- * http://en.wikipedia.org/wiki/Breadth-first_search
- */
-
 public class BFS {
-
-	private static final QueueFactory QF = GoodQueueFactory.getInstance();
-	private static final MutableSetFactory SF = GoodMutableSetFactory.getInstance();
 
 	private static class QueueItem<V> {
 		int depth;
@@ -30,11 +19,11 @@ public class BFS {
 		}
 	}
 
-	public static <V, E extends DirectedEdge<V>> void traverse(AdjacencyList<V, E> adj, Iterable<V> starts, BFSVisitor<V, E> visitor) {
-		MutableSet<V> discovered = SF.create();
+	public static <V, E extends DirectedEdge<V>> void traverse(AdjacencyList<V, E> adj, Iterable<V> startVertices, BFSVisitor<V, E> visitor) {
+		MutableSet<V> discovered = GoodMutableSetFactory.getInstance().create();
 		SimpleStopper stopper = new SimpleStopper();
-		Queue<QueueItem<V>> queue = QF.create();
-		for (V v : starts) {
+		Queue<QueueItem<V>> queue = GoodQueueFactory.getInstance().create();
+		for (V v : startVertices) {
 			queue.enque(new QueueItem<V>(0, v));
 			discovered.insert(v);
 			visitor.onDiscover(v, 0, stopper);
@@ -56,6 +45,9 @@ public class BFS {
 				}
 			}
 		}
+	}
+
+	private BFS() {
 	}
 
 }
