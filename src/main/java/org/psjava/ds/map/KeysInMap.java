@@ -13,4 +13,7 @@ public class KeysInMap {
 			}
 		});
 	}
+
+	private KeysInMap() {
+	}
 }

@@ -14,4 +14,6 @@ public class BinarySearchLastTrue {
 		return BinarySearchLast.search(inputNumberSystem, trueToFalseOrderedFunction, comp, begin, end, Boolean.TRUE, def);
 	}
 
+	private BinarySearchLastTrue() {
+	}
 }

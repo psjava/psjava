@@ -16,4 +16,7 @@ public class FlowAdjust {
 		status.flow = ns.add(status.flow, addition);
 	}
 
+	private FlowAdjust() {
+	}
+
 }

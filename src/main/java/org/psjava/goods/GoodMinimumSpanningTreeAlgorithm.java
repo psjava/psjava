@@ -9,4 +9,7 @@ public class GoodMinimumSpanningTreeAlgorithm {
 		return KruscalAlgorithm.getInstance(GoodSortingAlgorithm.getInstance());
 	}
 
+	private GoodMinimumSpanningTreeAlgorithm() {
+	}
+
 }

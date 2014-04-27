@@ -6,4 +6,7 @@ public class DoubleSquare {
 		return a * a;
 	}
 
+	private DoubleSquare() {
+	}
+
 }

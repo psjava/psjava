@@ -9,4 +9,7 @@ public class CeilingDivide {
 		T one = ns.getOne();
 		return ns.integerDivide(ns.add(positiveDividend, ns.subtract(positiveDivisor, one)), positiveDivisor);
 	}
+
+	private CeilingDivide() {
+	}
 }

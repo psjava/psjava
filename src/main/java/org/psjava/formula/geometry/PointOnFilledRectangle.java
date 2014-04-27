@@ -17,4 +17,7 @@ public class PointOnFilledRectangle {
 		return InRange.is(p.x(), minx, maxx, comp) && InRange.is(p.y(), miny, maxy, comp);
 	}
 
+	private PointOnFilledRectangle() {
+	}
+
 }

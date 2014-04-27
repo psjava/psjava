@@ -9,4 +9,7 @@ public class SumOfVarargs {
 		return Sum.calc(ns, VarargsIterable.create(values));
 	}
 
+	private SumOfVarargs() {
+	}
+
 }

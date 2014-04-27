@@ -4,4 +4,7 @@ public class ArrayFromValues {
 	public static <T> Array<T> create(T... values) {
 		return MutableArrayFromValues.create(values);
 	}
+
+	private ArrayFromValues() {
+	}
 }

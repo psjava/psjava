@@ -7,4 +7,7 @@ public class AddToLastAll {
 			target.addToLast(v);
 	}
 
+	private AddToLastAll() {
+	}
+
 }

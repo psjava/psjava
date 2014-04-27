@@ -10,4 +10,7 @@ public class BinarySearchLastFalse {
 		return BinarySearchLast.search(inputNumberSystem, falseToTrueFunction, BooleanDefaultComparator.getInstance(), begin, end, Boolean.FALSE, def);
 	}
 
+	private BinarySearchLastFalse() {
+	}
+
 }

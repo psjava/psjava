@@ -21,4 +21,7 @@ public class SimpleBipartiteGraphEdge {
 		};
 	}
 
+	private SimpleBipartiteGraphEdge() {
+	}
+
 }

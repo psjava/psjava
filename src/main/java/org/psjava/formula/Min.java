@@ -9,4 +9,7 @@ public class Min {
 		else
 			return v2;
 	}
+
+	private Min() {
+	}
 }

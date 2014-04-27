@@ -17,4 +17,7 @@ public class MinimumResidualOnPath {
 		}), ns);
 	}
 
+	private MinimumResidualOnPath() {
+	}
+
 }

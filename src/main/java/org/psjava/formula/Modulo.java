@@ -14,4 +14,7 @@ public class Modulo {
 		return remainder;
 	}
 
+	private Modulo() {
+	}
+
 }

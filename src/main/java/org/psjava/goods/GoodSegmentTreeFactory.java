@@ -8,4 +8,7 @@ public class GoodSegmentTreeFactory {
 	public static SegmentTreeFactory getInstance() {
 		return new SegmentTreeFactoryByArrayImplementation();
 	}
+
+	private GoodSegmentTreeFactory() {
+	}
 }

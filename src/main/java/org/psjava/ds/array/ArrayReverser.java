@@ -11,4 +11,7 @@ public class ArrayReverser {
 			ArraySwapper.swap(a, start + i, end - 1 - i);
 	}
 
+	private ArrayReverser() {
+	}
+
 }

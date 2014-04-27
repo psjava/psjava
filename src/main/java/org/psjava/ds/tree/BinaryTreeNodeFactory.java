@@ -66,4 +66,7 @@ public class BinaryTreeNodeFactory {
 
 		};
 	}
+
+	private BinaryTreeNodeFactory() {
+	}
 }

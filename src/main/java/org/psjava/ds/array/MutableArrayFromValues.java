@@ -10,4 +10,7 @@ public class MutableArrayFromValues {
 			a[i] = values[i];
 		return MutableArrayUsingJavaArray.create(a);
 	}
+
+	private MutableArrayFromValues() {
+	}
 }

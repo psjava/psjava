@@ -15,4 +15,7 @@ public class StringMerger {
 		return sb.toString();
 	}
 
+	private StringMerger() {
+	}
+
 }

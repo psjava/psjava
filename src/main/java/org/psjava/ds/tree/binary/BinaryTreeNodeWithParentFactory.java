@@ -90,4 +90,7 @@ public class BinaryTreeNodeWithParentFactory {
 
 		};
 	}
+
+	private BinaryTreeNodeWithParentFactory() {
+	}
 }

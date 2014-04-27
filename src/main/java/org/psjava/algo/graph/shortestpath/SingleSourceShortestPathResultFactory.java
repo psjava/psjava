@@ -36,4 +36,7 @@ public class SingleSourceShortestPathResultFactory {
 		};
 	}
 
+	private SingleSourceShortestPathResultFactory() {
+	}
+
 }

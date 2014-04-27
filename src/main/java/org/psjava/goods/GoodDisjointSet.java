@@ -8,5 +8,8 @@ public class GoodDisjointSet {
 	public static <T> DisjointSet<T> create() {
 		return new DisjointSetForest<T>();
 	}
+	
+	private GoodDisjointSet() {
+	}
 
 }

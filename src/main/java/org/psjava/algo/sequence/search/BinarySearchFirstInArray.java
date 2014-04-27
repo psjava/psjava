@@ -12,4 +12,7 @@ public class BinarySearchFirstInArray {
 		return BinarySearchFirst.search(IntegerNumberSystem.getInstance(), FunctionByArray.wrap(array), sortedOrder, 0, array.size(), target, def);
 	}
 
+	private BinarySearchFirstInArray() {
+	}
+
 }

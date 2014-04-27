@@ -9,4 +9,7 @@ public class GoodTrieFactory {
 	public static TrieFactory getInstance() {
 		return INSTANCE;
 	}
+
+	private GoodTrieFactory() {
+	}
 }

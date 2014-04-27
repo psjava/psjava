@@ -18,4 +18,7 @@ public class SeriesComparator<T> {
 		};
 	}
 
+	private SeriesComparator() {
+	}
+
 }

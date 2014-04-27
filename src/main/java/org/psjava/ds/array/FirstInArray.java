@@ -6,4 +6,7 @@ public class FirstInArray {
 		return a.get(0);
 	}
 
+	private FirstInArray() {
+	}
+
 }

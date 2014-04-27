@@ -76,4 +76,7 @@ public class MutableSortedMapUsingBinarySearchTree {
 			}
 		};
 	}
+
+	private MutableSortedMapUsingBinarySearchTree() {
+	}
 }

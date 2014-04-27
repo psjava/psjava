@@ -7,4 +7,7 @@ public class Java2DArray {
 		return (W[][]) java.lang.reflect.Array.newInstance(clazz, n, m);
 	}
 
+	private Java2DArray() {
+	}
+
 }

@@ -40,4 +40,7 @@ public class MutableSubArray {
 			}
 		};
 	}
+
+	private MutableSubArray() {
+	}
 }

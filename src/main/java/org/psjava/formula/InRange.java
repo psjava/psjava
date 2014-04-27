@@ -8,4 +8,7 @@ public class InRange {
 		return comp.compare(lower, v) <= 0 && comp.compare(v, upper) <= 0;
 	}
 
+	private InRange() {
+	}
+
 }

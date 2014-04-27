@@ -6,4 +6,7 @@ public class DirectedEdgeToString {
 		return e.from() + "->" + e.to();
 	}
 
+	private DirectedEdgeToString() {
+	}
+
 }

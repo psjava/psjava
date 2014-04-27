@@ -18,7 +18,8 @@ public class EdgeDoubledGraph {
 			@SuppressWarnings("unchecked")
 			@Override
 			public Iterable<E2> getEdges() {
-				return MergedIterable.wrap(VarargsIterable.create(ConvertedDataIterable.create(original.getEdges(), direction1Converter), ConvertedDataIterable.create(original.getEdges(), direction2Converter)));
+				return MergedIterable.wrap(VarargsIterable.create(ConvertedDataIterable.create(original.getEdges(), direction1Converter),
+						ConvertedDataIterable.create(original.getEdges(), direction2Converter)));
 			}
 
 			@Override
@@ -26,6 +27,9 @@ public class EdgeDoubledGraph {
 				return GraphToString.toString(this);
 			}
 		};
+	}
+
+	private EdgeDoubledGraph() {
 	}
 
 }

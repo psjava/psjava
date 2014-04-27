@@ -12,4 +12,7 @@ public class IntersectionOfTwoSets {
 		return r;
 	}
 
+	private IntersectionOfTwoSets() {
+	}
+
 }

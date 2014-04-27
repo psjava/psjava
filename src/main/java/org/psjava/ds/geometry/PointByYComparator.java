@@ -12,4 +12,7 @@ public class PointByYComparator {
 			}
 		};
 	}
+
+	private PointByYComparator() {
+	}
 }

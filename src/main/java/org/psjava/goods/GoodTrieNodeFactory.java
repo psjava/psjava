@@ -9,4 +9,7 @@ public class GoodTrieNodeFactory {
 		return TrieNodeFactoryUsingMap.create(GoodMutableMapFactory.getInstance());
 	}
 
+	private GoodTrieNodeFactory() {
+	}
+
 }

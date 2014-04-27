@@ -11,8 +11,6 @@ import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.util.AssertStatus;
 
 /**
- * This class is an application of Bellman Ford's algorithm.
- * 
  * Finds any one of possible negative cycles in a graph.
  */
 
@@ -74,14 +72,16 @@ public class NegativeCycleFinder {
 		return r;
 	}
 
-	private static <V, W, E extends DirectedWeightedEdge<V, W>> AugmentedEdge<V, W, E> relaxAnyEdgeIfPossible(Graph<Object, AugmentedEdge<V, W, E>> graph, AddableNumberSystem<W> ns, SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status) {
+	private static <V, W, E extends DirectedWeightedEdge<V, W>> AugmentedEdge<V, W, E> relaxAnyEdgeIfPossible(Graph<Object, AugmentedEdge<V, W, E>> graph, AddableNumberSystem<W> ns,
+			SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status) {
 		for (AugmentedEdge<V, W, E> e : graph.getEdges())
 			if (Relax.relax(status.distance, status.previous, e, ns))
 				return e;
 		return null;
 	}
 
-	private static <V, W, E extends DirectedWeightedEdge<V, W>> NegativeCycleFinderResult<E> createResult(final SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status, final AugmentedEdge<V, W, E> lastRelaxedEdgeOrNull) {
+	private static <V, W, E extends DirectedWeightedEdge<V, W>> NegativeCycleFinderResult<E> createResult(final SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status,
+			final AugmentedEdge<V, W, E> lastRelaxedEdgeOrNull) {
 		return new NegativeCycleFinderResult<E>() {
 			@Override
 			public boolean hasCycle() {
@@ -106,6 +106,9 @@ public class NegativeCycleFinder {
 				return path;
 			}
 		};
+	}
+
+	private NegativeCycleFinder() {
 	}
 
 }

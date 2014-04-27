@@ -14,4 +14,7 @@ public class TrieFactoryUsingMap {
 		};
 	}
 
+	private TrieFactoryUsingMap() {
+	}
+
 }

@@ -8,4 +8,7 @@ public class Increase {
 		return ns.add(v, ns.getOne());
 	}
 
+	private Increase() {
+	}
+
 }

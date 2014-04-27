@@ -8,4 +8,7 @@ public class GoodStackFactory {
 		return INSTANCE;
 	}
 
+	private GoodStackFactory() {
+	}
+
 }

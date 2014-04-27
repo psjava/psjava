@@ -11,4 +11,7 @@ public class BooleanIterable {
 		return INSTANCE;
 	}
 
+	private BooleanIterable() {
+	}
+
 }

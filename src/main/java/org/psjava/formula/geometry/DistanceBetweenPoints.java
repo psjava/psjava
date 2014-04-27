@@ -10,4 +10,7 @@ public class DistanceBetweenPoints {
 		Float64 sq = DistanceSquareBetweenPoints.calc(Float64NumberSystem.getInstance(), p1, p2);
 		return Math.sqrt(sq.toPrimitive());
 	}
+
+	private DistanceBetweenPoints() {
+	}
 }

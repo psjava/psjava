@@ -20,4 +20,7 @@ public class MultiSourceDFS {
 				DFSCore.traverse(adj, status, v, visitor);
 	}
 
+	private MultiSourceDFS() {
+	}
+
 }

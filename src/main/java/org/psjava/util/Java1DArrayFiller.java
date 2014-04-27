@@ -7,4 +7,7 @@ public class Java1DArrayFiller {
 			array[i] = value;
 	}
 
+	private Java1DArrayFiller() {
+	}
+
 }

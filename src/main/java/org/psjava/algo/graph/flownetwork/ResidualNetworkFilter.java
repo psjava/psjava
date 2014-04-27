@@ -15,4 +15,7 @@ public class ResidualNetworkFilter {
 		};
 	}
 
+	private ResidualNetworkFilter() {
+	}
+
 }

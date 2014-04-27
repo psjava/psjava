@@ -14,4 +14,7 @@ public class BinarySearchFirstFalse {
 		return BinarySearchFirst.search(keyNumberSystem, trueToFalseFunction, rcomp, begin, end, Boolean.FALSE, def);
 	}
 
+	private BinarySearchFirstFalse() {
+	}
+
 }

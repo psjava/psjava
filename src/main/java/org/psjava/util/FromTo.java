@@ -6,4 +6,7 @@ public class FromTo {
 		return IntSequenceIterable.create(begin, 1, end - begin);
 	}
 
+	private FromTo() {
+	}
+
 }

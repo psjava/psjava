@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import org.psjava.util.EmptyIterable;
 
+// TODO introduce static factory method
 public class BinaryHeapFactory implements HeapFactory {
 
 	@Override

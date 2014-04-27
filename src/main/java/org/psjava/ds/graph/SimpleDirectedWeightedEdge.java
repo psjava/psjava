@@ -29,4 +29,7 @@ public class SimpleDirectedWeightedEdge {
 		};
 	}
 
+	private SimpleDirectedWeightedEdge() {
+	}
+
 }

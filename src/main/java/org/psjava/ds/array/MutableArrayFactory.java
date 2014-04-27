@@ -10,4 +10,7 @@ public class MutableArrayFactory {
 			a[i] = init;
 		return MutableArrayUsingJavaArray.create(a);
 	}
+
+	private MutableArrayFactory() {
+	}
 }

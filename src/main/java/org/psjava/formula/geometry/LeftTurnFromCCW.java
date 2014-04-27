@@ -8,4 +8,7 @@ public class LeftTurnFromCCW {
 		return ns.isPositive(ccw);
 	}
 
+	private LeftTurnFromCCW() {
+	}
+
 }

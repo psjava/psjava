@@ -45,4 +45,7 @@ public class DirectionComparator {
 		};
 	}
 
+	private DirectionComparator() {
+	}
+
 }

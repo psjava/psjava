@@ -18,4 +18,7 @@ public class OpenAddressingHashTableMapFactory {
 		return INSTANCE;
 	}
 
+	private OpenAddressingHashTableMapFactory() {
+	}
+
 }

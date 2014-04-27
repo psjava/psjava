@@ -14,4 +14,7 @@ public class FunctionFromMap {
 		};
 	}
 
+	private FunctionFromMap() {
+	}
+
 }

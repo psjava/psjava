@@ -10,4 +10,7 @@ public class LongBitUtil {
 		return (v & (1L << pos)) > 0;
 	}
 
+	private LongBitUtil() {
+	}
+
 }

@@ -6,4 +6,7 @@ public class Java2DArrayFiller {
 		for (T[] sub : array)
 			Java1DArrayFiller.fill(sub, value);
 	}
+
+	private Java2DArrayFiller() {
+	}
 }

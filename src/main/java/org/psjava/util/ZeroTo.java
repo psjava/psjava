@@ -6,4 +6,7 @@ public class ZeroTo {
 		return IntSequenceIterable.create(0, 1, end);
 	}
 
+	private ZeroTo() {
+	}
+
 }

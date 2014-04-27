@@ -8,4 +8,7 @@ public class GoodMemoizationFactory {
 		return new MemoizationFactory(GoodMutableMapFactory.getInstance(), GoodMutableSetFactory.getInstance());
 	}
 
+	private GoodMemoizationFactory() {
+	}
+
 }

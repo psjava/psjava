@@ -17,7 +17,7 @@ public class BFSPathFinder {
 		return new PathFinder() {
 			@Override
 			public <V, E extends DirectedEdge<V>> Collection<E> find(AdjacencyList<V, E> adj, V start, final V target, Collection<E> def) {
-				final MutableMap<V, E> walked = GoodMutableMapFactory.getInstance().create();
+				final MutableMap<V, E> walked = GoodMutableMapFactory.getInstance().create(); // TODO factory to parameter.
 				BFS.traverse(adj, SingleElementCollection.create(start), new BFSVisitor<V, E>() {
 					@Override
 					public void onDiscover(V vertex, int d, VisitorStopper s) {
@@ -47,5 +47,8 @@ public class BFSPathFinder {
 			cur = e.from();
 		}
 		return a;
+	}
+
+	private BFSPathFinder() {
 	}
 }

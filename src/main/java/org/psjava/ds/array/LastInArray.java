@@ -6,4 +6,7 @@ public class LastInArray {
 		return a.get(a.size() - 1);
 	}
 
+	private LastInArray() {
+	}
+
 }

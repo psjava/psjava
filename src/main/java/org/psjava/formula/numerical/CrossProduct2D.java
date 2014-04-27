@@ -11,4 +11,7 @@ public class CrossProduct2D {
 		return ns.subtract(x1y2, y1x2);
 	}
 
+	private CrossProduct2D() {
+	}
+
 }

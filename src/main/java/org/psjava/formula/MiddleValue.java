@@ -9,4 +9,7 @@ public class MiddleValue {
 		return ns.add(ns.multiply(v1, rateOf1), ns.multiply(v2, rateOf2));
 	}
 
+	private MiddleValue() {
+	}
+
 }

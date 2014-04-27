@@ -15,4 +15,7 @@ public class MaxInIterable {
 		return max;
 	}
 
+	private MaxInIterable() {
+	}
+
 }

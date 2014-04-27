@@ -12,4 +12,7 @@ public class DistanceSquareBetweenPoints {
 		return ns.add(dxSq, dySq);
 	}
 
+	private DistanceSquareBetweenPoints() {
+	}
+
 }

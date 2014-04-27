@@ -7,4 +7,7 @@ public class ArraySwapper {
 		a.set(p1, a.get(p2));
 		a.set(p2, t);
 	}
+
+	private ArraySwapper() {
+	}
 }

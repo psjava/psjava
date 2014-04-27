@@ -11,4 +11,7 @@ public class Max {
 			return v2;
 	}
 
+	private Max() {
+	}
+
 }

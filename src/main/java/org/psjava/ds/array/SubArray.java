@@ -35,4 +35,7 @@ public class SubArray {
 		};
 	}
 
+	private SubArray() {
+	}
+
 }

@@ -9,4 +9,7 @@ public class GoodMutableMapFactory {
 		return JavaHashMapFactory.getInstance();
 	}
 
+	private GoodMutableMapFactory() {
+	}
+
 }

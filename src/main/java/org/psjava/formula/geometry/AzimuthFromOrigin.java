@@ -11,4 +11,7 @@ public class AzimuthFromOrigin {
 		return AzimuthFromPoint.calc(p, Float64PointOrigin.ORIGIN);
 	}
 
+	private AzimuthFromOrigin() {
+	}
+
 }

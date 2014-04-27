@@ -39,4 +39,7 @@ public class SieveOfEratosthenes {
 		return r;
 	}
 
+	private SieveOfEratosthenes() {
+	}
+
 }

@@ -20,4 +20,7 @@ public class SortingHelper {
 		sort.sort(MutableSubArray.wrap(a, start, end), comparator);
 	}
 
+	private SortingHelper() {
+	}
+
 }

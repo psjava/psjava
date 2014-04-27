@@ -93,4 +93,7 @@ public class MutableMapUsingJavaMap {
 		};
 	}
 
+	private MutableMapUsingJavaMap() {
+	}
+
 }

@@ -18,4 +18,7 @@ public class DirectedGraphFromUndirected {
 		});
 	}
 
+	private DirectedGraphFromUndirected() {
+	}
+
 }

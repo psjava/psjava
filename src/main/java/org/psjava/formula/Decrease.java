@@ -8,4 +8,7 @@ public class Decrease {
 		return ns.subtract(value, ns.getOne());
 	}
 
+	private Decrease() {
+	}
+
 }

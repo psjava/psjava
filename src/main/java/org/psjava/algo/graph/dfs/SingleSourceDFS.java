@@ -10,4 +10,7 @@ public class SingleSourceDFS {
 		MutableMap<V, DFSStatus> status = DFSCore.createInitialStatus(adj.getVertices());
 		DFSCore.traverse(adj, status, start, visitor);
 	}
+
+	private SingleSourceDFS() {
+	}
 }

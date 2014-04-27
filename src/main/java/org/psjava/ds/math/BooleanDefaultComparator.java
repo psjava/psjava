@@ -12,4 +12,7 @@ public class BooleanDefaultComparator {
 		return INSTANCE;
 	}
 
+	private BooleanDefaultComparator() {
+	}
+
 }

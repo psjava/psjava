@@ -7,4 +7,7 @@ public class Residual {
 	public static <F> F calc(FlowNetworkEdge<?, F, ?> e, AddableNumberSystem<F> ns) {
 		return ns.subtract(e.getFlowStatus().capacity, e.getFlowStatus().flow);
 	}
+
+	private Residual() {
+	}
 }

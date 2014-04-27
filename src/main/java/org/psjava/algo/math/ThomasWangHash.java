@@ -1,8 +1,9 @@
 package org.psjava.algo.math;
 
+/**
+ * from http://www.concentric.net/~ttwang/tech/inthash.htm
+ */
 public class ThomasWangHash {
-
-	// from http://www.concentric.net/~ttwang/tech/inthash.htm
 
 	public static int hash32bit(int key) {
 		key = ~key + (key << 15); // key = (key << 15) - key - 1;
@@ -22,5 +23,8 @@ public class ThomasWangHash {
 		key = key + (key << 6);
 		key = key ^ (key >>> 22);
 		return (int) key;
+	}
+
+	private ThomasWangHash() {
 	}
 }

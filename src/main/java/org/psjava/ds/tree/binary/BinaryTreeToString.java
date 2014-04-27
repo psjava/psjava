@@ -23,4 +23,7 @@ public class BinaryTreeToString {
 		return r;
 	}
 
+	private BinaryTreeToString() {
+	}
+
 }

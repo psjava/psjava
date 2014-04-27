@@ -21,4 +21,7 @@ public class Relax {
 		return false;
 	}
 
+	private Relax() {
+	}
+
 }

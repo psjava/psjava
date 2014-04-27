@@ -20,4 +20,7 @@ public class EdgeFilteredSubAdjacencyList {
 		};
 	}
 
+	private EdgeFilteredSubAdjacencyList() {
+	}
+
 }

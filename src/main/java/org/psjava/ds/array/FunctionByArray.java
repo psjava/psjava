@@ -12,5 +12,8 @@ public class FunctionByArray {
 			}
 		};
 	}
+	
+	private FunctionByArray() {
+	}
 
 }

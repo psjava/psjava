@@ -30,4 +30,7 @@ public class BinarySearchFirst {
 		return end;
 	}
 
+	private BinarySearchFirst() {
+	}
+
 }

@@ -11,4 +11,7 @@ public class Accumulate {
 		return r;
 	}
 
+	private Accumulate() {
+	}
+
 }

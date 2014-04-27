@@ -14,4 +14,7 @@ public class GraphToString {
 		return "Graph({" + IterableToString.toString(g.getVertices()) + "},{" + IterableToString.toString(g.getEdges()) + "})";
 	}
 
+	private GraphToString() {
+	}
+
 }

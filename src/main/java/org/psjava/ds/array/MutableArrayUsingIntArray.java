@@ -40,4 +40,7 @@ public class MutableArrayUsingIntArray {
 		};
 	}
 
+	private MutableArrayUsingIntArray() {
+	}
+
 }

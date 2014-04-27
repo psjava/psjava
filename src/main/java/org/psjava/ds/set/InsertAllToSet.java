@@ -5,4 +5,7 @@ public class InsertAllToSet {
 		for (T v : values)
 			set.insert(v);
 	}
+
+	private InsertAllToSet() {
+	}
 }

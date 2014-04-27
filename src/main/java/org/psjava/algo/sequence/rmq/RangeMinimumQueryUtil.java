@@ -13,4 +13,7 @@ public class RangeMinimumQueryUtil {
 			return i2;
 	}
 
+	private RangeMinimumQueryUtil() {
+	}
+
 }

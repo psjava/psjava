@@ -26,4 +26,7 @@ public class AreaOfSimplePolygon2D {
 		return Abs.calc(ns, total);
 	}
 
+	private AreaOfSimplePolygon2D() {
+	}
+
 }

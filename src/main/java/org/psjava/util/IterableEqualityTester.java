@@ -19,4 +19,7 @@ public class IterableEqualityTester {
 		}
 	}
 
+	private IterableEqualityTester() {
+	}
+
 }

@@ -12,4 +12,7 @@ public class DirectionVectorFrom2DPoints {
 		return Vector2D.create(dx, dy);
 	}
 
+	private DirectionVectorFrom2DPoints() {
+	}
+
 }

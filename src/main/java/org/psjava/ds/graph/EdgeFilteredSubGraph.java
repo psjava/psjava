@@ -25,4 +25,6 @@ public class EdgeFilteredSubGraph {
 		};
 	}
 
+	private EdgeFilteredSubGraph() {
+	}
 }

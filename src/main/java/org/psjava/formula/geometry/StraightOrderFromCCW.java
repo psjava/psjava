@@ -9,4 +9,7 @@ public class StraightOrderFromCCW {
 		return ns.isZero(ccw) && PointOnFilledRectangle.isOn(p2, p1.x(), p3.x(), p1.y(), p3.y(), ns);
 	}
 
+	private StraightOrderFromCCW() {
+	}
+
 }

@@ -21,4 +21,7 @@ public class SimpleDirectedEdge {
 		};
 	}
 
+	private SimpleDirectedEdge() {
+	}
+
 }

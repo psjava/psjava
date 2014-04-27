@@ -21,4 +21,7 @@ public class GCD {
 		}
 	}
 
+	private GCD() {
+	}
+
 }

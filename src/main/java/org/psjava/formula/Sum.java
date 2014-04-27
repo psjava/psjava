@@ -12,4 +12,7 @@ public class Sum {
 			}
 		});
 	}
+
+	private Sum() {
+	}
 }

@@ -11,4 +11,7 @@ public class OrderFreeIterableHash {
 		return r;
 	}
 
+	private OrderFreeIterableHash() {
+	}
+
 }

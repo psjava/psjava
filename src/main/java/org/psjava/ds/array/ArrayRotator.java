@@ -7,4 +7,7 @@ public class ArrayRotator {
 		ArrayReverser.reverse(a, leftShiftCount, a.size());
 		ArrayReverser.reverse(a, 0, a.size());
 	}
+
+	private ArrayRotator() {
+	}
 }

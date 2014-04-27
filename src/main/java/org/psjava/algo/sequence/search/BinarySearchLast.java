@@ -23,4 +23,7 @@ public class BinarySearchLast {
 			return def;
 	}
 
+	private BinarySearchLast() {
+	}
+
 }

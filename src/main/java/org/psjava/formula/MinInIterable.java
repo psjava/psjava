@@ -10,4 +10,7 @@ public class MinInIterable {
 		return MaxInIterable.max(iterable, ReversedComparator.wrap(comp));
 	}
 
+	private MinInIterable() {
+	}
+
 }

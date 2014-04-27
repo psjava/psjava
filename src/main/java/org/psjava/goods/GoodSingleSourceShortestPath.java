@@ -9,4 +9,7 @@ public class GoodSingleSourceShortestPath {
 	public static SingleSourceShortestPath getInstance() {
 		return new Dijkstra(new BinaryHeapFactory());
 	}
+
+	private GoodSingleSourceShortestPath() {
+	}
 }

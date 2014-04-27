@@ -39,5 +39,8 @@ public class MutableArrayUsingLongArray {
 			}
 		};
 	}
+	
+	private MutableArrayUsingLongArray() {
+	}
 
 }

@@ -12,4 +12,7 @@ public class AllSourceDFS {
 		MultiSourceDFS.traverse(graph, graph.getVertices(), visitor);
 	}
 
+	private AllSourceDFS() {
+	}
+
 }

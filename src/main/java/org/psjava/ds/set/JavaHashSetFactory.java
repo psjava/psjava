@@ -13,4 +13,7 @@ public class JavaHashSetFactory {
 		};
 	}
 
+	private JavaHashSetFactory() {
+	}
+
 }

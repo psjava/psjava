@@ -51,4 +51,7 @@ public class SimpleFlowNetworkEdge<V, F> {
 		};
 	}
 
+	private SimpleFlowNetworkEdge() {
+	}
+
 }

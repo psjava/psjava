@@ -10,4 +10,7 @@ public class MaxInVarargs {
 		return MaxInIterable.max(VarargsIterable.create(values), comp);
 	}
 
+	private MaxInVarargs() {
+	}
+
 }

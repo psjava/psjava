@@ -12,4 +12,6 @@ public class PointByDistanceAzimuth {
 		return Point2D.create(Float64.valueOf(x), Float64.valueOf(y));
 	}
 
+	private PointByDistanceAzimuth() {
+	}
 }

@@ -13,4 +13,7 @@ public class ValuesInMap {
 			}
 		});
 	}
+
+	private ValuesInMap() {
+	}
 }

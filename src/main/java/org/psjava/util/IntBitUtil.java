@@ -10,4 +10,7 @@ public class IntBitUtil {
 		return (v & (1 << pos)) > 0;
 	}
 
+	private IntBitUtil() {
+	}
+
 }

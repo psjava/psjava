@@ -10,4 +10,7 @@ public class GoodSortingAlgorithm {
 	public static SortingAlgorithm getInstance() {
 		return INSTANCE;
 	}
+
+	private GoodSortingAlgorithm() {
+	}
 }

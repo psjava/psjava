@@ -7,4 +7,7 @@ public class MakeSetAll {
 			dset.makeSet(v);
 		}
 	}
+
+	private MakeSetAll() {
+	}
 }

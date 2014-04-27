@@ -12,5 +12,7 @@ public class ReversedComparator {
 			}
 		};
 	}
-
+	
+	private ReversedComparator() {
+	}
 }

@@ -12,4 +12,7 @@ public class FloorDivide {
 			return ns.subtract(div, ns.getOne());
 	}
 
+	private FloorDivide() {
+	}
+
 }

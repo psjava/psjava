@@ -34,4 +34,7 @@ public class IntersectionOfNonParallelSegments {
 		return InRange.is(v, ns.getZero(), ns.getOne(), ns);
 	}
 
+	private IntersectionOfNonParallelSegments() {
+	}
+
 }

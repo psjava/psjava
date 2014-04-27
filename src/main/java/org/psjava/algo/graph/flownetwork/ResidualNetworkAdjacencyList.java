@@ -9,4 +9,7 @@ public class ResidualNetworkAdjacencyList {
 	public static <V, F, E extends FlowNetworkEdge<V, F, ?>> AdjacencyList<V, E> wrap(AdjacencyList<V, E> adj, final AddableNumberSystem<F> ns) {
 		return EdgeFilteredSubAdjacencyList.wrap(adj, ResidualNetworkFilter.<F, E> create(ns));
 	}
+
+	private ResidualNetworkAdjacencyList() {
+	}
 }

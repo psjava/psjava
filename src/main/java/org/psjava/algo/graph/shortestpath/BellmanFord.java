@@ -36,4 +36,7 @@ public class BellmanFord implements SingleSourceShortestPath {
 		}
 	}
 
+	public BellmanFord() {
+	}
+
 }

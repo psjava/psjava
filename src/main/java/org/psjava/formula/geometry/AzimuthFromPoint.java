@@ -14,4 +14,7 @@ public class AzimuthFromPoint {
 		return Azimuth.create(Math.atan2(y, x));
 	}
 
+	private AzimuthFromPoint() {
+	}
+
 }

@@ -7,4 +7,7 @@ public class GoodDequeFactory {
 	public static DequeFactory getInstance() {
 		return DynamicArrayDequeFactory.getInstance();
 	}
+
+	private GoodDequeFactory() {
+	}
 }

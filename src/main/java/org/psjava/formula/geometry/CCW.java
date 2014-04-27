@@ -19,4 +19,7 @@ public class CCW {
 		return ns.subtract(a, s);
 	}
 
+	private CCW() {
+	}
+
 }

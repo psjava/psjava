@@ -28,4 +28,7 @@ public class MergedIterator {
 		};
 	}
 
+	private MergedIterator() {
+	}
+
 }

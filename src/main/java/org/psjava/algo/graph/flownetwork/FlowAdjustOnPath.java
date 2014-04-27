@@ -10,4 +10,7 @@ public class FlowAdjustOnPath {
 			FlowAdjust.adjust(e, add, ns);
 	}
 
+	private FlowAdjustOnPath() {
+	}
+
 }

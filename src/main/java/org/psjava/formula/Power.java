@@ -16,4 +16,7 @@ public class Power {
 		}
 	}
 
+	private Power() {
+	}
+
 }

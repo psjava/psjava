@@ -6,4 +6,7 @@ public class OverflowException {
 		return new ArithmeticException("Overflow");
 	}
 
+	private OverflowException() {
+	}
+
 }

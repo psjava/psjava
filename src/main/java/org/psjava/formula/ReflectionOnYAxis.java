@@ -15,4 +15,7 @@ public class ReflectionOnYAxis {
 		};
 	}
 
+	private ReflectionOnYAxis() {
+	}
+
 }

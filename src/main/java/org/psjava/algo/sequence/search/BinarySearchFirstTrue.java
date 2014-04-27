@@ -10,4 +10,7 @@ public class BinarySearchFirstTrue {
 		return BinarySearchFirst.search(inputNumberSystem, falseToTrueFunction, BooleanDefaultComparator.getInstance(), begin, end, Boolean.TRUE, def);
 	}
 
+	private BinarySearchFirstTrue() {
+	}
+
 }

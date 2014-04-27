@@ -6,4 +6,7 @@ public class AddInvert {
 		return ns.subtract(ns.getZero(), v);
 	}
 
+	private AddInvert() {
+	}
+
 }

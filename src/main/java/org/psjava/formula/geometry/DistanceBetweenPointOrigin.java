@@ -10,4 +10,7 @@ public class DistanceBetweenPointOrigin {
 		return DistanceBetweenPoints.calc(p, Float64PointOrigin.ORIGIN);
 	}
 
+	private DistanceBetweenPointOrigin() {
+	}
+
 }

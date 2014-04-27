@@ -22,4 +22,7 @@ public class SimpleUndirectedEdge {
 		};
 	}
 
+	private SimpleUndirectedEdge() {
+	}
+
 }

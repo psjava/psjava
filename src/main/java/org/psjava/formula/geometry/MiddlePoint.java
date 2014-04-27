@@ -12,4 +12,7 @@ public class MiddlePoint {
 		return Point2D.create(x, y);
 	}
 
+	private MiddlePoint() {
+	}
+
 }
