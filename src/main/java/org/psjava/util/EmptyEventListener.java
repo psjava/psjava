@@ -1,13 +1,13 @@
 package org.psjava.util;
 
-public class EmptyEventListener {
+public class EmptyEventListener<T> implements EventListener<T> {
 
 	public static <T> EventListener<T> create() {
-		return new EventListener<T>() {
-			@Override
-			public void visit(T value) {
-			}
-		};
+		return new EmptyEventListener<T>();
+	}
+
+	@Override
+	public void visit(T value) {
 	}
 
 }
