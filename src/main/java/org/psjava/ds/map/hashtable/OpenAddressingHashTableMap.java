@@ -17,11 +17,11 @@ import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.StrictEqualityTester;
 import org.psjava.util.VarargsIterator;
 
-public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
+/**
+ * This is not very fast map. Because it's structure to provide flexibility of probing.
+ */
 
-	/**
-	 * This is not very fast map. Because it's structure to provide flexibility of probing.
-	 */
+public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 
 	private static class Entry<K, V> implements KeyValuePair<K, V> {
 		K keyOrNull; // if null then the entry is lazy deleted.

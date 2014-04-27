@@ -1,9 +1,9 @@
 package org.psjava.ds.heap;
 
+/**
+ * min-heap
+ */
 public interface Heap<T> {
-	/**
-	 * min-heap
-	 */
 	T getMinimum();
 
 	HeapNode<T> insert(T v);

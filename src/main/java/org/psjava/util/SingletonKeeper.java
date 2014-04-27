@@ -1,5 +1,6 @@
 package org.psjava.util;
 
+// TODO introduce static factor method
 public class SingletonKeeper<T> {
 
 	private Factory<T> factory;

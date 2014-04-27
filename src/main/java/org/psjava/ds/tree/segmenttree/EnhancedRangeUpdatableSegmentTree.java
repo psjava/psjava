@@ -4,11 +4,13 @@ import org.psjava.ds.array.Array;
 import org.psjava.ds.tree.BinaryTreeNode;
 import org.psjava.ds.tree.BinaryTreeNodeFactory;
 
-public class EnhancedRangeUpdatableSegmentTree<T, U> {
+/**
+ * Implemented by lazy propagation method. We did not implement in array implementation for tree.
+ * 
+ * Because in any method, we need node objects, so there is no advantage for memory allocation number.
+ */
 
-	/**
-	 * Implemented by lazy propagation method. We did not implement in array implementation for tree. Because after all, we need node objects, so there is no advantage for memory allocation number.
-	 */
+public class EnhancedRangeUpdatableSegmentTree<T, U> {
 
 	class NodeData {
 		T merged;

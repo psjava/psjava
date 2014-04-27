@@ -5,11 +5,11 @@ import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.BinaryTreeByArray;
 import org.psjava.util.AssertStatus;
 
-public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
+/**
+ * This class is for only simple replacement updating. This class has an advantage of BinaryTreeByArray's speed.
+ */
 
-	/**
-	 * This class is for only simple replacement updating. This class has an advantage of BinaryTreeByArray's speed.
-	 */
+public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 
 	private final BinaryOperator<T> merger;
 	private final BinaryTreeByArray<T> tree;
