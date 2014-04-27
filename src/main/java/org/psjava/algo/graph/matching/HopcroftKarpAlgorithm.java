@@ -24,33 +24,30 @@ import org.psjava.util.VisitorStopper;
 import org.psjava.util.ZeroTo;
 
 /**
- * Implementation of Hopcroft–Karp algorithm
- * 
- * http://en.wikipedia.org/wiki/Hopcroft%E2%80%93Karp_algorithm
- * 
  * O(V*root(E))
  */
 
-public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
+public class HopcroftKarpAlgorithm {
 
 	public static MaximumBipartiteMatching getInstance() {
-		return new HopcroftKarpAlgorithm();
+		return new MaximumBipartiteMatching() {
+			@Override
+			public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> bg) {
+				AdjacencyList<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);
+				while (true) {
+					Object bfsMark = new Object();
+					Collection<Vertex<V>> bfsFinishes = bfs(adj, bfsMark);
+					if (bfsFinishes.isEmpty())
+						break;
+					dfs(adj, bfsFinishes, bfsMark);
+				}
+				return createResult(adj);
+			}
+
+		};
 	}
 
-	@Override
-	public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> bg) {
-		AdjacencyList<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);
-		while (true) {
-			Object bfsMark = new Object();
-			Collection<Vertex<V>> bfsFinishes = bfs(adj, bfsMark);
-			if (bfsFinishes.isEmpty())
-				break;
-			dfs(adj, bfsFinishes, bfsMark);
-		}
-		return createResult(adj);
-	}
-
-	private enum Side {
+	private static enum Side {
 		LEFT, RIGHT
 	}
 
@@ -92,7 +89,7 @@ public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
 
 	}
 
-	private <V> AdjacencyList<Vertex<V>, Edge<V>> wrapAsGraph(BipartiteGraph<V> bg) {
+	private static <V> AdjacencyList<Vertex<V>, Edge<V>> wrapAsGraph(BipartiteGraph<V> bg) {
 		MutableMap<V, Vertex<V>> vertex = GoodMutableMapFactory.getInstance().create();
 		for (V v : bg.getLeftVertices())
 			vertex.put(v, new Vertex<V>(v, Side.LEFT));
@@ -109,7 +106,7 @@ public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
 		return AdjacencyListFromGraph.create(graph);
 	}
 
-	private <V> Collection<Vertex<V>> bfs(final AdjacencyList<Vertex<V>, Edge<V>> adj, final Object mark) {
+	private static <V> Collection<Vertex<V>> bfs(final AdjacencyList<Vertex<V>, Edge<V>> adj, final Object mark) {
 		final DynamicArray<Vertex<V>> finishes = DynamicArray.create();
 
 		BFS.traverse(EdgeFilteredSubAdjacencyList.wrap(adj, new DataFilter<Edge<V>>() {
@@ -150,7 +147,7 @@ public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
 		return finishes;
 	}
 
-	private <V> void dfs(final AdjacencyList<Vertex<V>, Edge<V>> adj, final Collection<Vertex<V>> bfsFinishes, final Object bfsMark) {
+	private static <V> void dfs(final AdjacencyList<Vertex<V>, Edge<V>> adj, final Collection<Vertex<V>> bfsFinishes, final Object bfsMark) {
 		MultiSourceDFS.traverse(EdgeFilteredSubAdjacencyList.wrap(adj, new DataFilter<Edge<V>>() {
 			@Override
 			public boolean isAccepted(Edge<V> edge) {
@@ -186,7 +183,7 @@ public class HopcroftKarpAlgorithm implements MaximumBipartiteMatching {
 		});
 	}
 
-	private <V> MaximumBipartiteMatchingResult<V> createResult(AdjacencyList<Vertex<V>, Edge<V>> adj) {
+	private static <V> MaximumBipartiteMatchingResult<V> createResult(AdjacencyList<Vertex<V>, Edge<V>> adj) {
 		final MutableMap<V, V> match = GoodMutableMapFactory.getInstance().create();
 		for (Vertex<V> v : adj.getVertices())
 			for (Edge<V> e : adj.getEdges(v))
