@@ -7,8 +7,8 @@ import org.psjava.algo.graph.shortestpath.SingleSourceShortestPath;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
-import org.psjava.ds.heap.BinaryHeapFactory;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
+import org.psjava.goods.GoodDijkstra;
 
 /**
  * @implementation {@link Dijkstra}
@@ -20,7 +20,7 @@ public class DijkstraAlgorithmExample {
 	@Test
 	public void example() {
 
-		// Dijkstra's algorithm is awesome... Let's construct a simple graph.
+		// Let's construct a simple graph.
 
 		MutableDirectedWeightedGraph<String, Integer> graph = MutableDirectedWeightedGraph.create();
 		graph.insertVertex("A");
@@ -31,14 +31,14 @@ public class DijkstraAlgorithmExample {
 		graph.addEdge("A", "B", 10);
 		graph.addEdge("B", "C", 20);
 
-		// Then calculate distances from a single source 'A'
+		// Calculate distances from a single source 'A'
 
-		SingleSourceShortestPath dijkstra = new Dijkstra(new BinaryHeapFactory());
-		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res = dijkstra.calc(graph, "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPath dijkstra = GoodDijkstra.getInstance();
+		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result = dijkstra.calc(graph, "A", IntegerNumberSystem.getInstance());
 
-		boolean reachabilityOfC = res.isReachable("C"); // must be true
-		boolean reachabilityOfD = res.isReachable("D"); // must be false
-		int distanceToC = res.getDistance("C"); // must be 30
+		boolean reachabilityOfC = result.isReachable("C"); // C is reachable.
+		boolean reachabilityOfD = result.isReachable("D"); // D is not reachable.
+		int distanceToC = result.getDistance("C"); // must be 30
 
 		Assert.assertTrue(reachabilityOfC);
 		Assert.assertEquals(30, distanceToC);
