@@ -11,6 +11,7 @@ import org.psjava.goods.GoodDijkstra;
 
 /**
  * @implementation {@link Dijkstra}
+ * @implementation {@link GoodDijkstra}
  * @see {@link ShortestPathAlgorithmExample}
  * @see {@link BellmanFordAlgorithmExample}
  */
