@@ -9,4 +9,7 @@ public class GoodDijkstra {
 		return new Dijkstra(new BinaryHeapFactory());
 	}
 
+	private GoodDijkstra() {
+	}
+
 }
