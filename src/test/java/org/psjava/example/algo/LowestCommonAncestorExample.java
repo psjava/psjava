@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.LowestCommonAncestor;
 import org.psjava.algo.graph.LowestCommonAncestorPreprecessed;
-import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.MutableDirectedGraph;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.example.ds.RootedTreeExample;
@@ -18,6 +17,8 @@ public class LowestCommonAncestorExample {
 
 	@Test
 	public void example() {
+		// Let's construct a simple rooted tree. A is the root.
+
 		MutableDirectedGraph<String> graph = MutableDirectedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
@@ -28,14 +29,14 @@ public class LowestCommonAncestorExample {
 		graph.addEdge("A", "C");
 		graph.addEdge("C", "D");
 
-		RootedTree<String, DirectedEdge<String>> tree = RootedTree.create(graph, "A");
+		// Run it!
 
-		LowestCommonAncestorPreprecessed<String> preprocessed = GoodLowestCommonAncestor.getInstrance().calc(tree);
+		LowestCommonAncestorPreprecessed<String> result = GoodLowestCommonAncestor.getInstrance().calc(RootedTree.create(graph, "A"));
 
-		String result1 = preprocessed.query("B", "C"); // must be "A"
+		String result1 = result.query("B", "C"); // must be "A"
 		Assert.assertEquals("A", result1);
 
-		String result2 = preprocessed.query("A", "D"); // must be "A"
+		String result2 = result.query("A", "D"); // must be "A"
 		Assert.assertEquals("A", result2);
 	}
 }
