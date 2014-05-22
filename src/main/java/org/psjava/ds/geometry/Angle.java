@@ -1,6 +1,6 @@
 package org.psjava.ds.geometry;
 
-import org.psjava.algo.math.ThomasWangHash;
+import org.psjava.goods.GoodLongHash;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
 
@@ -37,7 +37,7 @@ public class Angle implements EqualityTester<Angle> {
 
 	@Override
 	public int hashCode() {
-		return ThomasWangHash.hash64bit(Double.doubleToLongBits(radian));
+		return GoodLongHash.hash(Double.doubleToLongBits(radian));
 	}
 
 }

@@ -1,6 +1,6 @@
 package org.psjava.ds.numbersystrem;
 
-import org.psjava.algo.math.ThomasWangHash;
+import org.psjava.goods.GoodLongHash;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.FactoryByInt;
 import org.psjava.util.StrictEqualityTester;
@@ -46,7 +46,7 @@ public class Int64 {
 
 	@Override
 	public int hashCode() {
-		return ThomasWangHash.hash64bit(v);
+		return GoodLongHash.hash(v);
 	}
 
 	@Override

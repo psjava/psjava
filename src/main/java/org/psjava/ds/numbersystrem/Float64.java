@@ -1,6 +1,6 @@
 package org.psjava.ds.numbersystrem;
 
-import org.psjava.algo.math.ThomasWangHash;
+import org.psjava.goods.GoodLongHash;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
 
@@ -22,7 +22,7 @@ public class Float64 {
 
 	@Override
 	public int hashCode() {
-		return ThomasWangHash.hash64bit(Double.doubleToLongBits(value));
+		return GoodLongHash.hash(Double.doubleToLongBits(value));
 	}
 
 	@Override
@@ -37,6 +37,7 @@ public class Float64 {
 		}
 	};
 
+	@Override
 	public String toString() {
 		return Double.toString(value);
 	}

@@ -1,6 +1,6 @@
 package org.psjava.ds.geometry;
 
-import org.psjava.algo.math.ThomasWangHash;
+import org.psjava.goods.GoodLongHash;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
 
@@ -45,9 +45,10 @@ public class Azimuth implements EqualityTester<Azimuth> {
 
 	@Override
 	public final int hashCode() {
-		return ThomasWangHash.hash64bit(Double.doubleToLongBits(radian));
+		return GoodLongHash.hash(Double.doubleToLongBits(radian));
 	}
 
+	@Override
 	public String toString() {
 		return "Azimuth(" + String.format("%.2f", radian) + "pi)";
 	}

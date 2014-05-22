@@ -1,6 +1,6 @@
 package org.psjava.ds.numbersystrem;
 
-import org.psjava.algo.math.ThomasWangHash;
+import org.psjava.goods.GoodIntHash;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.FactoryByInt;
 import org.psjava.util.StrictEqualityTester;
@@ -41,7 +41,7 @@ public class Int32 {
 
 	@Override
 	public int hashCode() {
-		return ThomasWangHash.hash32bit(v);
+		return GoodIntHash.hash(v);
 	}
 
 	@Override
