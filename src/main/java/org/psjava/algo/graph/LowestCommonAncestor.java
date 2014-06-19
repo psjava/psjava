@@ -13,7 +13,6 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
-import org.psjava.util.Pair;
 import org.psjava.util.VisitorStopper;
 
 public class LowestCommonAncestor {
@@ -26,28 +25,38 @@ public class LowestCommonAncestor {
 		this.mapFactory = mapFactory;
 	}
 
+	private static class HistoryItem<V> {
+		final V vertex;
+		final int depth;
+
+		public HistoryItem(V v, int depth) {
+			this.vertex = v;
+			this.depth = depth;
+		}
+	}
+
 	public <V, E extends DirectedEdge<V>> LowestCommonAncestorPreprecessed<V> calc(RootedTree<V, E> tree) {
 		final MutableMap<Object, Integer> discoverIndex = mapFactory.create();
-		final DynamicArray<Pair<V, Integer>> history = DynamicArray.create(); // stores vertex and depth
+		final DynamicArray<HistoryItem<V>> history = DynamicArray.create();
 
 		SingleSourceDFS.traverse(AdjacencyListFromGraph.create(tree.graph), tree.root, new DFSVisitorBase<V, E>() {
 			@Override
 			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
 				discoverIndex.put(vertex, history.size());
-				history.addToLast(Pair.create(vertex, depth));
+				history.addToLast(new HistoryItem<V>(vertex, depth));
 			}
 
 			@Override
 			public void onWalkUp(E downedEdge) {
-				int lastDepth = LastInArray.getLast(history).v2;
-				history.addToLast(Pair.create(downedEdge.from(), lastDepth - 1));
+				int lastDepth = LastInArray.getLast(history).depth;
+				history.addToLast(new HistoryItem<V>(downedEdge.from(), lastDepth - 1));
 			}
 		});
 
-		final RangeMinimumQueryResult rmqResult = rmq.preprocess(history, new Comparator<Pair<V, Integer>>() {
+		final RangeMinimumQueryResult rmqResult = rmq.preprocess(history, new Comparator<HistoryItem<V>>() {
 			@Override
-			public int compare(Pair<V, Integer> o1, Pair<V, Integer> o2) {
-				return o1.v2 - o2.v2;
+			public int compare(HistoryItem<V> o1, HistoryItem<V> o2) {
+				return o1.depth - o2.depth;
 			}
 		});
 
@@ -56,7 +65,7 @@ public class LowestCommonAncestor {
 			public V query(V v1, V v2) {
 				int i1 = discoverIndex.get(v1);
 				int i2 = discoverIndex.get(v2);
-				return history.get(rmqResult.getIndex(Math.min(i1, i2), Math.max(i1, i2) + 1)).v1;
+				return history.get(rmqResult.getIndex(Math.min(i1, i2), Math.max(i1, i2) + 1)).vertex;
 			}
 		};
 	}
