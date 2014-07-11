@@ -20,5 +20,8 @@ public class LowestCommonAncestorTest {
 
 		Assert.assertEquals("2", r.query("3", "4"));
 		Assert.assertEquals("0", r.query("1", "4"));
+		Assert.assertEquals("4", r.query("4", "4"));
+		Assert.assertEquals("0", r.query("4", "0"));
+		Assert.assertEquals("0", r.query("3", "0"));
 	}
 }
