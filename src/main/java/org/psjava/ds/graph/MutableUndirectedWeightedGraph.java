@@ -1,9 +1,6 @@
 package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
-import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.set.MutableSet;
-import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.util.AssertStatus;
 
 public class MutableUndirectedWeightedGraph<V, W> implements Graph<V, UndirectedWeightedEdge<V, W>> {
@@ -12,31 +9,30 @@ public class MutableUndirectedWeightedGraph<V, W> implements Graph<V, Undirected
 		return new MutableUndirectedWeightedGraph<V, W>();
 	}
 
-	private MutableSet<V> vertices = GoodMutableSetFactory.getInstance().create();
-	private DynamicArray<UndirectedWeightedEdge<V, W>> edges = DynamicArray.create();
+	private MutableGraph<V, UndirectedWeightedEdge<V, W>> g = MutableGraph.create();
 
 	public void insertVertex(V v) {
-		vertices.insert(v);
+		g.insertVertex(v);
 	}
 
 	public void addEdge(V v1, V v2, W weight) {
 		assertVertexExist(v1);
 		assertVertexExist(v2);
-		edges.addToLast(SimpleUndirectedWeightedEdge.create(v1, v2, weight));
+		g.addEdge(SimpleUndirectedWeightedEdge.create(v1, v2, weight));
 	}
 
 	private void assertVertexExist(V v) {
-		AssertStatus.assertTrue(vertices.contains(v), "vertex is not in graph");
+		AssertStatus.assertTrue(g.getVertices().contains(v), "vertex is not in graph");
 	}
 
 	@Override
 	public Collection<V> getVertices() {
-		return vertices;
+		return g.getVertices();
 	}
 
 	@Override
 	public Iterable<UndirectedWeightedEdge<V, W>> getEdges() {
-		return edges;
+		return g.getEdges();
 	}
 
 	@Override
