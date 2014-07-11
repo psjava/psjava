@@ -10,8 +10,16 @@ public class FastScanner {
 	private StringTokenizer tokenizer;
 
 	public FastScanner(InputStream is) {
+		read(is, "\n\r\t ");
+	}
+
+	public FastScanner(InputStream is, String delimiters) {
+		read(is, delimiters);
+	}
+
+	private void read(InputStream is, String delimiters) {
 		try {
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(1024 * 1024);
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			byte[] buf = new byte[1024];
 			while (true) {
 				int read = is.read(buf);
@@ -19,7 +27,7 @@ public class FastScanner {
 					break;
 				bos.write(buf, 0, read);
 			}
-			tokenizer = new StringTokenizer(new String(bos.toByteArray()));
+			tokenizer = new StringTokenizer(new String(bos.toByteArray()), delimiters);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
