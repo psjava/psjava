@@ -13,7 +13,6 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
-import org.psjava.util.Pair;
 import org.psjava.util.VisitorStopper;
 
 public class LowestCommonAncestor {
@@ -26,37 +25,46 @@ public class LowestCommonAncestor {
 		this.mapFactory = mapFactory;
 	}
 
+	private static class VertexAndDepth<V> {
+		final V vertex;
+		final int depth;
+		VertexAndDepth(V v, int d) {
+			this.vertex = v;
+			this.depth = d;
+		}
+	}
+
 	public <V, E extends DirectedEdge<V>> LowestCommonAncestorPreprecessed<V> calc(RootedTree<V, E> tree) {
-		final MutableMap<Object, Integer> discoverIndex = mapFactory.create();
-		final DynamicArray<Pair<V, Integer>> history = DynamicArray.create(); // stores vertex and depth
+		final MutableMap<V, Integer> discoverIndex = mapFactory.create();
+		final DynamicArray<VertexAndDepth<V>> history = DynamicArray.create(); // stores vertex and depth
 
 		SingleSourceDFS.traverse(AdjacencyListFromGraph.create(tree.graph), tree.root, new DFSVisitorBase<V, E>() {
 			@Override
 			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
 				discoverIndex.put(vertex, history.size());
-				history.addToLast(Pair.create(vertex, depth));
+				history.addToLast(new VertexAndDepth<V>(vertex, depth));
 			}
 
 			@Override
 			public void onWalkUp(E downedEdge) {
-				int lastDepth = LastInArray.getLast(history).v2;
-				history.addToLast(Pair.create(downedEdge.from(), lastDepth - 1));
+				int lastDepth = LastInArray.getLast(history).depth;
+				history.addToLast(new VertexAndDepth<V>(downedEdge.from(), lastDepth - 1));
 			}
 		});
 
-		final RangeMinimumQueryResult rmqResult = rmq.preprocess(history, new Comparator<Pair<V, Integer>>() {
-			@Override
-			public int compare(Pair<V, Integer> o1, Pair<V, Integer> o2) {
-				return o1.v2 - o2.v2;
-			}
-		});
+		final RangeMinimumQueryResult rmqResult = rmq.preprocess(history, new Comparator<VertexAndDepth<V>>() {
+            @Override
+            public int compare(VertexAndDepth<V> o1, VertexAndDepth<V> o2) {
+                return o1.depth - o2.depth;
+            }
+        });
 
 		return new LowestCommonAncestorPreprecessed<V>() {
 			@Override
 			public V query(V v1, V v2) {
 				int i1 = discoverIndex.get(v1);
 				int i2 = discoverIndex.get(v2);
-				return history.get(rmqResult.getIndex(Math.min(i1, i2), Math.max(i1, i2) + 1)).v1;
+				return history.get(rmqResult.getIndex(Math.min(i1, i2), Math.max(i1, i2) + 1)).vertex;
 			}
 		};
 	}
