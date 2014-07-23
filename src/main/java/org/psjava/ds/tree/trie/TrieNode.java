@@ -5,9 +5,9 @@ public interface TrieNode<T> {
 
 	boolean hasChild(T ch);
 
-	TrieNode<T> getChild(T ch, TrieNode<T> def);
-
 	TrieNode<T> getChild(T ch);
+
+	TrieNode<T> getChildOrNull(T ch);
 
 	Iterable<T> getEdges();
 

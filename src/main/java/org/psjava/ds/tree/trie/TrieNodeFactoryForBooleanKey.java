@@ -51,19 +51,16 @@ public final class TrieNodeFactoryForBooleanKey {
 
 		@Override
 		public TrieNode<Boolean> getChild(Boolean ch) {
-			TrieNode<Boolean> cand = getChild(ch, null);
+			TrieNode<Boolean> cand = getChildOrNull(ch);
 			if (cand == null)
 				throw new RuntimeException();
 			return cand;
 		}
 
 		@Override
-		public TrieNode<Boolean> getChild(Boolean ch, TrieNode<Boolean> def) {
-			TrieNode<Boolean> cand = ch ? one : zero;
-			if (cand != null)
-				return cand;
-			else
-				return def;
+		public TrieNode<Boolean> getChildOrNull(Boolean ch) {
+			TrieNode<Boolean> candOrNull = ch ? one : zero;
+			return candOrNull;
 		}
 	}
 

@@ -29,12 +29,8 @@ public class TrieNodeFactoryUsingMap {
 		}
 
 		@Override
-		public TrieNode<T> getChild(T ch, TrieNode<T> def) {
-			TrieNode<T> r = children.getOrNull(ch);
-			if (r != null)
-				return r;
-			else
-				return def;
+		public TrieNode<T> getChildOrNull(T ch) {
+			return children.getOrNull(ch);
 		}
 
 		@Override

@@ -17,7 +17,7 @@ public class Trie<T> {
 	public void add(Iterable<T> sequence) {
 		TrieNode<T> cur = root;
 		for (T v : sequence) {
-			TrieNode<T> subTrie = cur.getChild(v, null);
+			TrieNode<T> subTrie = cur.getChildOrNull(v);
 			if (subTrie == null) {
 				subTrie = factory.create();
 				cur.putChild(v, subTrie);
