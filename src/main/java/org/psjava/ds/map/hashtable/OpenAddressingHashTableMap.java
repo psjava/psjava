@@ -132,10 +132,10 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 	}
 
 	@Override
-	public V get(K key, V def) {
+	public V getOrNull(K key) {
 		Entry<K, V> e = findEntry(key, null);
 		if (e == null)
-			return def;
+			return null;
 		return e.value;
 	}
 
@@ -161,6 +161,7 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 
 	private Entry<K, V> findResult;
 
+	// TODO rename to findEntryOrNull and remove def
 	private Entry<K, V> findEntry(final K key, Entry<K, V> def) {
 		final int keyHash = key.hashCode();
 		findResult = def;

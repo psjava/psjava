@@ -30,7 +30,7 @@ public class TrieNodeFactoryUsingMap {
 
 		@Override
 		public TrieNode<T> getChild(T ch, TrieNode<T> def) {
-			TrieNode<T> r = children.get(ch, null);
+			TrieNode<T> r = children.getOrNull(ch);
 			if (r != null)
 				return r;
 			else

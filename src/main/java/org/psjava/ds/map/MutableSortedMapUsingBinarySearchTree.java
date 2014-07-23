@@ -30,8 +30,8 @@ public class MutableSortedMapUsingBinarySearchTree {
 			}
 
 			@Override
-			public V get(K key, V def) {
-				return tree.findExistValue(key, def);
+			public V getOrNull(K key) {
+				return tree.findExistValue(key, null);
 			}
 
 			@Override

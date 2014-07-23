@@ -9,5 +9,5 @@ public interface Map<K, V> extends Collection<KeyValuePair<K, V>> {
 
 	V get(K key);
 
-	V get(K key, V def);
+	V getOrNull(K key);
 }

@@ -28,8 +28,8 @@ public class IntBijection<V> {
 	}
 
 	public Integer toInt(V o) {
-		Integer r = objectToInt.get(o, -1);
-		AssertStatus.assertTrue(r != -1, "object is not in the set");
+		Integer r = objectToInt.getOrNull(o);
+		AssertStatus.assertTrue(r != null, "object is not in the set");
 		return r;
 	}
 

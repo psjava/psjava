@@ -95,7 +95,7 @@ public class FloydWarshall implements AllPairShortestPath {
 
 			@Override
 			public boolean isReachable(V from, V to) {
-				Status<V, E, W> s = status.get(Pair.create(from, to), null);
+				Status<V, E, W> s = status.getOrNull(Pair.create(from, to));
 				AssertStatus.assertTrue(s != null, "not valid vertex");
 				return s.distance != null;
 			}

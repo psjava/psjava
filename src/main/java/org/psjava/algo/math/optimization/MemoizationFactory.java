@@ -24,7 +24,7 @@ public class MemoizationFactory {
 				if (inStack.contains(input))
 					throw new IllegalArgumentException("The function calls infinite recursion. check the logic.");
 				inStack.insert(input);
-				O v = table.get(input, null);
+				O v = table.getOrNull(input);
 				if (v == null) {
 					v = f.get(input, this);
 					table.put(input, v);

@@ -30,11 +30,8 @@ public class MutableSortedMapUsingJavaTreeMap {
 			}
 
 			@Override
-			public V get(K key, V def) {
-				V r = original.get(key);
-				if (r == null)
-					return def;
-				return r;
+			public V getOrNull(K key) {
+				return original.get(key);
 			}
 
 			@Override

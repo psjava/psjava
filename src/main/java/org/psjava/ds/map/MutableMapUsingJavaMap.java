@@ -32,9 +32,7 @@ public class MutableMapUsingJavaMap {
 			}
 
 			@Override
-			public V get(K key, V def) {
-				if (!containsKey(key))
-					return def;
+			public V getOrNull(K key) {
 				return map.get(key);
 			}
 
