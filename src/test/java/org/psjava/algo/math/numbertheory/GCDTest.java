@@ -2,31 +2,25 @@ package org.psjava.algo.math.numbertheory;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.math.numbertheory.GCD;
-import org.psjava.ds.numbersystrem.Int32;
-import org.psjava.ds.numbersystrem.Int32NumberSystem;
+import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 public class GCDTest {
 
-	private static final Int32NumberSystem NS = new Int32NumberSystem();
+	private static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
 
 	@Test
 	public void test1() {
-		Assert.assertEquals(8, GCD.gcd(NS, toValue(24), toValue(16)).v);
+		Assert.assertEquals(8, (int)GCD.gcd(NS, 24, 16));
 	}
 
 	@Test
 	public void test2() {
-		Assert.assertEquals(1, GCD.gcd(NS, toValue(1), toValue(123812733)).v);
+		Assert.assertEquals(1, (int)GCD.gcd(NS, 1, 123812733));
 	}
 
 	@Test
 	public void test3() {
-		Assert.assertEquals(1, GCD.gcd(NS, toValue(113213123), toValue(1)).v);
-	}
-
-	private Int32 toValue(int v) {
-		return Int32.valueOf(v);
+		Assert.assertEquals(1, (int)GCD.gcd(NS, 113213123, 1));
 	}
 
 }

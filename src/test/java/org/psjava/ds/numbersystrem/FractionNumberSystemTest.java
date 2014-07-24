@@ -2,32 +2,28 @@ package org.psjava.ds.numbersystrem;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.numbersystrem.Fraction;
-import org.psjava.ds.numbersystrem.FractionNumberSystem;
-import org.psjava.ds.numbersystrem.Int32;
-import org.psjava.ds.numbersystrem.Int32NumberSystem;
 
 public class FractionNumberSystemTest {
 
-	private static final FractionNumberSystem<Int32> NS = new FractionNumberSystem<Int32>(new Int32NumberSystem());
+	private static final FractionNumberSystem<Integer> NS = new FractionNumberSystem<Integer>(IntegerNumberSystem.getInstance());
 
 	@Test
 	public void testBasicMath() {
-		Fraction<Int32> add = NS.add(toFrac(12, 8), toFrac(3, 7));
-		Assert.assertEquals(27, add.numerator.v);
-		Assert.assertEquals(14, add.denominator.v);
+		Fraction<Integer> add = NS.add(toFrac(12, 8), toFrac(3, 7));
+		Assert.assertEquals(27, (int)add.numerator);
+		Assert.assertEquals(14, (int)add.denominator);
 
-		Fraction<Int32> sub = NS.subtract(toFrac(3, 7), toFrac(12, 8));
-		Assert.assertEquals(-15, sub.numerator.v);
-		Assert.assertEquals(14, sub.denominator.v);
+		Fraction<Integer> sub = NS.subtract(toFrac(3, 7), toFrac(12, 8));
+		Assert.assertEquals(-15, (int)sub.numerator);
+		Assert.assertEquals(14, (int)sub.denominator);
 
-		Fraction<Int32> mul = NS.multiply(toFrac(3, 7), toFrac(12, 8));
-		Assert.assertEquals(9, mul.numerator.v);
-		Assert.assertEquals(14, mul.denominator.v);
+		Fraction<Integer> mul = NS.multiply(toFrac(3, 7), toFrac(12, 8));
+		Assert.assertEquals(9, (int)mul.numerator);
+		Assert.assertEquals(14, (int)mul.denominator);
 
-		Fraction<Int32> div = NS.divide(toFrac(6, 2), toFrac(3, 2));
-		Assert.assertEquals(2, div.numerator.v);
-		Assert.assertEquals(1, div.denominator.v);
+		Fraction<Integer> div = NS.divide(toFrac(6, 2), toFrac(3, 2));
+		Assert.assertEquals(2, (int)div.numerator);
+		Assert.assertEquals(1, (int)div.denominator);
 	}
 
 	@Test
@@ -42,7 +38,7 @@ public class FractionNumberSystemTest {
 		Assert.assertEquals(-1, NS.getSign(toFrac(2, -3)));
 	}
 
-	private Fraction<Int32> toFrac(int v, int v2) {
-		return Fraction.valueOf(Int32.valueOf(v), Int32.valueOf(v2));
+	private Fraction<Integer> toFrac(int v, int v2) {
+		return Fraction.valueOf(v, v2);
 	}
 }
