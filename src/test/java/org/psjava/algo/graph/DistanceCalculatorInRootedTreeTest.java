@@ -17,7 +17,7 @@ public class DistanceCalculatorInRootedTreeTest {
 	public void testCalc() {
 		Object[][] data = new Object[][] { { "A", "B", 100 }, { "A", "C", 200 }, { "B", "D", 400 }, { "C", "E", 800 } };
 		MutableDirectedWeightedGraph<String, Integer> graph = TestGraphFactory.createDirectedWeighted(data);
-		DistanceCalculatorInRootedTreeResult<String, Integer> res = INSTANCE.calc(RootedTree.create(graph, "A"), IntegerNumberSystem.getInstance());
+		DistanceCalculatorInRootedTreeResult<String, Integer> res = INSTANCE.calc(RootedTree.wrap(graph, "A"), IntegerNumberSystem.getInstance());
 		assertEquals(0, (int) res.getDistance("A", "A"));
 		assertEquals(1500, (int) res.getDistance("D", "E"));
 		assertEquals(1500, (int) res.getDistance("E", "D"));

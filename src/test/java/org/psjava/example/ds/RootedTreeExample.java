@@ -22,7 +22,7 @@ public class RootedTreeExample {
 		graph.addEdge("A", "C");
 
 		// if the given graph is not satisfying restrictions of rooted tree, following will throw runtime exception.
-		RootedTree<String, DirectedEdge<String>> tree = RootedTree.create(graph, "A");
+		RootedTree<String, DirectedEdge<String>> tree = RootedTree.wrap(graph, "A");
 
 		Assert.assertNotNull(tree);
 	}

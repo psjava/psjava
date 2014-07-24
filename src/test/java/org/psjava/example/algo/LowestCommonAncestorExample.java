@@ -31,7 +31,7 @@ public class LowestCommonAncestorExample {
 
 		// Run it!
 
-		LowestCommonAncestorPreprecessed<String> result = GoodLowestCommonAncestor.getInstrance().calc(RootedTree.create(graph, "A"));
+		LowestCommonAncestorPreprecessed<String> result = GoodLowestCommonAncestor.getInstrance().calc(RootedTree.wrap(graph, "A"));
 
 		String result1 = result.query("B", "C"); // must be "A"
 		Assert.assertEquals("A", result1);

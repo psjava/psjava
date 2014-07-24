@@ -5,7 +5,7 @@ import org.psjava.util.AssertStatus;
 
 public class RootedTree<V, E extends DirectedEdge<V>> {
 
-	public static <V, E extends DirectedEdge<V>> RootedTree<V, E> create(Graph<V, E> g, V root) {
+	public static <V, E extends DirectedEdge<V>> RootedTree<V, E> wrap(Graph<V, E> g, V root) {
 		return new RootedTree<V, E>(g, root);
 	}
 

@@ -16,7 +16,7 @@ public class LowestCommonAncestorTest {
 	@Test
 	public void testOne() {
 		Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirected(new String[][] { { "0", "1" }, { "0", "2" }, { "2", "3" }, { "2", "4" } });
-		LowestCommonAncestorPreprecessed<String> r = INSTANCE.calc(RootedTree.create(g, "0"));
+		LowestCommonAncestorPreprecessed<String> r = INSTANCE.calc(RootedTree.wrap(g, "0"));
 
 		Assert.assertEquals("2", r.query("3", "4"));
 		Assert.assertEquals("0", r.query("1", "4"));
