@@ -1,41 +1,33 @@
 package org.psjava.formula.geometry;
 
-import java.util.ArrayList;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.TestUtil;
 import org.psjava.ds.geometry.Point2D;
 import org.psjava.ds.geometry.Polygon2D;
-import org.psjava.ds.numbersystrem.Float64;
-import org.psjava.ds.numbersystrem.Float64NumberSystem;
-import org.psjava.formula.geometry.AreaOfSimplePolygon2D;
+import org.psjava.ds.numbersystrem.DoubleNumberSystem;
 
 public class AreaOfSimplePolygon2DTest {
 
-	private static final Float64NumberSystem NS = Float64NumberSystem.getInstance();
+	private static final DoubleNumberSystem NS = DoubleNumberSystem.getInstance();
 
 	@Test
 	public void testArea() {
 		@SuppressWarnings("unchecked")
-		Polygon2D<Float64> p = toPoly(TestUtil.toArrayList(toPt(1, 10), toPt(1, 1), toPt(10, 1), toPt(10, 10)));
-		Float64 actual = AreaOfSimplePolygon2D.calc(NS, p);
-		Assert.assertEquals(81, actual.toPrimitive(), 1e-10);
+		Polygon2D<Double> p = Polygon2D.create(TestUtil.toArrayList(toPoint(1, 10), toPoint(1, 1), toPoint(10, 1), toPoint(10, 10)));
+		double actual = AreaOfSimplePolygon2D.calc(NS, p);
+		Assert.assertEquals(81, actual, 1e-10);
 	}
 
 	@Test
 	public void testZeroArea() {
 		@SuppressWarnings("unchecked")
-		Polygon2D<Float64> p = toPoly(TestUtil.toArrayList(toPt(1, 10), toPt(1, 1)));
-		Float64 actual = AreaOfSimplePolygon2D.calc(NS, p);
-		Assert.assertEquals(0, actual.toPrimitive(), 1e-10);
+		Polygon2D<Double> p = Polygon2D.create(TestUtil.toArrayList(toPoint(1, 10), toPoint(1, 1)));
+		double actual = AreaOfSimplePolygon2D.calc(NS, p);
+		Assert.assertEquals(0, actual, 1e-10);
 	}
 
-	private static Polygon2D<Float64> toPoly(ArrayList<Point2D<Float64>> list) {
-		return Polygon2D.create(list);
-	}
-
-	private static Point2D<Float64> toPt(double x, double y) {
-		return Point2D.create(Float64.valueOf(x), Float64.valueOf(y));
+	private static Point2D<Double> toPoint(double x, double y) {
+		return Point2D.create(x,y);
 	}
 }
