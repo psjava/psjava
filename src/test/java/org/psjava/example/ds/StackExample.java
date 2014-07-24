@@ -2,7 +2,7 @@ package org.psjava.example.ds;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.stack.GoodStackFactory;
+import org.psjava.goods.GoodStackFactory;
 import org.psjava.ds.stack.Stack;
 import org.psjava.ds.stack.StackFactory;
 import org.psjava.ds.stack.StackFactoryUsingDynamicArray;

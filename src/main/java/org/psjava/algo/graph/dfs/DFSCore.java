@@ -7,7 +7,7 @@ import org.psjava.ds.Collection;
 import org.psjava.ds.graph.AdjacencyList;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.ds.stack.GoodStackFactory;
+import org.psjava.goods.GoodStackFactory;
 import org.psjava.ds.stack.Stack;
 import org.psjava.goods.GoodMutableMapFactory;
 
