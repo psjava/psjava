@@ -11,7 +11,7 @@ public interface MutableMap<K, V> extends Map<K, V> {
 
 	void replace(K key, V nullableValue);
 
-	void put(K key, V nullableValue);
+	void addOrReplace(K key, V nullableValue);
 
 	void remove(K key);
 }

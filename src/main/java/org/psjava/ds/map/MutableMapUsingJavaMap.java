@@ -45,7 +45,7 @@ public class MutableMapUsingJavaMap {
 			}
 
 			@Override
-			public void put(K key, V value) {
+			public void addOrReplace(K key, V value) {
 				map.put(key, value);
 			}
 

@@ -27,7 +27,7 @@ public class BFSPathFinder {
 
 					@Override
 					public void onWalk(E e) {
-						walked.put(e.to(), e);
+						walked.addOrReplace(e.to(), e);
 					}
 				});
 				if (!walked.containsKey(target))

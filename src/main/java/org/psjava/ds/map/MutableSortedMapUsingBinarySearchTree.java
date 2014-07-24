@@ -51,7 +51,7 @@ public class MutableSortedMapUsingBinarySearchTree {
 			}
 
 			@Override
-			public void put(K key, V value) {
+			public void addOrReplace(K key, V value) {
 				InsertionResult r = tree.insertOrUpdate(key, value);
 				if (r == InsertionResult.INSERTED)
 					size++;

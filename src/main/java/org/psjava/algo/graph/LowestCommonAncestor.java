@@ -41,7 +41,7 @@ public class LowestCommonAncestor {
 		SingleSourceDFS.traverse(AdjacencyListFromGraph.create(tree.graph), tree.root, new DFSVisitorBase<V, E>() {
 			@Override
 			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
-				discoverIndex.put(vertex, history.size());
+				discoverIndex.addOrReplace(vertex, history.size());
 				history.addToLast(new VertexAndDepth<V>(vertex, depth));
 			}
 

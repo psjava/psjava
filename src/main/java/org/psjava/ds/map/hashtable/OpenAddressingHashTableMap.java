@@ -111,7 +111,7 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 	}
 
 	@Override
-	public void put(K key, V value) {
+	public void addOrReplace(K key, V value) {
 		ensureArraysCapacity(load + 1);
 		putToCurrentArray(key, value);
 	}

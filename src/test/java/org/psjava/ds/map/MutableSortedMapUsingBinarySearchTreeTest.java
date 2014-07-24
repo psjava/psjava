@@ -2,16 +2,15 @@ package org.psjava.ds.map;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.map.MutableSortedMapUsingBinarySearchTree;
 import org.psjava.util.DefaultComparator;
 
 public class MutableSortedMapUsingBinarySearchTreeTest {
 	@Test
 	public void testPut() {
 		MutableSortedMap<Integer, Integer> map = create();
-		map.put(1, 100);
-		map.put(3, 300);
-		map.put(2, 200);
+		map.addOrReplace(1, 100);
+		map.addOrReplace(3, 300);
+		map.addOrReplace(2, 200);
 		Assert.assertEquals("(1=100,2=200,3=300)", map.toString());
 	}
 
@@ -27,7 +26,7 @@ public class MutableSortedMapUsingBinarySearchTreeTest {
 	@Test
 	public void testAllowingNullValue() {
 		MutableSortedMap<Integer, Integer> map = create();
-		map.put(1, null);
+		map.addOrReplace(1, null);
 		Assert.assertTrue(map.containsKey(1));
 		Assert.assertTrue(map.get(1) == null);
 	}

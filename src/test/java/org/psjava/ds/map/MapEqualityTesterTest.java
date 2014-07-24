@@ -13,9 +13,9 @@ public class MapEqualityTesterTest {
 		MutableMap<Integer, Integer> m2 = MutableMapUsingJavaMap.wrap(new HashMap<Integer, Integer>());
 		int[] k = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 		for (int i = 0; i < k.length; i++)
-			m1.put(k[i], k[i]);
+			m1.addOrReplace(k[i], k[i]);
 		for (int i = k.length - 1; i >= 0; i--)
-			m2.put(k[i], k[i]);
+			m2.addOrReplace(k[i], k[i]);
 		Assert.assertTrue(MapEqualityTester.areEqual(m1, m2));
 	}
 }

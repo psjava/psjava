@@ -56,7 +56,7 @@ public class MutableSortedMapUsingJavaTreeMap {
 			}
 
 			@Override
-			public void put(K key, V value) {
+			public void addOrReplace(K key, V value) {
 				AssertStatus.assertNotNull(value, "value cannot be a null");
 				original.put(key, value);
 			}

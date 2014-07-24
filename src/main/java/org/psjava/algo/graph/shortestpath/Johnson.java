@@ -64,7 +64,7 @@ public class Johnson implements AllPairShortestPath {
 		Graph<V, ReweightedEdge<V, W, E>> reweighted = reweight(graph, bellmanFordResult, ns);
 		MutableMap<V, SingleSourceShortestPathResult<V, W, ReweightedEdge<V, W, E>>> dijsktraResult = GoodMutableMapFactory.getInstance().create();
 		for (V v : graph.getVertices())
-			dijsktraResult.put(v, dijkstra.calc(reweighted, v, ns));
+			dijsktraResult.addOrReplace(v, dijkstra.calc(reweighted, v, ns));
 		return createUnreweightedResult(bellmanFordResult, dijsktraResult, ns);
 	}
 

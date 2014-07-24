@@ -3,8 +3,6 @@ package org.psjava.ds.map.hashtable;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.psjava.ds.map.hashtable.OpenAddressingHashTableMap;
-import org.psjava.ds.map.hashtable.QuadraticProbing;
 import org.psjava.util.IterableToString;
 import org.psjava.util.VarargsIterable;
 
@@ -26,7 +24,7 @@ public class OpenAddressingHashTableMapTest {
 		table.remove(9);
 		assertEquals("(null,1=B,<removed>,null,null,17=D,null,null)", toBucketString(table));
 		assertEquals(3, table.load);
-		table.put(9, "E");
+		table.addOrReplace(9, "E");
 		assertEquals("(null,1=B,<removed>,9=E,null,17=D,null,null)", toBucketString(table));
 		assertEquals(4, table.load);
 	}
@@ -53,17 +51,17 @@ public class OpenAddressingHashTableMapTest {
 	@Test
 	public void testAutoExpansionByPut() {
 		OpenAddressingHashTableMap<Integer, String> table = create(1);
-		table.put(1, "A");
-		table.put(2, "B");
+		table.addOrReplace(1, "A");
+		table.addOrReplace(2, "B");
 		assertEquals("(null,1=A,2=B,null)", toBucketString(table));
 	}
 
 	@Test
 	public void testFindEntry() {
 		OpenAddressingHashTableMap<Integer, String> table = create(2);
-		table.put(1, "A");
+		table.addOrReplace(1, "A");
 		assertEquals("A", table.getOrNull(1));
-		table.put(5, "B");
+		table.addOrReplace(5, "B");
 		assertEquals("A", table.getOrNull(1));
 		assertEquals("B", table.getOrNull(5));
 		assertNull(table.getOrNull(2));
@@ -72,9 +70,9 @@ public class OpenAddressingHashTableMapTest {
 	@Test
 	public void testSize() {
 		OpenAddressingHashTableMap<Integer, Integer> table = create(2);
-		table.put(1, 0);
+		table.addOrReplace(1, 0);
 		assertEquals(1, table.size());
-		table.put(2, 0);
+		table.addOrReplace(2, 0);
 		assertEquals(2, table.size());
 	}
 

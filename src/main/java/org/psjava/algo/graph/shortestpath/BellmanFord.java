@@ -18,8 +18,8 @@ public class BellmanFord implements SingleSourceShortestPath {
 	public static <V, E, W> SingleSourceShortestPathCalcStatus<V, W, E> createInitialStatus(Graph<V, E> graph, final V from, AddableNumberSystem<W> ns) {
 		SingleSourceShortestPathCalcStatus<V, W, E> status = new SingleSourceShortestPathCalcStatus<V, W, E>();
 		for (V v : graph.getVertices())
-			status.distance.put(v, null);
-		status.distance.put(from, ns.getZero());
+			status.distance.addOrReplace(v, null);
+		status.distance.addOrReplace(from, ns.getZero());
 		return status;
 	}
 

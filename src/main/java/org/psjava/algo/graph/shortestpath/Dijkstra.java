@@ -34,8 +34,8 @@ public class Dijkstra implements SingleSourceShortestPath {
 		MutableMap<V, E> previous = MF.create();
 
 		for (V v : graph.getVertices())
-			distance.put(v, null); // null means infinity
-		distance.put(start, ns.getZero());
+			distance.addOrReplace(v, null); // null means infinity
+		distance.addOrReplace(start, ns.getZero());
 
 		Heap<V> heap = factory.create(new Comparator<V>() {
 			@Override
@@ -46,7 +46,7 @@ public class Dijkstra implements SingleSourceShortestPath {
 
 		MutableMap<V, HeapNode<V>> node = MF.create();
 		for (V v : graph.getVertices())
-			node.put(v, heap.insert(v));
+			node.addOrReplace(v, heap.insert(v));
 
 		while (!heap.isEmpty()) {
 			V current = heap.extractMinimum();

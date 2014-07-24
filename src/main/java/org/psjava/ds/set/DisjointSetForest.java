@@ -23,7 +23,7 @@ public class DisjointSetForest<T> implements DisjointSet<T> {
 
 	@Override
 	public void makeSet(T value) {
-		nodeInfo.put(value, new NodeInfo<T>(value, 0));
+		nodeInfo.addOrReplace(value, new NodeInfo<T>(value, 0));
 	}
 
 	@Override

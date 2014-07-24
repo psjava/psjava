@@ -38,20 +38,20 @@ public class DistanceCalculatorInRootedTree {
 			@Override
 			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
 				int index = pathWeights.size();
-				discoverIndex.put(vertex, index);
+				discoverIndex.addOrReplace(vertex, index);
 			}
 
 			@Override
 			public void onWalkDown(DirectedWeightedEdge<V, W> outEdge) {
 				int index = pathWeights.size();
-				indexOfWalkingDown.put(outEdge.to(), index);
+				indexOfWalkingDown.addOrReplace(outEdge.to(), index);
 				pathWeights.addToLast(outEdge.weight());
 			}
 
 			@Override
 			public void onWalkUp(DirectedWeightedEdge<V, W> edge) {
 				int index = pathWeights.size();
-				indexOfWalkingUp.put(edge.to(), index);
+				indexOfWalkingUp.addOrReplace(edge.to(), index);
 				pathWeights.addToLast(AddInvert.calc(ns, edge.weight()));
 			}
 		});

@@ -35,7 +35,7 @@ public class TrieNodeFactoryUsingMap {
 
 		@Override
 		public void putChild(T ch, TrieNode<T> node) {
-			children.put(ch, node);
+			children.addOrReplace(ch, node);
 		}
 
 		@Override
