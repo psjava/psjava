@@ -3,6 +3,7 @@ package org.psjava.ds.set;
 import java.util.Iterator;
 
 import org.psjava.ds.map.SetEqualityTester;
+import org.psjava.util.AssertStatus;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.IterableToString;
 import org.psjava.util.OrderFreeIterableHash;
@@ -39,6 +40,12 @@ public class MutableSetUsingJavaSet<T> implements MutableSet<T> {
 	@Override
 	public int size() {
 		return javaset.size();
+	}
+
+	@Override
+	public void remove(T v) {
+		boolean removed = javaset.remove(v);
+		AssertStatus.assertTrue(removed, "given value is not in set");
 	}
 
 	@Override

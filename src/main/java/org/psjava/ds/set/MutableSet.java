@@ -5,5 +5,7 @@ public interface MutableSet<T> extends Set<T> {
 
 	void insert(T v);
 
+	void remove(T v);
+
 	void removeIfExist(T v);
 }
