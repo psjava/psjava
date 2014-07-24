@@ -19,12 +19,12 @@ public class MutableBipartiteGraph<V> implements BipartiteGraph<V> {
 
 	public void insertLeftVertex(V v) {
 		AssertStatus.assertTrue(!right.contains(v));
-		left.insert(v);
+		left.addIfAbsent(v);
 	}
 
 	public void insertRightVertex(V v) {
 		AssertStatus.assertTrue(!left.contains(v));
-		right.insert(v);
+		right.addIfAbsent(v);
 	}
 
 	public void addEdge(final V leftv, final V rightv) {

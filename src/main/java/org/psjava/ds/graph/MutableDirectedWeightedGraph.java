@@ -18,7 +18,7 @@ public class MutableDirectedWeightedGraph<V, W> implements Graph<V, DirectedWeig
 	private DynamicArray<DirectedWeightedEdge<V, W>> edges = DynamicArray.create();
 
 	public void insertVertex(V v) {
-		vertices.insert(v);
+		vertices.addIfAbsent(v);
 	}
 
 	public void addEdge(V from, V to, W weight) {

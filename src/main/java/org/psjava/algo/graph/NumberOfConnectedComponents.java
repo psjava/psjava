@@ -17,7 +17,7 @@ public class NumberOfConnectedComponents {
 			dset.union(e.v1(), e.v2());
 		MutableSet<V> finalReps = GoodMutableSetFactory.getInstance().create();
 		for (V v : g.getVertices())
-			finalReps.insert(dset.find(v));
+			finalReps.addIfAbsent(dset.find(v));
 		return finalReps.size();
 	}
 

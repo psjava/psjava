@@ -28,7 +28,7 @@ public class MutableSetUsingJavaSet<T> implements MutableSet<T> {
 	}
 
 	@Override
-	public void insert(T v) {
+	public void addIfAbsent(T v) {
 		javaset.add(v);
 	}
 

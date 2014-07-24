@@ -96,7 +96,7 @@ public class NegativeCycleFinder {
 				AugmentedEdge<V, W, E> curEdge = lastRelaxedEdgeOrNull;
 				while (true) {
 					path.addToFirst(curEdge.getOriginal());
-					visited.insert(curEdge.to());
+					visited.addIfAbsent(curEdge.to());
 					if (visited.contains(curEdge.from()))
 						break;
 					curEdge = status.previous.get(curEdge.from());

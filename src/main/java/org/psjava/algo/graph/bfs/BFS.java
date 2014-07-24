@@ -25,7 +25,7 @@ public class BFS {
 		Queue<QueueItem<V>> queue = GoodQueueFactory.getInstance().create();
 		for (V v : startVertices) {
 			queue.enque(new QueueItem<V>(0, v));
-			discovered.insert(v);
+			discovered.addIfAbsent(v);
 			visitor.onDiscover(v, 0, stopper);
 			if (stopper.isStopped())
 				break;
@@ -36,7 +36,7 @@ public class BFS {
 			for (E edge : adj.getEdges(cur.v)) {
 				V nextv = edge.to();
 				if (!discovered.contains(nextv)) {
-					discovered.insert(nextv);
+					discovered.addIfAbsent(nextv);
 					visitor.onWalk(edge);
 					visitor.onDiscover(nextv, cur.depth + 1, stopper);
 					if (stopper.isStopped())

@@ -15,7 +15,7 @@ public class MutableGraph<V, E> implements Graph<V, E> {
 	private DynamicArray<E> edges = DynamicArray.create();
 
 	public void insertVertex(V v) {
-		vertices.insert(v);
+		vertices.addIfAbsent(v);
 	}
 
 	public void addEdge(E edge) {
