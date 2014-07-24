@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-import org.psjava.algo.graph.RootedTreeCheck;
+import org.psjava.algo.graph.RootedTreeTester;
 import org.psjava.util.AssertStatus;
 
 public class RootedTree<V, E extends DirectedEdge<V>> {
@@ -13,7 +13,7 @@ public class RootedTree<V, E extends DirectedEdge<V>> {
 	public final V root;
 
 	public RootedTree(Graph<V, E> g, V root) {
-		AssertStatus.assertTrue(RootedTreeCheck.is(g, root), "Given graph is not a rooted tree");
+		AssertStatus.assertTrue(RootedTreeTester.is(g, root), "Given graph is not a rooted tree");
 		this.graph = g;
 		this.root = root;
 	}

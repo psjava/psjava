@@ -8,7 +8,7 @@ import org.psjava.ds.graph.Graph;
 import org.psjava.util.DataKeeper;
 import org.psjava.util.VisitorStopper;
 
-public class RootedTreeCheck {
+public class RootedTreeTester {
 
 	public static <E extends DirectedEdge<V>, V> boolean is(Graph<V, E> graph, V root) {
 		if (CycleDetection.hasCycle(graph))
@@ -25,7 +25,7 @@ public class RootedTreeCheck {
 		return true;
 	}
 
-	private RootedTreeCheck() {
+	private RootedTreeTester() {
 	}
 
 }
