@@ -18,8 +18,8 @@ public class OnDemandRangeMinimumQuery {
 	public static RangeMinimumQuery getInstance() {
 		return new RangeMinimumQuery() {
 			@Override
-			public <T> RangeMinimumQueryResult preprocess(final Array<T> array, final Comparator<T> comp) {
-				return new RangeMinimumQueryResult() {
+			public <T> RangeMinimumQuerySession preprocess(final Array<T> array, final Comparator<T> comp) {
+				return new RangeMinimumQuerySession() {
 					public int getIndex(int start, int end) {
 						AssertStatus.assertTrue(start < end);
 						int r = start;

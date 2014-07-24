@@ -3,8 +3,6 @@ package org.psjava.algo.sequence.rmq;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.sequence.Shuffler;
-import org.psjava.algo.sequence.rmq.RangeMinimumQueryResult;
-import org.psjava.algo.sequence.rmq.RangeMinimumQuery;
 import org.psjava.ds.array.AddToLastAll;
 import org.psjava.ds.array.ArrayFromValues;
 import org.psjava.ds.array.DynamicArray;
@@ -17,8 +15,8 @@ public abstract class RangeMinimumQueryTestBase {
 
 	@Test(expected = RuntimeException.class)
 	public void testInvalidRange() {
-		RangeMinimumQueryResult preprecessed = getInstance().preprocess(ArrayFromValues.create(1, 2, 3), new DefaultComparator<Integer>());
-		preprecessed.getIndex(1, 1);
+		RangeMinimumQuerySession session = getInstance().preprocess(ArrayFromValues.create(1, 2, 3), new DefaultComparator<Integer>());
+		session.getIndex(1, 1);
 	}
 
 	@Test
@@ -28,14 +26,14 @@ public abstract class RangeMinimumQueryTestBase {
 		AddToLastAll.add(a, ZeroTo.get(n));
 		Shuffler.shuffle(a);
 
-		RangeMinimumQueryResult r = getInstance().preprocess(a, new DefaultComparator<Integer>());
+		RangeMinimumQuerySession session = getInstance().preprocess(a, new DefaultComparator<Integer>());
 		for (int i = 0; i < n; i++)
 			for (int j = i + 1; j <= n; j++) {
 				int minIndex = i;
 				for (int k = i; k < j; k++)
 					if (a.get(minIndex) > a.get(k))
 						minIndex = k;
-				Assert.assertEquals(r.getIndex(i, j), minIndex);
+				Assert.assertEquals(session.getIndex(i, j), minIndex);
 			}
 	}
 

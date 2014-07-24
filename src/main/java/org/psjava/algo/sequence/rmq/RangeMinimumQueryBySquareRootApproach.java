@@ -21,7 +21,7 @@ public class RangeMinimumQueryBySquareRootApproach {
 	public static RangeMinimumQuery getInstance() {
 		return new RangeMinimumQuery() {
 			@Override
-			public <T> RangeMinimumQueryResult preprocess(final Array<T> a, final Comparator<T> comp) {
+			public <T> RangeMinimumQuerySession preprocess(final Array<T> a, final Comparator<T> comp) {
 				final int partLength = Math.max(1, (int) Math.sqrt(a.size()));
 				final int[] minInPart = new int[CeilingDivide.calc(IntegerNumberSystem.getInstance(), a.size(), partLength)];
 				for (int i : ZeroTo.get(minInPart.length)) {
@@ -30,7 +30,7 @@ public class RangeMinimumQueryBySquareRootApproach {
 						minInPart[i] = RangeMinimumQueryUtil.selectSmallestIndex(a, j, minInPart[i], comp);
 				}
 
-				return new RangeMinimumQueryResult() {
+				return new RangeMinimumQuerySession() {
 					@Override
 					public int getIndex(int start, int end) {
 						AssertStatus.assertTrue(start < end);

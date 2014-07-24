@@ -19,7 +19,7 @@ public class RangeMinimumQueryUsingSparseTable {
 	public static RangeMinimumQuery getInstance() {
 		return new RangeMinimumQuery() {
 			@Override
-			public <T> RangeMinimumQueryResult preprocess(final Array<T> a, final Comparator<T> comp) {
+			public <T> RangeMinimumQuerySession preprocess(final Array<T> a, final Comparator<T> comp) {
 
 				int p = Math.max(0, IntegerBinaryLogarithm.calc(a.size()) + 1);
 				final int[][] table = new int[a.size()][p];
@@ -33,7 +33,7 @@ public class RangeMinimumQueryUsingSparseTable {
 						table[j][i] = RangeMinimumQueryUtil.selectSmallestIndex(a, k1, k2, comp);
 					}
 
-				return new RangeMinimumQueryResult() {
+				return new RangeMinimumQuerySession() {
 					@Override
 					public int getIndex(int start, int end) {
 						int len = end - start;

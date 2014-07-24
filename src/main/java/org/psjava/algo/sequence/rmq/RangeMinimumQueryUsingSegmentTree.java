@@ -23,7 +23,7 @@ public class RangeMinimumQueryUsingSegmentTree {
 	public static RangeMinimumQuery getInstance(final SegmentTreeFactory treeFactory) {
 		return new RangeMinimumQuery() {
 			@Override
-			public <T> RangeMinimumQueryResult preprocess(final Array<T> a, final Comparator<T> comp) {
+			public <T> RangeMinimumQuerySession preprocess(final Array<T> a, final Comparator<T> comp) {
 				MutableArray<Integer> indexes = MutableArrayFactory.create(a.size(), 0);
 				for (int i : ZeroTo.get(a.size()))
 					indexes.set(i, i);
@@ -32,7 +32,7 @@ public class RangeMinimumQueryUsingSegmentTree {
 						return RangeMinimumQueryUtil.selectSmallestIndex(a, i1, i2, comp);
 					}
 				});
-				return new RangeMinimumQueryResult() {
+				return new RangeMinimumQuerySession() {
 					public int getIndex(int start, int end) {
 						AssertStatus.assertTrue(start < end);
 						return tree.query(start, end);
