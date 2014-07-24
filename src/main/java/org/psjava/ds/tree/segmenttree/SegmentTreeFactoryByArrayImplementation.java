@@ -3,10 +3,18 @@ package org.psjava.ds.tree.segmenttree;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.math.BinaryOperator;
 
-public class SegmentTreeFactoryByArrayImplementation implements SegmentTreeFactory {
+public class SegmentTreeFactoryByArrayImplementation {
 
-	@Override
-	public <T> SegmentTree<T> create(Array<T> initialData, BinaryOperator<T> merger) {
-		return new SegmentTreeByArrayImplementation<T>(initialData, merger);
+	public static SegmentTreeFactory getInstance() {
+		return new SegmentTreeFactory() {
+			@Override
+			public <T> SegmentTree<T> create(Array<T> initialList, BinaryOperator<T> operator) {
+				return new SegmentTreeByArrayImplementation<T>(initialList, operator);
+			}
+		};
 	}
+
+	private SegmentTreeFactoryByArrayImplementation() {
+	}
+
 }
