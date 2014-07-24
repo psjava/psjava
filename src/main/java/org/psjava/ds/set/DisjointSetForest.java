@@ -3,11 +3,9 @@ package org.psjava.ds.set;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodMutableMapFactory;
 
-public class DisjointSetForest<T> implements DisjointSet<T> {
+/** see http://en.wikipedia.org/wiki/Disjoint-set_data_structure */
 
-	/**
-	 * see http://en.wikipedia.org/wiki/Disjoint-set_data_structure
-	 */
+public class DisjointSetForest<T> implements DisjointSet<T> {
 
 	private static class NodeInfo<T> {
 		T parent;
