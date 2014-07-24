@@ -4,13 +4,13 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPath;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
-import org.psjava.algo.graph.shortestpath.FloydWarshall;
+import org.psjava.algo.graph.shortestpath.FloydWarshallAlgorithm;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 /**
- * @implementation {@link FloydWarshall}
+ * @implementation {@link FloydWarshallAlgorithm}
  * @see {@link ShortestPathAlgorithmExample}
  */
 public class FloydWarshallAlgorithmExample {
@@ -30,7 +30,7 @@ public class FloydWarshallAlgorithmExample {
 
 		// Let's get the shortest paths of all pairs.
 
-		AllPairShortestPath floyd = new FloydWarshall();
+		AllPairShortestPath floyd = new FloydWarshallAlgorithm();
 		AllPairShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res = floyd.calc(graph, IntegerNumberSystem.getInstance());
 
 		int distanceAToB = res.getDistance("A", "B"); // must be 10

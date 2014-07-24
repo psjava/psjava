@@ -1,11 +1,10 @@
 package org.psjava.algo.graph.shortestpath;
 
 import org.junit.Test;
-import org.psjava.algo.graph.shortestpath.FloydWarshall;
 
-public class FloydWarshallTest {
+public class FloydWarshallAlgorithmTest {
 
-	private static final FloydWarshall ALGO = new FloydWarshall();
+	private static final FloydWarshallAlgorithm ALGO = new FloydWarshallAlgorithm();
 
 	@Test
 	public void testEmptyGraph() {
