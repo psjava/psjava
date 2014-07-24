@@ -29,7 +29,7 @@ public class MemoizationFactory {
 					v = f.get(input, this);
 					table.add(input, v);
 				}
-				inStack.removeIfExist(input);
+				inStack.remove(input);
 				return v;
 			}
 		};
