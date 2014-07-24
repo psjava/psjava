@@ -5,7 +5,7 @@ import org.psjava.ds.heap.BinaryHeapFactory;
 
 public class JohnsonTest {
 
-	private static final Johnson ALGO = new Johnson(new BellmanFord(), new DijkstraAlgorithm(new BinaryHeapFactory()));
+	private static final Johnson ALGO = new Johnson(new BellmanFordAlgorithm(), new DijkstraAlgorithm(new BinaryHeapFactory()));
 
 	@Test
 	public void testEmptyGraph() {

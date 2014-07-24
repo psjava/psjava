@@ -54,8 +54,8 @@ public class NegativeCycleFinder {
 
 	public static <V, W, E extends DirectedWeightedEdge<V, W>> NegativeCycleFinderResult<E> find(Graph<V, E> graph, final AddableNumberSystem<W> ns) {
 		Graph<Object, AugmentedEdge<V, W, E>> augmented = augment(graph, ns);
-		SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> bellmanFordStatus = BellmanFord.createInitialStatus(augmented, VIRTUAL_START, ns);
-		BellmanFord.relaxEnough(augmented, bellmanFordStatus, ns);
+		SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> bellmanFordStatus = BellmanFordAlgorithm.createInitialStatus(augmented, VIRTUAL_START, ns);
+		BellmanFordAlgorithm.relaxEnough(augmented, bellmanFordStatus, ns);
 		AugmentedEdge<V, W, E> relaxed = relaxAnyEdgeIfPossible(augmented, ns, bellmanFordStatus);
 		return createResult(bellmanFordStatus, relaxed);
 	}

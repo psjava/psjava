@@ -20,10 +20,10 @@ public class Johnson implements AllPairShortestPath {
 
 	private static final Object VIRTUAL_START = new Object();
 
-	private BellmanFord bellmanFord;
+	private BellmanFordAlgorithm bellmanFord;
 	private DijkstraAlgorithm dijkstra;
 
-	public Johnson(BellmanFord bellmanFord, DijkstraAlgorithm dijkstra) {
+	public Johnson(BellmanFordAlgorithm bellmanFord, DijkstraAlgorithm dijkstra) {
 		this.bellmanFord = bellmanFord;
 		this.dijkstra = dijkstra;
 	}
