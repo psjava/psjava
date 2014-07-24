@@ -3,7 +3,7 @@ package org.psjava.example.ds;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.psjava.ds.array.ArrayFromValues;
+import org.psjava.ds.array.ArrayFromVarargs;
 import org.psjava.ds.tree.trie.Trie;
 import org.psjava.ds.tree.trie.TrieNode;
 import org.psjava.goods.GoodTrieFactory;
@@ -20,9 +20,9 @@ public class TrieExample {
 		// here, put three sequences.
 
 		Trie<Character> trie = GoodTrieFactory.getInstance().create();
-		trie.add(ArrayFromValues.create('A', '1'));
-		trie.add(ArrayFromValues.create('A', '2'));
-		trie.add(ArrayFromValues.create('X', 'Y', 'Z'));
+		trie.add(ArrayFromVarargs.create('A', '1'));
+		trie.add(ArrayFromVarargs.create('A', '2'));
+		trie.add(ArrayFromVarargs.create('X', 'Y', 'Z'));
 
 		// We can get the number of children.
 		// There is 2 child nodes from the root.

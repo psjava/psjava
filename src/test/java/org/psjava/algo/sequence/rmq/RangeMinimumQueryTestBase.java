@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.sequence.Shuffler;
 import org.psjava.ds.array.AddToLastAll;
-import org.psjava.ds.array.ArrayFromValues;
+import org.psjava.ds.array.ArrayFromVarargs;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.util.DefaultComparator;
 import org.psjava.util.ZeroTo;
@@ -15,7 +15,7 @@ public abstract class RangeMinimumQueryTestBase {
 
 	@Test(expected = RuntimeException.class)
 	public void testInvalidRange() {
-		RangeMinimumQuerySession session = getInstance().preprocess(ArrayFromValues.create(1, 2, 3), new DefaultComparator<Integer>());
+		RangeMinimumQuerySession session = getInstance().preprocess(ArrayFromVarargs.create(1, 2, 3), new DefaultComparator<Integer>());
 		session.getIndex(1, 1);
 	}
 

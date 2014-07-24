@@ -7,7 +7,7 @@ import org.psjava.algo.sequence.rmq.RangeMinimumQuerySession;
 import org.psjava.algo.sequence.rmq.RangeMinimumQueryUsingSegmentTree;
 import org.psjava.algo.sequence.rmq.RangeMinimumQueryUsingSparseTable;
 import org.psjava.ds.array.Array;
-import org.psjava.ds.array.ArrayFromValues;
+import org.psjava.ds.array.ArrayFromVarargs;
 import org.psjava.example.ds.ArrayExample;
 import org.psjava.goods.GoodRangeMinimumQuery;
 import org.psjava.util.DefaultComparator;
@@ -22,7 +22,7 @@ public class RangeMinimumQueryExample {
 
 	@Test
 	public void example() {
-		Array<String> array = ArrayFromValues.create("A", "E", "B", "C", "G");
+		Array<String> array = ArrayFromVarargs.create("A", "E", "B", "C", "G");
 
 		RangeMinimumQuerySession session = GoodRangeMinimumQuery.getInstance().preprocess(array, new DefaultComparator<String>());
 

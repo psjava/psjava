@@ -3,7 +3,7 @@ package org.psjava.ds.deque;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.psjava.ds.array.ArrayFromValues;
+import org.psjava.ds.array.ArrayFromVarargs;
 import org.psjava.util.IterableToString;
 
 public class DynamicArrayDequeTest {
@@ -18,7 +18,7 @@ public class DynamicArrayDequeTest {
 		q.addToLast("B");
 		Assert.assertEquals(4, q.array.length);
 		q.addToLast("C");
-		Assert.assertEquals("(A,B,C,null)", IterableToString.toString(ArrayFromValues.create(q.array)));
+		Assert.assertEquals("(A,B,C,null)", IterableToString.toString(ArrayFromVarargs.create(q.array)));
 	}
 
 	@Test
@@ -31,7 +31,7 @@ public class DynamicArrayDequeTest {
 		q.addToFirst("B");
 		q.addToFirst("C");
 		Assert.assertEquals(4, q.array.length);
-		Assert.assertEquals("(B,A,null,C)", IterableToString.toString(ArrayFromValues.create(q.array)));
+		Assert.assertEquals("(B,A,null,C)", IterableToString.toString(ArrayFromVarargs.create(q.array)));
 	}
 
 	@Test
