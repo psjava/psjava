@@ -42,7 +42,7 @@ public class MutableSetUsingJavaSet<T> implements MutableSet<T> {
 	}
 
 	@Override
-	public void remove(T v) {
+	public void removeIfExist(T v) {
 		javaset.remove(v);
 	}
 
