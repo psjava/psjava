@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.psjava.ds.graph.*;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
-import org.psjava.goods.GoodLowestCommonAncestor;
+import org.psjava.goods.GoodLowestCommonAncestorAlgorithm;
 import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.goods.GoodSegmentTreeFactory;
 
 public class DistanceCalculatorInRootedTreeTest {
 
-	private static final DistanceCalculatorInRootedTree INSTANCE = new DistanceCalculatorInRootedTree(GoodLowestCommonAncestor.getInstrance(), GoodSegmentTreeFactory.getInstance(), GoodMutableMapFactory.getInstance());
+	private static final DistanceCalculatorInRootedTree INSTANCE = new DistanceCalculatorInRootedTree(GoodLowestCommonAncestorAlgorithm.getInstrance(), GoodSegmentTreeFactory.getInstance(), GoodMutableMapFactory.getInstance());
 
 	@Test
 	public void testCalc() {

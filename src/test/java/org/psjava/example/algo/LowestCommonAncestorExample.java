@@ -2,15 +2,14 @@ package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.graph.LowestCommonAncestor;
-import org.psjava.algo.graph.LowestCommonAncestorPreprecessed;
+import org.psjava.algo.graph.LowestCommonAncestorQuerySession;
 import org.psjava.ds.graph.MutableDirectedGraph;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.example.ds.RootedTreeExample;
-import org.psjava.goods.GoodLowestCommonAncestor;
+import org.psjava.goods.GoodLowestCommonAncestorAlgorithm;
 
 /**
- * @implementation {@link LowestCommonAncestor}
+ * @implementation {@link org.psjava.algo.graph.LowestCommonAncestorAlgorithm}
  * @see {@link RootedTreeExample}
  */
 public class LowestCommonAncestorExample {
@@ -31,12 +30,12 @@ public class LowestCommonAncestorExample {
 
 		// Run it!
 
-		LowestCommonAncestorPreprecessed<String> result = GoodLowestCommonAncestor.getInstrance().calc(RootedTree.wrap(graph, "A"));
+		LowestCommonAncestorQuerySession<String> session = GoodLowestCommonAncestorAlgorithm.getInstrance().calc(RootedTree.wrap(graph, "A"));
 
-		String result1 = result.query("B", "C"); // must be "A"
+		String result1 = session.query("B", "C"); // must be "A"
 		Assert.assertEquals("A", result1);
 
-		String result2 = result.query("A", "D"); // must be "A"
+		String result2 = session.query("A", "D"); // must be "A"
 		Assert.assertEquals("A", result2);
 	}
 }

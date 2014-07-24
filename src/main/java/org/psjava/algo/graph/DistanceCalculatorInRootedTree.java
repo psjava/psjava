@@ -18,11 +18,11 @@ import org.psjava.util.VisitorStopper;
 // TODO this is not used any problem. solve something to prove this.
 public class DistanceCalculatorInRootedTree {
 
-	private final LowestCommonAncestor lca;
+	private final LowestCommonAncestorAlgorithm lca;
 	private final SegmentTreeFactory segmentTreeFactory;
 	private final MutableMapFactory mapFactory;
 
-	public DistanceCalculatorInRootedTree(LowestCommonAncestor lca, SegmentTreeFactory segmentTreeFactory, MutableMapFactory mapFactory) {
+	public DistanceCalculatorInRootedTree(LowestCommonAncestorAlgorithm lca, SegmentTreeFactory segmentTreeFactory, MutableMapFactory mapFactory) {
 		this.lca = lca;
 		this.segmentTreeFactory = segmentTreeFactory;
 		this.mapFactory = mapFactory;
@@ -57,12 +57,12 @@ public class DistanceCalculatorInRootedTree {
 		});
 
 		final SegmentTree<W> segmentTree = segmentTreeFactory.create(pathWeights, createAdder(ns));
-		final LowestCommonAncestorPreprecessed<V> lcaResult = lca.calc(tree);
+		final LowestCommonAncestorQuerySession<V> lcaSession = lca.calc(tree);
 
 		return new DistanceCalculatorInRootedTreeResult<V, W>() {
 			@Override
 			public W getDistance(V v1, V v2) {
-				V ancestor = lcaResult.query(v1, v2);
+				V ancestor = lcaSession.query(v1, v2);
 				W r = ns.getZero();
 				if (!v1.equals(ancestor))
 					r = ns.add(r, segmentTree.query(discoverIndex.get(ancestor), discoverIndex.get(v1)));
