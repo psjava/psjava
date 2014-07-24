@@ -6,7 +6,7 @@ import org.psjava.util.AssertStatus;
 
 public class PrimalityTesterBySieve {
 
-	public static PrimalityTester create(PrimeNumberSieve sieve, final int max) {
+	public static PrimalityTester newInstance(PrimeNumberSieve sieve, final int max) {
 		final Set<Integer> set = SetFromIterable.create(sieve.calcList(max));
 		return new PrimalityTester() {
 			@Override
