@@ -10,7 +10,7 @@ public class AssertStatus {
 	}
 
 	public static void assertNotNull(Object v, String message) {
-		assertTrue(v != null);
+		assertTrue(v != null, message);
 	}
 
 	public static void assertTrue(boolean v, String message) {
