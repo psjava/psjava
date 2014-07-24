@@ -9,5 +9,6 @@ public interface FlowNetworkEdge<V, F, E> extends DirectedEdge<V> {
 
 	boolean isSkewSymmetryEdge();
 
+	/** edge should not be symmetry edge */
 	E getOriginalCapacityEdge();
 }

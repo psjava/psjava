@@ -4,7 +4,7 @@ import org.psjava.util.AssertStatus;
 
 public class SimpleFlowNetworkEdge<V, F> {
 
-	public static <V, F, E> FlowNetworkEdge<V, F, E> create(final V from, final V to, final FlowStatus<F> flowStatus, final E originalOrNull) {
+	public static <V, F, E> FlowNetworkEdge<V, F, E> create(final V from, final V to, final FlowStatus<F> flowStatus, final E originalEdgeOfNonSymmetryOrNull) {
 		return new FlowNetworkEdge<V, F, E>() {
 			FlowNetworkEdge<V, F, E> opposite;
 
@@ -36,12 +36,13 @@ public class SimpleFlowNetworkEdge<V, F> {
 
 			@Override
 			public boolean isSkewSymmetryEdge() {
-				return originalOrNull == null;
+				return originalEdgeOfNonSymmetryOrNull == null;
 			}
 
 			@Override
 			public E getOriginalCapacityEdge() {
-				return originalOrNull;
+				AssertStatus.assertTrue(!isSkewSymmetryEdge(), "the edge is symmetry edge");
+				return originalEdgeOfNonSymmetryOrNull;
 			}
 
 			@Override

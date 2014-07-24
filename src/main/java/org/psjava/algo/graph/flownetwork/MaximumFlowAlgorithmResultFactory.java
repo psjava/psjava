@@ -25,7 +25,8 @@ public class MaximumFlowAlgorithmResultFactory {
 				MutableMap<E, F> flow = GoodMutableMapFactory.getInstance().create();
 				for (V v : flowNetwork.getVertices())
 					for (FlowNetworkEdge<V, F, E> e : flowNetwork.getEdges(v))
-						flow.addOrReplace(e.getOriginalCapacityEdge(), e.getFlowStatus().flow);
+						if(!e.isSkewSymmetryEdge())
+							flow.add(e.getOriginalCapacityEdge(), e.getFlowStatus().flow);
 				return FunctionFromMap.wrap(flow);
 			}
 		};
