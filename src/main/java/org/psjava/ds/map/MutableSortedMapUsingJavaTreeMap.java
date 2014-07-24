@@ -24,9 +24,8 @@ public class MutableSortedMapUsingJavaTreeMap {
 
 			@Override
 			public V get(K key) {
-				V r = original.get(key);
-				AssertStatus.assertNotNull(r, "no value for the key");
-				return r;
+				AssertStatus.assertTrue(original.containsKey(key));
+				return original.get(key);
 			}
 
 			@Override
@@ -42,6 +41,18 @@ public class MutableSortedMapUsingJavaTreeMap {
 			@Override
 			public Iterator<KeyValuePair<K, V>> iterator() {
 				return MapIteratorFromJavaMap.create(original);
+			}
+
+			@Override
+			public void add(K key, V value) {
+				AssertStatus.assertTrue(!original.containsKey(key));
+				original.put(key, value);
+			}
+
+			@Override
+			public void replace(K key, V value) {
+				AssertStatus.assertTrue(original.containsKey(key));
+				original.put(key, value);
 			}
 
 			@Override

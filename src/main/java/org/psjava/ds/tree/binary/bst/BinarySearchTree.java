@@ -9,7 +9,6 @@ import org.psjava.ds.tree.binary.BinaryTreeNodeWithParent;
 import org.psjava.ds.tree.binary.BinaryTreeNodeWithParentFactory;
 import org.psjava.ds.tree.binary.BinaryTreeToString;
 import org.psjava.ds.tree.binary.InOrderIterator;
-import org.psjava.util.AssertStatus;
 
 public class BinarySearchTree<K, V> {
 
@@ -46,7 +45,6 @@ public class BinarySearchTree<K, V> {
 	}
 
 	public InsertionResult insertOrUpdate(K key, V value) {
-		AssertStatus.assertTrue(value != null);
 		if (rootOrNull == null) {
 			rootOrNull = BinaryTreeNodeWithParentFactory.create(new NodeData<K, V>(key, value));
 			return InsertionResult.INSERTED;
@@ -77,11 +75,11 @@ public class BinarySearchTree<K, V> {
 		}
 	}
 
-	public V findExistValue(K key, V def) {
+	public KeyValuePair<K,V> findPairOrNull(K key) {
 		BinaryTreeNodeWithParent<NodeData<K, V>> node = findNodeOrNull(key);
-		if (node == null)
-			return def;
-		return node.getData().value;
+		if(node == null)
+			return null;
+		return node.getData();
 	}
 
 	protected BinaryTreeNodeWithParent<NodeData<K, V>> findNodeOrNull(K key) {

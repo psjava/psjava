@@ -19,24 +19,39 @@ public class MutableSortedMapUsingBinarySearchTree {
 
 			@Override
 			public boolean containsKey(K key) {
-				return tree.findExistValue(key, null) != null;
+				return tree.findPairOrNull(key) != null;
 			}
 
 			@Override
 			public V get(K key) {
-				V v = tree.findExistValue(key, null);
-				AssertStatus.assertNotNull(v, "not exist for key");
-				return v;
+				KeyValuePair<K, V> pair = tree.findPairOrNull(key);
+				AssertStatus.assertNotNull(pair, "not exist for key");
+				return pair.getValue();
 			}
 
 			@Override
 			public V getOrNull(K key) {
-				return tree.findExistValue(key, null);
+				KeyValuePair<K, V> pair = tree.findPairOrNull(key);
+				if(pair == null)
+					return null;
+				return pair.getValue();
+			}
+
+			@Override
+			public void add(K key, V value) {
+				InsertionResult res = tree.insertOrUpdate(key, value);
+				AssertStatus.assertTrue(res == InsertionResult.INSERTED);
+				size++;
+			}
+
+			@Override
+			public void replace(K key, V value) {
+				InsertionResult res = tree.insertOrUpdate(key, value);
+				AssertStatus.assertTrue(res == InsertionResult.UPDATED);
 			}
 
 			@Override
 			public void put(K key, V value) {
-				AssertStatus.assertNotNull(value, "value cannot be a null");
 				InsertionResult r = tree.insertOrUpdate(key, value);
 				if (r == InsertionResult.INSERTED)
 					size++;

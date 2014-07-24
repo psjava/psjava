@@ -81,6 +81,36 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 	}
 
 	@Override
+	public void add(final K key, final V value) {
+		ensureArraysCapacity(load + 1);
+		addToCurrentArray(key, value);
+	}
+
+	protected void addToCurrentArray(final K key, final V value) {
+		final int keyHash = key.hashCode();
+		probe(keyHash, new BucketVisitor() {
+			@Override
+			public boolean visitAndGetContinuity(int pos) {
+				if (bucket[pos] != null) {
+					AssertStatus.assertTrue(!isKeyInBucket(pos, key, keyHash), "already contains the key");
+					return true;
+				} else {
+					bucket[pos] = new Entry<K, V>(key, value, keyHash);
+					load++;
+					return false;
+				}
+			}
+		});
+	}
+
+	@Override
+	public void replace(K key, V value) {
+		Entry<K, V> entry = findEntry(key, null);
+		AssertStatus.assertNotNull(entry, "key is not exist");
+		entry.value = value;
+	}
+
+	@Override
 	public void put(K key, V value) {
 		ensureArraysCapacity(load + 1);
 		putToCurrentArray(key, value);

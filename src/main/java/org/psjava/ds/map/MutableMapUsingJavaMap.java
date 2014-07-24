@@ -13,33 +13,39 @@ public class MutableMapUsingJavaMap {
 	public static <K, V> MutableMap<K, V> wrap(final java.util.Map<K, V> map) {
 		return new MutableMap<K, V>() {
 
-			boolean nullValuePut = false;
-
 			@Override
 			public boolean containsKey(K key) {
 				return map.containsKey(key);
 			}
 
+			/** always check existence because java'map allows null value */
 			@Override
 			public V get(K key) {
-				V r = map.get(key);
-				if (r != null) {
-					return r;
-				} else { // because java map's get returns null even if value is null.
-					AssertStatus.assertTrue(nullValuePut && map.containsKey(key), "the key in not int the map");
-					return null;
-				}
+				AssertStatus.assertTrue(map.containsKey(key), "key is not int the map");
+				return map.get(key);
 			}
 
+			/** always check existence because java'map allows null value */
 			@Override
 			public V getOrNull(K key) {
 				return map.get(key);
 			}
 
+			/** always check existence because java'map allows null value */
+			@Override
+			public void add(K key, V value) {
+				AssertStatus.assertTrue(!map.containsKey(key), "already contains");
+				map.put(key, value);
+			}
+
+			@Override
+			public void replace(K key, V value) {
+				AssertStatus.assertTrue(map.containsKey(key), "key is not in map");
+				map.put(key, value);
+			}
+
 			@Override
 			public void put(K key, V value) {
-				if (value == null)
-					nullValuePut = true;
 				map.put(key, value);
 			}
 
