@@ -4,6 +4,7 @@ import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.ds.set.MutableSet;
 import org.psjava.ds.set.MutableSetFactory;
+import org.psjava.util.AssertStatus;
 
 public class MemoizationFactory {
 
@@ -21,8 +22,7 @@ public class MemoizationFactory {
 		return new Memoization<I, O>() {
 			@Override
 			public O get(I input) {
-				if (inStack.contains(input))
-					throw new IllegalArgumentException("The function calls infinite recursion. check the logic.");
+				AssertStatus.assertTrue(!inStack.contains(input), "The function calls infinite recursion. check the logic.");
 				inStack.insert(input);
 				O v = table.getOrNull(input);
 				if (v == null) {

@@ -29,7 +29,7 @@ public class MemoizationFactoryTest {
 		assertEquals(55, (int) memo.get(10));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RuntimeException.class)
 	public void testInfiniteRecursion() {
 		Memoization<Integer, Integer> memo = instance.create(new MemoizationFunction<Integer, Integer>() {
 			@Override
