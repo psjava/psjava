@@ -4,10 +4,14 @@ import org.psjava.formula.Modulo;
 
 public class ModularNumberSystem<T> implements MultipliableNumberSystem<T> {
 
+	public static <T> ModularNumberSystem<T> newInstance(IntegerDivisableNumberSystem<T> originalSystem, T modular) {
+		return new ModularNumberSystem<T>(originalSystem, modular);
+	}
+
 	private final IntegerDivisableNumberSystem<T> ns;
 	private final T m;
 
-	public ModularNumberSystem(IntegerDivisableNumberSystem<T> originalSystem, T modular) {
+	private ModularNumberSystem(IntegerDivisableNumberSystem<T> originalSystem, T modular) {
 		this.ns = originalSystem;
 		this.m = modular;
 	}

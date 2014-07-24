@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class FractionNumberSystemTest {
 
-	private static final FractionNumberSystem<Integer> NS = new FractionNumberSystem<Integer>(IntegerNumberSystem.getInstance());
+	private static final FractionNumberSystem<Integer> NS = FractionNumberSystem.newInstance(IntegerNumberSystem.getInstance());
 
 	@Test
 	public void testBasicMath() {

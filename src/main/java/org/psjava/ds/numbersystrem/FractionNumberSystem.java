@@ -6,9 +6,13 @@ import org.psjava.algo.math.numbertheory.GCD;
 
 public class FractionNumberSystem<T> implements DivisableNumberSystem<Fraction<T>>, Comparator<Fraction<T>> {
 
+	public static <T> FractionNumberSystem<T> newInstance(IntegerDivisableNumberSystem<T> subSystem) {
+		return new FractionNumberSystem<T>(subSystem);
+	}
+
 	private final IntegerDivisableNumberSystem<T> ns;
 
-	public FractionNumberSystem(IntegerDivisableNumberSystem<T> subSystem) {
+	private FractionNumberSystem(IntegerDivisableNumberSystem<T> subSystem) {
 		this.ns = subSystem;
 	}
 

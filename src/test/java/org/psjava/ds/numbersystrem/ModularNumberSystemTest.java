@@ -19,7 +19,7 @@ public class ModularNumberSystemTest {
 	}
 
 	private static ModularNumberSystem<Integer> create() {
-		return new ModularNumberSystem<Integer>(IntegerNumberSystem.getInstance(), 10);
+		return ModularNumberSystem.newInstance(IntegerNumberSystem.getInstance(), 10);
 	}
 
 }
