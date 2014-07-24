@@ -17,10 +17,10 @@ public class SetExample {
 		// MutableSet interface is modifiable.
 
 		MutableSet<String> set1 = GoodMutableSetFactory.getInstance().create();
-		set1.addIfAbsent("A");
-		set1.addIfAbsent("A");
-		set1.addIfAbsent("B");
-		set1.addIfAbsent("C");
+		set1.add("A"); // 'add' method's parameter value is must not be exsit in the set
+		set1.addIfAbsent("A"); // 'addIfAbsent' is more generous.
+		set1.add("B");
+		set1.add("C");
 
 		int size = set1.size(); // must be 3
 		Assert.assertEquals(3, size);

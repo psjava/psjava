@@ -23,7 +23,7 @@ public class MemoizationFactory {
 			@Override
 			public O get(I input) {
 				AssertStatus.assertTrue(!inStack.contains(input), "The function calls infinite recursion. check the logic.");
-				inStack.addIfAbsent(input);
+				inStack.add(input);
 				O v = table.getOrNull(input);
 				if (v == null) {
 					v = f.get(input, this);

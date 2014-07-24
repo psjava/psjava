@@ -8,7 +8,7 @@ public class IntersectionOfTwoSets {
 		MutableSet<T> r = GoodMutableSetFactory.getInstance().create();
 		for (T v : s2)
 			if (s1.contains(v))
-				r.addIfAbsent(v);
+				r.add(v);
 		return r;
 	}
 
