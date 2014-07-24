@@ -28,6 +28,12 @@ public class MutableSetUsingJavaSet<T> implements MutableSet<T> {
 	}
 
 	@Override
+	public void add(T v) {
+		boolean added = javaset.add(v);
+		AssertStatus.assertTrue(added, "Already exist in set");
+	}
+
+	@Override
 	public void addIfAbsent(T v) {
 		javaset.add(v);
 	}
