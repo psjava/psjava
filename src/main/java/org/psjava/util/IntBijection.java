@@ -18,7 +18,7 @@ public class IntBijection<V> {
 		int index = 0;
 		for (V o : objects) {
 			intToObject[index] = o;
-			objectToInt.addOrReplace(o, index);
+			objectToInt.add(o, index);
 			index++;
 		}
 	}

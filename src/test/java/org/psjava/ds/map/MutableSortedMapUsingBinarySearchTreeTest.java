@@ -6,11 +6,11 @@ import org.psjava.util.DefaultComparator;
 
 public class MutableSortedMapUsingBinarySearchTreeTest {
 	@Test
-	public void testPut() {
+	public void testAdd() {
 		MutableSortedMap<Integer, Integer> map = create();
-		map.addOrReplace(1, 100);
-		map.addOrReplace(3, 300);
-		map.addOrReplace(2, 200);
+		map.add(1, 100);
+		map.add(3, 300);
+		map.add(2, 200);
 		Assert.assertEquals("(1=100,2=200,3=300)", map.toString());
 	}
 
@@ -26,7 +26,7 @@ public class MutableSortedMapUsingBinarySearchTreeTest {
 	@Test
 	public void testAllowingNullValue() {
 		MutableSortedMap<Integer, Integer> map = create();
-		map.addOrReplace(1, null);
+		map.add(1, null);
 		Assert.assertTrue(map.containsKey(1));
 		Assert.assertTrue(map.get(1) == null);
 	}

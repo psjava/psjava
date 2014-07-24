@@ -27,7 +27,7 @@ public class MemoizationFactory {
 				O v = table.getOrNull(input);
 				if (v == null) {
 					v = f.get(input, this);
-					table.addOrReplace(input, v);
+					table.add(input, v);
 				}
 				inStack.remove(input);
 				return v;

@@ -92,9 +92,9 @@ public class HopcroftKarpAlgorithm {
 	private static <V> AdjacencyList<Vertex<V>, Edge<V>> wrapAsGraph(BipartiteGraph<V> bg) {
 		MutableMap<V, Vertex<V>> vertex = GoodMutableMapFactory.getInstance().create();
 		for (V v : bg.getLeftVertices())
-			vertex.addOrReplace(v, new Vertex<V>(v, Side.LEFT));
+			vertex.add(v, new Vertex<V>(v, Side.LEFT));
 		for (V v : bg.getRightVertices())
-			vertex.addOrReplace(v, new Vertex<V>(v, Side.RIGHT));
+			vertex.add(v, new Vertex<V>(v, Side.RIGHT));
 		MutableGraph<Vertex<V>, Edge<V>> graph = MutableGraph.create();
 		for (Vertex<V> v : ValuesInMap.get(vertex))
 			graph.insertVertex(v);
@@ -188,7 +188,7 @@ public class HopcroftKarpAlgorithm {
 		for (Vertex<V> v : adj.getVertices())
 			for (Edge<V> e : adj.getEdges(v))
 				if (e.status.inMatch)
-					match.addOrReplace(e.from().original, e.to().original);
+					match.add(e.from().original, e.to().original);
 
 		return new MaximumBipartiteMatchingResult<V>() {
 			@Override

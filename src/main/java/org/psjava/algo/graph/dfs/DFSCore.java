@@ -30,13 +30,13 @@ public class DFSCore {
 	public static <V> MutableMap<V, DFSStatus> createInitialStatus(Collection<V> vertices) {
 		MutableMap<V, DFSStatus> r = GoodMutableMapFactory.getInstance().create();
 		for (V v : vertices)
-			r.addOrReplace(v, DFSStatus.NOT_DISCOVERED);
+			r.add(v, DFSStatus.NOT_DISCOVERED);
 		return r;
 	}
 
 	public static <V, E extends DirectedEdge<V>> void traverse(AdjacencyList<V, E> adj, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
 		Stack<StackItem<V, E>> stack = GoodStackFactory.getInstance().create();
-		status.addOrReplace(start, DFSStatus.DISCOVERED);
+		status.replace(start, DFSStatus.DISCOVERED);
 		SimpleStopper stopper = new SimpleStopper();
 		visitor.onDiscovered(start, 0, stopper);
 		Iterator<E> iterator = adj.getEdges(start).iterator();
@@ -51,7 +51,7 @@ public class DFSCore {
 				DFSStatus nextc = status.get(nextv);
 				if (nextc == DFSStatus.NOT_DISCOVERED) {
 					visitor.onWalkDown(edge);
-					status.addOrReplace(item.v, DFSStatus.DISCOVERED);
+					status.replace(item.v, DFSStatus.DISCOVERED);
 					visitor.onDiscovered(nextv, item.depth + 1, stopper);
 					stack.push(new StackItem<V, E>(nextv, edge, item.depth + 1, adj.getEdges(nextv).iterator()));
 				} else if (nextc == DFSStatus.DISCOVERED) {
@@ -59,7 +59,7 @@ public class DFSCore {
 				}
 			} else {
 				stack.pop();
-				status.addOrReplace(item.v, DFSStatus.EXPLORED);
+				status.replace(item.v, DFSStatus.EXPLORED);
 				visitor.onFinish(item.v, item.depth);
 				if (item.e != null)
 					visitor.onWalkUp(item.e);

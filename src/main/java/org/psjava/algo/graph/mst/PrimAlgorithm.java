@@ -34,8 +34,8 @@ public class PrimAlgorithm {
 				MutableMap<V, E> previous = mapFactory.create();
 
 				for (V v : graph.getVertices())
-					distance.addOrReplace(v, null); // null means infinity
-				distance.addOrReplace(start, ns.getZero());
+					distance.add(v, null); // null means infinity
+				distance.replace(start, ns.getZero());
 
 				Heap<V> heap = heapFactory.create(new Comparator<V>() {
 					@Override
@@ -46,7 +46,7 @@ public class PrimAlgorithm {
 
 				MutableMap<V, HeapNode<V>> nodes = mapFactory.create();
 				for (V v : graph.getVertices())
-					nodes.addOrReplace(v, heap.insert(v));
+					nodes.add(v, heap.insert(v));
 
 				AdjacencyList<V, E> adj = AdjacencyListFromGraph.createFromUndirected(graph);
 				while (!heap.isEmpty()) {
@@ -57,7 +57,7 @@ public class PrimAlgorithm {
 						V opposite = OppositeInUndirectedEdge.get(edge, current);
 						HeapNode<V> node = nodes.get(opposite);
 						if (node.isInHeap() && NullableDistanceCompare.compare(ns, distance.get(opposite), edge.weight()) > 0) {
-							distance.addOrReplace(opposite, edge.weight());
+							distance.replace(opposite, edge.weight());
 							previous.addOrReplace(opposite, edge);
 							node.decreaseKey(opposite);
 						}

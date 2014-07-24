@@ -14,7 +14,7 @@ public class Relax {
 		W oldDistance = distance.get(edge.to());
 		W newDistance = ns.add(fromDistance, edge.weight());
 		if (NullableDistanceCompare.compare(ns, oldDistance, newDistance) > 0) {
-			distance.addOrReplace(edge.to(), newDistance);
+			distance.replace(edge.to(), newDistance);
 			previous.addOrReplace(edge.to(), edge);
 			return true;
 		}

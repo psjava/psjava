@@ -26,7 +26,7 @@ public class FloydWarshall implements AllPairShortestPath {
 
 		for (V v1 : graph.getVertices())
 			for (V v2 : graph.getVertices())
-				status.addOrReplace(Pair.create(v1, v2), new Status<V, E, W>());
+				status.add(Pair.create(v1, v2), new Status<V, E, W>());
 
 		for (V v : graph.getVertices())
 			status.get(Pair.create(v, v)).distance = ns.getZero();

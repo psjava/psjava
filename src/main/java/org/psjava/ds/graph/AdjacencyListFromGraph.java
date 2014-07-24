@@ -28,7 +28,7 @@ public class AdjacencyListFromGraph {
 	private static <V, E> Map<V, DynamicArray<E>> initIndexMap(final Collection<V> vertices) {
 		MutableMap<V, DynamicArray<E>> index = GoodMutableMapFactory.getInstance().create();
 		for (V v : vertices)
-			index.addOrReplace(v, new DynamicArray<E>());
+			index.add(v, new DynamicArray<E>());
 		return index;
 	}
 

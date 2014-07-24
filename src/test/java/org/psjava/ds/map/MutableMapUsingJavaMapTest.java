@@ -11,7 +11,7 @@ public class MutableMapUsingJavaMapTest {
 	@Test
 	public void testNullValue() {
 		MutableMap<String, Integer> map = MutableMapUsingJavaMap.wrap(new HashMap<String, Integer>());
-		map.addOrReplace("B", null);
+		map.add("B", null);
 		assertTrue(map.containsKey("B"));
 		map.replace("B", 1);
 	}
@@ -19,7 +19,7 @@ public class MutableMapUsingJavaMapTest {
 	@Test(expected = RuntimeException.class)
 	public void testNullValueAndAddFail() {
 		MutableMap<String, Integer> map = MutableMapUsingJavaMap.wrap(new HashMap<String, Integer>());
-		map.addOrReplace("B", null);
+		map.add("B", null);
 		map.add("B", 1);
 	}
 
