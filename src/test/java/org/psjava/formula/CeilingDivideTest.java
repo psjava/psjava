@@ -2,26 +2,20 @@ package org.psjava.formula;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.numbersystrem.Int64;
-import org.psjava.ds.numbersystrem.Int64NumberSystem;
-import org.psjava.formula.CeilingDivide;
+import org.psjava.ds.numbersystrem.LongNumberSystem;
 
 public class CeilingDivideTest {
 
-	private static final Int64NumberSystem NS = new Int64NumberSystem();
+	private static final LongNumberSystem NS = LongNumberSystem.getInstance();
 
 	@Test
 	public void testPositive() {
-		Assert.assertEquals(4, CeilingDivide.calc(NS, tov(10), tov(3)).toPrimitive());
+		Assert.assertEquals(4L, (long)CeilingDivide.calc(NS, 10L, 3L));
 	}
 
 	@Test(expected = ArithmeticException.class)
 	public void testNegative() {
-		CeilingDivide.calc(NS, tov(-10), tov(3));
-	}
-
-	private Int64 tov(int v) {
-		return Int64.valueOf(v);
+		CeilingDivide.calc(NS, -10L, 3L);
 	}
 
 }
