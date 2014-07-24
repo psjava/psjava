@@ -5,12 +5,12 @@ import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPath;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
 import org.psjava.algo.graph.shortestpath.FloydWarshall;
+import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
-import org.psjava.algo.graph.shortestpath.SingleSourceShortestPath;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
-import org.psjava.goods.GoodSingleSourceShortestPath;
+import org.psjava.goods.GoodSingleSourceShortestPathAlgorithm;
 
 /**
  * @see {@link DijkstraAlgorithmExample}
@@ -37,7 +37,7 @@ public class ShortestPathAlgorithmExample {
 		// Then calculate distances from a single source 'A'
 		// Choose algorithm, and run it.
 
-		SingleSourceShortestPath algorithm1 = GoodSingleSourceShortestPath.getInstance();
+		SingleSourceShortestPathAlgorithm algorithm1 = GoodSingleSourceShortestPathAlgorithm.getInstance();
 		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res1 = algorithm1.calc(graph, "A", IntegerNumberSystem.getInstance());
 
 		int distanceAToC = res1.getDistance("C");

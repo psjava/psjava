@@ -11,28 +11,28 @@ public class SingleSourceShortestPathTestCommon {
 	private static final int INF = 1000000000;
 	private static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
 
-	public static void testSizeOneGraph(SingleSourceShortestPath algo) {
+	public static void testSizeOneGraph(SingleSourceShortestPathAlgorithm algo) {
 		int[][] data = { { 0, 0, 100 } };
 		int[] expected = { 0 };
 		MutableDirectedWeightedGraph<Integer, Integer> g = createGraph(data);
 		assertAllResult(expected, algo.calc(g, 0, NS));
 	}
 
-	public static void testNotReachableVertex(SingleSourceShortestPath algo) {
+	public static void testNotReachableVertex(SingleSourceShortestPathAlgorithm algo) {
 		int[][] data = { { 0, 1, 100 }, { 2, 3, 200 } };
 		int[] expected = { 0, 100, INF, INF };
 		MutableDirectedWeightedGraph<Integer, Integer> g = createGraph(data);
 		assertAllResult(expected, algo.calc(g, 0, NS));
 	}
 
-	public static void testCLRSExample(SingleSourceShortestPath algo) {
+	public static void testCLRSExample(SingleSourceShortestPathAlgorithm algo) {
 		int[][] data = { { 0, 1, 3 }, { 0, 2, 5 }, { 1, 2, 2 }, { 1, 3, 6 }, { 2, 1, 1 }, { 2, 3, 4 }, { 2, 4, 6 }, { 3, 4, 2 }, { 4, 3, 7 }, { 4, 0, 3 } };
 		int[] expected = { 0, 3, 5, 9, 11 };
 		MutableDirectedWeightedGraph<Integer, Integer> g = createGraph(data);
 		assertAllResult(expected, algo.calc(g, 0, NS));
 	}
 
-	public static void testCalcEdgePath(SingleSourceShortestPath algo) {
+	public static void testCalcEdgePath(SingleSourceShortestPathAlgorithm algo) {
 		int[][] data = { { 0, 1, 100 }, { 1, 2, 200 }, { 0, 2, 400 } };
 		int[][] path = { { 0, 1, 100 }, { 1, 2, 200 } };
 		MutableDirectedWeightedGraph<Integer, Integer> g = createGraph(data);

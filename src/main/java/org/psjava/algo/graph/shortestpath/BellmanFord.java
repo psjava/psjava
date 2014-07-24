@@ -5,7 +5,7 @@ import org.psjava.ds.graph.Graph;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.util.AssertStatus;
 
-public class BellmanFord implements SingleSourceShortestPath {
+public class BellmanFord implements SingleSourceShortestPathAlgorithm {
 
 	@Override
 	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, V from, AddableNumberSystem<W> ns) {

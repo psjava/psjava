@@ -14,7 +14,7 @@ import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
 
-public class Dijkstra implements SingleSourceShortestPath {
+public class Dijkstra implements SingleSourceShortestPathAlgorithm {
 
 	// TODO assert negative weight.
 	// TODO check performance, and use int indexed graph if it needs.
