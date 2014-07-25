@@ -30,7 +30,8 @@ public class BellmanFordAlgorithmExample {
 
 		// Then calculate distances from a single source 'A'
 
-		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result1 = new BellmanFordAlgorithm().calc(graph, "A", IntegerNumberSystem.getInstance());
+		BellmanFordAlgorithm algorithm = BellmanFordAlgorithm.getInstance();
+		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result1 = algorithm.calc(graph, "A", IntegerNumberSystem.getInstance());
 
 		boolean reachabilityOfC = result1.isReachable("C"); // must be true
 		Assert.assertTrue(reachabilityOfC);

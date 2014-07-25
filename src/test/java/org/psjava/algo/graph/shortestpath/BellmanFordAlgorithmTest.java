@@ -11,22 +11,22 @@ public class BellmanFordAlgorithmTest {
 
 	@Test
 	public void testSizeOneGraph() {
-		SingleSourceShortestPathTestCommon.testSizeOneGraph(new BellmanFordAlgorithm());
+		SingleSourceShortestPathTestCommon.testSizeOneGraph(getInstance());
 	}
 
 	@Test
 	public void testNotReachableVertex() {
-		SingleSourceShortestPathTestCommon.testNotReachableVertex(new BellmanFordAlgorithm());
+		SingleSourceShortestPathTestCommon.testNotReachableVertex(getInstance());
 	}
 
 	@Test
 	public void testCLRSExample() {
-		SingleSourceShortestPathTestCommon.testCLRSExample(new BellmanFordAlgorithm());
+		SingleSourceShortestPathTestCommon.testCLRSExample(getInstance());
 	}
 
 	@Test
 	public void testCalcEdgePath() {
-		SingleSourceShortestPathTestCommon.testCalcEdgePath(new BellmanFordAlgorithm());
+		SingleSourceShortestPathTestCommon.testCalcEdgePath(getInstance());
 	}
 
 	@Test
@@ -38,13 +38,18 @@ public class BellmanFordAlgorithmTest {
 		g.addEdge(1, 2, -20);
 		g.addEdge(1, 3, 10);
 		g.addEdge(2, 3, 20);
-		SingleSourceShortestPathResult<Integer, Integer, DirectedWeightedEdge<Integer, Integer>> r = new BellmanFordAlgorithm().calc(g, 1, IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<Integer, Integer, DirectedWeightedEdge<Integer, Integer>> r = getInstance().calc(g, 1, IntegerNumberSystem.getInstance());
 		Assert.assertEquals(0, (int) r.getDistance(3));
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testNegativeCycle() {
 		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.create(new int[][] { { 1, 1, -100 } });
-		new BellmanFordAlgorithm().calc(g, 1, IntegerNumberSystem.getInstance());
+		getInstance().calc(g, 1, IntegerNumberSystem.getInstance());
 	}
+
+	private BellmanFordAlgorithm getInstance() {
+		return BellmanFordAlgorithm.getInstance();
+	}
+
 }
