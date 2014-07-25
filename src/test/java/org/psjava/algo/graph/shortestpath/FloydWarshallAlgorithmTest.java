@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class FloydWarshallAlgorithmTest {
 
-	private static final FloydWarshallAlgorithm ALGO = new FloydWarshallAlgorithm();
+	private static final AllPairShortestPath ALGO = FloydWarshallAlgorithm.getInstance();
 
 	@Test
 	public void testEmptyGraph() {

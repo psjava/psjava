@@ -45,7 +45,7 @@ public class ShortestPathAlgorithmExample {
 
 		// Let's get the shortest paths of all pairs. Floyd Warshall's algorithm is the simplest implementation.
 
-		AllPairShortestPath algoritm2 = new FloydWarshallAlgorithm();
+		AllPairShortestPath algoritm2 = FloydWarshallAlgorithm.getInstance();
 		AllPairShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res2 = algoritm2.calc(graph, IntegerNumberSystem.getInstance());
 
 		int distanceAToB = res2.getDistance("A", "B");

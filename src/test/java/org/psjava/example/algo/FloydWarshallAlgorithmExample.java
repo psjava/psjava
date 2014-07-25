@@ -30,7 +30,7 @@ public class FloydWarshallAlgorithmExample {
 
 		// Let's get the shortest paths of all pairs.
 
-		AllPairShortestPath floyd = new FloydWarshallAlgorithm();
+		AllPairShortestPath floyd = FloydWarshallAlgorithm.getInstance();
 		AllPairShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res = floyd.calc(graph, IntegerNumberSystem.getInstance());
 
 		int distanceAToB = res.getDistance("A", "B"); // must be 10
