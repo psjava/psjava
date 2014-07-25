@@ -35,7 +35,7 @@ public class JohnsonAlgorithmExample {
 		// Let's get the shortest paths of all pairs.
 		// Johnson's algorithm is a combination of Bellman Ford's and Dijkstra's algorithm.
 
-		AllPairShortestPath johnson = new JohnsonAlgorithm(new BellmanFordAlgorithm(), new DijkstraAlgorithm(new BinaryHeapFactory()));
+		AllPairShortestPath johnson = new JohnsonAlgorithm(new BellmanFordAlgorithm(), DijkstraAlgorithm.getInstance(new BinaryHeapFactory()));
 		AllPairShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res = johnson.calc(graph, IntegerNumberSystem.getInstance());
 
 		int distanceAToB = res.getDistance("A", "B"); // must be 15

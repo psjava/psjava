@@ -5,7 +5,7 @@ import org.psjava.ds.heap.BinaryHeapFactory;
 
 public class DijkstraAlgorithmTest {
 
-	private static final DijkstraAlgorithm ALGO = new DijkstraAlgorithm(new BinaryHeapFactory());
+	private static final DijkstraAlgorithm ALGO = DijkstraAlgorithm.getInstance(new BinaryHeapFactory());
 
 	@Test
 	public void testSizeOneGraph() {

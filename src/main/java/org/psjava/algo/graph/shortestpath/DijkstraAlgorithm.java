@@ -18,11 +18,14 @@ public class DijkstraAlgorithm implements SingleSourceShortestPathAlgorithm {
 
 	// TODO assert negative weight.
 
-	private static final MutableMapFactory MF = GoodMutableMapFactory.getInstance();
+	public static DijkstraAlgorithm getInstance(final HeapFactory heapFactory) {
+		return new DijkstraAlgorithm(heapFactory);
+	}
 
+	private static final MutableMapFactory MF = GoodMutableMapFactory.getInstance(); // TODO get from calc method or constructor..
 	private HeapFactory factory;
 
-	public DijkstraAlgorithm(HeapFactory heapFactory) {
+	private DijkstraAlgorithm(HeapFactory heapFactory) {
 		this.factory = heapFactory;
 	}
 

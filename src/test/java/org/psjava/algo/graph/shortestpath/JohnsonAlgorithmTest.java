@@ -1,11 +1,11 @@
 package org.psjava.algo.graph.shortestpath;
 
 import org.junit.Test;
-import org.psjava.ds.heap.BinaryHeapFactory;
+import org.psjava.goods.GoodDijkstraAlgorithm;
 
 public class JohnsonAlgorithmTest {
 
-	private static final JohnsonAlgorithm ALGO = new JohnsonAlgorithm(new BellmanFordAlgorithm(), new DijkstraAlgorithm(new BinaryHeapFactory()));
+	private static final JohnsonAlgorithm ALGO = new JohnsonAlgorithm(new BellmanFordAlgorithm(), GoodDijkstraAlgorithm.getInstance());
 
 	@Test
 	public void testEmptyGraph() {
