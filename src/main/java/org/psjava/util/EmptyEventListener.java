@@ -7,7 +7,7 @@ public class EmptyEventListener<T> implements EventListener<T> {
 	}
 
 	@Override
-	public void visit(T value) {
+	public void onEvent(T value) {
 	}
 
 }
