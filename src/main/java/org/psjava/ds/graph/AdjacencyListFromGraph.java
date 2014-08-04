@@ -9,7 +9,7 @@ import org.psjava.util.IterableToString;
 
 public class AdjacencyListFromGraph {
 
-	public static <V, E extends DirectedEdge<V>> AdjacencyList<V, E> create(final Graph<V, E> g) {
+	public static <V, E extends DirectedEdge<V>> AdjacencyList<V, E> createFromDirected(final Graph<V, E> g) {
 		Map<V, DynamicArray<E>> index = initIndexMap(g.getVertices());
 		for (E e : g.getEdges())
 			index.get(e.from()).addToLast(e);

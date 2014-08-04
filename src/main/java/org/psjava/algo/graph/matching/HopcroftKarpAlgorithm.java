@@ -103,7 +103,7 @@ public class HopcroftKarpAlgorithm {
 			graph.addEdge(new Edge<V>(vertex.get(e.left()), vertex.get(e.right()), status));
 			graph.addEdge(new Edge<V>(vertex.get(e.right()), vertex.get(e.left()), status));
 		}
-		return AdjacencyListFromGraph.create(graph);
+		return AdjacencyListFromGraph.createFromDirected(graph);
 	}
 
 	private static <V> Collection<Vertex<V>> bfs(final AdjacencyList<Vertex<V>, Edge<V>> adj, final Object mark) {

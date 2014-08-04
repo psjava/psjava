@@ -14,7 +14,7 @@ public class RootedTreeTester {
 		if (CycleDetection.hasCycle(graph))
 			return false;
 		final DataKeeper<Integer> visitCount = DataKeeper.create(0);
-		SingleSourceDFS.traverse(AdjacencyListFromGraph.create(graph), root, new DFSVisitorBase<V, E>() {
+		SingleSourceDFS.traverse(AdjacencyListFromGraph.createFromDirected(graph), root, new DFSVisitorBase<V, E>() {
 			@Override
 			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
 				visitCount.set(visitCount.get() + 1);

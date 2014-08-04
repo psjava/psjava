@@ -33,7 +33,7 @@ public class DistanceCalculatorInRootedTree {
 		final MutableMap<V, Integer> discoverIndex = mapFactory.create();
 		final MutableMap<V, Integer> indexOfWalkingDown = mapFactory.create();
 		final MutableMap<V, Integer> indexOfWalkingUp = mapFactory.create();
-		SingleSourceDFS.traverse(AdjacencyListFromGraph.create(tree.graph), tree.root, new DFSVisitorBase<V, DirectedWeightedEdge<V, W>>() {
+		SingleSourceDFS.traverse(AdjacencyListFromGraph.createFromDirected(tree.graph), tree.root, new DFSVisitorBase<V, DirectedWeightedEdge<V, W>>() {
 
 			@Override
 			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {

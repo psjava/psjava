@@ -18,7 +18,7 @@ public class BFSTest {
 		String[][] data = { { "A", "B" }, { "B", "C" }, { "A", "C" }, { "B", "D" } };
 		Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirected(data);
 		final DynamicArray<String> log = DynamicArray.create();
-		BFS.traverse(AdjacencyListFromGraph.create(g), VarargsIterable.create("A"), new BFSVisitor<String, DirectedEdge<String>>() {
+		BFS.traverse(AdjacencyListFromGraph.createFromDirected(g), VarargsIterable.create("A"), new BFSVisitor<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscover(String vertex, int depth, VisitorStopper stopper) {
 				log.addToLast(vertex + "(" + depth + ")");

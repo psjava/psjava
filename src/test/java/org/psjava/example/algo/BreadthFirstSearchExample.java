@@ -35,7 +35,7 @@ public class BreadthFirstSearchExample {
 		// Then find a path from "A" to "D" by BFS.
 
 		Collection<String> starts = SingleElementCollection.create("A");
-		BFS.traverse(AdjacencyListFromGraph.create(g), starts, new BFSVisitor<String, DirectedEdge<String>>() {
+		BFS.traverse(AdjacencyListFromGraph.createFromDirected(g), starts, new BFSVisitor<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscover(String vertex, int depth, VisitorStopper stopper) {
 				if (vertex.equals("D")) {

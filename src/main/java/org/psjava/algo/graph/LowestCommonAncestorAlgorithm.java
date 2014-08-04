@@ -38,7 +38,7 @@ public class LowestCommonAncestorAlgorithm {
 		final MutableMap<V, Integer> discoverIndex = mapFactory.create();
 		final DynamicArray<VertexAndDepth<V>> history = DynamicArray.create(); // stores vertex and depth
 
-		SingleSourceDFS.traverse(AdjacencyListFromGraph.create(tree.graph), tree.root, new DFSVisitorBase<V, E>() {
+		SingleSourceDFS.traverse(AdjacencyListFromGraph.createFromDirected(tree.graph), tree.root, new DFSVisitorBase<V, E>() {
 			@Override
 			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
 				discoverIndex.add(vertex, history.size());

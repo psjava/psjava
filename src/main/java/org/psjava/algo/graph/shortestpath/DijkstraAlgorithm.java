@@ -31,7 +31,7 @@ public class DijkstraAlgorithm implements SingleSourceShortestPathAlgorithm {
 
 	@Override
 	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, V start, final AddableNumberSystem<W> ns) {
-		AdjacencyList<V, E> adj = AdjacencyListFromGraph.create(graph);
+		AdjacencyList<V, E> adj = AdjacencyListFromGraph.createFromDirected(graph);
 		final MutableMap<V, W> distance = MF.create();
 		MutableMap<V, E> previous = MF.create();
 

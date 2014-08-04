@@ -40,7 +40,7 @@ public class DepthFirstSearchExample {
 		// Use 'Visitor' for handling searching events.
 		// Here, we will find the back-edge in the graph.
 
-		AdjacencyList<String, DirectedEdge<String>> adj = AdjacencyListFromGraph.create(graph);
+		AdjacencyList<String, DirectedEdge<String>> adj = AdjacencyListFromGraph.createFromDirected(graph);
 
 		SingleSourceDFS.traverse(adj, "A", new DFSVisitor<String, DirectedEdge<String>>() {
 			@Override
