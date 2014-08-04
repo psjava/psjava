@@ -6,7 +6,7 @@ import org.psjava.ds.heap.BinaryHeapFactory;
 public class GoodDijkstraAlgorithm {
 
 	public static DijkstraAlgorithm getInstance() {
-		return DijkstraAlgorithm.getInstance(new BinaryHeapFactory());
+		return DijkstraAlgorithm.getInstance(BinaryHeapFactory.getInstance());
 	}
 
 	private GoodDijkstraAlgorithm() {

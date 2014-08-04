@@ -4,12 +4,16 @@ import java.util.Comparator;
 
 import org.psjava.util.EmptyIterable;
 
-// TODO introduce static factory method
-public class BinaryHeapFactory implements HeapFactory {
+public class BinaryHeapFactory {
 
-	@Override
-	public <T> Heap<T> create(Comparator<T> comparator) {
-		return new BinaryHeap<T>(new EmptyIterable<T>(), comparator);
+	public static HeapFactory getInstance() {
+		return new HeapFactory() {
+			@Override
+			public <T> Heap<T> create(Comparator<T> comparator) {
+				return new BinaryHeap<T>(new EmptyIterable<T>(), comparator);
+			}
+		};
 	}
 
+	private BinaryHeapFactory() {}
 }

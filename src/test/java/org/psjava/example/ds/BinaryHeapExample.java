@@ -18,7 +18,7 @@ public class BinaryHeapExample {
 
 		// Let's create a small heap.
 
-		Heap<Integer> heap = new BinaryHeapFactory().create(new DefaultComparator<Integer>());
+		Heap<Integer> heap =BinaryHeapFactory.getInstance().create(new DefaultComparator<Integer>());
 		heap.insert(100);
 		heap.insert(300);
 		heap.insert(200);

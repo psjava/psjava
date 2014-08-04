@@ -28,7 +28,7 @@ public class PrimAlgorithmExample {
 		graph.addEdge("A", "C", 10);
 		graph.addEdge("B", "C", 20);
 
-		MinimumSpanningTreeAlgorithm algorithm = PrimAlgorithm.getInstance(new BinaryHeapFactory(), GoodMutableMapFactory.getInstance());
+		MinimumSpanningTreeAlgorithm algorithm = PrimAlgorithm.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
 
 		Graph<String, UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
 
