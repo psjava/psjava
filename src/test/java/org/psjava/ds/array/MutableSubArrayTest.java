@@ -7,7 +7,7 @@ import org.psjava.TestUtil;
 public class MutableSubArrayTest {
 	@Test
 	public void test() {
-		MutableArray<Integer> a = MutableArrayFromValues.create(1, 2, 3, 4);
+		MutableArray<Integer> a = MutableArrayFromVarargs.create(1, 2, 3, 4);
 		MutableArray<Integer> sub = MutableSubArray.wrap(a, 1, 3);
 		Assert.assertEquals(TestUtil.toArrayList(2, 3), TestUtil.toArrayListFromIterable(sub));
 		sub.set(1, 100);

@@ -7,17 +7,16 @@ import static org.psjava.TestUtil.toArrayListFromIterable;
 import java.util.ArrayList;
 import org.junit.Test;
 import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.array.MutableArrayFromValues;
-import org.psjava.util.MergedIterable;
+import org.psjava.ds.array.MutableArrayFromVarargs;
 
 public class MergedIterableTest {
 
 	@Test
 	public void testMerging() {
 		DynamicArray<Iterable<Integer>> data = DynamicArray.create();
-		data.addToLast(MutableArrayFromValues.create(1, 2));
+		data.addToLast(MutableArrayFromVarargs.create(1, 2));
 		data.addToLast(new ArrayList<Integer>());
-		data.addToLast(MutableArrayFromValues.create(4, 5));
+		data.addToLast(MutableArrayFromVarargs.create(4, 5));
 
 		Iterable<Integer> merged = MergedIterable.wrap(data);
 

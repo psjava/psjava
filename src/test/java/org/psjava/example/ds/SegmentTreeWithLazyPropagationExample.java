@@ -4,7 +4,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.psjava.ds.array.Array;
-import org.psjava.ds.array.MutableArrayFromValues;
+import org.psjava.ds.array.MutableArrayFromVarargs;
 import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.segmenttree.EnhancedRangeUpdatableSegmentTree;
 import org.psjava.ds.tree.segmenttree.RangeUpdatableSegmentTree;
@@ -19,7 +19,7 @@ public class SegmentTreeWithLazyPropagationExample {
 		// This is an advanced version of segment tree.
 		// This updates the values of given range in O(logn) time.
 
-		Array<Integer> init = MutableArrayFromValues.create(1, 1, 1, 1, 1);
+		Array<Integer> init = MutableArrayFromVarargs.create(1, 1, 1, 1, 1);
 
 		RangeUpdatableSegmentTree<Integer> sumTree = RangeUpdatableSegmentTree.create(init, new BinaryOperator<Integer>() {
 			@Override

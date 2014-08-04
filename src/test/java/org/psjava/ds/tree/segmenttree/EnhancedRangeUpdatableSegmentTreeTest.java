@@ -5,7 +5,7 @@ import java.util.Random;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.array.Array;
-import org.psjava.ds.array.MutableArrayFromValues;
+import org.psjava.ds.array.MutableArrayFromVarargs;
 import org.psjava.ds.array.UniformArray;
 import org.psjava.util.FromTo;
 
@@ -15,20 +15,20 @@ public class EnhancedRangeUpdatableSegmentTreeTest {
 
 	@Test
 	public void testQuery() {
-		EnhancedRangeUpdatableSegmentTree<Integer, Integer> tree = createAddTree(MutableArrayFromValues.create(1, 2, 3, 4, 5, 6, 7, 8));
+		EnhancedRangeUpdatableSegmentTree<Integer, Integer> tree = createAddTree(MutableArrayFromVarargs.create(1, 2, 3, 4, 5, 6, 7, 8));
 		Assert.assertEquals(10, (int) tree.queryRange(0, 4));
 	}
 
 	@Test
 	public void testUpdateSingle() {
-		EnhancedRangeUpdatableSegmentTree<Integer, Integer> tree = createAddTree(MutableArrayFromValues.create(1, 2, 3, 4, 5, 6, 7, 8));
+		EnhancedRangeUpdatableSegmentTree<Integer, Integer> tree = createAddTree(MutableArrayFromVarargs.create(1, 2, 3, 4, 5, 6, 7, 8));
 		tree.updateRange(0, 2, 1);
 		Assert.assertEquals(38, (int) tree.queryRange(0, 8));
 	}
 
 	@Test
 	public void testLazyUpdate() {
-		EnhancedRangeUpdatableSegmentTree<Integer, Integer> tree = createAddTree(MutableArrayFromValues.create(1, 2, 3, 4, 5, 6, 7, 8));
+		EnhancedRangeUpdatableSegmentTree<Integer, Integer> tree = createAddTree(MutableArrayFromVarargs.create(1, 2, 3, 4, 5, 6, 7, 8));
 
 		tree.updateRange(2, 4, 100);
 

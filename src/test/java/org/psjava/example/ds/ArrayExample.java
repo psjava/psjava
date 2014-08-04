@@ -6,7 +6,7 @@ import org.psjava.ds.array.ArrayFromVarargs;
 import org.psjava.ds.array.CharacterArrayUsingString;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFactory;
-import org.psjava.ds.array.MutableArrayFromValues;
+import org.psjava.ds.array.MutableArrayFromVarargs;
 import org.psjava.ds.array.MutableArrayUsingCharArray;
 import org.psjava.ds.array.MutableArrayUsingIntArray;
 import org.psjava.ds.array.MutableArrayUsingJavaArray;
@@ -33,7 +33,7 @@ public class ArrayExample {
 
 		// There are several ways to create mutable arrays.
 
-		MutableArrayFromValues.create("A", "B", "C", "D");
+		MutableArrayFromVarargs.create("A", "B", "C", "D");
 		MutableArrayUsingIntArray.wrap(new int[] { 1, 2, 3, 4 }); // There are wrappers for Java's array.
 		MutableArrayUsingCharArray.wrap(new char[] { 'A', 'B', 'C' });
 

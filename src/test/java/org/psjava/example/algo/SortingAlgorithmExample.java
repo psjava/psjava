@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.psjava.algo.sequence.sort.MergeSort;
 import org.psjava.algo.sequence.sort.SortingHelper;
 import org.psjava.ds.array.MutableArray;
-import org.psjava.ds.array.MutableArrayFromValues;
+import org.psjava.ds.array.MutableArrayFromVarargs;
 import org.psjava.util.DefaultComparator;
 
 /**
@@ -21,7 +21,7 @@ public class SortingAlgorithmExample {
 
 		// Following example is a normal usage.
 
-		MutableArray<Integer> array1 = MutableArrayFromValues.create(2, 1, 3);
+		MutableArray<Integer> array1 = MutableArrayFromVarargs.create(2, 1, 3);
 		MergeSort.getInstance().sort(array1, new DefaultComparator<Integer>());
 		Assert.assertEquals("(1,2,3)", array1.toString());
 
@@ -29,7 +29,7 @@ public class SortingAlgorithmExample {
 		// but there are several convenient methods in 'SortHelper' class
 		// Following is a partial sorting example.
 
-		MutableArray<Integer> array2 = MutableArrayFromValues.create(100, 3, 2, 1, 0);
+		MutableArray<Integer> array2 = MutableArrayFromVarargs.create(100, 3, 2, 1, 0);
 		SortingHelper.sort(MergeSort.getInstance(), array2, 1, 4);
 		Assert.assertEquals("(100,1,2,3,0)", array2.toString());
 	}
