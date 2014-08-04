@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.psjava</groupId>
 	<artifactId>psjava</artifactId>
-	<version>0.1.16</version>
+	<version>0.1.17-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>psjava</name>
 	<description>Problem Solving Library for Java</description>
