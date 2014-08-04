@@ -16,17 +16,24 @@ import org.psjava.util.DataConverter;
  * Faster than floyd-warshall's algorithm in sparse graph.
  */
 
-public class JohnsonAlgorithm implements AllPairShortestPath {
+public class JohnsonAlgorithm {
+
+	public static AllPairShortestPath getInstance(final BellmanFordAlgorithm bellmanFord, final DijkstraAlgorithm dijkstra) {
+		return new AllPairShortestPath() {
+			@Override
+			public <V, W, E extends DirectedWeightedEdge<V, W>> AllPairShortestPathResult<V, W, E> calc(Graph<V, E> graph, AddableNumberSystem<W> ns) {
+				Graph<Object, DirectedWeightedEdge<Object, W>> augmented = augment(graph, ns);
+				SingleSourceShortestPathResult<Object, W, DirectedWeightedEdge<Object, W>> bellmanFordResult = bellmanFord.calc(augmented, VIRTUAL_START, ns);
+				Graph<V, ReweightedEdge<V, W, E>> reweighted = reweight(graph, bellmanFordResult, ns);
+				MutableMap<V, SingleSourceShortestPathResult<V, W, ReweightedEdge<V, W, E>>> dijsktraResult = GoodMutableMapFactory.getInstance().create();
+				for (V v : graph.getVertices())
+					dijsktraResult.add(v, dijkstra.calc(reweighted, v, ns));
+				return createUnreweightedResult(bellmanFordResult, dijsktraResult, ns);
+			}
+		};
+	}
 
 	private static final Object VIRTUAL_START = new Object();
-
-	private BellmanFordAlgorithm bellmanFord;
-	private DijkstraAlgorithm dijkstra;
-
-	public JohnsonAlgorithm(BellmanFordAlgorithm bellmanFord, DijkstraAlgorithm dijkstra) {
-		this.bellmanFord = bellmanFord;
-		this.dijkstra = dijkstra;
-	}
 
 	private static class ReweightedEdge<V, W, E extends DirectedWeightedEdge<V, W>> implements DirectedWeightedEdge<V, W> {
 		private final W weight;
@@ -55,17 +62,6 @@ public class JohnsonAlgorithm implements AllPairShortestPath {
 		public E getOriginal() {
 			return original;
 		}
-	}
-
-	@Override
-	public <V, W, E extends DirectedWeightedEdge<V, W>> AllPairShortestPathResult<V, W, E> calc(Graph<V, E> graph, AddableNumberSystem<W> ns) {
-		Graph<Object, DirectedWeightedEdge<Object, W>> augmented = augment(graph, ns);
-		SingleSourceShortestPathResult<Object, W, DirectedWeightedEdge<Object, W>> bellmanFordResult = bellmanFord.calc(augmented, VIRTUAL_START, ns);
-		Graph<V, ReweightedEdge<V, W, E>> reweighted = reweight(graph, bellmanFordResult, ns);
-		MutableMap<V, SingleSourceShortestPathResult<V, W, ReweightedEdge<V, W, E>>> dijsktraResult = GoodMutableMapFactory.getInstance().create();
-		for (V v : graph.getVertices())
-			dijsktraResult.add(v, dijkstra.calc(reweighted, v, ns));
-		return createUnreweightedResult(bellmanFordResult, dijsktraResult, ns);
 	}
 
 	private static <V, W, E extends DirectedWeightedEdge<V, W>> Graph<Object, DirectedWeightedEdge<Object, W>> augment(Graph<V, E> original, final AddableNumberSystem<W> ns) {
