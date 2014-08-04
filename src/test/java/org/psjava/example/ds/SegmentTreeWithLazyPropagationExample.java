@@ -6,11 +6,12 @@ import org.junit.Test;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.MutableArrayFromVarargs;
 import org.psjava.ds.math.BinaryOperator;
-import org.psjava.ds.tree.segmenttree.EnhancedRangeUpdatableSegmentTree;
+import org.psjava.ds.tree.segmenttree.LazyPropagatingSegmentTree;
 import org.psjava.ds.tree.segmenttree.RangeUpdatableSegmentTree;
 
 /**
- * @implementation {@link EnhancedRangeUpdatableSegmentTree}
+ * @implementation {@link LazyPropagatingSegmentTree}
+ * @implementation {@link RangeUpdatableSegmentTree}
  */
 public class SegmentTreeWithLazyPropagationExample {
 	@Test

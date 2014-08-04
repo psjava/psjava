@@ -10,10 +10,10 @@ public class RangeUpdatableSegmentTree<T> implements SegmentTree<T> {
 		return new RangeUpdatableSegmentTree<T>(initialData, operator);
 	}
 
-	private EnhancedRangeUpdatableSegmentTree<T, T> sub;
+	private LazyPropagatingSegmentTree<T, T> sub;
 
 	private RangeUpdatableSegmentTree(Array<T> initialData, final BinaryOperator<T> operator) {
-		sub = new EnhancedRangeUpdatableSegmentTree<T, T>(initialData, new EnhancedRangeUpdatableSegmentTreeOperator<T, T>() {
+		sub = new LazyPropagatingSegmentTree<T, T>(initialData, new EnhancedRangeUpdatableSegmentTreeOperator<T, T>() {
 			@Override
 			public T mergeRangeValue(T oldRangeValue, int rangeSize, T updateData) {
 				return Power.calc(updateData, rangeSize, operator);

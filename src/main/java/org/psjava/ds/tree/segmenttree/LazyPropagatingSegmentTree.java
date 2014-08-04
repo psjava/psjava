@@ -10,7 +10,7 @@ import org.psjava.ds.tree.BinaryTreeNodeFactory;
  * Because in any method, we need node objects, so there is no advantage for memory allocation number.
  */
 
-public class EnhancedRangeUpdatableSegmentTree<T, U> {
+public class LazyPropagatingSegmentTree<T, U> {
 
 	class NodeData {
 		T merged;
@@ -27,7 +27,7 @@ public class EnhancedRangeUpdatableSegmentTree<T, U> {
 	private final int size;
 	final BinaryTreeNode<NodeData> root;
 
-	public EnhancedRangeUpdatableSegmentTree(Array<T> initialData, EnhancedRangeUpdatableSegmentTreeOperator<T, U> operator) {
+	public LazyPropagatingSegmentTree(Array<T> initialData, EnhancedRangeUpdatableSegmentTreeOperator<T, U> operator) {
 		this.operator = operator;
 		size = initialData.size();
 		if (size > 0)
