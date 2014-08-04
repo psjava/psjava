@@ -4,7 +4,7 @@ import org.psjava.ds.numbersystrem.IntegerDivisableNumberSystem;
 
 public class Increase {
 
-	public static <T> T calc(IntegerDivisableNumberSystem<T> ns, T v) {
+	public static <T> T calc(T v, IntegerDivisableNumberSystem<T> ns) {
 		return ns.add(v, ns.getOne());
 	}
 

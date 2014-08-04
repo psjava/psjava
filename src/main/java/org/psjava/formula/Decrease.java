@@ -4,7 +4,7 @@ import org.psjava.ds.numbersystrem.MultipliableNumberSystem;
 
 public class Decrease {
 
-	public static <T> T calc(MultipliableNumberSystem<T> ns, T value) {
+	public static <T> T calc(T value, MultipliableNumberSystem<T> ns) {
 		return ns.subtract(value, ns.getOne());
 	}
 
