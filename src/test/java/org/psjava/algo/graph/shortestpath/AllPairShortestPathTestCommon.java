@@ -12,20 +12,20 @@ abstract public class AllPairShortestPathTestCommon {
 
 	public static void testEmptyGraph(AllPairShortestPath algo) {
 		int[][] edata = {};
-		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.create(edata);
+		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.createDirectedWeighted(edata);
 		algo.calc(g, NS);
 	}
 
 	public static void testOneSize(AllPairShortestPath algo) {
 		int[][] edata = { { 1, 1, 100 } };
-		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.create(edata);
+		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.createDirectedWeighted(edata);
 		int actual = algo.calc(g, NS).getDistance(1, 1);
 		Assert.assertEquals(0, actual);
 	}
 
 	public static void testNegativeEdgePath(AllPairShortestPath algo) {
 		int[][] edata = { { 0, 1, 3 }, { 0, 2, 8 }, { 0, 4, -4 }, { 1, 3, 1 }, { 1, 4, 7 }, { 2, 1, 4 }, { 3, 0, 2 }, { 3, 2, -5 }, { 4, 3, 6 } };
-		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.create(edata);
+		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.createDirectedWeighted(edata);
 		AllPairShortestPathResult<Integer, Integer, DirectedWeightedEdge<Integer, Integer>> actual = algo.calc(g, NS);
 		int[][] expected = { { 0, 1, -3, 2, -4 }, { 3, 0, -4, 1, -1 }, { 7, 4, 0, 5, 3 }, { 2, -1, -5, 0, -2 }, { 8, 5, 1, 6, 0 } };
 		for (int i = 0; i < 5; i++) {
@@ -41,7 +41,7 @@ abstract public class AllPairShortestPathTestCommon {
 
 	public static void testNegativeCycle(AllPairShortestPath algo) {
 		int[][] edata = { { 0, 1, -100 }, { 1, 0, -100 } };
-		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.create(edata);
+		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.createDirectedWeighted(edata);
 		algo.calc(g, NS);
 	}
 

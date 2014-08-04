@@ -48,7 +48,7 @@ public class SingleSourceShortestPathTestCommon {
 	}
 
 	public static MutableDirectedWeightedGraph<Integer, Integer> createGraph(int[][] edgeData) {
-		return TestGraphFactory.create(edgeData);
+		return TestGraphFactory.createDirectedWeighted(edgeData);
 	}
 
 	public static void assertAllResult(int[] expected, SingleSourceShortestPathResult<Integer, Integer, DirectedWeightedEdge<Integer, Integer>> actual) {

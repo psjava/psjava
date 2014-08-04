@@ -44,7 +44,7 @@ public class BellmanFordAlgorithmTest {
 
 	@Test(expected = RuntimeException.class)
 	public void testNegativeCycle() {
-		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.create(new int[][] { { 1, 1, -100 } });
+		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.createDirectedWeighted(new int[][]{{1, 1, -100}});
 		getInstance().calc(g, 1, IntegerNumberSystem.getInstance());
 	}
 
