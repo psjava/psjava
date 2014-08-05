@@ -5,8 +5,7 @@ import org.junit.Test;
 import org.psjava.algo.graph.bfs.BFS;
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.ds.Collection;
-import org.psjava.ds.graph.MutableDirectedOldGraph;
-import org.psjava.ds.graph.NewGraphFromGraph;
+import org.psjava.ds.graph.MutableDirectedUnweightedGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.util.SingleElementCollection;
 import org.psjava.util.VisitorStopper;
@@ -21,7 +20,7 @@ public class BreadthFirstSearchExample {
 	public void example() {
 		// Let's prepare a simple graph.
 
-		MutableDirectedOldGraph<String> g = MutableDirectedOldGraph.create();
+		MutableDirectedUnweightedGraph<String> g = MutableDirectedUnweightedGraph.create();
 		g.insertVertex("A");
 		g.insertVertex("B");
 		g.insertVertex("C");
@@ -35,7 +34,7 @@ public class BreadthFirstSearchExample {
 		// Then find a path from "A" to "D" by BFS.
 
 		Collection<String> starts = SingleElementCollection.create("A");
-		BFS.traverse(NewGraphFromGraph.createFromDirected(g), starts, new BFSVisitor<String, DirectedEdge<String>>() {
+		BFS.traverse(g, starts, new BFSVisitor<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscover(String vertex, int depth, VisitorStopper stopper) {
 				if (vertex.equals("D")) {
