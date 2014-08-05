@@ -11,7 +11,7 @@ import org.psjava.util.VisitorStopper;
 public class RootedTreeTester {
 
 	public static <E extends DirectedEdge<V>, V> boolean is(OldGraph<V, E> oldGraph, V root) {
-		if (CycleDetection.hasCycle(oldGraph))
+		if (CycleDetection.hasCycle(NewGraphFromGraph.createFromDirected(oldGraph)))
 			return false;
 		final DataKeeper<Integer> visitCount = DataKeeper.create(0);
 		SingleSourceDFS.traverse(NewGraphFromGraph.createFromDirected(oldGraph), root, new DFSVisitorBase<V, E>() {
