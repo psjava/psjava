@@ -8,14 +8,14 @@ public class MutableDirectedWeightedGraph<V, W> implements Graph<V, DirectedWeig
 		return new MutableDirectedWeightedGraph<V, W>();
 	}
 
-	private MutableGraph<V, DirectedWeightedEdge<V, W>> g = MutableGraph.create();
+	private MutableDirectedGraph<V, DirectedWeightedEdge<V, W>> g = MutableDirectedGraph.create();
 
 	public void insertVertex(V v) {
 		g.insertVertex(v);
 	}
 
 	public void addEdge(V from, V to, W weight) {
-		g.addEdge(from, SimpleDirectedWeightedEdge.create(from, to, weight));
+		g.addEdge(SimpleDirectedWeightedEdge.create(from, to, weight));
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class MutableDirectedWeightedGraph<V, W> implements Graph<V, DirectedWeig
 
 	@Override
 	public String toString() {
-		return GraphToString.toString(this);
+		return g.toString();
 	}
 
 }

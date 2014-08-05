@@ -1,7 +1,6 @@
 package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
-import org.psjava.util.AssertStatus;
 
 public class MutableUndirectedUnweightedGraph<V> implements Graph<V, UndirectedEdge<V>> {
 
@@ -9,27 +8,19 @@ public class MutableUndirectedUnweightedGraph<V> implements Graph<V, UndirectedE
 		return new MutableUndirectedUnweightedGraph<V>();
 	}
 
-	private final MutableGraph<V, UndirectedEdge<V>> g = MutableGraph.create();
+	private final MutableUndirectedGraph<V, UndirectedEdge<V>> g = MutableUndirectedGraph.create();
 
 	public void insertVertex(V v) {
 		g.insertVertex(v);
 	}
 
 	public void addEdge(V v1, V v2) {
-		assertVertexExist(v1);
-		assertVertexExist(v2);
-		UndirectedEdge<V> edge = SimpleUndirectedEdge.create(v1, v2);
-		g.addEdge(v1, edge);
-		g.addEdge(v2, edge);
+		g.addEdge(SimpleUndirectedEdge.create(v1, v2));
 	}
 
 	@Override
 	public Collection<V> getVertices() {
 		return g.getVertices();
-	}
-
-	private void assertVertexExist(V v) {
-		AssertStatus.assertTrue(g.getVertices().contains(v), "vertex is not in graph");
 	}
 
 	@Override
@@ -39,6 +30,6 @@ public class MutableUndirectedUnweightedGraph<V> implements Graph<V, UndirectedE
 
 	@Override
 	public String toString() {
-		return GraphToString.toString(this);
+		return g.toString();
 	}
 }

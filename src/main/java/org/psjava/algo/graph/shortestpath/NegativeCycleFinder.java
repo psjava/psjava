@@ -5,7 +5,7 @@ import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.MutableGraph;
+import org.psjava.ds.graph.MutableDirectedGraph;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.set.MutableSet;
 import org.psjava.goods.GoodMutableSetFactory;
@@ -59,14 +59,14 @@ public class NegativeCycleFinder {
 	}
 
 	private static <V, W, E extends DirectedWeightedEdge<V, W>> Graph<Object, AugmentedEdge<V, W, E>> augment(Graph<V, E> original, AddableNumberSystem<W> ns) {
-		MutableGraph<Object, AugmentedEdge<V, W, E>> r = MutableGraph.create();
+		MutableDirectedGraph<Object, AugmentedEdge<V, W, E>> r = MutableDirectedGraph.create();
 		for (V v : original.getVertices())
 			r.insertVertex(v);
 		for (E e : AllEdgeInGraph.wrap(original))
-			r.addEdge(e.from(), new AugmentedEdge<V, W, E>(e.from(), e.to(), e.weight(), e));
+			r.addEdge(new AugmentedEdge<V, W, E>(e.from(), e.to(), e.weight(), e));
 		r.insertVertex(VIRTUAL_START);
 		for (V v : original.getVertices())
-			r.addEdge(VIRTUAL_START, new AugmentedEdge<V, W, E>(VIRTUAL_START, v, ns.getZero(), null));
+			r.addEdge(new AugmentedEdge<V, W, E>(VIRTUAL_START, v, ns.getZero(), null));
 		return r;
 	}
 
