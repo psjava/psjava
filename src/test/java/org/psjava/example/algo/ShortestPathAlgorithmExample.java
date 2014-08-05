@@ -8,7 +8,8 @@ import org.psjava.algo.graph.shortestpath.FloydWarshallAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.MutableDirectedWeightedOldGraph;
+import org.psjava.ds.graph.MutableDirectedWeightedGraph;
+import org.psjava.ds.graph.OldGraphFromGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodSingleSourceShortestPathAlgorithm;
 
@@ -25,7 +26,7 @@ public class ShortestPathAlgorithmExample {
 
 		// Let's construct a graph.
 
-		MutableDirectedWeightedOldGraph<String, Integer> graph = MutableDirectedWeightedOldGraph.create();
+		MutableDirectedWeightedGraph<String, Integer> graph = MutableDirectedWeightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");
@@ -38,7 +39,7 @@ public class ShortestPathAlgorithmExample {
 		// Choose algorithm, and run it.
 
 		SingleSourceShortestPathAlgorithm algorithm1 = GoodSingleSourceShortestPathAlgorithm.getInstance();
-		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res1 = algorithm1.calc(graph, "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> res1 = algorithm1.calc(OldGraphFromGraph.wrap(graph), "A", IntegerNumberSystem.getInstance());
 
 		int distanceAToC = res1.getDistance("C");
 		boolean reachabilityOfD = res1.isReachable("D");

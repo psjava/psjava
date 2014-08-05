@@ -2,8 +2,9 @@ package org.psjava.algo.graph.shortestpath;
 
 import java.util.LinkedList;
 
+import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.OldGraph;
+import org.psjava.ds.graph.Graph;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
@@ -21,17 +22,17 @@ public class FloydWarshallAlgorithm {
 	public static AllPairShortestPath getInstance() {
 		return new AllPairShortestPath() {
 			@Override
-			public <V, W, E extends DirectedWeightedEdge<V, W>> AllPairShortestPathResult<V, W, E> calc(OldGraph<V, E> oldGraph, AddableNumberSystem<W> ns) {
+			public <V, W, E extends DirectedWeightedEdge<V, W>> AllPairShortestPathResult<V, W, E> calc(Graph<V, E> graph, AddableNumberSystem<W> ns) {
 				MutableMap<Pair<V, V>, Status<V, E, W>> status = GoodMutableMapFactory.getInstance().create();
 
-				for (V v1 : oldGraph.getVertices())
-					for (V v2 : oldGraph.getVertices())
+				for (V v1 : graph.getVertices())
+					for (V v2 : graph.getVertices())
 						status.add(Pair.create(v1, v2), new Status<V, E, W>());
 
-				for (V v : oldGraph.getVertices())
+				for (V v : graph.getVertices())
 					status.get(Pair.create(v, v)).distance = ns.getZero();
 
-				for (E edge : oldGraph.getEdges()) {
+				for (E edge : AllEdgeInGraph.create(graph)) {
 					Status<V, E, W> s = status.get(Pair.create(edge.from(), edge.to()));
 					if (s.distance == null || ns.compare(s.distance, edge.weight()) > 0) {
 						s.distance = edge.weight();
@@ -39,9 +40,9 @@ public class FloydWarshallAlgorithm {
 					}
 				}
 
-				for (V k : oldGraph.getVertices())
-					for (V i : oldGraph.getVertices())
-						for (V j : oldGraph.getVertices()) {
+				for (V k : graph.getVertices())
+					for (V i : graph.getVertices())
+						for (V j : graph.getVertices()) {
 							Status<V, E, W> i2k = status.get(Pair.create(i, k));
 							Status<V, E, W> k2j = status.get(Pair.create(k, j));
 							if (i2k.distance != null && k2j.distance != null) {
@@ -54,7 +55,7 @@ public class FloydWarshallAlgorithm {
 							}
 						}
 
-				for (V k : oldGraph.getVertices())
+				for (V k : graph.getVertices())
 					AssertStatus.assertTrue(!ns.isNegative(status.get(Pair.create(k, k)).distance), "contains negative cycle");
 
 				return createResult(status);
