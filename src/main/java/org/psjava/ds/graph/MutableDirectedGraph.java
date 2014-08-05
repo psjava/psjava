@@ -3,14 +3,13 @@ package org.psjava.ds.graph;
 import org.psjava.ds.Collection;
 import org.psjava.util.AssertStatus;
 
-@Deprecated
-public class MutableDirectedOldGraph<V> implements OldGraph<V, DirectedEdge<V>> {
+public class MutableDirectedGraph<V> implements Graph<V, DirectedEdge<V>> {
 
-	public static <V> MutableDirectedOldGraph<V> create() {
-		return new MutableDirectedOldGraph<V>();
+	public static <V> MutableDirectedGraph<V> create() {
+		return new MutableDirectedGraph<V>();
 	}
 
-	private MutableOldGraph<V, DirectedEdge<V>> graph = MutableOldGraph.create();
+	private MutableGraph<V, DirectedEdge<V>> graph = MutableGraph.create();
 
 	public void insertVertex(V v) {
 		graph.insertVertex(v);
@@ -19,7 +18,7 @@ public class MutableDirectedOldGraph<V> implements OldGraph<V, DirectedEdge<V>> 
 	public void addEdge(V from, V to) {
 		assertVertexExist(from);
 		assertVertexExist(to);
-		graph.addEdge(SimpleDirectedEdge.create(from, to));
+		graph.addEdge(from, SimpleDirectedEdge.create(from, to));
 	}
 
 	private void assertVertexExist(V v) {
@@ -32,8 +31,8 @@ public class MutableDirectedOldGraph<V> implements OldGraph<V, DirectedEdge<V>> 
 	}
 
 	@Override
-	public Iterable<DirectedEdge<V>> getEdges() {
-		return graph.getEdges();
+	public Iterable<DirectedEdge<V>> getEdges(V v) {
+		return graph.getEdges(v);
 	}
 
 	@Override

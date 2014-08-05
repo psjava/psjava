@@ -6,6 +6,7 @@ import org.psjava.ds.set.MutableSet;
 import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.util.AssertStatus;
 
+@Deprecated
 public class MutableDirectedWeightedOldGraph<V, W> implements OldGraph<V, DirectedWeightedEdge<V, W>> {
 
 	// TODO use MutableGraph

@@ -3,14 +3,13 @@ package org.psjava.ds.graph;
 import org.psjava.ds.Collection;
 import org.psjava.util.AssertStatus;
 
-@Deprecated
-public class MutableUndirectedOldGraph<V> implements OldGraph<V, UndirectedEdge<V>> {
+public class MutableUndirectedGraph<V> implements Graph<V, UndirectedEdge<V>> {
 
-	public static <V> MutableUndirectedOldGraph<V> create() {
-		return new MutableUndirectedOldGraph<V>();
+	public static <V> MutableUndirectedGraph<V> create() {
+		return new MutableUndirectedGraph<V>();
 	}
 
-	private final MutableOldGraph<V, UndirectedEdge<V>> g = MutableOldGraph.create();
+	private final MutableGraph<V, UndirectedEdge<V>> g = MutableGraph.create();
 
 	public void insertVertex(V v) {
 		g.insertVertex(v);
@@ -19,7 +18,9 @@ public class MutableUndirectedOldGraph<V> implements OldGraph<V, UndirectedEdge<
 	public void addEdge(V v1, V v2) {
 		assertVertexExist(v1);
 		assertVertexExist(v2);
-		g.addEdge(SimpleUndirectedEdge.create(v1, v2));
+		UndirectedEdge<V> edge = SimpleUndirectedEdge.create(v1, v2);
+		g.addEdge(v1, edge);
+		g.addEdge(v2, edge);
 	}
 
 	@Override
@@ -32,8 +33,8 @@ public class MutableUndirectedOldGraph<V> implements OldGraph<V, UndirectedEdge<
 	}
 
 	@Override
-	public Iterable<UndirectedEdge<V>> getEdges() {
-		return g.getEdges();
+	public Iterable<UndirectedEdge<V>> getEdges(V v) {
+		return g.getEdges(v);
 	}
 
 	@Override

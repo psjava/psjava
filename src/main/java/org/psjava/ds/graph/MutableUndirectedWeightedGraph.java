@@ -3,14 +3,13 @@ package org.psjava.ds.graph;
 import org.psjava.ds.Collection;
 import org.psjava.util.AssertStatus;
 
-@Deprecated
-public class MutableUndirectedWeightedOldGraph<V, W> implements OldGraph<V, UndirectedWeightedEdge<V, W>> {
+public class MutableUndirectedWeightedGraph<V, W> implements Graph<V, UndirectedWeightedEdge<V, W>> {
 
-	public static <V, W> MutableUndirectedWeightedOldGraph<V, W> create() {
-		return new MutableUndirectedWeightedOldGraph<V, W>();
+	public static <V, W> MutableUndirectedWeightedGraph<V, W> create() {
+		return new MutableUndirectedWeightedGraph<V, W>();
 	}
 
-	private MutableOldGraph<V, UndirectedWeightedEdge<V, W>> g = MutableOldGraph.create();
+	private MutableGraph<V, UndirectedWeightedEdge<V, W>> g = MutableGraph.create();
 
 	public void insertVertex(V v) {
 		g.insertVertex(v);
@@ -19,7 +18,9 @@ public class MutableUndirectedWeightedOldGraph<V, W> implements OldGraph<V, Undi
 	public void addEdge(V v1, V v2, W weight) {
 		assertVertexExist(v1);
 		assertVertexExist(v2);
-		g.addEdge(SimpleUndirectedWeightedEdge.create(v1, v2, weight));
+		UndirectedWeightedEdge<V, W> edge = SimpleUndirectedWeightedEdge.create(v1, v2, weight);
+		g.addEdge(v1, edge);
+		g.addEdge(v2, edge);
 	}
 
 	private void assertVertexExist(V v) {
@@ -32,8 +33,8 @@ public class MutableUndirectedWeightedOldGraph<V, W> implements OldGraph<V, Undi
 	}
 
 	@Override
-	public Iterable<UndirectedWeightedEdge<V, W>> getEdges() {
-		return g.getEdges();
+	public Iterable<UndirectedWeightedEdge<V, W>> getEdges(V v) {
+		return g.getEdges(v);
 	}
 
 	@Override

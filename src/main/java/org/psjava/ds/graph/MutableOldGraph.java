@@ -5,6 +5,7 @@ import org.psjava.ds.set.MutableSet;
 import org.psjava.ds.set.Set;
 import org.psjava.goods.GoodMutableSetFactory;
 
+@Deprecated
 public class MutableOldGraph<V, E> implements OldGraph<V, E> {
 
 	public static <V, E> MutableOldGraph<V, E> create() {
