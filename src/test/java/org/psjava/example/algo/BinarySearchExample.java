@@ -14,14 +14,15 @@ import org.psjava.util.ReversedComparator;
 
 /**
  * @implementation {@link BinarySearchFirst}
- * @see @{link BinarySearchFirst}
- * @see @{link BinarySearchFirstTrue}
- * @see @{link BinarySearchFirstFalse}
- * @see @{link BinarySearchFirstInArray}
- * @see @{link BinarySearchLast}
- * @see @{link BinarySearchLastInArray}
- * @see @{link BinarySearchLastTrue}
- * @see @{link BinarySearchLastFalse}
+ *
+ * @see {@link BinarySearchFirst}
+ * @see {@link org.psjava.algo.sequence.search.BinarySearchFirstTrue}
+ * @see {@link org.psjava.algo.sequence.search.BinarySearchFirstFalse}
+ * @see {@link BinarySearchFirstInArray}
+ * @see {@link org.psjava.algo.sequence.search.BinarySearchLast}
+ * @see {@link org.psjava.algo.sequence.search.BinarySearchLastInArray}
+ * @see {@link org.psjava.algo.sequence.search.BinarySearchLastTrue}
+ * @see {@link org.psjava.algo.sequence.search.BinarySearchLastFalse}
  */
 public class BinarySearchExample {
 
