@@ -1,28 +1,22 @@
 package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
-import org.psjava.util.AssertStatus;
 
+// TODO rename MutableDirectedUnweightedGraph
 public class MutableDirectedGraph<V> implements Graph<V, DirectedEdge<V>> {
 
 	public static <V> MutableDirectedGraph<V> create() {
 		return new MutableDirectedGraph<V>();
 	}
 
-	private MutableGraph<V, DirectedEdge<V>> graph = MutableGraph.create();
+	private MutableDirectedGraphV2<V, DirectedEdge<V>> graph = MutableDirectedGraphV2.create();
 
 	public void insertVertex(V v) {
 		graph.insertVertex(v);
 	}
 
 	public void addEdge(V from, V to) {
-		assertVertexExist(from);
-		assertVertexExist(to);
-		graph.addEdge(from, SimpleDirectedEdge.create(from, to));
-	}
-
-	private void assertVertexExist(V v) {
-		AssertStatus.assertTrue(graph.getVertices().contains(v), "vertex is not in graph");
+		graph.addEdge(SimpleDirectedEdge.create(from, to));
 	}
 
 	@Override
@@ -37,7 +31,7 @@ public class MutableDirectedGraph<V> implements Graph<V, DirectedEdge<V>> {
 
 	@Override
 	public String toString() {
-		return GraphToString.toString(this);
+		return graph.toString();
 	}
 
 }

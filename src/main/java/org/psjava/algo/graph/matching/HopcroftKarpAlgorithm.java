@@ -10,8 +10,7 @@ import org.psjava.ds.array.FirstInArray;
 import org.psjava.ds.array.LastInArray;
 import org.psjava.ds.graph.EdgeFilteredSubNewGraph;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.MutableOldGraph;
-import org.psjava.ds.graph.NewGraphFromGraph;
+import org.psjava.ds.graph.MutableDirectedGraphV2;
 import org.psjava.ds.graph.BipartiteGraph;
 import org.psjava.ds.graph.BipartiteGraphEdge;
 import org.psjava.ds.graph.DirectedEdge;
@@ -95,7 +94,7 @@ public class HopcroftKarpAlgorithm {
 			vertex.add(v, new Vertex<V>(v, Side.LEFT));
 		for (V v : bg.getRightVertices())
 			vertex.add(v, new Vertex<V>(v, Side.RIGHT));
-		MutableOldGraph<Vertex<V>, Edge<V>> graph = MutableOldGraph.create();
+		MutableDirectedGraphV2<Vertex<V>, Edge<V>> graph = MutableDirectedGraphV2.create();
 		for (Vertex<V> v : ValuesInMap.get(vertex))
 			graph.insertVertex(v);
 		for (BipartiteGraphEdge<V> e : bg.getEdges()) {
@@ -103,7 +102,7 @@ public class HopcroftKarpAlgorithm {
 			graph.addEdge(new Edge<V>(vertex.get(e.left()), vertex.get(e.right()), status));
 			graph.addEdge(new Edge<V>(vertex.get(e.right()), vertex.get(e.left()), status));
 		}
-		return NewGraphFromGraph.createFromDirected(graph);
+		return graph;
 	}
 
 	private static <V> Collection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
