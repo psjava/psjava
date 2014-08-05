@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.BellmanFordAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.MutableDirectedWeightedOldGraph;
+import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 /**
@@ -20,7 +20,7 @@ public class BellmanFordAlgorithmExample {
 
 		// Let's construct a simple graph which contains negatively weighted edge.
 
-		MutableDirectedWeightedOldGraph<String, Integer> graph = MutableDirectedWeightedOldGraph.create();
+		MutableDirectedWeightedGraph<String, Integer> graph = MutableDirectedWeightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");

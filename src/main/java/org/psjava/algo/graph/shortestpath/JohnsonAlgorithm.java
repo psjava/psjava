@@ -5,7 +5,6 @@ import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
-import org.psjava.ds.graph.OldGraphFromGraph;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
@@ -25,11 +24,11 @@ public class JohnsonAlgorithm {
 			@Override
 			public <V, W, E extends DirectedWeightedEdge<V, W>> AllPairShortestPathResult<V, W, E> calc(Graph<V, E> graph, AddableNumberSystem<W> ns) {
 				final Graph<Object, DirectedWeightedEdge<Object, W>> augmented = augment(graph, ns);
-				SingleSourceShortestPathResult<Object, W, DirectedWeightedEdge<Object, W>> bellmanFordResult = bellmanFord.calc(OldGraphFromGraph.wrap(augmented), VIRTUAL_START, ns);
+				SingleSourceShortestPathResult<Object, W, DirectedWeightedEdge<Object, W>> bellmanFordResult = bellmanFord.calc(augmented, VIRTUAL_START, ns);
 				Graph<V, ReweightedEdge<V, W, E>> reweighted = reweight(graph, bellmanFordResult, ns);
 				MutableMap<V, SingleSourceShortestPathResult<V, W, ReweightedEdge<V, W, E>>> dijsktraResult = GoodMutableMapFactory.getInstance().create();
 				for (V v : graph.getVertices())
-					dijsktraResult.add(v, dijkstra.calc(OldGraphFromGraph.wrap(reweighted), v, ns));
+					dijsktraResult.add(v, dijkstra.calc(reweighted, v, ns));
 				return createUnreweightedResult(bellmanFordResult, dijsktraResult, ns);
 			}
 		};

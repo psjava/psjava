@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.DijkstraAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.MutableDirectedWeightedOldGraph;
+import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodDijkstraAlgorithm;
 
@@ -22,7 +22,7 @@ public class DijkstraAlgorithmExample {
 
 		// Let's construct a simple graph.
 
-		MutableDirectedWeightedOldGraph<String, Integer> graph = MutableDirectedWeightedOldGraph.create();
+		MutableDirectedWeightedGraph<String, Integer> graph = MutableDirectedWeightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");

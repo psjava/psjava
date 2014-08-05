@@ -3,6 +3,8 @@ package org.psjava.algo.graph.shortestpath;
 import org.psjava.ds.Collection;
 import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.graph.DirectedWeightedEdge;
+import org.psjava.ds.graph.Graph;
+import org.psjava.ds.graph.NewGraphFromGraph;
 import org.psjava.ds.graph.OldGraph;
 import org.psjava.ds.graph.MutableOldGraph;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
@@ -54,8 +56,9 @@ public class NegativeCycleFinder {
 
 	public static <V, W, E extends DirectedWeightedEdge<V, W>> NegativeCycleFinderResult<E> find(OldGraph<V, E> oldGraph, final AddableNumberSystem<W> ns) {
 		OldGraph<Object, AugmentedEdge<V, W, E>> augmented = augment(oldGraph, ns);
-		SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> bellmanFordStatus = BellmanFordAlgorithm.createInitialStatus(augmented, VIRTUAL_START, ns);
-		BellmanFordAlgorithm.relaxEnough(augmented, bellmanFordStatus, ns);
+		Graph<Object, AugmentedEdge<V, W, E>> newAugmented = NewGraphFromGraph.createFromDirected(augmented);
+		SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> bellmanFordStatus = BellmanFordAlgorithm.createInitialStatus(newAugmented, VIRTUAL_START, ns);
+		BellmanFordAlgorithm.relaxEnough(newAugmented, bellmanFordStatus, ns);
 		AugmentedEdge<V, W, E> relaxed = relaxAnyEdgeIfPossible(augmented, ns, bellmanFordStatus);
 		return createResult(bellmanFordStatus, relaxed);
 	}

@@ -3,7 +3,7 @@ package org.psjava.algo.graph.shortestpath;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.MutableDirectedWeightedOldGraph;
+import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.graph.TestGraphFactory;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
@@ -31,7 +31,7 @@ public class BellmanFordAlgorithmTest {
 
 	@Test
 	public void testNegativeEdgeGraph() {
-		MutableDirectedWeightedOldGraph<Integer, Integer> g = MutableDirectedWeightedOldGraph.create();
+		MutableDirectedWeightedGraph<Integer, Integer> g = MutableDirectedWeightedGraph.create();
 		g.insertVertex(1);
 		g.insertVertex(2);
 		g.insertVertex(3);
@@ -44,7 +44,7 @@ public class BellmanFordAlgorithmTest {
 
 	@Test(expected = RuntimeException.class)
 	public void testNegativeCycle() {
-		MutableDirectedWeightedOldGraph<Integer, Integer> g = TestGraphFactory.createDirectedWeighted(new int[][]{{1, 1, -100}});
+		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.createDirectedWeightedNew(new int[][]{{1, 1, -100}});
 		getInstance().calc(g, 1, IntegerNumberSystem.getInstance());
 	}
 

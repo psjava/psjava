@@ -3,9 +3,7 @@ package org.psjava.algo.graph.shortestpath;
 import java.util.Comparator;
 
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.NewGraphFromGraph;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.OldGraph;
 import org.psjava.ds.heap.Heap;
 import org.psjava.ds.heap.HeapFactory;
 import org.psjava.ds.heap.HeapNode;
@@ -30,12 +28,11 @@ public class DijkstraAlgorithm implements SingleSourceShortestPathAlgorithm {
 	}
 
 	@Override
-	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(OldGraph<V, E> oldGraph, V start, final AddableNumberSystem<W> ns) {
-		Graph<V, E> adj = NewGraphFromGraph.createFromDirected(oldGraph);
+	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, V start, final AddableNumberSystem<W> ns) {
 		final MutableMap<V, W> distance = MF.create();
 		MutableMap<V, E> previous = MF.create();
 
-		for (V v : oldGraph.getVertices())
+		for (V v : graph.getVertices())
 			distance.add(v, null); // null means infinity
 		distance.replace(start, ns.getZero());
 
@@ -47,12 +44,12 @@ public class DijkstraAlgorithm implements SingleSourceShortestPathAlgorithm {
 		});
 
 		MutableMap<V, HeapNode<V>> node = MF.create();
-		for (V v : oldGraph.getVertices())
+		for (V v : graph.getVertices())
 			node.add(v, heap.insert(v));
 
 		while (!heap.isEmpty()) {
 			V current = heap.extractMinimum();
-			for (E edge : adj.getEdges(current)) {
+			for (E edge : graph.getEdges(current)) {
 				boolean relaxed = Relax.relax(distance, previous, edge, ns);
 				if (relaxed)
 					node.get(edge.to()).decreaseKey(edge.to());
