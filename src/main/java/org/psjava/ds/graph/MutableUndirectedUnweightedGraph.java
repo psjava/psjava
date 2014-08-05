@@ -3,10 +3,10 @@ package org.psjava.ds.graph;
 import org.psjava.ds.Collection;
 import org.psjava.util.AssertStatus;
 
-public class MutableUndirectedGraph<V> implements Graph<V, UndirectedEdge<V>> {
+public class MutableUndirectedUnweightedGraph<V> implements Graph<V, UndirectedEdge<V>> {
 
-	public static <V> MutableUndirectedGraph<V> create() {
-		return new MutableUndirectedGraph<V>();
+	public static <V> MutableUndirectedUnweightedGraph<V> create() {
+		return new MutableUndirectedUnweightedGraph<V>();
 	}
 
 	private final MutableGraph<V, UndirectedEdge<V>> g = MutableGraph.create();

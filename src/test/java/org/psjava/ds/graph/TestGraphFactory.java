@@ -23,7 +23,7 @@ public class TestGraphFactory {
 	}
 
 	public static Graph<String, UndirectedEdge<String>> createUndirectedNew(String[][] edata) {
-		MutableUndirectedGraph<String> g = MutableUndirectedGraph.create();
+		MutableUndirectedUnweightedGraph<String> g = MutableUndirectedUnweightedGraph.create();
 		for (String[] e : edata) {
 			g.insertVertex(e[0]);
 			g.insertVertex(e[1]);

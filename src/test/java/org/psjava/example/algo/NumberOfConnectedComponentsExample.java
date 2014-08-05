@@ -3,12 +3,12 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.NumberOfConnectedComponents;
-import org.psjava.ds.graph.MutableUndirectedGraph;
+import org.psjava.ds.graph.MutableUndirectedUnweightedGraph;
 
 public class NumberOfConnectedComponentsExample {
 	@Test
 	public void example() {
-		MutableUndirectedGraph<String> graph = MutableUndirectedGraph.create();
+		MutableUndirectedUnweightedGraph<String> graph = MutableUndirectedUnweightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");
