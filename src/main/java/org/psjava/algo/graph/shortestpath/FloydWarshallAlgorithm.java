@@ -32,7 +32,7 @@ public class FloydWarshallAlgorithm {
 				for (V v : graph.getVertices())
 					status.get(Pair.create(v, v)).distance = ns.getZero();
 
-				for (E edge : AllEdgeInGraph.create(graph)) {
+				for (E edge : AllEdgeInGraph.wrap(graph)) {
 					Status<V, E, W> s = status.get(Pair.create(edge.from(), edge.to()));
 					if (s.distance == null || ns.compare(s.distance, edge.weight()) > 0) {
 						s.distance = edge.weight();

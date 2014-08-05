@@ -33,12 +33,12 @@ public class BellmanFordAlgorithm implements SingleSourceShortestPathAlgorithm {
 
 	public static <V, W, E extends DirectedWeightedEdge<V, W>> void relaxEnough(Graph<V, E> graph, SingleSourceShortestPathCalcStatus<V, W, E> status, AddableNumberSystem<W> ns) {
 		for (int i = 0; i < graph.getVertices().size() - 1; i++)
-			for (E e : AllEdgeInGraph.create(graph))
+			for (E e : AllEdgeInGraph.wrap(graph))
 				Relax.relax(status.distance, status.previous, e, ns);
 	}
 
 	private static <V, W, E extends DirectedWeightedEdge<V, W>> void relaxToCheckNegativeCycle(Graph<V, E> graph, AddableNumberSystem<W> ns, SingleSourceShortestPathCalcStatus<V, W, E> status) {
-		for (E e : AllEdgeInGraph.create(graph)) {
+		for (E e : AllEdgeInGraph.wrap(graph)) {
 			boolean relaxed = Relax.relax(status.distance, status.previous, e, ns);
 			AssertStatus.assertTrue(!relaxed, "contains negative cycle");
 		}

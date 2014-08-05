@@ -72,7 +72,7 @@ public class JohnsonAlgorithm {
 			res.insertVertex(v);
 			res.addEdge(VIRTUAL_START, v, ns.getZero());
 		}
-		for (E e : AllEdgeInGraph.create(original))
+		for (E e : AllEdgeInGraph.wrap(original))
 			res.addEdge(e.from(), e.to(), e.weight());
 		return res;
 	}

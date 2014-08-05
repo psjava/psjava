@@ -13,7 +13,7 @@ public class OldGraphFromGraph {
 
 			@Override
 			public Iterable<E> getEdges() {
-				return AllEdgeInGraph.create(augmented);
+				return AllEdgeInGraph.wrap(augmented);
 			}
 		};
 	}
