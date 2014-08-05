@@ -15,7 +15,7 @@ public class FordFulkersonAlgorithm {
 		return new MaximumFlowAlgorithm() {
 			@Override
 			public <V, F, E extends CapacityEdge<V, F>> MaximumFlowAlgorithmResult<F, E> calc(OldGraph<V, E> capacityOldGraph, V start, V end, AddableNumberSystem<F> ns) {
-				Graph<V, FlowNetworkEdge<V, F, E>> flowNetwork = NewGraphFromGraph.createFromDirected(EmptyFlowNetworkGraph.create(capacityOldGraph, ns));
+				Graph<V, FlowNetworkEdge<V, F, E>> flowNetwork = EmptyFlowNetworkGraph.create(NewGraphFromGraph.createFromDirected(capacityOldGraph), ns);
 				while (true) {
 					Graph<V, FlowNetworkEdge<V, F, E>> residualNetwork = ResidualNetworkNewGraph.wrap(flowNetwork, ns);
 					Collection<FlowNetworkEdge<V, F, E>> augmentingPath = pathFinder.find(residualNetwork, start, end, null);
