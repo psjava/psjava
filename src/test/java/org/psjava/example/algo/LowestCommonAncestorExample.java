@@ -3,7 +3,7 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.LowestCommonAncestorQuerySession;
-import org.psjava.ds.graph.MutableDirectedGraph;
+import org.psjava.ds.graph.MutableDirectedUnweightedGraph;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.example.ds.RootedTreeExample;
 import org.psjava.goods.GoodLowestCommonAncestorAlgorithm;
@@ -18,7 +18,7 @@ public class LowestCommonAncestorExample {
 	public void example() {
 		// Let's construct a simple rooted tree. A is the root.
 
-		MutableDirectedGraph<String> graph = MutableDirectedGraph.create();
+		MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");

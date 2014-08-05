@@ -8,10 +8,7 @@ import org.psjava.algo.graph.dfs.DFSVisitor;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.MultiSourceDFS;
 import org.psjava.algo.graph.dfs.SingleSourceDFS;
-import org.psjava.ds.graph.MutableDirectedGraph;
-import org.psjava.ds.graph.MutableDirectedOldGraph;
-import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.NewGraphFromGraph;
+import org.psjava.ds.graph.MutableDirectedUnweightedGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.util.VarargsIterable;
 import org.psjava.util.VisitorStopper;
@@ -27,7 +24,7 @@ public class DepthFirstSearchExample {
 
 		// Let's prepare a simple graph.
 
-		MutableDirectedGraph<String> graph = MutableDirectedGraph.create();
+		MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");

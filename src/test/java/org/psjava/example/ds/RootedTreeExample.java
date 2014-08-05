@@ -3,7 +3,7 @@ package org.psjava.example.ds;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.graph.DirectedEdge;
-import org.psjava.ds.graph.MutableDirectedGraph;
+import org.psjava.ds.graph.MutableDirectedUnweightedGraph;
 import org.psjava.ds.graph.RootedTree;
 
 /**
@@ -13,7 +13,7 @@ public class RootedTreeExample {
 
 	@Test
 	public void example() {
-		MutableDirectedGraph<String> graph = MutableDirectedGraph.create();
+		MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");

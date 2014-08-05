@@ -35,7 +35,7 @@ public class TestGraphFactory {
 	}
 
 	public static Graph<String, DirectedEdge<String>> createDirectedNew(String[][] edata) {
-		MutableDirectedGraph<String> g = MutableDirectedGraph.create();
+		MutableDirectedUnweightedGraph<String> g = MutableDirectedUnweightedGraph.create();
 		for (String[] e : edata) {
 			g.insertVertex(e[0]);
 			g.insertVertex(e[1]);

@@ -2,21 +2,20 @@ package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
 
-// TODO rename MutableDirectedUnweightedGraph
-public class MutableDirectedGraph<V> implements Graph<V, DirectedEdge<V>> {
+public class MutableDirectedGraph<V, E extends DirectedEdge<V>> implements Graph<V, E> {
 
-	public static <V> MutableDirectedGraph<V> create() {
-		return new MutableDirectedGraph<V>();
+	public static <V, E extends DirectedEdge<V>> MutableDirectedGraph<V,E> create() {
+		return new MutableDirectedGraph<V,E>();
 	}
 
-	private MutableDirectedGraphV2<V, DirectedEdge<V>> graph = MutableDirectedGraphV2.create();
+	private MutableGraph<V, E> graph = MutableGraph.create();
 
 	public void insertVertex(V v) {
 		graph.insertVertex(v);
 	}
 
-	public void addEdge(V from, V to) {
-		graph.addEdge(SimpleDirectedEdge.create(from, to));
+	public void addEdge(E edge) {
+		graph.addEdge(edge.from(), edge);
 	}
 
 	@Override
@@ -25,7 +24,7 @@ public class MutableDirectedGraph<V> implements Graph<V, DirectedEdge<V>> {
 	}
 
 	@Override
-	public Iterable<DirectedEdge<V>> getEdges(V v) {
+	public Iterable<E> getEdges(V v) {
 		return graph.getEdges(v);
 	}
 

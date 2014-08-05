@@ -3,7 +3,7 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.CycleDetection;
-import org.psjava.ds.graph.MutableDirectedGraph;
+import org.psjava.ds.graph.MutableDirectedUnweightedGraph;
 
 /**
  * @implementation {@link CycleDetection}
@@ -15,7 +15,7 @@ public class CycleDetectionExample {
 	public void example() {
 		// Let's prepare a simple graph.
 
-		MutableDirectedGraph<String> graph = MutableDirectedGraph.create();
+		MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");
