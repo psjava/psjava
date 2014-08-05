@@ -34,6 +34,16 @@ public class TestGraphFactory {
 		return g;
 	}
 
+	public static Graph<String, DirectedEdge<String>> createDirectedNew(String[][] edata) {
+		MutableDirectedGraph<String> g = MutableDirectedGraph.create();
+		for (String[] e : edata) {
+			g.insertVertex(e[0]);
+			g.insertVertex(e[1]);
+			g.addEdge(e[0], e[1]);
+		}
+		return g;
+	}
+
 	@Deprecated
 	public static OldGraph<String, UndirectedEdge<String>> createUndirected(String[][] edata) {
 		MutableUndirectedOldGraph<String> g = MutableUndirectedOldGraph.create();
