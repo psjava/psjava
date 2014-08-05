@@ -9,7 +9,6 @@ import org.psjava.ds.array.AddToLastAll;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.OldGraphFromGraph;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.set.DisjointSet;
@@ -23,7 +22,7 @@ public class KruscalAlgorithm {
 		return new MinimumSpanningTreeAlgorithm() {
 			@Override
 			public <W, V, E extends UndirectedWeightedEdge<V, W>> Collection<E> calc(Graph<V, E> graph, final AddableNumberSystem<W> ns) {
-				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(OldGraphFromGraph.wrap(graph)) <= 1);
+				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
 
 				DynamicArray<E> edges = DynamicArray.create();
 				AddToLastAll.add(edges, AllEdgeInGraph.wrap(graph));

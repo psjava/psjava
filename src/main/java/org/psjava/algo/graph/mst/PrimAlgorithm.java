@@ -7,7 +7,6 @@ import org.psjava.algo.graph.shortestpath.NullableDistanceCompare;
 import org.psjava.ds.Collection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.OldGraphFromGraph;
 import org.psjava.ds.graph.OppositeInUndirectedEdge;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
 import org.psjava.ds.heap.Heap;
@@ -24,7 +23,7 @@ public class PrimAlgorithm {
 		return new MinimumSpanningTreeAlgorithm() {
 			@Override
 			public <T, V, E extends UndirectedWeightedEdge<V, T>> Collection< E> calc(Graph<V, E> graph, final AddableNumberSystem<T> ns) {
-				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(OldGraphFromGraph.wrap(graph)) <= 1);
+				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
 				DynamicArray<E> result = DynamicArray.create();
 				if (graph.getVertices().size() == 0)
 					return result;

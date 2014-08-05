@@ -55,6 +55,16 @@ public class TestGraphFactory {
 		return g;
 	}
 
+	public static Graph<String, UndirectedEdge<String>> createUndirectedNew(String[][] edata) {
+		MutableUndirectedGraph<String> g = MutableUndirectedGraph.create();
+		for (String[] e : edata) {
+			g.insertVertex(e[0]);
+			g.insertVertex(e[1]);
+			g.addEdge(e[0], e[1]);
+		}
+		return g;
+	}
+
 	@Deprecated
 	public static OldGraph<String, CapacityEdge<String, Integer>> createCapacityGraph(Object[][] edata) {
 		MutableCapacityOldGraph<String, Integer> g = MutableCapacityOldGraph.create();
