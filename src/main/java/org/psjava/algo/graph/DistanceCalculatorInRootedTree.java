@@ -3,7 +3,7 @@ package org.psjava.algo.graph;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.SingleSourceDFS;
 import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.graph.AdjacencyListFromGraph;
+import org.psjava.ds.graph.NewGraphFromGraph;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.ds.map.MutableMap;
@@ -33,7 +33,7 @@ public class DistanceCalculatorInRootedTree {
 		final MutableMap<V, Integer> discoverIndex = mapFactory.create();
 		final MutableMap<V, Integer> indexOfWalkingDown = mapFactory.create();
 		final MutableMap<V, Integer> indexOfWalkingUp = mapFactory.create();
-		SingleSourceDFS.traverse(AdjacencyListFromGraph.createFromDirected(tree.graph), tree.root, new DFSVisitorBase<V, DirectedWeightedEdge<V, W>>() {
+		SingleSourceDFS.traverse(NewGraphFromGraph.createFromDirected(tree.oldGraph), tree.root, new DFSVisitorBase<V, DirectedWeightedEdge<V, W>>() {
 
 			@Override
 			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {

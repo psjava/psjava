@@ -2,10 +2,10 @@ package org.psjava.algo.graph.shortestpath;
 
 import java.util.Comparator;
 
-import org.psjava.ds.graph.AdjacencyList;
-import org.psjava.ds.graph.AdjacencyListFromGraph;
-import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.Graph;
+import org.psjava.ds.graph.NewGraphFromGraph;
+import org.psjava.ds.graph.DirectedWeightedEdge;
+import org.psjava.ds.graph.OldGraph;
 import org.psjava.ds.heap.Heap;
 import org.psjava.ds.heap.HeapFactory;
 import org.psjava.ds.heap.HeapNode;
@@ -30,12 +30,12 @@ public class DijkstraAlgorithm implements SingleSourceShortestPathAlgorithm {
 	}
 
 	@Override
-	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, V start, final AddableNumberSystem<W> ns) {
-		AdjacencyList<V, E> adj = AdjacencyListFromGraph.createFromDirected(graph);
+	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(OldGraph<V, E> oldGraph, V start, final AddableNumberSystem<W> ns) {
+		Graph<V, E> adj = NewGraphFromGraph.createFromDirected(oldGraph);
 		final MutableMap<V, W> distance = MF.create();
 		MutableMap<V, E> previous = MF.create();
 
-		for (V v : graph.getVertices())
+		for (V v : oldGraph.getVertices())
 			distance.add(v, null); // null means infinity
 		distance.replace(start, ns.getZero());
 
@@ -47,7 +47,7 @@ public class DijkstraAlgorithm implements SingleSourceShortestPathAlgorithm {
 		});
 
 		MutableMap<V, HeapNode<V>> node = MF.create();
-		for (V v : graph.getVertices())
+		for (V v : oldGraph.getVertices())
 			node.add(v, heap.insert(v));
 
 		while (!heap.isEmpty()) {

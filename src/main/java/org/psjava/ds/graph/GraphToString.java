@@ -4,7 +4,7 @@ import org.psjava.util.IterableToString;
 
 public class GraphToString {
 
-	public static <V, E> String toString(Graph<V, E> g) {
+	public static <V, E> String toString(OldGraph<V, E> g) {
 		String r = "";
 		for (E e : g.getEdges()) {
 			if (r.length() != 0)

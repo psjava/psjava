@@ -1,6 +1,6 @@
 package org.psjava.algo.graph.bfs;
 
-import org.psjava.ds.graph.AdjacencyList;
+import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.queue.Queue;
 import org.psjava.ds.set.MutableSet;
@@ -19,7 +19,7 @@ public class BFS {
 		}
 	}
 
-	public static <V, E extends DirectedEdge<V>> void traverse(AdjacencyList<V, E> adj, Iterable<V> startVertices, BFSVisitor<V, E> visitor) {
+	public static <V, E extends DirectedEdge<V>> void traverse(Graph<V, E> adj, Iterable<V> startVertices, BFSVisitor<V, E> visitor) {
 		MutableSet<V> discovered = GoodMutableSetFactory.getInstance().create();
 		SimpleStopper stopper = new SimpleStopper();
 		Queue<QueueItem<V>> queue = GoodQueueFactory.getInstance().create();

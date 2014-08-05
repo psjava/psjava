@@ -2,8 +2,9 @@ package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
 
-public interface Graph<V, E> {
+@Deprecated
+public interface OldGraph<V, E> {
 	Collection<V> getVertices();
 
-	Iterable<E> getEdges(V from);
+	Iterable<E> getEdges();
 }

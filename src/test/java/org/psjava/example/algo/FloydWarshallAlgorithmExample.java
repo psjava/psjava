@@ -6,7 +6,7 @@ import org.psjava.algo.graph.shortestpath.AllPairShortestPath;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
 import org.psjava.algo.graph.shortestpath.FloydWarshallAlgorithm;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.MutableDirectedWeightedGraph;
+import org.psjava.ds.graph.MutableDirectedWeightedOldGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 /**
@@ -20,7 +20,7 @@ public class FloydWarshallAlgorithmExample {
 
 		// Let's construct a graph.
 
-		MutableDirectedWeightedGraph<String, Integer> graph = MutableDirectedWeightedGraph.create();
+		MutableDirectedWeightedOldGraph<String, Integer> graph = MutableDirectedWeightedOldGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");

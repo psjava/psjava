@@ -4,10 +4,10 @@ import java.util.Comparator;
 
 import org.psjava.algo.graph.NumberOfConnectedComponents;
 import org.psjava.algo.graph.shortestpath.NullableDistanceCompare;
-import org.psjava.ds.graph.AdjacencyList;
-import org.psjava.ds.graph.AdjacencyListFromGraph;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.MutableGraph;
+import org.psjava.ds.graph.NewGraphFromGraph;
+import org.psjava.ds.graph.OldGraph;
+import org.psjava.ds.graph.MutableOldGraph;
 import org.psjava.ds.graph.OppositeInUndirectedEdge;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
 import org.psjava.ds.heap.Heap;
@@ -23,17 +23,17 @@ public class PrimAlgorithm {
 	public static MinimumSpanningTreeAlgorithm getInstance(final HeapFactory heapFactory, final MutableMapFactory mapFactory) {
 		return new MinimumSpanningTreeAlgorithm() {
 			@Override
-			public <T, V, E extends UndirectedWeightedEdge<V, T>> Graph<V, E> calc(Graph<V, E> graph, final AddableNumberSystem<T> ns) {
-				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
-				MutableGraph<V, E> result = MutableGraph.create();
-				if (graph.getVertices().size() == 0)
+			public <T, V, E extends UndirectedWeightedEdge<V, T>> OldGraph<V, E> calc(OldGraph<V, E> oldGraph, final AddableNumberSystem<T> ns) {
+				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(oldGraph) <= 1);
+				MutableOldGraph<V, E> result = MutableOldGraph.create();
+				if (oldGraph.getVertices().size() == 0)
 					return result;
 
-				V start = graph.getVertices().iterator().next();
+				V start = oldGraph.getVertices().iterator().next();
 				final MutableMap<V, T> distance = mapFactory.create();
 				MutableMap<V, E> previous = mapFactory.create();
 
-				for (V v : graph.getVertices())
+				for (V v : oldGraph.getVertices())
 					distance.add(v, null); // null means infinity
 				distance.replace(start, ns.getZero());
 
@@ -45,10 +45,10 @@ public class PrimAlgorithm {
 				});
 
 				MutableMap<V, HeapNode<V>> nodes = mapFactory.create();
-				for (V v : graph.getVertices())
+				for (V v : oldGraph.getVertices())
 					nodes.add(v, heap.insert(v));
 
-				AdjacencyList<V, E> adj = AdjacencyListFromGraph.createFromUndirected(graph);
+				Graph<V, E> adj = NewGraphFromGraph.createFromUndirected(oldGraph);
 				while (!heap.isEmpty()) {
 					V current = heap.extractMinimum();
 					if (previous.containsKey(current))

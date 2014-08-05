@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.NegativeCycleFinder;
 import org.psjava.ds.Collection;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.MutableDirectedWeightedGraph;
+import org.psjava.ds.graph.MutableDirectedWeightedOldGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 /**
@@ -18,7 +18,7 @@ public class FindingNegativeCycleExample {
 
 		// consturct a simple graph.
 
-		MutableDirectedWeightedGraph<String, Integer> g = MutableDirectedWeightedGraph.create();
+		MutableDirectedWeightedOldGraph<String, Integer> g = MutableDirectedWeightedOldGraph.create();
 		g.insertVertex("A");
 		g.insertVertex("B");
 		g.insertVertex("C");

@@ -8,7 +8,7 @@ import org.psjava.algo.sequence.rmq.RangeMinimumQuerySession;
 import org.psjava.algo.sequence.rmq.RangeMinimumQuery;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.LastInArray;
-import org.psjava.ds.graph.AdjacencyListFromGraph;
+import org.psjava.ds.graph.NewGraphFromGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.ds.map.MutableMap;
@@ -38,7 +38,7 @@ public class LowestCommonAncestorAlgorithm {
 		final MutableMap<V, Integer> discoverIndex = mapFactory.create();
 		final DynamicArray<VertexAndDepth<V>> history = DynamicArray.create(); // stores vertex and depth
 
-		SingleSourceDFS.traverse(AdjacencyListFromGraph.createFromDirected(tree.graph), tree.root, new DFSVisitorBase<V, E>() {
+		SingleSourceDFS.traverse(NewGraphFromGraph.createFromDirected(tree.oldGraph), tree.root, new DFSVisitorBase<V, E>() {
 			@Override
 			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
 				discoverIndex.add(vertex, history.size());

@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.graph.AdjacencyListFromGraph;
+import org.psjava.ds.graph.NewGraphFromGraph;
 import org.psjava.ds.graph.DirectedEdge;
-import org.psjava.ds.graph.Graph;
+import org.psjava.ds.graph.OldGraph;
 import org.psjava.ds.graph.TestGraphFactory;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.util.VisitorStopper;
@@ -17,10 +17,10 @@ public class DFSCoreTest {
 
 	@Test
 	public void testSimpleTraverseScenario() {
-		Graph<String, DirectedEdge<String>> tg = TestGraphFactory.createDirected(new String[][] { { "1", "2" }, { "2", "3" }, { "3", "1" } });
+		OldGraph<String, DirectedEdge<String>> tg = TestGraphFactory.createDirected(new String[][] { { "1", "2" }, { "2", "3" }, { "3", "1" } });
 		res = "";
 		MutableMap<String, DFSStatus> status = DFSCore.createInitialStatus(tg.getVertices());
-		DFSCore.traverse(AdjacencyListFromGraph.createFromDirected(tg), status, "1", new DFSVisitor<String, DirectedEdge<String>>() {
+		DFSCore.traverse(NewGraphFromGraph.createFromDirected(tg), status, "1", new DFSVisitor<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
 				res += "N" + vertex;
@@ -51,10 +51,10 @@ public class DFSCoreTest {
 
 	@Test
 	public void testStopper() {
-		Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirected(new String[][] { { "A", "B" }, { "B", "C" }, { "C", "D" } });
+		OldGraph<String, DirectedEdge<String>> g = TestGraphFactory.createDirected(new String[][] { { "A", "B" }, { "B", "C" }, { "C", "D" } });
 		MutableMap<String, DFSStatus> status = DFSCore.createInitialStatus(g.getVertices());
 		res = "";
-		DFSCore.traverse(AdjacencyListFromGraph.createFromDirected(g), status, "A", new DFSVisitorBase<String, DirectedEdge<String>>() {
+		DFSCore.traverse(NewGraphFromGraph.createFromDirected(g), status, "A", new DFSVisitorBase<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
 				res += vertex;

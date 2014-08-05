@@ -8,13 +8,13 @@ import org.psjava.ds.Collection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.FirstInArray;
 import org.psjava.ds.array.LastInArray;
-import org.psjava.ds.graph.AdjacencyList;
-import org.psjava.ds.graph.AdjacencyListFromGraph;
+import org.psjava.ds.graph.EdgeFilteredSubNewGraph;
+import org.psjava.ds.graph.Graph;
+import org.psjava.ds.graph.MutableOldGraph;
+import org.psjava.ds.graph.NewGraphFromGraph;
 import org.psjava.ds.graph.BipartiteGraph;
 import org.psjava.ds.graph.BipartiteGraphEdge;
 import org.psjava.ds.graph.DirectedEdge;
-import org.psjava.ds.graph.EdgeFilteredSubAdjacencyList;
-import org.psjava.ds.graph.MutableGraph;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.ValuesInMap;
 import org.psjava.goods.GoodMutableMapFactory;
@@ -33,7 +33,7 @@ public class HopcroftKarpAlgorithm {
 		return new MaximumBipartiteMatching() {
 			@Override
 			public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> bg) {
-				AdjacencyList<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);
+				Graph<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);
 				while (true) {
 					Object bfsMark = new Object();
 					Collection<Vertex<V>> bfsFinishes = bfs(adj, bfsMark);
@@ -89,13 +89,13 @@ public class HopcroftKarpAlgorithm {
 
 	}
 
-	private static <V> AdjacencyList<Vertex<V>, Edge<V>> wrapAsGraph(BipartiteGraph<V> bg) {
+	private static <V> Graph<Vertex<V>, Edge<V>> wrapAsGraph(BipartiteGraph<V> bg) {
 		MutableMap<V, Vertex<V>> vertex = GoodMutableMapFactory.getInstance().create();
 		for (V v : bg.getLeftVertices())
 			vertex.add(v, new Vertex<V>(v, Side.LEFT));
 		for (V v : bg.getRightVertices())
 			vertex.add(v, new Vertex<V>(v, Side.RIGHT));
-		MutableGraph<Vertex<V>, Edge<V>> graph = MutableGraph.create();
+		MutableOldGraph<Vertex<V>, Edge<V>> graph = MutableOldGraph.create();
 		for (Vertex<V> v : ValuesInMap.get(vertex))
 			graph.insertVertex(v);
 		for (BipartiteGraphEdge<V> e : bg.getEdges()) {
@@ -103,13 +103,13 @@ public class HopcroftKarpAlgorithm {
 			graph.addEdge(new Edge<V>(vertex.get(e.left()), vertex.get(e.right()), status));
 			graph.addEdge(new Edge<V>(vertex.get(e.right()), vertex.get(e.left()), status));
 		}
-		return AdjacencyListFromGraph.createFromDirected(graph);
+		return NewGraphFromGraph.createFromDirected(graph);
 	}
 
-	private static <V> Collection<Vertex<V>> bfs(final AdjacencyList<Vertex<V>, Edge<V>> adj, final Object mark) {
+	private static <V> Collection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
 		final DynamicArray<Vertex<V>> finishes = DynamicArray.create();
 
-		BFS.traverse(EdgeFilteredSubAdjacencyList.wrap(adj, new DataFilter<Edge<V>>() {
+		BFS.traverse(EdgeFilteredSubNewGraph.wrap(adj, new DataFilter<Edge<V>>() {
 			@Override
 			public boolean isAccepted(Edge<V> edge) {
 				// to alternate matched and non-matched edges.
@@ -147,8 +147,8 @@ public class HopcroftKarpAlgorithm {
 		return finishes;
 	}
 
-	private static <V> void dfs(final AdjacencyList<Vertex<V>, Edge<V>> adj, final Collection<Vertex<V>> bfsFinishes, final Object bfsMark) {
-		MultiSourceDFS.traverse(EdgeFilteredSubAdjacencyList.wrap(adj, new DataFilter<Edge<V>>() {
+	private static <V> void dfs(final Graph<Vertex<V>, Edge<V>> adj, final Collection<Vertex<V>> bfsFinishes, final Object bfsMark) {
+		MultiSourceDFS.traverse(EdgeFilteredSubNewGraph.wrap(adj, new DataFilter<Edge<V>>() {
 			@Override
 			public boolean isAccepted(Edge<V> edge) {
 				return edge.status.bfsMark == bfsMark; // uses only edges discovered in bfs step.
@@ -183,7 +183,7 @@ public class HopcroftKarpAlgorithm {
 		});
 	}
 
-	private static <V> MaximumBipartiteMatchingResult<V> createResult(AdjacencyList<Vertex<V>, Edge<V>> adj) {
+	private static <V> MaximumBipartiteMatchingResult<V> createResult(Graph<Vertex<V>, Edge<V>> adj) {
 		final MutableMap<V, V> match = GoodMutableMapFactory.getInstance().create();
 		for (Vertex<V> v : adj.getVertices())
 			for (Edge<V> e : adj.getEdges(v))

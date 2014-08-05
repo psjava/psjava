@@ -6,8 +6,8 @@ import org.psjava.algo.graph.NumberOfConnectedComponents;
 import org.psjava.algo.sequence.sort.SortingAlgorithm;
 import org.psjava.ds.array.AddToLastAll;
 import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.MutableGraph;
+import org.psjava.ds.graph.MutableOldGraph;
+import org.psjava.ds.graph.OldGraph;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.set.DisjointSet;
@@ -20,11 +20,11 @@ public class KruscalAlgorithm {
 	public static MinimumSpanningTreeAlgorithm getInstance(final SortingAlgorithm sort) {
 		return new MinimumSpanningTreeAlgorithm() {
 			@Override
-			public <W, V, E extends UndirectedWeightedEdge<V, W>> Graph<V, E> calc(Graph<V, E> graph, final AddableNumberSystem<W> ns) {
-				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
+			public <W, V, E extends UndirectedWeightedEdge<V, W>> OldGraph<V, E> calc(OldGraph<V, E> oldGraph, final AddableNumberSystem<W> ns) {
+				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(oldGraph) <= 1);
 
 				DynamicArray<E> edges = DynamicArray.create();
-				AddToLastAll.add(edges, graph.getEdges());
+				AddToLastAll.add(edges, oldGraph.getEdges());
 
 				sort.sort(edges, new Comparator<E>() {
 					@Override
@@ -34,9 +34,9 @@ public class KruscalAlgorithm {
 				});
 
 				DisjointSet<V> dset = GoodDisjointSet.create();
-				MakeSetAll.make(dset, graph.getVertices());
+				MakeSetAll.make(dset, oldGraph.getVertices());
 
-				MutableGraph<V, E> result = MutableGraph.create();
+				MutableOldGraph<V, E> result = MutableOldGraph.create();
 				for (E e : edges) {
 					if (dset.find(e.v1()) != dset.find(e.v2())) {
 						result.addEdge(e);

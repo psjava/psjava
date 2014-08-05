@@ -2,9 +2,8 @@ package org.psjava.algo.graph.mst;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.graph.mst.MinimumSpanningTreeAlgorithm;
-import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.MutableUndirectedWeightedGraph;
+import org.psjava.ds.graph.OldGraph;
+import org.psjava.ds.graph.MutableUndirectedWeightedOldGraph;
 import org.psjava.ds.graph.TestGraphFactory;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
@@ -31,9 +30,9 @@ abstract public class MinimumSpanningTreeAlgorithmTestBase {
 		assertResult(TestGraphFactory.createUndirectedWeighted(edata), 37);
 	}
 
-	private void assertResult(MutableUndirectedWeightedGraph<String, Integer> graph, int expectedTotal) {
+	private void assertResult(MutableUndirectedWeightedOldGraph<String, Integer> graph, int expectedTotal) {
 		int total = 0;
-		Graph<String, UndirectedWeightedEdge<String, Integer>> tree = getInstance().calc(graph, IntegerNumberSystem.getInstance());
+		OldGraph<String, UndirectedWeightedEdge<String, Integer>> tree = getInstance().calc(graph, IntegerNumberSystem.getInstance());
 		for (UndirectedWeightedEdge<String, Integer> e : tree.getEdges())
 			total += e.weight();
 		Assert.assertEquals(expectedTotal, total);

@@ -1,7 +1,7 @@
 package org.psjava.algo.graph.flownetwork;
 
 import org.psjava.algo.math.FunctionFromMap;
-import org.psjava.ds.graph.AdjacencyList;
+import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.FlowNetworkEdge;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.math.Function;
@@ -10,7 +10,7 @@ import org.psjava.goods.GoodMutableMapFactory;
 
 public class MaximumFlowAlgorithmResultFactory {
 
-	public static <V, F, E> MaximumFlowAlgorithmResult<F, E> create(final AdjacencyList<V, FlowNetworkEdge<V, F, E>> flowNetwork, final V start, final AddableNumberSystem<F> ns) {
+	public static <V, F, E> MaximumFlowAlgorithmResult<F, E> create(final Graph<V, FlowNetworkEdge<V, F, E>> flowNetwork, final V start, final AddableNumberSystem<F> ns) {
 		return new MaximumFlowAlgorithmResult<F, E>() {
 			@Override
 			public F calcTotalFlow() {

@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import org.psjava.algo.graph.bfs.SimpleStopper;
 import org.psjava.ds.Collection;
-import org.psjava.ds.graph.AdjacencyList;
+import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodStackFactory;
@@ -34,7 +34,7 @@ public class DFSCore {
 		return r;
 	}
 
-	public static <V, E extends DirectedEdge<V>> void traverse(AdjacencyList<V, E> adj, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
+	public static <V, E extends DirectedEdge<V>> void traverse(Graph<V, E> adj, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
 		Stack<StackItem<V, E>> stack = GoodStackFactory.getInstance().create();
 		status.replace(start, DFSStatus.DISCOVERED);
 		SimpleStopper stopper = new SimpleStopper();

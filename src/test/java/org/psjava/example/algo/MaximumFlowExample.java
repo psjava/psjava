@@ -6,7 +6,7 @@ import org.psjava.algo.graph.flownetwork.EdmondsKarpAlgorithm;
 import org.psjava.algo.graph.flownetwork.MaximumFlowAlgorithm;
 import org.psjava.algo.graph.flownetwork.MaximumFlowAlgorithmResult;
 import org.psjava.ds.graph.CapacityEdge;
-import org.psjava.ds.graph.MutableCapacityGraph;
+import org.psjava.ds.graph.MutableCapacityOldGraph;
 import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
@@ -19,7 +19,7 @@ public class MaximumFlowExample {
 	public void test() {
 		// Construct a graph with capacities.
 
-		MutableCapacityGraph<String, Integer> capacityGraph = MutableCapacityGraph.create();
+		MutableCapacityOldGraph<String, Integer> capacityGraph = MutableCapacityOldGraph.create();
 		capacityGraph.insertVertex("A");
 		capacityGraph.insertVertex("B");
 		capacityGraph.insertVertex("C");

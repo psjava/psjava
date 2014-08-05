@@ -8,8 +8,8 @@ import org.psjava.util.VarargsIterable;
 
 public class EdgeDoubledGraph {
 
-	public static <V, W, E1, E2> Graph<V, E2> wrap(final Graph<V, E1> original, final DataConverter<E1, E2> direction1Converter, final DataConverter<E1, E2> direction2Converter) {
-		return new Graph<V, E2>() {
+	public static <V, W, E1, E2> OldGraph<V, E2> wrap(final OldGraph<V, E1> original, final DataConverter<E1, E2> direction1Converter, final DataConverter<E1, E2> direction2Converter) {
+		return new OldGraph<V, E2>() {
 			@Override
 			public Collection<V> getVertices() {
 				return original.getVertices();

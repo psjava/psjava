@@ -3,8 +3,8 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.mst.MinimumSpanningTreeAlgorithm;
-import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.MutableUndirectedWeightedGraph;
+import org.psjava.ds.graph.MutableUndirectedWeightedOldGraph;
+import org.psjava.ds.graph.OldGraph;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodMinimumSpanningTreeAlgorithm;
@@ -17,7 +17,7 @@ public class MinimumSpanningTreeAlgorithmExample {
 
 	@Test
 	public void example() {
-		MutableUndirectedWeightedGraph<String, Integer> graph = MutableUndirectedWeightedGraph.create();
+		MutableUndirectedWeightedOldGraph<String, Integer> graph = MutableUndirectedWeightedOldGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");
@@ -26,7 +26,7 @@ public class MinimumSpanningTreeAlgorithmExample {
 		graph.addEdge("B", "C", 20);
 
 		MinimumSpanningTreeAlgorithm algorithm = GoodMinimumSpanningTreeAlgorithm.getInstance();
-		Graph<String, UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
+		OldGraph<String, UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
 
 		int sum = 0;
 		for (UndirectedWeightedEdge<String, Integer> e : tree.getEdges())

@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.graph.AdjacencyListFromGraph;
+import org.psjava.ds.graph.NewGraphFromGraph;
 import org.psjava.ds.graph.DirectedEdge;
-import org.psjava.ds.graph.Graph;
+import org.psjava.ds.graph.OldGraph;
 import org.psjava.ds.graph.TestGraphFactory;
 import org.psjava.util.VarargsIterable;
 import org.psjava.util.VisitorStopper;
@@ -16,9 +16,9 @@ public class BFSTest {
 	@Test
 	public void testTraverse() {
 		String[][] data = { { "A", "B" }, { "B", "C" }, { "A", "C" }, { "B", "D" } };
-		Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirected(data);
+		OldGraph<String, DirectedEdge<String>> g = TestGraphFactory.createDirected(data);
 		final DynamicArray<String> log = DynamicArray.create();
-		BFS.traverse(AdjacencyListFromGraph.createFromDirected(g), VarargsIterable.create("A"), new BFSVisitor<String, DirectedEdge<String>>() {
+		BFS.traverse(NewGraphFromGraph.createFromDirected(g), VarargsIterable.create("A"), new BFSVisitor<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscover(String vertex, int depth, VisitorStopper stopper) {
 				log.addToLast(vertex + "(" + depth + ")");

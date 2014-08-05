@@ -4,7 +4,7 @@ import org.psjava.algo.graph.bfs.BFS;
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.ds.Collection;
 import org.psjava.ds.deque.DoubleLinkedList;
-import org.psjava.ds.graph.AdjacencyList;
+import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodMutableMapFactory;
@@ -16,7 +16,7 @@ public class BFSPathFinder {
 	public static PathFinder getInstance() {
 		return new PathFinder() {
 			@Override
-			public <V, E extends DirectedEdge<V>> Collection<E> find(AdjacencyList<V, E> adj, V start, final V target, Collection<E> def) {
+			public <V, E extends DirectedEdge<V>> Collection<E> find(Graph<V, E> adj, V start, final V target, Collection<E> def) {
 				final MutableMap<V, E> walked = GoodMutableMapFactory.getInstance().create(); // TODO factory to parameter.
 				BFS.traverse(adj, SingleElementCollection.create(start), new BFSVisitor<V, E>() {
 					@Override

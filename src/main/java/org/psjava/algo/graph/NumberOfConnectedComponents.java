@@ -1,6 +1,6 @@
 package org.psjava.algo.graph;
 
-import org.psjava.ds.graph.Graph;
+import org.psjava.ds.graph.OldGraph;
 import org.psjava.ds.graph.UndirectedEdge;
 import org.psjava.ds.set.DisjointSet;
 import org.psjava.ds.set.MutableSet;
@@ -9,7 +9,7 @@ import org.psjava.goods.GoodMutableSetFactory;
 
 public class NumberOfConnectedComponents {
 
-	public static <V, E extends UndirectedEdge<V>> int calc(Graph<V, E> g) {
+	public static <V, E extends UndirectedEdge<V>> int calc(OldGraph<V, E> g) {
 		DisjointSet<V> dset = GoodDisjointSet.create();
 		for (V v : g.getVertices())
 			dset.makeSet(v);

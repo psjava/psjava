@@ -8,7 +8,7 @@ import org.psjava.algo.graph.shortestpath.FloydWarshallAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.MutableDirectedWeightedGraph;
+import org.psjava.ds.graph.MutableDirectedWeightedOldGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodSingleSourceShortestPathAlgorithm;
 
@@ -25,7 +25,7 @@ public class ShortestPathAlgorithmExample {
 
 		// Let's construct a graph.
 
-		MutableDirectedWeightedGraph<String, Integer> graph = MutableDirectedWeightedGraph.create();
+		MutableDirectedWeightedOldGraph<String, Integer> graph = MutableDirectedWeightedOldGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");
