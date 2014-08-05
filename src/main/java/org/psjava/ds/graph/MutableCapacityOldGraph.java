@@ -2,6 +2,7 @@ package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
 
+@Deprecated
 public class MutableCapacityOldGraph<V, F> implements OldGraph<V, CapacityEdge<V, F>> {
 
 	public static <V, F> MutableCapacityOldGraph<V, F> create() {

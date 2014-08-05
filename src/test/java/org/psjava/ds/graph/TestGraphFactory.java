@@ -67,6 +67,16 @@ public class TestGraphFactory {
 		return g;
 	}
 
+	public static MutableDirectedWeightedGraph<String, Integer> createDirectedWeightedNew(Object[][] data) {
+		MutableDirectedWeightedGraph<String, Integer> g = MutableDirectedWeightedGraph.create();
+		for (Object[] e1 : data) {
+			g.insertVertex((String) e1[0]);
+			g.insertVertex((String) e1[1]);
+			g.addEdge((String) e1[0], (String) e1[1], (int) (Integer) e1[2]);
+		}
+		return g;
+	}
+
 	@Deprecated
 	public static MutableUndirectedWeightedOldGraph<String, Integer> createUndirectedWeighted(Object[][] data) {
 		MutableUndirectedWeightedOldGraph<String, Integer> g = MutableUndirectedWeightedOldGraph.create();
