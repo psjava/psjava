@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.NegativeCycleFinder;
 import org.psjava.ds.Collection;
 import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.MutableDirectedWeightedOldGraph;
+import org.psjava.ds.graph.MutableDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 /**
@@ -16,9 +16,10 @@ public class FindingNegativeCycleExample {
 	@Test
 	public void test() {
 
-		// consturct a simple graph.
+		IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
 
-		MutableDirectedWeightedOldGraph<String, Integer> g = MutableDirectedWeightedOldGraph.create();
+		// consturct a simple graph.
+		MutableDirectedWeightedGraph<String, Integer> g = MutableDirectedWeightedGraph.create();
 		g.insertVertex("A");
 		g.insertVertex("B");
 		g.insertVertex("C");
@@ -27,7 +28,7 @@ public class FindingNegativeCycleExample {
 		g.addEdge("C", "A", -100);
 
 		// there is no negative cycles yet. so cycled is false
-		boolean cycled1 = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance()).hasCycle();
+		boolean cycled1 = NegativeCycleFinder.find(g, NS).hasCycle();
 
 		// now, insert another edge to create a negative cycle.
 
@@ -35,8 +36,8 @@ public class FindingNegativeCycleExample {
 
 		// then, there is a negative cycle.
 
-		boolean cycled2 = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance()).hasCycle();
-		Collection<DirectedWeightedEdge<String, Integer>> path = NegativeCycleFinder.find(g, IntegerNumberSystem.getInstance()).getPath();
+		boolean cycled2 = NegativeCycleFinder.find(g, NS).hasCycle();
+		Collection<DirectedWeightedEdge<String, Integer>> path = NegativeCycleFinder.find(g, NS).getPath();
 
 		Assert.assertFalse(cycled1);
 		Assert.assertTrue(cycled2);
