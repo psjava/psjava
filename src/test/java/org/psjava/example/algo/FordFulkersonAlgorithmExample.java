@@ -7,7 +7,7 @@ import org.psjava.algo.graph.flownetwork.MaximumFlowAlgorithm;
 import org.psjava.algo.graph.flownetwork.MaximumFlowAlgorithmResult;
 import org.psjava.algo.graph.pathfinder.DFSPathFinder;
 import org.psjava.ds.graph.CapacityEdge;
-import org.psjava.ds.graph.MutableCapacityOldGraph;
+import org.psjava.ds.graph.MutableCapacityGraph;
 import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
@@ -19,7 +19,7 @@ public class FordFulkersonAlgorithmExample {
 	public void test() {
 		// Construct a graph with capacities.
 
-		MutableCapacityOldGraph<String, Integer> capacityGraph = MutableCapacityOldGraph.create();
+		MutableCapacityGraph<String, Integer> capacityGraph = MutableCapacityGraph.create();
 		capacityGraph.insertVertex("A");
 		capacityGraph.insertVertex("B");
 		capacityGraph.insertVertex("C");
@@ -41,7 +41,7 @@ public class FordFulkersonAlgorithmExample {
 		// Also, you can obtain the flows in each edges by retrieved flow function.
 
 		Function<CapacityEdge<String, Integer>, Integer> flowFunction = result.calcFlowFunction();
-		for (CapacityEdge<String, Integer> e : capacityGraph.getEdges())
+		for (CapacityEdge<String, Integer> e : capacityGraph.getEdges("A"))
 			flowFunction.get(e);
 
 		Assert.assertEquals(5, flow);
