@@ -4,7 +4,7 @@ import org.psjava.util.DataConverter;
 
 public class DirectedGraphFromUndirected {
 
-	public static <V, E extends UndirectedEdge<V>> OldGraph<V, DirectedEdge<V>> wrap(final OldGraph<V, E> original) {
+	public static <V, E extends UndirectedEdge<V>> Graph<V, DirectedEdge<V>> wrap(final Graph<V, E> original) {
 		return EdgeDoubledGraph.wrap(original, new DataConverter<E, DirectedEdge<V>>() {
 			@Override
 			public DirectedEdge<V> convert(E original) {
