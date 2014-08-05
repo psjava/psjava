@@ -8,6 +8,7 @@ import org.psjava.algo.graph.dfs.DFSVisitor;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.MultiSourceDFS;
 import org.psjava.algo.graph.dfs.SingleSourceDFS;
+import org.psjava.ds.graph.MutableDirectedGraph;
 import org.psjava.ds.graph.MutableDirectedOldGraph;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.NewGraphFromGraph;
@@ -26,7 +27,7 @@ public class DepthFirstSearchExample {
 
 		// Let's prepare a simple graph.
 
-		MutableDirectedOldGraph<String> graph = MutableDirectedOldGraph.create();
+		MutableDirectedGraph<String> graph = MutableDirectedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");
@@ -40,9 +41,7 @@ public class DepthFirstSearchExample {
 		// Use 'Visitor' for handling searching events.
 		// Here, we will find the back-edge in the graph.
 
-		Graph<String, DirectedEdge<String>> adj = NewGraphFromGraph.createFromDirected(graph);
-
-		SingleSourceDFS.traverse(adj, "A", new DFSVisitor<String, DirectedEdge<String>>() {
+		SingleSourceDFS.traverse(graph, "A", new DFSVisitor<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
 			}
@@ -71,7 +70,7 @@ public class DepthFirstSearchExample {
 
 		// You can do DFS from multiple sources.
 
-		MultiSourceDFS.traverse(adj, VarargsIterable.create("A", "B"), new DFSVisitorBase<String, DirectedEdge<String>>());
+		MultiSourceDFS.traverse(graph, VarargsIterable.create("A", "B"), new DFSVisitorBase<String, DirectedEdge<String>>());
 
 		// If you don't mind visiting order but want to visit all, do this.
 
