@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.mst.MinimumSpanningTreeAlgorithm;
 import org.psjava.algo.graph.mst.PrimAlgorithm;
-import org.psjava.ds.graph.MutableUndirectedWeightedOldGraph;
-import org.psjava.ds.graph.OldGraph;
+import org.psjava.ds.Collection;
+import org.psjava.ds.graph.MutableUndirectedWeightedGraph;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
 import org.psjava.ds.heap.BinaryHeapFactory;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
@@ -20,7 +20,7 @@ public class PrimAlgorithmExample {
 
 	@Test
 	public void example() {
-		MutableUndirectedWeightedOldGraph<String, Integer> graph = MutableUndirectedWeightedOldGraph.create();
+		MutableUndirectedWeightedGraph<String, Integer> graph = MutableUndirectedWeightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");
@@ -30,10 +30,10 @@ public class PrimAlgorithmExample {
 
 		MinimumSpanningTreeAlgorithm algorithm = PrimAlgorithm.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
 
-		OldGraph<String, UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
+		Collection<UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
 
 		int sum = 0;
-		for (UndirectedWeightedEdge<String, Integer> e : tree.getEdges())
+		for (UndirectedWeightedEdge<String, Integer> e : tree)
 			sum += e.weight();
 
 		// sum must be 10+20=30

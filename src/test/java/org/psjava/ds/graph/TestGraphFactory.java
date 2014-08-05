@@ -108,4 +108,14 @@ public class TestGraphFactory {
 		return g;
 	}
 
+	public static MutableUndirectedWeightedGraph<String, Integer> createUndirectedWeightedNew(Object[][] data) {
+		MutableUndirectedWeightedGraph<String, Integer> g = MutableUndirectedWeightedGraph.create();
+		for (Object[] e1 : data) {
+			g.insertVertex((String) e1[0]);
+			g.insertVertex((String) e1[1]);
+			g.addEdge((String) e1[0], (String) e1[1], (Integer) e1[2]);
+		}
+		return g;
+	}
+
 }
