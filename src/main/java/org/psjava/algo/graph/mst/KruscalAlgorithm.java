@@ -5,8 +5,9 @@ import java.util.Comparator;
 import org.psjava.algo.graph.NumberOfConnectedComponents;
 import org.psjava.algo.sequence.sort.SortingAlgorithm;
 import org.psjava.ds.Collection;
-import org.psjava.ds.array.AddToLastAll;
 import org.psjava.ds.array.DynamicArray;
+import org.psjava.ds.array.MutableArray;
+import org.psjava.ds.array.MutableArrayFromIterable;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
@@ -24,8 +25,7 @@ public class KruscalAlgorithm {
 			public <W, V, E extends UndirectedWeightedEdge<V, W>> Collection<E> calc(Graph<V, E> graph, final AddableNumberSystem<W> ns) {
 				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
 
-				DynamicArray<E> edges = DynamicArray.create();
-				AddToLastAll.add(edges, AllEdgeInGraph.wrap(graph));
+				MutableArray<E> edges = MutableArrayFromIterable.create(AllEdgeInGraph.wrap(graph));
 
 				sort.sort(edges, new Comparator<E>() {
 					@Override

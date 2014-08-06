@@ -1,7 +1,7 @@
 package org.psjava.ds.geometry;
 
-import org.psjava.ds.array.AddToLastAll;
-import org.psjava.ds.array.DynamicArray;
+import org.psjava.ds.array.Array;
+import org.psjava.ds.array.MutableArrayFromIterable;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
 
@@ -11,10 +11,10 @@ public class Polygon2D<T> implements EqualityTester<Polygon2D<T>> {
 		return new Polygon2D<T>(src);
 	}
 
-	private final DynamicArray<Point2D<T>> points = DynamicArray.create();
+	private final Array<Point2D<T>> points;
 
 	private Polygon2D(Iterable<Point2D<T>> src) {
-		AddToLastAll.add(points, src);
+		points = MutableArrayFromIterable.create(src);
 	}
 
 	public boolean equals(Object obj) {
