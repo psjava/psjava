@@ -26,7 +26,7 @@ public class BellmanFordAlgorithmExample {
 		graph.insertVertex("C");
 		graph.addEdge("A", "C", 10);
 		graph.addEdge("A", "B", 15);
-		graph.addEdge("B", "C", -10); // negative weight !
+		graph.addEdge("B", "C", -10); // negative weight is allowed.
 
 		// Then calculate distances from a single source 'A'
 

@@ -33,7 +33,8 @@ public class BreadthFirstSearchExample {
 
 		// Then find a path from "A" to "D" by BFS.
 
-		Collection<String> starts = SingleElementCollection.create("A");
+		Collection<String> starts = SingleElementCollection.create("A"); // You can specify multiple vertices. But here is one start vertex.
+
 		BFS.traverse(g, starts, new BFSVisitor<String, DirectedEdge<String>>() {
 			@Override
 			public void onDiscover(String vertex, int depth, VisitorStopper stopper) {

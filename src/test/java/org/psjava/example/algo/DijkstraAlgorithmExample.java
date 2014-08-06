@@ -20,6 +20,8 @@ public class DijkstraAlgorithmExample {
 	@Test
 	public void example() {
 
+		IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
+
 		// Let's construct a simple graph.
 
 		MutableDirectedWeightedGraph<String, Integer> graph = MutableDirectedWeightedGraph.create();
@@ -34,7 +36,7 @@ public class DijkstraAlgorithmExample {
 		// Calculate distances from a single source 'A'
 
 		DijkstraAlgorithm dijkstra = GoodDijkstraAlgorithm.getInstance();
-		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result = dijkstra.calc(graph, "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result = dijkstra.calc(graph, "A", NS);
 
 		boolean reachabilityOfC = result.isReachable("C"); // C is reachable.
 		boolean reachabilityOfD = result.isReachable("D"); // D is not reachable.
