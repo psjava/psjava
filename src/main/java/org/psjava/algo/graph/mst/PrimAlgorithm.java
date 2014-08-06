@@ -3,7 +3,6 @@ package org.psjava.algo.graph.mst;
 import java.util.Comparator;
 
 import org.psjava.algo.graph.NumberOfConnectedComponents;
-import org.psjava.algo.graph.shortestpath.NullableDistanceCompare;
 import org.psjava.ds.Collection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.graph.Graph;
@@ -15,6 +14,8 @@ import org.psjava.ds.heap.HeapNode;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
+import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
+import org.psjava.ds.numbersystrem.InfinitableNumber;
 import org.psjava.util.AssertStatus;
 
 public class PrimAlgorithm {
@@ -22,24 +23,26 @@ public class PrimAlgorithm {
 	public static MinimumSpanningTreeAlgorithm getInstance(final HeapFactory heapFactory, final MutableMapFactory mapFactory) {
 		return new MinimumSpanningTreeAlgorithm() {
 			@Override
-			public <T, V, E extends UndirectedWeightedEdge<V, T>> Collection< E> calc(Graph<V, E> graph, final AddableNumberSystem<T> ns) {
+			public <W, V, E extends UndirectedWeightedEdge<V, W>> Collection< E> calc(Graph<V, E> graph, AddableNumberSystem<W> weightSystem) {
 				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
+				final InfinitableAddableNumberSystem<W> ns = InfinitableAddableNumberSystem.wrap(weightSystem);
+
 				DynamicArray<E> result = DynamicArray.create();
 				if (graph.getVertices().size() == 0)
 					return result;
 
 				V start = graph.getVertices().iterator().next();
-				final MutableMap<V, T> distance = mapFactory.create();
+				final MutableMap<V, InfinitableNumber<W>> distance = mapFactory.create();
 				MutableMap<V, E> previous = mapFactory.create();
 
 				for (V v : graph.getVertices())
-					distance.add(v, null); // null means infinity
+					distance.add(v, ns.getInfinity());
 				distance.replace(start, ns.getZero());
 
 				Heap<V> heap = heapFactory.create(new Comparator<V>() {
 					@Override
 					public int compare(V o1, V o2) {
-						return NullableDistanceCompare.compare(ns, distance.get(o1), distance.get(o2));
+						return ns.compare(distance.get(o1), distance.get(o2));
 					}
 				});
 
@@ -54,10 +57,14 @@ public class PrimAlgorithm {
 					for (E edge : graph.getEdges(current)) {
 						V opposite = OppositeInUndirectedEdge.get(edge, current);
 						HeapNode<V> node = nodes.get(opposite);
-						if (node.isInHeap() && NullableDistanceCompare.compare(ns, distance.get(opposite), edge.weight()) > 0) {
-							distance.replace(opposite, edge.weight());
-							previous.addOrReplace(opposite, edge);
-							node.decreaseKey(opposite);
+						if (node.isInHeap()) {
+							InfinitableNumber<W> weight = InfinitableNumber.getFiniteInstance(edge.weight());
+							InfinitableNumber<W> oldDistance = distance.get(opposite);
+							if (ns.compare(oldDistance, weight) > 0) {
+								distance.replace(opposite, weight);
+								previous.addOrReplace(opposite, edge);
+								node.decreaseKey(opposite);
+							}
 						}
 					}
 				}

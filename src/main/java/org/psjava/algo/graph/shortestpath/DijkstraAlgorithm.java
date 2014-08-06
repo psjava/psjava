@@ -10,6 +10,8 @@ import org.psjava.ds.heap.HeapNode;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
+import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
+import org.psjava.ds.numbersystrem.InfinitableNumber;
 import org.psjava.goods.GoodMutableMapFactory;
 
 public class DijkstraAlgorithm implements SingleSourceShortestPathAlgorithm {
@@ -28,18 +30,20 @@ public class DijkstraAlgorithm implements SingleSourceShortestPathAlgorithm {
 	}
 
 	@Override
-	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, V start, final AddableNumberSystem<W> ns) {
-		final MutableMap<V, W> distance = MF.create();
+	public <V, W, E extends DirectedWeightedEdge<V, W>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, V start, final AddableNumberSystem<W> weightSystem) {
+		final InfinitableAddableNumberSystem<W> ns = InfinitableAddableNumberSystem.wrap(weightSystem);
+
+		final MutableMap<V, InfinitableNumber<W>> distance = MF.create();
 		MutableMap<V, E> previous = MF.create();
 
 		for (V v : graph.getVertices())
-			distance.add(v, null); // null means infinity
+			distance.add(v, ns.getInfinity());
 		distance.replace(start, ns.getZero());
 
 		Heap<V> heap = factory.create(new Comparator<V>() {
 			@Override
 			public int compare(V o1, V o2) {
-				return NullableDistanceCompare.compare(ns, distance.get(o1), distance.get(o2));
+				return ns.compare(distance.get(o1), distance.get(o2));
 			}
 		});
 
