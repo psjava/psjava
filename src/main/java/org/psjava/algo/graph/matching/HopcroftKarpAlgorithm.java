@@ -28,8 +28,8 @@ import org.psjava.util.ZeroTo;
 
 public class HopcroftKarpAlgorithm {
 
-	public static MaximumBipartiteMatching getInstance() {
-		return new MaximumBipartiteMatching() {
+	public static MaximumBipartiteMatchingAlgorithm getInstance() {
+		return new MaximumBipartiteMatchingAlgorithm() {
 			@Override
 			public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> bg) {
 				Graph<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);

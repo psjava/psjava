@@ -13,8 +13,8 @@ import org.psjava.goods.GoodMutableMapFactory;
 
 public class MaximumBipartiteMatchingAlgorithmUsingMaximumFlow {
 
-	public static MaximumBipartiteMatching getInstance(final MaximumFlowAlgorithm maxFlow) {
-		return new MaximumBipartiteMatching() {
+	public static MaximumBipartiteMatchingAlgorithm getInstance(final MaximumFlowAlgorithm maxFlow) {
+		return new MaximumBipartiteMatchingAlgorithm() {
 			@Override
 			public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> graph) {
 				Object start = new Object();

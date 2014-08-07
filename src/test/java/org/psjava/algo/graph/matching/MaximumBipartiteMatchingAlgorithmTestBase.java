@@ -28,5 +28,5 @@ public abstract class MaximumBipartiteMatchingAlgorithmTestBase {
 		Assert.assertEquals(3, rightSet.size());
 	}
 
-	protected abstract MaximumBipartiteMatching getInstance();
+	protected abstract MaximumBipartiteMatchingAlgorithm getInstance();
 }
