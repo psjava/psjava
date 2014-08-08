@@ -4,7 +4,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 /**
- * @see {@link org.psjava.algo.graph.KonigTheorem}
+ * @see {@link org.psjava.example.algo.KonigTheoremExample}
  */
 public class MinimumVertexCoverInBipartiteGraphExample {
 
