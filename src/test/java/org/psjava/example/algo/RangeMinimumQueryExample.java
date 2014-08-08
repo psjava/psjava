@@ -2,6 +2,7 @@ package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.psjava.algo.sequence.rmq.RangeMinimumQuery;
 import org.psjava.algo.sequence.rmq.RangeMinimumQueryBySquareRootApproach;
 import org.psjava.algo.sequence.rmq.RangeMinimumQuerySession;
 import org.psjava.algo.sequence.rmq.RangeMinimumQueryUsingSegmentTree;
@@ -10,6 +11,7 @@ import org.psjava.ds.array.Array;
 import org.psjava.ds.array.ArrayFromVarargs;
 import org.psjava.example.ds.ArrayExample;
 import org.psjava.goods.GoodRangeMinimumQuery;
+import org.psjava.goods.GoodSegmentTreeFactory;
 import org.psjava.util.DefaultComparator;
 
 /**
@@ -31,5 +33,14 @@ public class RangeMinimumQueryExample {
 
 		int index2 = session.getIndex(0, 3); // must be 0, that is the index of "A" among ("A", "E", "B")
 		Assert.assertEquals(0, index2);
+
+		// There are several implementations of range minimum query problem.
+		// They have different time & space complexity. See the detail in an article of TopCoder
+		// http://www.topcoder.com/tc?d1=tutorials&d2=lowestCommonAncestor&module=Static
+
+		RangeMinimumQueryUsingSegmentTree.getInstance(GoodSegmentTreeFactory.getInstance());
+		RangeMinimumQueryBySquareRootApproach.getInstance();
+		RangeMinimumQueryUsingSparseTable.getInstance();
+
 	}
 }
