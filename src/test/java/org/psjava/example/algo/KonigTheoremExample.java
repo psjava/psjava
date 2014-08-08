@@ -35,7 +35,7 @@ public class KonigTheoremExample {
 		g.addEdge("C", "Z");
 
 		// By Konig's Theorem, In any bipartite graph, the number of edges in a maximum matching equals the number of vertices in a minimum vertex cover.
-		// So matching algorithm is used in implementation. In this example, Hopcroft-Karp algorithm is used.
+		// So matching algorithm is used in it's implementation. In this example, Hopcroft-Karp algorithm is used.
 		MinimumVertexCoverAlgorithmInBipartiteGraph algorithm = KonigTheorem.getInstance(HopcroftKarpAlgorithm.getInstance());
 
 		int number = algorithm.calcMinimumVertexCover(g); // result is 2, ("A", "C")
