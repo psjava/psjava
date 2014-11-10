@@ -6,6 +6,7 @@ import org.psjava.ds.set.MutableSet;
 import org.psjava.ds.set.Set;
 import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.goods.GoodMutableSetFactory;
+import org.psjava.util.AssertStatus;
 
 public class MutableGraph<V, E> implements Graph<V, E> {
 
@@ -24,6 +25,7 @@ public class MutableGraph<V, E> implements Graph<V, E> {
 	}
 
 	public void addEdge(V from, E edge) {
+		AssertStatus.assertTrue(edgeMap.containsKey(from), "Given vertex is not in the graph");
 		edgeMap.get(from).addToLast(edge);
 	}
 
