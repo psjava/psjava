@@ -10,10 +10,11 @@ import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodDijkstraAlgorithm;
 
 /**
- * @implementation {@link DijkstraAlgorithm}
- * @implementation {@link GoodDijkstraAlgorithm}
- * @see {@link ShortestPathAlgorithmExample}
- * @see {@link BellmanFordAlgorithmExample}
+ * @implementation {@link org.psjava.algo.graph.shortestpath.DijkstraAlgorithm}
+ * @implementation {@link org.psjava.goods.GoodDijkstraAlgorithm}
+ *
+ * @see {@link org.psjava.example.algo.ShortestPathAlgorithmExample}
+ * @see {@link org.psjava.example.algo.BellmanFordAlgorithmExample}
  */
 public class DijkstraAlgorithmExample {
 
