@@ -10,10 +10,10 @@ import org.psjava.TestUtil;
 import org.psjava.ds.geometry.Point2D;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
-public class DirectionComparatorTest {
+public class PointByDirectionComparatorTest {
 
 	private static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
-	private static final Comparator<Point2D<Integer>> COMP = DirectionComparator.create(NS, toPoint(0, 0), toPoint(1, 0));
+	private static final Comparator<Point2D<Integer>> COMP = PointByDirectionComparator.create(NS, toPoint(0, 0), toPoint(1, 0));
 
 	@SuppressWarnings("unchecked")
 	@Test

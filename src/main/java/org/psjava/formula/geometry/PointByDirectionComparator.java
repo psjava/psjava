@@ -5,7 +5,7 @@ import java.util.Comparator;
 import org.psjava.ds.geometry.Point2D;
 import org.psjava.ds.numbersystrem.MultipliableNumberSystem;
 
-public class DirectionComparator {
+public class PointByDirectionComparator {
 
 	public static <T> Comparator<Point2D<T>> create(final MultipliableNumberSystem<T> ns, final Point2D<T> center, final Point2D<T> basis) {
 		return new Comparator<Point2D<T>>() {
@@ -45,7 +45,7 @@ public class DirectionComparator {
 		};
 	}
 
-	private DirectionComparator() {
+	private PointByDirectionComparator() {
 	}
 
 }
