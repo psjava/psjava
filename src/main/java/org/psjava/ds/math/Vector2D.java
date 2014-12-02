@@ -19,4 +19,9 @@ public class Vector2D<T> {
 	public T y() {
 		return y;
 	}
+
+	@Override
+	public String toString() {
+		return getClass().getSimpleName() + "(" + x + "," + y + ")";
+	}
 }
