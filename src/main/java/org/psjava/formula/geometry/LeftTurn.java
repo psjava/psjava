@@ -7,7 +7,7 @@ public class LeftTurn {
 
 	public static <T> boolean is(Point2D<T> p1, Point2D<T> p2, Point2D<T> p3, MultipliableNumberSystem<T> ns) {
 		T ccw = CCW.ccw(ns, p1, p2, p3);
-		return org.psjava.formula.geometry.LeftTurnFromCCW.is(ns, ccw);
+		return LeftTurnFromCCW.is(ns, ccw);
 	}
 
 	private LeftTurn() {}
