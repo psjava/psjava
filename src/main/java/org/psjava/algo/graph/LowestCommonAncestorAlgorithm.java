@@ -52,11 +52,11 @@ public class LowestCommonAncestorAlgorithm {
 		});
 
 		final RangeMinimumQuerySession rmqSession = rmq.preprocess(history, new Comparator<VertexAndDepth<V>>() {
-            @Override
-            public int compare(VertexAndDepth<V> o1, VertexAndDepth<V> o2) {
-                return o1.depth - o2.depth;
-            }
-        });
+			@Override
+			public int compare(VertexAndDepth<V> o1, VertexAndDepth<V> o2) {
+				return o1.depth - o2.depth;
+			}
+		});
 
 		return new LowestCommonAncestorQuerySession<V>() {
 			@Override
