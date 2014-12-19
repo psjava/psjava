@@ -5,11 +5,11 @@ import org.psjava.util.IterableToString;
 import java.util.Iterator;
 
 public class RotatedArray {
-	public static <T> Array<T> wrap(final Array<T> array, final int shift) {
+	public static <T> Array<T> wrap(final Array<T> array, final int startIndex) {
 		return new Array<T>() {
 			@Override
 			public T get(int index) {
-				return array.get((shift + index) % array.size());
+				return array.get((startIndex + index) % array.size());
 			}
 
 			@Override
