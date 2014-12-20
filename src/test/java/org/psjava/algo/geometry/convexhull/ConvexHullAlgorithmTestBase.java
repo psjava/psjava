@@ -65,9 +65,9 @@ abstract public class ConvexHullAlgorithmTestBase {
 	public void testAndAssert(int[][] expectedPairs, int[][] data) {
 		Array<Point2D<Integer>> expected = toPoints(expectedPairs);
 		Polygon2D<Integer> actual = getAlgorithm().calc(SetFromIterable.create(toPoints(data)), IntegerNumberSystem.getInstance());
-		int index = LinearSearch.search(actual.getPointsAsArray(), expected.get(0), -1);
+		int index = LinearSearch.search(actual.getCCWOrderPoints(), expected.get(0), -1);
 		Assert.assertTrue(index != -1);
-		Array<Point2D<Integer>> adjustedActual = RotatedArray.wrap(actual.getPointsAsArray(), index);
+		Array<Point2D<Integer>> adjustedActual = RotatedArray.wrap(actual.getCCWOrderPoints(), index);
 		Assert.assertTrue(IterableEqualityTester.areEqual(expected, adjustedActual));
 	}
 

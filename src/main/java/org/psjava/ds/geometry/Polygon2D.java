@@ -15,7 +15,7 @@ public class Polygon2D<T> {
 		this.ccwOrderPoints = MutableArrayFromIterable.create(ccwOrderPoints);
 	}
 
-	public Array<Point2D<T>> getPointsAsArray() {
+	public Array<Point2D<T>> getCCWOrderPoints() {
 		return ccwOrderPoints;
 	}
 

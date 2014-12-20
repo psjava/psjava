@@ -19,7 +19,7 @@ public class AreaOfSimplePolygon2D {
 
 	private static <T> T calcDouble(MultipliableNumberSystem<T> ns, Polygon2D<T> sp) {
 		T total = ns.getZero();
-		Array<Point2D<T>> points = sp.getPointsAsArray();
+		Array<Point2D<T>> points = sp.getCCWOrderPoints();
 		for (int i : ZeroTo.get(points.size())) {
 			Point2D<T> p1 = points.get(i);
 			Point2D<T> p2 = points.get((i + 1) % points.size());

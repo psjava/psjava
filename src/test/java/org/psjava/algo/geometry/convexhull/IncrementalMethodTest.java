@@ -19,7 +19,7 @@ public class IncrementalMethodTest extends ConvexHullAlgorithmTestBase {
 	@Test
 	public void testEdgeCase() {
 		Set<Point2D<Integer>> points = SetFromVarargs.create(toPoint(0, 0), toPoint(0, 1), toPoint(0, 2), toPoint(10, 2), toPoint(10, 1), toPoint(10, 0));
-		Array<Point2D<Integer>> hull = getAlgorithm().calc(points, IntegerNumberSystem.getInstance()).getPointsAsArray();
+		Array<Point2D<Integer>> hull = getAlgorithm().calc(points, IntegerNumberSystem.getInstance()).getCCWOrderPoints();
 		Assert.assertEquals("((10,0),(10,2),(0,2),(0,0))", hull.toString());
 	}
 
