@@ -70,4 +70,5 @@ public class GrahamScan {
 		return hull.size() >= 2 && !LeftTurn.is(hull.get(hull.size() - 2), hull.get(hull.size() - 1), newPoint, ns);
 	}
 
+	private GrahamScan() {}
 }
