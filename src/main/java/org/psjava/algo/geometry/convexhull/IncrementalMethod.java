@@ -1,9 +1,7 @@
 package org.psjava.algo.geometry.convexhull;
 
-import org.psjava.algo.geometry.convexhull.ConvexHullAlgorithm;
 import org.psjava.algo.sequence.sort.SortingAlgorithm;
 import org.psjava.ds.array.Array;
-import org.psjava.ds.array.ArrayReverser;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.FirstInArray;
 import org.psjava.ds.array.LastInArray;
@@ -13,12 +11,15 @@ import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFromIterable;
 import org.psjava.ds.array.ReversedArray;
 import org.psjava.ds.geometry.Point2D;
-import org.psjava.ds.geometry.PointByXYComparator;
+import org.psjava.ds.geometry.PointByXComparator;
+import org.psjava.ds.geometry.PointByYComparator;
 import org.psjava.ds.geometry.Polygon2D;
 import org.psjava.ds.numbersystrem.MultipliableNumberSystem;
 import org.psjava.ds.set.Set;
 import org.psjava.formula.geometry.LeftTurn;
 import org.psjava.util.AssertStatus;
+import org.psjava.util.ReversedComparator;
+import org.psjava.util.SeriesComparator;
 
 /** O(nlogn) */
 public class IncrementalMethod {
@@ -31,27 +32,28 @@ public class IncrementalMethod {
 				if(src.size() == 1)
 					return Polygon2D.create(src);
 				MutableArray<Point2D<T>> array = MutableArrayFromIterable.create(src);
-				sortAlgorithm.sort(array, PointByXYComparator.create(ns));
-				DynamicArray<Point2D<T>> upHull = getRightTurningHalfHullFromFirstPoint(array, ns);
-				ArrayReverser.reverse(array);
-				DynamicArray<Point2D<T>> downHull = getRightTurningHalfHullFromFirstPoint(array, ns);
+				sortAlgorithm.sort(array, SeriesComparator.create(ReversedComparator.wrap(PointByXComparator.create(ns)), PointByYComparator.create(ns)));
+				DynamicArray<Point2D<T>> upHull = getLeftTurningHalfHullFromFirstPoint(array, ns);
+				DynamicArray<Point2D<T>> downHull = getLeftTurningHalfHullFromFirstPoint(ReversedArray.wrap(array), ns);
 				adjustToPreventDuplication(upHull, downHull);
-				return Polygon2D.create(ReversedArray.wrap(MergedArray.wrap(upHull, downHull)));
+				return Polygon2D.create(MergedArray.wrap(upHull, downHull));
 			}
 		};
 	}
 
-	private static <T> DynamicArray<Point2D<T>> getRightTurningHalfHullFromFirstPoint(Array<Point2D<T>> order, MultipliableNumberSystem<T> ns) {
-		DynamicArray<Point2D<T>> hull = DynamicArray.create();
-		hull.addToLast(FirstInArray.getFirst(order));
-		for(Point2D<T> point : order) {
-			if (!LastInArray.getLast(hull).equals(point)) {
-				while (hull.size() >= 2 && !LeftTurn.is(point, LastInArray.getLast(hull), hull.get(hull.size() - 2), ns))
-					hull.removeLast();
-				hull.addToLast(point);
-			}
+	private static <T> DynamicArray<Point2D<T>> getLeftTurningHalfHullFromFirstPoint(Array<Point2D<T>> order, MultipliableNumberSystem<T> ns) {
+		DynamicArray<Point2D<T>> result = DynamicArray.create();
+		result.addToLast(FirstInArray.getFirst(order));
+		for(Point2D<T> newPoint : order) {
+			while (canRemoveLastPoint(result, newPoint, ns))
+				result.removeLast();
+			result.addToLast(newPoint);
 		}
-		return hull;
+		return result;
+	}
+
+	private static <T> boolean canRemoveLastPoint(Array<Point2D<T>> array, Point2D<T> newPoint, MultipliableNumberSystem<T> ns) {
+		return array.size() >= 2 && !LeftTurn.is(array.get(array.size() - 2), LastInArray.getLast(array), newPoint, ns);
 	}
 
 	private static <T> void adjustToPreventDuplication(DynamicArray<Point2D<T>> upHull, DynamicArray<Point2D<T>> downHull) {
@@ -61,4 +63,5 @@ public class IncrementalMethod {
 		}
 	}
 
+	private IncrementalMethod() {}
 }
