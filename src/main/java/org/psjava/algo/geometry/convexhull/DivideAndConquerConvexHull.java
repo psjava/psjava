@@ -2,7 +2,6 @@ package org.psjava.algo.geometry.convexhull;
 
 import java.util.Comparator;
 
-import org.psjava.algo.geometry.convexhull.ConvexHullAlgorithm;
 import org.psjava.ds.array.MergedArray;
 import org.psjava.ds.array.RotatedArray;
 import org.psjava.formula.geometry.StraightOrder;
@@ -49,7 +48,7 @@ public class DivideAndConquerConvexHull  {
 	}
 
 	private static <T> Array<Point2D<T>> getConvexHullPointsRecursively(Array<Point2D<T>> src, int start, int end, Comparator<Point2D<T>> xycomp, Comparator<Point2D<T>> xrycomp, MultipliableNumberSystem<T> ns) {
-		if (end -start == 1)
+		if (end -start <= 2)
 			return SubArray.wrap(src, start, end);
 		int m = (start+ end)/2;
 		Array<Point2D<T>> left = getConvexHullPointsRecursively(src, start, m, xycomp, xrycomp, ns);
