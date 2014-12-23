@@ -23,7 +23,6 @@ import org.psjava.util.ReversedComparator;
 import org.psjava.util.SeriesComparator;
 
 /** O(nh) */
-// TODO Crash while poj 1113
 public class JarvisMarch  {
 
 	public static ConvexHullAlgorithm getInstance() {
