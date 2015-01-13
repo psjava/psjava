@@ -8,7 +8,7 @@ public class MutableArrayFromVarargs {
 		T[] a = (T[]) new Object[values.length];
 		for (int i : ZeroTo.get(a.length))
 			a[i] = values[i];
-		return MutableArrayUsingJavaArray.create(a);
+		return MutableArrayUsingJavaArray.wrap(a);
 	}
 
 	private MutableArrayFromVarargs() {

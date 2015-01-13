@@ -8,7 +8,7 @@ public class MutableArrayFactory {
 		T[] a = (T[]) new Object[size];
 		for (int i : ZeroTo.get(a.length))
 			a[i] = init;
-		return MutableArrayUsingJavaArray.create(a);
+		return MutableArrayUsingJavaArray.wrap(a);
 	}
 
 	private MutableArrayFactory() {

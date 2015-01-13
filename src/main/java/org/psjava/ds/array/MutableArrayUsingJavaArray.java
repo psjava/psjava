@@ -10,7 +10,7 @@ import org.psjava.util.StrictEqualityTester;
 
 public class MutableArrayUsingJavaArray {
 
-	public static <T> MutableArray<T> create(final T[] a) {
+	public static <T> MutableArray<T> wrap(final T[] a) {
 		return new MutableArray<T>() {
 			@Override
 			public T get(int p) {
