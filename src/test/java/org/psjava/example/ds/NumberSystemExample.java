@@ -26,7 +26,8 @@ public class NumberSystemExample {
 	@Test
 	public void example() {
 		// psjava has "NumberSystem" concept to support generalization of algorithms.
-		// For example, you can run Dijkstra's algorithm with weights in BigInteger.
+		// For example, you can run Dijkstra's algorithm with weights in 32bit Integer byt also BigIntegerr.
+		// Let's see.
 
 		MutableDirectedWeightedGraph<String, BigInteger> g = MutableDirectedWeightedGraph.create();
 		g.insertVertex("A");
@@ -38,7 +39,7 @@ public class NumberSystemExample {
 		// a -> c must be 30000000000000000000000000000000000000000
 		BigInteger distance = GoodDijkstraAlgorithm.getInstance().calc(g, "A", BigIntegerNumberSystem.getInstance()).getDistance("C");
 
-		// Various number systems are prepared.
+		// Various number systems are already prepared.
 		IntegerNumberSystem.getInstance();
 		LongNumberSystem.getInstance();
 		DoubleNumberSystem.getInstance();
