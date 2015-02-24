@@ -1,7 +1,6 @@
 package org.psjava.example.ds;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.array.ArrayFromVarargs;
 import org.psjava.ds.tree.trie.Trie;

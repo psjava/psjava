@@ -1,7 +1,6 @@
 package org.psjava.algo.sequence.search;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.sequence.search.BinarySearchLastFalse;
 import org.psjava.ds.math.Function;

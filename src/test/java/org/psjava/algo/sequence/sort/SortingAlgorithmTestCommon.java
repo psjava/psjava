@@ -1,6 +1,6 @@
 package org.psjava.algo.sequence.sort;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFromVarargs;

@@ -2,8 +2,7 @@ package org.psjava.example.algo;
 
 import java.math.BigInteger;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.math.numbertheory.GCD;
 import org.psjava.ds.numbersystrem.BigIntegerNumberSystem;
