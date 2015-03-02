@@ -1,6 +1,5 @@
 package org.psjava.example.algo;
 
-import junit.framework.Assert;
 import org.junit.Test;
 
 /**

@@ -23,7 +23,7 @@ import org.psjava.util.VarargsIterator;
 
 public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 
-	private static class Entry<K, V> implements KeyValuePair<K, V> {
+	static class Entry<K, V> implements KeyValuePair<K, V> {
 		K keyOrNull; // if null then the entry is lazy deleted.
 		V value;
 		int keyHash;

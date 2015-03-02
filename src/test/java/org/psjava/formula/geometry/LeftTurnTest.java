@@ -1,6 +1,6 @@
 package org.psjava.formula.geometry;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.geometry.Point2D;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;

@@ -1,11 +1,10 @@
 package org.psjava.example.algo;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.KonigTheorem;
 import org.psjava.algo.graph.MinimumVertexCoverAlgorithmInBipartiteGraph;
 import org.psjava.algo.graph.matching.HopcroftKarpAlgorithm;
-import org.psjava.algo.graph.matching.MaximumBipartiteMatchingResult;
 import org.psjava.ds.graph.MutableBipartiteGraph;
 
 /**

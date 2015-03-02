@@ -1,7 +1,6 @@
 package org.psjava.ds.array;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.TestUtil;
 import org.psjava.ds.array.ArrayRotator;

@@ -2,7 +2,6 @@ package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.sequence.rmq.RangeMinimumQuery;
 import org.psjava.algo.sequence.rmq.RangeMinimumQueryBySquareRootApproach;
 import org.psjava.algo.sequence.rmq.RangeMinimumQuerySession;
 import org.psjava.algo.sequence.rmq.RangeMinimumQueryUsingSegmentTree;
