@@ -10,6 +10,11 @@ public class ConvertedDataIterable {
 			public Iterator<T2> iterator() {
 				return ConvertedDataIterator.create(outerIterable.iterator(), converter);
 			}
+
+			@Override
+			public String toString() {
+				return IterableToString.toString(this);
+			}
 		};
 	}
 
