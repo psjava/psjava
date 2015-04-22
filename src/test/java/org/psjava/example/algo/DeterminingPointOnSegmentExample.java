@@ -1,0 +1,24 @@
+package org.psjava.example.algo;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.psjava.ds.geometry.Point2D;
+import org.psjava.ds.geometry.Segment2D;
+import org.psjava.ds.numbersystrem.IntegerNumberSystem;
+import org.psjava.formula.geometry.PointOnSegment;
+
+public class DeterminingPointOnSegmentExample {
+
+/**
+ * @implementation {@link org.psjava.formula.geometry.PointOnSegment}
+ */
+	@Test
+	public void example() {
+		Point2D<Integer> point = Point2D.create(5, 0);
+		Segment2D<Integer> segment = Segment2D.create(Point2D.create(0, 0), Point2D.create(10, 0));
+		boolean on = PointOnSegment.isOn(point, segment, IntegerNumberSystem.getInstance());
+		Assert.assertTrue(on);
+	}
+
+
+}
