@@ -7,16 +7,16 @@ import org.psjava.ds.geometry.Segment2D;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.formula.geometry.PointOnSegment;
 
-public class DeterminingPointOnSegmentExample {
-
 /**
  * @implementation {@link org.psjava.formula.geometry.PointOnSegment}
  */
+public class DeterminingPointOnSegmentExample {
+
 	@Test
 	public void example() {
 		Point2D<Integer> point = Point2D.create(5, 0);
 		Segment2D<Integer> segment = Segment2D.create(Point2D.create(0, 0), Point2D.create(10, 0));
-		boolean on = PointOnSegment.isOn(point, segment, IntegerNumberSystem.getInstance());
+		boolean on = PointOnSegment.isOn(point, segment, IntegerNumberSystem.getInstance()); // Must be true
 		Assert.assertTrue(on);
 	}
 
