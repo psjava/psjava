@@ -8,7 +8,7 @@ import org.psjava.ds.map.MapEqualityTester;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.util.AssertStatus;
 import org.psjava.util.ConvertedDataIterator;
-import org.psjava.util.DataConverter;
+import org.psjava.util.Converter;
 import org.psjava.util.DataFilter;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.FilteredIterator;
@@ -220,7 +220,7 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 			public boolean isAccepted(Entry<K, V> v) {
 				return v != null && v.keyOrNull != null;
 			}
-		}), new DataConverter<Entry<K, V>, KeyValuePair<K, V>>() {
+		}), new Converter<Entry<K, V>, KeyValuePair<K, V>>() {
 			@Override
 			public KeyValuePair<K, V> convert(Entry<K, V> v) {
 				return v;

@@ -9,7 +9,7 @@ import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.util.ConvertedDataIterable;
-import org.psjava.util.DataConverter;
+import org.psjava.util.Converter;
 
 /**
  * Johnson's algorithm allows negative edge weight. but not negative cycles.
@@ -87,7 +87,7 @@ public class JohnsonAlgorithm {
 
 			@Override
 			public Iterable<ReweightedEdge<V, W, E>> getEdges(V v) {
-				return ConvertedDataIterable.create(original.getEdges(v), new DataConverter<E, ReweightedEdge<V, W, E>>() {
+				return ConvertedDataIterable.create(original.getEdges(v), new Converter<E, ReweightedEdge<V, W, E>>() {
 					@Override
 					public ReweightedEdge<V, W, E> convert(E e) {
 						W adjust = ns.subtract(bellmanFordResult.getDistance(e.from()), bellmanFordResult.getDistance(e.to()));
@@ -109,7 +109,7 @@ public class JohnsonAlgorithm {
 
 			@Override
 			public Iterable<E> getPath(final V from, V to) {
-				return ConvertedDataIterable.create(dijkstraResult.get(from).getPath(to), new DataConverter<ReweightedEdge<V, W, E>, E>() {
+				return ConvertedDataIterable.create(dijkstraResult.get(from).getPath(to), new Converter<ReweightedEdge<V, W, E>, E>() {
 					@Override
 					public E convert(ReweightedEdge<V, W, E> v) {
 						return v.getOriginal();

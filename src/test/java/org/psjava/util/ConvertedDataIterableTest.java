@@ -6,8 +6,6 @@ import static org.psjava.TestUtil.toArrayList;
 import java.util.List;
 
 import org.junit.Test;
-import org.psjava.util.ConvertedDataIterable;
-import org.psjava.util.DataConverter;
 
 public class ConvertedDataIterableTest {
 
@@ -22,7 +20,7 @@ public class ConvertedDataIterableTest {
 	@Test
 	public void test() { // TODO move to iterator's test
 		List<Wrapper> list = toArrayList(new Wrapper(1), new Wrapper(2));
-		Iterable<Integer> iterable = ConvertedDataIterable.create(list, new DataConverter<Wrapper, Integer>() {
+		Iterable<Integer> iterable = ConvertedDataIterable.create(list, new Converter<Wrapper, Integer>() {
 			@Override
 			public Integer convert(Wrapper v) {
 				return v.v;
