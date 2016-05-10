@@ -2,7 +2,7 @@ package org.psjava.util;
 
 import java.util.Iterator;
 
-public class ConvertedDataIterator {
+public class ConvertedIterator {
 
 	public static <T1, T2> Iterator<T2> create(final Iterator<T1> original, final Converter<T1, T2> converter) {
 		return new ReadOnlyIterator<T2>() {
@@ -18,6 +18,6 @@ public class ConvertedDataIterator {
 		};
 	}
 
-	private ConvertedDataIterator() {
+	private ConvertedIterator() {
 	}
 }

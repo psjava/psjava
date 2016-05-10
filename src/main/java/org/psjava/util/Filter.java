@@ -1,5 +1,5 @@
 package org.psjava.util;
 
-public interface DataFilter<T> {
+public interface Filter<T> {
 	boolean isAccepted(T v);
 }

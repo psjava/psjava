@@ -6,7 +6,7 @@ import java.util.Map;
 import org.psjava.ds.KeyValuePair;
 import org.psjava.ds.KeyValuePairEqualityTester;
 import org.psjava.ds.KeyValuePairHash;
-import org.psjava.util.ConvertedDataIterator;
+import org.psjava.util.ConvertedIterator;
 import org.psjava.util.Converter;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
@@ -14,7 +14,7 @@ import org.psjava.util.StrictEqualityTester;
 public class MapIteratorFromJavaMap {
 
 	public static <K, V> Iterator<KeyValuePair<K, V>> create(final java.util.Map<K, V> map) {
-		return ConvertedDataIterator.create(map.entrySet().iterator(), new Converter<Map.Entry<K, V>, KeyValuePair<K, V>>() {
+		return ConvertedIterator.create(map.entrySet().iterator(), new Converter<Map.Entry<K, V>, KeyValuePair<K, V>>() {
 			@Override
 			public KeyValuePair<K, V> convert(java.util.Map.Entry<K, V> e) {
 				return new EntryWrapper<K, V>(e);

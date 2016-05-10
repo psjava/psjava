@@ -1,6 +1,6 @@
 package org.psjava.ds.tree.trie;
 
-import org.psjava.util.DataFilter;
+import org.psjava.util.Filter;
 import org.psjava.util.FilteredIterable;
 import org.psjava.util.VarargsIterable;
 
@@ -36,7 +36,7 @@ public final class TrieNodeFactoryForBooleanKey {
 
 		@Override
 		public Iterable<Boolean> getEdges() {
-			return FilteredIterable.create(VarargsIterable.create(false, true), new DataFilter<Boolean>() { // slow. improve when need.
+			return FilteredIterable.create(VarargsIterable.create(false, true), new Filter<Boolean>() { // slow. improve when need.
 						@Override
 						public boolean isAccepted(Boolean v) {
 							return hasChild(v);

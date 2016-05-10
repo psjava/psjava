@@ -17,7 +17,7 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.ValuesInMap;
 import org.psjava.goods.GoodMutableMapFactory;
-import org.psjava.util.DataFilter;
+import org.psjava.util.Filter;
 import org.psjava.util.FilteredIterable;
 import org.psjava.util.VisitorStopper;
 import org.psjava.util.ZeroTo;
@@ -108,7 +108,7 @@ public class HopcroftKarpAlgorithm {
 	private static <V> Collection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
 		final DynamicArray<Vertex<V>> finishes = DynamicArray.create();
 
-		BFS.traverse(EdgeFilteredSubNewGraph.wrap(adj, new DataFilter<Edge<V>>() {
+		BFS.traverse(EdgeFilteredSubNewGraph.wrap(adj, new Filter<Edge<V>>() {
 			@Override
 			public boolean isAccepted(Edge<V> edge) {
 				// to alternate matched and non-matched edges.
@@ -117,7 +117,7 @@ public class HopcroftKarpAlgorithm {
 				else
 					return edge.status.inMatch;
 			}
-		}), FilteredIterable.create(adj.getVertices(), new DataFilter<Vertex<V>>() {
+		}), FilteredIterable.create(adj.getVertices(), new Filter<Vertex<V>>() {
 			@Override
 			public boolean isAccepted(Vertex<V> v) {
 				return (v.side == Side.LEFT) && v.free;
@@ -147,7 +147,7 @@ public class HopcroftKarpAlgorithm {
 	}
 
 	private static <V> void dfs(final Graph<Vertex<V>, Edge<V>> adj, final Collection<Vertex<V>> bfsFinishes, final Object bfsMark) {
-		MultiSourceDFS.traverse(EdgeFilteredSubNewGraph.wrap(adj, new DataFilter<Edge<V>>() {
+		MultiSourceDFS.traverse(EdgeFilteredSubNewGraph.wrap(adj, new Filter<Edge<V>>() {
 			@Override
 			public boolean isAccepted(Edge<V> edge) {
 				return edge.status.bfsMark == bfsMark; // uses only edges discovered in bfs step.

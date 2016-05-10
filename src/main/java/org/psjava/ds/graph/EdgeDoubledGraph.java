@@ -1,7 +1,7 @@
 package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
-import org.psjava.util.ConvertedDataIterable;
+import org.psjava.util.ConvertedIterable;
 import org.psjava.util.Converter;
 import org.psjava.util.MergedIterable;
 import org.psjava.util.VarargsIterable;
@@ -18,8 +18,8 @@ public class EdgeDoubledGraph {
 			@SuppressWarnings("unchecked")
 			@Override
 			public Iterable<E2> getEdges(V v) {
-				return MergedIterable.wrap(VarargsIterable.create(ConvertedDataIterable.create(original.getEdges(v), direction1Converter),
-					ConvertedDataIterable.create(original.getEdges(v), direction2Converter)));
+				return MergedIterable.wrap(VarargsIterable.create(ConvertedIterable.create(original.getEdges(v), direction1Converter),
+					ConvertedIterable.create(original.getEdges(v), direction2Converter)));
 			}
 
 			@Override

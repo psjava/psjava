@@ -1,6 +1,6 @@
 package org.psjava.ds.tree.trie;
 
-import org.psjava.util.ConvertedDataIterable;
+import org.psjava.util.ConvertedIterable;
 import org.psjava.util.Converter;
 import org.psjava.util.StringMerger;
 
@@ -41,7 +41,7 @@ public class Trie<T> {
 			r += "Trie";
 		if (node.getChildCount() > 0) {
 			r += "(";
-			r += StringMerger.merge(ConvertedDataIterable.create(node.getEdges(), new Converter<T, String>() {
+			r += StringMerger.merge(ConvertedIterable.create(node.getEdges(), new Converter<T, String>() {
 				@Override
 				public String convert(T c) {
 					return c + getNodeString(node.getChild(c));

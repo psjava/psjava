@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class FilteredIterator {
 
-	public static <T> Iterator<T> create(final Iterator<? extends T> a, final DataFilter<T> filter) {
+	public static <T> Iterator<T> create(final Iterator<? extends T> a, final Filter<T> filter) {
 		return new ReadOnlyIterator<T>() {
 			T next = null;
 			Iterator<? extends T> cursor = a;
