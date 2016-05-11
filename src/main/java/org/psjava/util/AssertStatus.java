@@ -6,7 +6,7 @@ public class AssertStatus {
 	}
 
 	public static void assertNotNull(Object v) {
-		assertTrue(v != null, "Object is cannot be a null");
+		assertTrue(v != null, "Value cannot be a null");
 	}
 
 	public static void assertNotNull(Object v, String message) {
