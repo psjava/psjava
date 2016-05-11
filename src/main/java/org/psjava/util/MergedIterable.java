@@ -5,12 +5,12 @@ import java.util.Iterator;
 public class MergedIterable<T> {
 
 	public static <T> Iterable<T> wrap(final Iterable<? extends Iterable<? extends T>> iterables) {
-		return new Iterable<T>() {
+		return IterableUsingIteratorFactory.create(new IteratorFactory<T>() {
 			@Override
-			public Iterator<T> iterator() {
+			public Iterator<T> create() {
 				return MergedIterator.create(iterables);
 			}
-		};
+		});
 	}
 
 	private MergedIterable() {
