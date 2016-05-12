@@ -1,8 +1,6 @@
 package org.psjava.algo;
 
-import org.psjava.ds.array.AddToLastAll;
 import org.psjava.ds.array.Array;
-import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFromIterable;
 import org.psjava.goods.GoodSortingAlgorithm;
@@ -22,11 +20,9 @@ public class PermutationWithRepetitionIterable {
 		return IterableUsingStatusUpdater.create(initial, new Updater<Array<T>>() {
 			@Override
 			public Array<T> getUpdatedOrNull(Array<T> current) {
-				DynamicArray<T> next = DynamicArray.create();
-				AddToLastAll.add(next, current);
-				if (!NextPermutation.step(next, comparator))
-					return null;
-				return next;
+				MutableArray<T> next = MutableArrayFromIterable.create(current);
+				boolean success = NextPermutation.step(next, comparator);
+				return success ? next : null;
 			}
 		});
 	}
