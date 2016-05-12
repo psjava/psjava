@@ -40,7 +40,7 @@ public class ArrayExample {
 		// There are also several ways to create read only array.
 
 		ArrayFromVarargs.create("A", "B", "C");
-		CharacterArrayUsingString.create("ABC");
+		CharacterArrayUsingString.wrap("ABC");
 		UniformArray.create("A", 3);
 		SubArray.wrap(array, 3, 5); // wraps as 2 sized array
 

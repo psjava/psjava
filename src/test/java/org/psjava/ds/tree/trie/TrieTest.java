@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.CharacterArrayUsingString;
-import org.psjava.ds.tree.trie.Trie;
 import org.psjava.goods.GoodTrieNodeFactory;
 
 public class TrieTest {
@@ -20,7 +19,7 @@ public class TrieTest {
 	}
 
 	private Array<Character> toArray(String s) {
-		return CharacterArrayUsingString.create(s);
+		return CharacterArrayUsingString.wrap(s);
 	}
 
 }

@@ -6,7 +6,7 @@ import org.psjava.util.IterableToString;
 
 public class CharacterArrayUsingString {
 
-	public static Array<Character> create(final String s) {
+	public static Array<Character> wrap(final String s) {
 		return new Array<Character>() {
 
 			@Override
