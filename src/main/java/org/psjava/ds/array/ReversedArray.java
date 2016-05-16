@@ -1,38 +1,17 @@
 package org.psjava.ds.array;
 
-import org.psjava.ds.array.Array;
-import org.psjava.ds.array.ArrayIterator;
-import org.psjava.util.IterableToString;
-
-import java.util.Iterator;
+import org.psjava.ds.ArrayFromItemGetter;
+import org.psjava.util.GetterByIndex;
 
 public class ReversedArray {
-	public static <T> Array<T> wrap(final Array<T> array) {
-		return new Array<T>() {
-			@Override
-			public T get(int index) {
-				return array.get(array.size() - 1 - index);
-			}
 
-			@Override
-			public int size() {
-				return array.size();
-			}
+    public static <T> Array<T> wrap(final Array<T> original) {
+        return ArrayFromItemGetter.create(original.size(), new GetterByIndex<T>() {
+            @Override
+            public T get(int index) {
+                return original.get(original.size() - 1 - index);
+            }
+        });
+    }
 
-			@Override
-			public boolean isEmpty() {
-				return array.isEmpty();
-			}
-
-			@Override
-			public Iterator<T> iterator() {
-				return ArrayIterator.create(this);
-			}
-
-			@Override
-			public String toString() {
-				return IterableToString.toString(this);
-			}
-		};
-	}
 }
