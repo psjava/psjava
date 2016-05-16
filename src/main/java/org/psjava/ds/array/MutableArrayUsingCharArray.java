@@ -1,46 +1,26 @@
 package org.psjava.ds.array;
 
-import java.util.Iterator;
-
-import org.psjava.util.IterableToString;
+import org.psjava.ds.MutableArrayFromItemSetter;
+import org.psjava.util.GetterByIndex;
+import org.psjava.util.SetterByIndex;
 
 public class MutableArrayUsingCharArray {
 
-	public static MutableArray<Character> wrap(final char[] a) {
-		final int n = a.length;
-		return new MutableArray<Character>() {
+    public static MutableArray<Character> wrap(final char[] array) {
+        return MutableArrayFromItemSetter.create(array.length, new GetterByIndex<Character>() {
+            @Override
+            public Character get(int index) {
+                return array[index];
+            }
+        }, new SetterByIndex<Character>() {
+            @Override
+            public void set(int index, Character value) {
+                array[index] = value;
+            }
+        });
+    }
 
-			public Character get(int i) {
-				return a[i];
-			}
-
-			public void set(int i, Character v) {
-				a[i] = v;
-			}
-
-			public int size() {
-				return n;
-			}
-
-			@Override
-			public boolean isEmpty() {
-				return size() == 0;
-			}
-
-			@Override
-			public Iterator<Character> iterator() {
-				return ArrayIterator.create(this);
-			}
-
-			@Override
-			public String toString() {
-				return IterableToString.toString(this);
-			}
-
-		};
-	}
-
-	private MutableArrayUsingCharArray() {
-	}
+    private MutableArrayUsingCharArray() {
+    }
 
 }

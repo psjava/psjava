@@ -1,46 +1,26 @@
 package org.psjava.ds.array;
 
-import java.util.Iterator;
-
-import org.psjava.util.IterableToString;
+import org.psjava.ds.MutableArrayFromItemSetter;
+import org.psjava.util.GetterByIndex;
+import org.psjava.util.SetterByIndex;
 
 public class MutableArrayUsingLongArray {
 
-	public static MutableArray<Long> wrap(final long[] a) {
-		return new MutableArray<Long>() {
-			@Override
-			public Long get(int i) {
-				return a[i];
-			}
+    public static MutableArray<Long> wrap(final long[] array) {
+        return MutableArrayFromItemSetter.create(array.length, new GetterByIndex<Long>() {
+            @Override
+            public Long get(int index) {
+                return array[index];
+            }
+        }, new SetterByIndex<Long>() {
+            @Override
+            public void set(int index, Long value) {
+                array[index] = value;
+            }
+        });
+    }
 
-			@Override
-			public void set(int i, Long v) {
-				a[i] = v;
-			}
-
-			@Override
-			public int size() {
-				return a.length;
-			}
-
-			@Override
-			public final boolean isEmpty() {
-				return size() == 0;
-			}
-
-			@Override
-			public final Iterator<Long> iterator() {
-				return ArrayIterator.create(this);
-			}
-
-			@Override
-			public final String toString() {
-				return IterableToString.toString(this);
-			}
-		};
-	}
-	
-	private MutableArrayUsingLongArray() {
-	}
+    private MutableArrayUsingLongArray() {
+    }
 
 }
