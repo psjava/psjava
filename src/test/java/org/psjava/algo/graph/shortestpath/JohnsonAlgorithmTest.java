@@ -5,7 +5,7 @@ import org.psjava.goods.GoodDijkstraAlgorithm;
 
 public class JohnsonAlgorithmTest {
 
-	private static final AllPairShortestPath ALGO = JohnsonAlgorithm.getInstance(BellmanFordAlgorithm.getInstance(), GoodDijkstraAlgorithm.getInstance());
+	private static final AllPairShortestPath ALGO = JohnsonAlgorithm.getInstance(SingleSourceShortestPathAlgorithmUsingV2.wrap(BellmanFordAlgorithm.getInstance()), GoodDijkstraAlgorithm.getInstance());
 
 	@Test
 	public void testEmptyGraph() {

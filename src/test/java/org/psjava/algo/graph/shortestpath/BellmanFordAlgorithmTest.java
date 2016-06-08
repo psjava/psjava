@@ -9,47 +9,47 @@ import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 public class BellmanFordAlgorithmTest {
 
-	@Test
-	public void testSizeOneGraph() {
-		SingleSourceShortestPathTestCommon.testSizeOneGraph(getInstance());
-	}
+    @Test
+    public void testSizeOneGraph() {
+        SingleSourceShortestPathTestCommon.testSizeOneGraph(getInstance());
+    }
 
-	@Test
-	public void testNotReachableVertex() {
-		SingleSourceShortestPathTestCommon.testNotReachableVertex(getInstance());
-	}
+    @Test
+    public void testNotReachableVertex() {
+        SingleSourceShortestPathTestCommon.testNotReachableVertex(getInstance());
+    }
 
-	@Test
-	public void testCLRSExample() {
-		SingleSourceShortestPathTestCommon.testCLRSExample(getInstance());
-	}
+    @Test
+    public void testCLRSExample() {
+        SingleSourceShortestPathTestCommon.testCLRSExample(getInstance());
+    }
 
-	@Test
-	public void testCalcEdgePath() {
-		SingleSourceShortestPathTestCommon.testCalcEdgePath(getInstance());
-	}
+    @Test
+    public void testCalcEdgePath() {
+        SingleSourceShortestPathTestCommon.testCalcEdgePath(getInstance());
+    }
 
-	@Test
-	public void testNegativeEdgeGraph() {
-		MutableDirectedWeightedGraph<Integer, Integer> g = MutableDirectedWeightedGraph.create();
-		g.insertVertex(1);
-		g.insertVertex(2);
-		g.insertVertex(3);
-		g.addEdge(1, 2, -20);
-		g.addEdge(1, 3, 10);
-		g.addEdge(2, 3, 20);
-		SingleSourceShortestPathResult<Integer, Integer, DirectedWeightedEdge<Integer, Integer>> r = getInstance().calc(g, 1, IntegerNumberSystem.getInstance());
-		Assert.assertEquals(0, (int) r.getDistance(3));
-	}
+    @Test
+    public void testNegativeEdgeGraph() {
+        MutableDirectedWeightedGraph<Integer, Integer> g = MutableDirectedWeightedGraph.create();
+        g.insertVertex(1);
+        g.insertVertex(2);
+        g.insertVertex(3);
+        g.addEdge(1, 2, -20);
+        g.addEdge(1, 3, 10);
+        g.addEdge(2, 3, 20);
+        SingleSourceShortestPathResult<Integer, Integer, DirectedWeightedEdge<Integer, Integer>> r = getInstance().calc(g, 1, IntegerNumberSystem.getInstance());
+        Assert.assertEquals(0, (int) r.getDistance(3));
+    }
 
-	@Test(expected = RuntimeException.class)
-	public void testNegativeCycle() {
-		MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.createDirectedWeightedNew(new int[][]{{1, 1, -100}});
-		getInstance().calc(g, 1, IntegerNumberSystem.getInstance());
-	}
+    @Test(expected = RuntimeException.class)
+    public void testNegativeCycle() {
+        MutableDirectedWeightedGraph<Integer, Integer> g = TestGraphFactory.createDirectedWeightedNew(new int[][]{{1, 1, -100}});
+        getInstance().calc(g, 1, IntegerNumberSystem.getInstance());
+    }
 
-	private SingleSourceShortestPathAlgorithm getInstance() {
-		return BellmanFordAlgorithm.getInstance();
-	}
+    private SingleSourceShortestPathAlgorithm getInstance() {
+        return SingleSourceShortestPathAlgorithmUsingV2.wrap(BellmanFordAlgorithm.getInstance());
+    }
 
 }
