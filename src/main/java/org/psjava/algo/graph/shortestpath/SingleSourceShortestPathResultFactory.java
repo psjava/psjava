@@ -5,11 +5,12 @@ import java.util.LinkedList;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.Map;
 import org.psjava.ds.numbersystrem.InfinitableNumber;
+import org.psjava.util.VarargsToString;
 import org.psjava.util.AssertStatus;
-import org.psjava.util.VarargsIterable;
 
 public class SingleSourceShortestPathResultFactory {
 
+    // TODO inline
     public static <V, E extends DirectedEdge<V>, W> SingleSourceShortestPathResult<V, W, E> create(final V start, final Map<V, InfinitableNumber<W>> distance, final Map<V, E> previous) {
         return new SingleSourceShortestPathResult<V, W, E>() {
             @Override
@@ -38,7 +39,7 @@ public class SingleSourceShortestPathResultFactory {
 
             @Override
             public String toString() {
-                return VarargsIterable.create(distance, previous).toString();
+                return VarargsToString.toString(distance, previous);
             }
         };
     }
