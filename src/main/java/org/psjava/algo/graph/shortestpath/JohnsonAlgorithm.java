@@ -19,7 +19,7 @@ import org.psjava.util.Converter;
 
 public class JohnsonAlgorithm {
 
-	public static AllPairShortestPath getInstance(final BellmanFordAlgorithm bellmanFord, final DijkstraAlgorithm dijkstra) {
+	public static AllPairShortestPath getInstance(final BellmanFordAlgorithm bellmanFord, final SingleSourceShortestPathAlgorithm dijkstra) {
 		return new AllPairShortestPath() {
 			@Override
 			public <V, W, E extends DirectedWeightedEdge<V, W>> AllPairShortestPathResult<V, W, E> calc(Graph<V, E> graph, AddableNumberSystem<W> ns) {

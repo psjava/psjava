@@ -2,7 +2,7 @@ package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.graph.shortestpath.DijkstraAlgorithm;
+import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
@@ -10,7 +10,7 @@ import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodDijkstraAlgorithm;
 
 /**
- * @implementation {@link org.psjava.algo.graph.shortestpath.DijkstraAlgorithm}
+ * @implementation {@link org.psjava.algo.DijkstraAlgorithmV2}
  * @implementation {@link org.psjava.goods.GoodDijkstraAlgorithm}
  *
  * @see {@link org.psjava.example.algo.ShortestPathAlgorithmExample}
@@ -36,7 +36,7 @@ public class DijkstraAlgorithmExample {
 
 		// Calculate distances from a single source 'A'
 
-		DijkstraAlgorithm dijkstra = GoodDijkstraAlgorithm.getInstance();
+		SingleSourceShortestPathAlgorithm dijkstra = GoodDijkstraAlgorithm.getInstance();
 		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result = dijkstra.calc(graph, "A", NS);
 
 		boolean reachabilityOfC = result.isReachable("C"); // C is reachable.
