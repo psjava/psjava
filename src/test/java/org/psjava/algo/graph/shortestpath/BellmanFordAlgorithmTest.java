@@ -48,7 +48,7 @@ public class BellmanFordAlgorithmTest {
 		getInstance().calc(g, 1, IntegerNumberSystem.getInstance());
 	}
 
-	private BellmanFordAlgorithm getInstance() {
+	private SingleSourceShortestPathAlgorithm getInstance() {
 		return BellmanFordAlgorithm.getInstance();
 	}
 

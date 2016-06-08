@@ -9,7 +9,7 @@ import org.psjava.util.AssertStatus;
 
 public class BellmanFordAlgorithm implements SingleSourceShortestPathAlgorithm {
 
-	public static BellmanFordAlgorithm getInstance() {
+	public static SingleSourceShortestPathAlgorithm getInstance() {
 		return new BellmanFordAlgorithm();
 	}
 
