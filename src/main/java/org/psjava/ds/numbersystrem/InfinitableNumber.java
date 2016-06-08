@@ -27,4 +27,8 @@ public class InfinitableNumber<T> {
 		return valueOrNull;
 	}
 
+	@Override
+	public String toString() {
+		return valueOrNull == null ? "INF" : valueOrNull.toString();
+	}
 }
