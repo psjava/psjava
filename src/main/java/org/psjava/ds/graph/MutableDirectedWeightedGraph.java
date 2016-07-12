@@ -2,13 +2,14 @@ package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
 
+@Deprecated
 public class MutableDirectedWeightedGraph<V, W> implements Graph<V, DirectedWeightedEdge<V, W>> {
 
 	public static <V, W> MutableDirectedWeightedGraph<V, W> create() {
 		return new MutableDirectedWeightedGraph<V, W>();
 	}
 
-	private MutableDirectedGraph<V, DirectedWeightedEdge<V, W>> g = MutableDirectedGraph.create();
+	private SimpleDirectedGraph<V, DirectedWeightedEdge<V, W>> g = SimpleDirectedGraph.create();
 
 	public void insertVertex(V v) {
 		g.insertVertex(v);

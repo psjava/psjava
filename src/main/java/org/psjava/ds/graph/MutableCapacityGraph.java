@@ -8,7 +8,7 @@ public class MutableCapacityGraph<V, F> implements Graph<V, CapacityEdge<V, F>> 
 		return new MutableCapacityGraph<V, F>();
 	}
 
-	private final MutableDirectedGraph<V, CapacityEdge<V, F>> g = MutableDirectedGraph.create();
+	private final SimpleDirectedGraph<V, CapacityEdge<V, F>> g = SimpleDirectedGraph.create();
 
 	@Override
 	public Iterable<CapacityEdge<V, F>> getEdges(V v) {

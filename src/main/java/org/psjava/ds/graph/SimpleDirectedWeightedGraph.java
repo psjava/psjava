@@ -9,7 +9,7 @@ public class SimpleDirectedWeightedGraph<V, W> implements Graph<V, SimpleDirecte
         return new SimpleDirectedWeightedGraph<V, W>();
     }
 
-    private MutableDirectedGraph<V, SimpleDirectedWeightedEdgeV2<V, W>> g = MutableDirectedGraph.create();
+    private SimpleDirectedGraph<V, SimpleDirectedWeightedEdgeV2<V, W>> g = SimpleDirectedGraph.create();
 
     public void insertVertex(V v) {
         g.insertVertex(v);

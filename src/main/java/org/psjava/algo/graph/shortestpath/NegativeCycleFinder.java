@@ -5,7 +5,7 @@ import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.MutableDirectedGraph;
+import org.psjava.ds.graph.SimpleDirectedGraph;
 import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
@@ -67,7 +67,7 @@ import org.psjava.util.AssertStatus;
     }
 
     private static <V, W, E extends DirectedWeightedEdge<V, W>> Graph<Object, AugmentedEdge<V, W, E>> augment(Graph<V, E> original, AddableNumberSystem<W> ns) {
-        MutableDirectedGraph<Object, AugmentedEdge<V, W, E>> r = MutableDirectedGraph.create();
+        SimpleDirectedGraph<Object, AugmentedEdge<V, W, E>> r = SimpleDirectedGraph.create();
         for (V v : original.getVertices())
             r.insertVertex(v);
         for (E e : AllEdgeInGraph.wrap(original))

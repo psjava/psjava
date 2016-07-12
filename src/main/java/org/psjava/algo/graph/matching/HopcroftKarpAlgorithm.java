@@ -10,7 +10,7 @@ import org.psjava.ds.array.FirstInArray;
 import org.psjava.ds.array.LastInArray;
 import org.psjava.ds.graph.EdgeFilteredSubNewGraph;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.MutableDirectedGraph;
+import org.psjava.ds.graph.SimpleDirectedGraph;
 import org.psjava.ds.graph.BipartiteGraph;
 import org.psjava.ds.graph.BipartiteGraphEdge;
 import org.psjava.ds.graph.DirectedEdge;
@@ -94,7 +94,7 @@ public class HopcroftKarpAlgorithm {
 			vertex.add(v, new Vertex<V>(v, Side.LEFT));
 		for (V v : bg.getRightVertices())
 			vertex.add(v, new Vertex<V>(v, Side.RIGHT));
-		MutableDirectedGraph<Vertex<V>, Edge<V>> graph = MutableDirectedGraph.create();
+		SimpleDirectedGraph<Vertex<V>, Edge<V>> graph = SimpleDirectedGraph.create();
 		for (Vertex<V> v : ValuesInMap.get(vertex))
 			graph.insertVertex(v);
 		for (BipartiteGraphEdge<V> e : bg.getEdges()) {

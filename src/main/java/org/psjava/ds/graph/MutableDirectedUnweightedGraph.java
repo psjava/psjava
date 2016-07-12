@@ -8,7 +8,7 @@ public class MutableDirectedUnweightedGraph<V> implements Graph<V, DirectedEdge<
 		return new MutableDirectedUnweightedGraph<V>();
 	}
 
-	private MutableDirectedGraph<V, DirectedEdge<V>> graph = MutableDirectedGraph.create();
+	private SimpleDirectedGraph<V, DirectedEdge<V>> graph = SimpleDirectedGraph.create();
 
 	public void insertVertex(V v) {
 		graph.insertVertex(v);

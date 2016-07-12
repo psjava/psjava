@@ -2,10 +2,10 @@ package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
 
-public class MutableDirectedGraph<V, E extends DirectedEdge<V>> implements Graph<V, E> {
+public class SimpleDirectedGraph<V, E extends DirectedEdge<V>> implements Graph<V, E> {
 
-	public static <V, E extends DirectedEdge<V>> MutableDirectedGraph<V,E> create() {
-		return new MutableDirectedGraph<V,E>();
+	public static <V, E extends DirectedEdge<V>> SimpleDirectedGraph<V,E> create() {
+		return new SimpleDirectedGraph<V,E>();
 	}
 
 	private MutableGraph<V, E> graph = MutableGraph.create();
