@@ -2,9 +2,9 @@ package org.psjava.algo.graph.shortestpath;
 
 import java.util.LinkedList;
 
+import org.psjava.algo.AllPairShortestPath;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedEdge;
-import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.math.Function;
@@ -21,7 +21,7 @@ public class FloydWarshallAlgorithm {
         E directEdge = null;
     }
 
-    public static final AllPairShortestPathV2 INSTANCE = new AllPairShortestPathV2() {
+    public static final AllPairShortestPath INSTANCE = new AllPairShortestPath() {
         @Override
         public <V, W, E extends DirectedEdge<V>> AllPairShortestPathResult<V, W, E> calc(Graph<V, E> graph, Function<E, W> weight, AddableNumberSystem<W> ns) {
             MutableMap<Pair<V, V>, Status<V, E, W>> status = GoodMutableMapFactory.getInstance().create();
@@ -62,22 +62,6 @@ public class FloydWarshallAlgorithm {
             return createResult(status);
         }
     };
-
-
-    @Deprecated
-    public static AllPairShortestPath getInstance() {
-        return new AllPairShortestPath() {
-            @Override
-            public <V, W, E extends DirectedWeightedEdge<V, W>> AllPairShortestPathResult<V, W, E> calc(Graph<V, E> graph, AddableNumberSystem<W> ns) {
-                return INSTANCE.calc(graph, new Function<E, W>() {
-                    @Override
-                    public W get(E e) {
-                        return e.weight();
-                    }
-                }, ns);
-            }
-        };
-    }
 
     private static <V, W, E> AllPairShortestPathResult<V, W, E> createResult(final MutableMap<Pair<V, V>, Status<V, E, W>> status) {
         return new AllPairShortestPathResult<V, W, E>() {

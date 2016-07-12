@@ -1,6 +1,7 @@
 package org.psjava.algo.graph.shortestpath;
 
 import org.junit.Assert;
+import org.psjava.algo.AllPairShortestPath;
 import org.psjava.ds.graph.SimpleDirectedWeightedEdgeV2;
 import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
 import org.psjava.ds.graph.TestGraphFactory;
@@ -10,20 +11,20 @@ abstract public class AllPairShortestPathTestCommon {
 
 	private static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
 
-	public static void testEmptyGraph(AllPairShortestPathV2 algo) {
+	public static void testEmptyGraph(AllPairShortestPath algo) {
 		Object[][] edata = {};
 		SimpleDirectedWeightedGraph<String, Integer> g = TestGraphFactory.createDirectedWeightedNewV2(edata);
 		algo.calc(g, g.getWeightFunction(), NS);
 	}
 
-	public static void testOneSize(AllPairShortestPathV2 algo) {
+	public static void testOneSize(AllPairShortestPath algo) {
 		Object[][] edata = { { "A", "A", 100 } };
 		SimpleDirectedWeightedGraph<String, Integer> g = TestGraphFactory.createDirectedWeightedNewV2(edata);
 		int actual = algo.calc(g, g.getWeightFunction(), NS).getDistance("A", "A");
 		Assert.assertEquals(0, actual);
 	}
 
-	public static void testNegativeEdgePath(AllPairShortestPathV2 algo) {
+	public static void testNegativeEdgePath(AllPairShortestPath algo) {
 		Object[][] edata = { { "A", "B", 3 }, { "A", "C", 8 }, { "A", "E", -4 }, { "B", "D", 1 }, { "B", "E", 7 }, { "C", "B", 4 }, { "D", "A", 2 }, { "D", "C", -5 }, { "E", "D", 6 } };
 		SimpleDirectedWeightedGraph<String, Integer> g = TestGraphFactory.createDirectedWeightedNewV2(edata);
 		AllPairShortestPathResult<String, Integer, SimpleDirectedWeightedEdgeV2<String, Integer>> actual = algo.calc(g, g.getWeightFunction(), NS);
@@ -43,7 +44,7 @@ abstract public class AllPairShortestPathTestCommon {
 		return "" + (char)('A'+i);
 	}
 
-	public static void testNegativeCycle(AllPairShortestPathV2 algo) {
+	public static void testNegativeCycle(AllPairShortestPath algo) {
 		Object[][] edata = { { "A", "B", -100 }, { "B", "A", -100 } };
 		SimpleDirectedWeightedGraph<String, Integer> g = TestGraphFactory.createDirectedWeightedNewV2(edata);
 		algo.calc(g, g.getWeightFunction(), NS);

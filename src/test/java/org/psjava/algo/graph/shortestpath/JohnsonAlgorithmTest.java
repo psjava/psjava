@@ -1,11 +1,12 @@
 package org.psjava.algo.graph.shortestpath;
 
 import org.junit.Test;
+import org.psjava.algo.AllPairShortestPath;
 import org.psjava.goods.GoodDijkstraAlgorithm;
 
 public class JohnsonAlgorithmTest {
 
-    private static final AllPairShortestPathV2 ALGO = JohnsonAlgorithm.getInstance(BellmanFordAlgorithm.getInstance(), GoodDijkstraAlgorithm.getInstance());
+    private static final AllPairShortestPath ALGO = JohnsonAlgorithm.getInstance(BellmanFordAlgorithm.getInstance(), GoodDijkstraAlgorithm.getInstance());
 
     @Test
     public void testEmptyGraph() {

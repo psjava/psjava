@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
-import org.psjava.algo.graph.shortestpath.AllPairShortestPathV2;
+import org.psjava.algo.AllPairShortestPath;
 import org.psjava.algo.graph.shortestpath.FloydWarshallAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.SimpleDirectedWeightedEdgeV2;
@@ -45,7 +45,7 @@ public class ShortestPathAlgorithmExample {
 
         // Let's get the shortest paths of all pairs. Floyd Warshall's algorithm is the simplest implementation.
 
-        AllPairShortestPathV2 algoritm2 = FloydWarshallAlgorithm.INSTANCE;
+        AllPairShortestPath algoritm2 = FloydWarshallAlgorithm.INSTANCE;
         AllPairShortestPathResult<String, Integer, SimpleDirectedWeightedEdgeV2<String, Integer>> res2 = algoritm2.calc(graph, graph.getWeightFunction(), IntegerNumberSystem.getInstance());
 
         int distanceAToB = res2.getDistance("A", "B");

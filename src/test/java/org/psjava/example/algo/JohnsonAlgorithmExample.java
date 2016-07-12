@@ -3,7 +3,7 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
-import org.psjava.algo.graph.shortestpath.AllPairShortestPathV2;
+import org.psjava.algo.AllPairShortestPath;
 import org.psjava.algo.graph.shortestpath.JohnsonAlgorithm;
 import org.psjava.ds.graph.SimpleDirectedWeightedEdgeV2;
 import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
@@ -34,7 +34,7 @@ public class JohnsonAlgorithmExample {
         // Let's get the shortest paths of all pairs.
         // Johnson's algorithm is a combination of Bellman Ford's and Dijkstra's algorithm.
 
-        AllPairShortestPathV2 johnson = GoodJohnsonAlgorithm.getInstance();
+        AllPairShortestPath johnson = GoodJohnsonAlgorithm.getInstance();
         AllPairShortestPathResult<String, Integer, SimpleDirectedWeightedEdgeV2<String, Integer>> res = johnson.calc(graph, graph.getWeightFunction(), IntegerNumberSystem.getInstance());
 
         int distanceAToB = res.getDistance("A", "B"); // must be 15
