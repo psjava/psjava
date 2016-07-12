@@ -12,6 +12,16 @@ public class TestGraphFactory {
 		return g;
 	}
 
+	public static SimpleDirectedWeightedGraph<Integer, Integer> createDirectedWeightedNewV2(int[][] edata) {
+		SimpleDirectedWeightedGraph<Integer, Integer> g = new SimpleDirectedWeightedGraph<Integer, Integer>();
+		for (int[] e : edata) {
+			g.insertVertex(e[0]);
+			g.insertVertex(e[1]);
+			g.addEdge(e[0], e[1], e[2]);
+		}
+		return g;
+	}
+
 	public static Graph<String, DirectedEdge<String>> createDirectedNew(String[][] edata) {
 		MutableDirectedUnweightedGraph<String> g = MutableDirectedUnweightedGraph.create();
 		for (String[] e : edata) {

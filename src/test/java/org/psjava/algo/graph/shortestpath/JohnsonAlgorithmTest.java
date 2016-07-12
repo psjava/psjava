@@ -5,26 +5,26 @@ import org.psjava.goods.GoodDijkstraAlgorithm;
 
 public class JohnsonAlgorithmTest {
 
-	private static final AllPairShortestPath ALGO = JohnsonAlgorithm.getInstance(SingleSourceShortestPathAlgorithmUsingV2.wrap(BellmanFordAlgorithm.getInstance()), GoodDijkstraAlgorithm.getInstance());
+    private static final AllPairShortestPath ALGO = JohnsonAlgorithm.getInstance(BellmanFordAlgorithm.getInstance(), GoodDijkstraAlgorithm.getInstanceV2());
 
-	@Test
-	public void testEmptyGraph() {
-		AllPairShortestPathTestCommon.testEmptyGraph(ALGO);
-	}
+    @Test
+    public void testEmptyGraph() {
+        AllPairShortestPathTestCommon.testEmptyGraph(ALGO);
+    }
 
-	@Test
-	public void testOneSize() {
-		AllPairShortestPathTestCommon.testOneSize(ALGO);
-	}
+    @Test
+    public void testOneSize() {
+        AllPairShortestPathTestCommon.testOneSize(ALGO);
+    }
 
-	@Test
-	public void testNegativeEdgePath() {
-		AllPairShortestPathTestCommon.testNegativeEdgePath(ALGO);
-	}
+    @Test
+    public void testNegativeEdgePath() {
+        AllPairShortestPathTestCommon.testNegativeEdgePath(ALGO);
+    }
 
-	@Test(expected = RuntimeException.class)
-	public void testNegativeCycle() {
-		AllPairShortestPathTestCommon.testNegativeCycle(ALGO);
-	}
+    @Test(expected = RuntimeException.class)
+    public void testNegativeCycle() {
+        AllPairShortestPathTestCommon.testNegativeCycle(ALGO);
+    }
 
 }
