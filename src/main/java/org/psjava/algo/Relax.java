@@ -1,4 +1,4 @@
-package org.psjava.algo.graph.shortestpath;
+package org.psjava.algo;
 
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
@@ -6,7 +6,7 @@ import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableNumber;
 
-public class RelaxV2 {
+public class Relax {
 
     public static <V, W, E extends DirectedEdge<V>> boolean relax(MutableMap<V, InfinitableNumber<W>> distance, MutableMap<V, E> previous, E edge, Function<E, W> weightFunction, InfinitableAddableNumberSystem<W> ns) {
         InfinitableNumber<W> fromDistance = distance.get(edge.from());

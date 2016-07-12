@@ -1,6 +1,5 @@
 package org.psjava.algo;
 
-import org.psjava.algo.graph.shortestpath.RelaxV2;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathCalcStatus;
 import org.psjava.ds.AddToMapWithSameValue;
 import org.psjava.ds.graph.DirectedEdge;
@@ -15,7 +14,7 @@ import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
 
 import java.util.Comparator;
 
-public class DijkstraAlgorithmV2 {
+public class DijkstraAlgorithm {
 
     public static SingleSourceShortestPathAlgorithm getInstance(final HeapFactory heapFactory, final MutableMapFactory mapFactory) {
         return SingleSourceShortestPathAlgorithmFactory.create(new SingleSourceShortestPathAlgorithmMaterial() {
@@ -40,7 +39,7 @@ public class DijkstraAlgorithmV2 {
                 while (!heap.isEmpty()) {
                     V current = heap.extractMinimum();
                     for (E edge : graph.getEdges(current)) {
-                        boolean relaxed = RelaxV2.relax(status.distance, status.previous, edge, weightFunction, ns);
+                        boolean relaxed = Relax.relax(status.distance, status.previous, edge, weightFunction, ns);
                         if (relaxed)
                             node.get(edge.to()).decreaseKey(edge.to());
                     }

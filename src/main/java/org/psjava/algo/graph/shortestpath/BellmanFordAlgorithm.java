@@ -1,5 +1,6 @@
 package org.psjava.algo.graph.shortestpath;
 
+import org.psjava.algo.Relax;
 import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedEdge;
@@ -35,12 +36,12 @@ public class BellmanFordAlgorithm {
     static <V, W, E extends DirectedEdge<V>> void relaxEnough(Graph<V, E> graph, Function<E, W> weight, SingleSourceShortestPathCalcStatus<V, W, E> status, InfinitableAddableNumberSystem<W> ns) {
         for (int i = 0; i < graph.getVertices().size() - 1; i++)
             for (E e : AllEdgeInGraph.wrap(graph))
-                RelaxV2.relax(status.distance, status.previous, e, weight, ns);
+                Relax.relax(status.distance, status.previous, e, weight, ns);
     }
 
     private static <V, W, E extends DirectedEdge<V>> void relaxToCheckNegativeCycle(Graph<V, E> graph, Function<E, W> weight, SingleSourceShortestPathCalcStatus<V, W, E> status, InfinitableAddableNumberSystem<W> ns) {
         for (E e : AllEdgeInGraph.wrap(graph)) {
-            boolean relaxed = RelaxV2.relax(status.distance, status.previous, e, weight, ns);
+            boolean relaxed = Relax.relax(status.distance, status.previous, e, weight, ns);
             AssertStatus.assertTrue(!relaxed, "contains negative cycle");
         }
     }

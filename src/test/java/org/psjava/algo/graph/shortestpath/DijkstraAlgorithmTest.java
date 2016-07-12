@@ -1,14 +1,14 @@
 package org.psjava.algo.graph.shortestpath;
 
 import org.junit.Test;
-import org.psjava.algo.DijkstraAlgorithmV2;
+import org.psjava.algo.DijkstraAlgorithm;
 import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.ds.heap.BinaryHeapFactory;
 import org.psjava.goods.GoodMutableMapFactory;
 
 public class DijkstraAlgorithmTest {
 
-    private static final SingleSourceShortestPathAlgorithm INSTANCE = DijkstraAlgorithmV2.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
+    private static final SingleSourceShortestPathAlgorithm INSTANCE = DijkstraAlgorithm.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
 
     @Test
     public void testSizeOneGraph() {

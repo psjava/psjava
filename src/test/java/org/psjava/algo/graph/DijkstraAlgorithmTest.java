@@ -2,7 +2,7 @@ package org.psjava.algo.graph;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.DijkstraAlgorithmV2;
+import org.psjava.algo.DijkstraAlgorithm;
 import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.DirectedWeightedEdge;
@@ -12,9 +12,9 @@ import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
 
-public class DijkstraAlgorithmV2Test {
+public class DijkstraAlgorithmTest {
 
-    private static final SingleSourceShortestPathAlgorithm ALGO = DijkstraAlgorithmV2.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
+    private static final SingleSourceShortestPathAlgorithm ALGO = DijkstraAlgorithm.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
 
     @Test
     public void testSizeOneGraph() {

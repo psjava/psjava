@@ -2,6 +2,7 @@ package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.psjava.algo.DijkstraAlgorithm;
 import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.SimpleDirectedWeightedEdgeV2;
@@ -10,7 +11,7 @@ import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodDijkstraAlgorithm;
 
 /**
- * @implementation {@link org.psjava.algo.DijkstraAlgorithmV2}
+ * @implementation {@link DijkstraAlgorithm}
  * @implementation {@link org.psjava.goods.GoodDijkstraAlgorithm}
  *
  * @see {@link org.psjava.example.algo.ShortestPathAlgorithmExample}

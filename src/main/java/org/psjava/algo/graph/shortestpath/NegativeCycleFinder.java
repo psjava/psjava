@@ -1,5 +1,6 @@
 package org.psjava.algo.graph.shortestpath;
 
+import org.psjava.algo.Relax;
 import org.psjava.ds.Collection;
 import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.graph.AllEdgeInGraph;
@@ -81,7 +82,7 @@ public class NegativeCycleFinder {
     private static <V, W, E extends DirectedEdge<V>> AugmentedEdge<V, W, E> relaxAnyEdgeIfPossible(Graph<Object, AugmentedEdge<V, W, E>> graph, InfinitableAddableNumberSystem<W> ns,
                                                                                                    SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status, Function<AugmentedEdge<V, W, E>, W> weight) {
         for (AugmentedEdge<V, W, E> e : AllEdgeInGraph.wrap(graph))
-            if (RelaxV2.relax(status.distance, status.previous, e, weight, ns))
+            if (Relax.relax(status.distance, status.previous, e, weight, ns))
                 return e;
         return null;
     }
