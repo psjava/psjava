@@ -3,7 +3,7 @@ package org.psjava.algo.graph;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.DijkstraAlgorithmV2;
-import org.psjava.algo.SingleSourceShortestPathAlgorithmV2;
+import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.ds.graph.DirectedWeightedEdge;
 import org.psjava.ds.graph.MutableDirectedWeightedGraph;
@@ -14,7 +14,7 @@ import org.psjava.goods.GoodMutableMapFactory;
 
 public class DijkstraAlgorithmV2Test {
 
-    private static final SingleSourceShortestPathAlgorithmV2 ALGO = DijkstraAlgorithmV2.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
+    private static final SingleSourceShortestPathAlgorithm ALGO = DijkstraAlgorithmV2.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
 
     @Test
     public void testSizeOneGraph() {

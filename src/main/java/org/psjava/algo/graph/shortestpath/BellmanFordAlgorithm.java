@@ -1,6 +1,6 @@
 package org.psjava.algo.graph.shortestpath;
 
-import org.psjava.algo.SingleSourceShortestPathAlgorithmV2;
+import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
@@ -11,8 +11,8 @@ import org.psjava.util.AssertStatus;
 
 public class BellmanFordAlgorithm {
 
-    public static SingleSourceShortestPathAlgorithmV2 getInstance() {
-        return new SingleSourceShortestPathAlgorithmV2() {
+    public static SingleSourceShortestPathAlgorithm getInstance() {
+        return new SingleSourceShortestPathAlgorithm() {
             @Override
             public <V, W, E extends DirectedEdge<V>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, Function<E, W> weight, V from, AddableNumberSystem<W> weightSystem) {
                 InfinitableAddableNumberSystem<W> ns = InfinitableAddableNumberSystem.wrap(weightSystem);

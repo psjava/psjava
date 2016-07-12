@@ -2,14 +2,14 @@ package org.psjava.algo.graph.shortestpath;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.SingleSourceShortestPathAlgorithmV2;
+import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
 import org.psjava.ds.graph.TestGraphFactory;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 public class BellmanFordAlgorithmTest {
 
-    private static final SingleSourceShortestPathAlgorithmV2 INSTANCE = BellmanFordAlgorithm.getInstance();
+    private static final SingleSourceShortestPathAlgorithm INSTANCE = BellmanFordAlgorithm.getInstance();
 
     @Test
     public void testSizeOneGraph() {

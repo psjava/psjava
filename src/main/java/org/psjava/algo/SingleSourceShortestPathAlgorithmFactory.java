@@ -11,8 +11,8 @@ import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
 
 public class SingleSourceShortestPathAlgorithmFactory {
 
-    public static SingleSourceShortestPathAlgorithmV2 create(final SingleSourceShortestPathAlgorithmMaterial material) {
-        return new SingleSourceShortestPathAlgorithmV2() {
+    public static SingleSourceShortestPathAlgorithm create(final SingleSourceShortestPathAlgorithmMaterial material) {
+        return new SingleSourceShortestPathAlgorithm() {
             @Override
             public <V, W, E extends DirectedEdge<V>> SingleSourceShortestPathResult<V, W, E> calc(Graph<V, E> graph, Function<E, W> weightFunction, V start, AddableNumberSystem<W> weightSystem) {
                 final InfinitableAddableNumberSystem<W> ns = InfinitableAddableNumberSystem.wrap(weightSystem);

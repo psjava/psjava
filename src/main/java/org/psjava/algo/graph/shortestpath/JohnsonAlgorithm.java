@@ -1,6 +1,6 @@
 package org.psjava.algo.graph.shortestpath;
 
-import org.psjava.algo.SingleSourceShortestPathAlgorithmV2;
+import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
@@ -21,7 +21,7 @@ public class JohnsonAlgorithm {
 
     private static final Object VIRTUAL_START = new Object();
 
-    public static AllPairShortestPathV2 getInstance(final SingleSourceShortestPathAlgorithmV2 bellmanFord, final SingleSourceShortestPathAlgorithmV2 dijkstra) {
+    public static AllPairShortestPathV2 getInstance(final SingleSourceShortestPathAlgorithm bellmanFord, final SingleSourceShortestPathAlgorithm dijkstra) {
         return new AllPairShortestPathV2() {
             @Override
             public <V, W, E extends DirectedEdge<V>> AllPairShortestPathResult<V, W, E> calc(Graph<V, E> graph, final Function<E, W> weight, final AddableNumberSystem<W> ns) {

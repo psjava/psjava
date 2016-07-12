@@ -2,7 +2,7 @@ package org.psjava.example.ds;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.graph.MutableDirectedWeightedGraph;
+import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.BigIntegerNumberSystem;
 import org.psjava.ds.numbersystrem.DoubleNumberSystem;
 import org.psjava.ds.numbersystrem.FractionNumberSystem;
@@ -29,7 +29,7 @@ public class NumberSystemExample {
 		// For example, you can run Dijkstra's algorithm with weights in 32bit Integer byt also BigIntegerr.
 		// Let's see.
 
-		MutableDirectedWeightedGraph<String, BigInteger> g = MutableDirectedWeightedGraph.create();
+		SimpleDirectedWeightedGraph<String, BigInteger> g = SimpleDirectedWeightedGraph.create();
 		g.insertVertex("A");
 		g.insertVertex("B");
 		g.insertVertex("C");
@@ -37,7 +37,7 @@ public class NumberSystemExample {
 		g.addEdge("B", "C", new BigInteger("20000000000000000000000000000000000000000"));
 
 		// a -> c must be 30000000000000000000000000000000000000000
-		BigInteger distance = GoodDijkstraAlgorithm.getInstance().calc(g, "A", BigIntegerNumberSystem.getInstance()).getDistance("C");
+		BigInteger distance = GoodDijkstraAlgorithm.getInstance().calc(g, g.getWeightFunction(), "A", BigIntegerNumberSystem.getInstance()).getDistance("C");
 
 		// Various number systems are already prepared.
 		IntegerNumberSystem.getInstance();

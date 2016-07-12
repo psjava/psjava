@@ -17,7 +17,7 @@ import java.util.Comparator;
 
 public class DijkstraAlgorithmV2 {
 
-    public static SingleSourceShortestPathAlgorithmV2 getInstance(final HeapFactory heapFactory, final MutableMapFactory mapFactory) {
+    public static SingleSourceShortestPathAlgorithm getInstance(final HeapFactory heapFactory, final MutableMapFactory mapFactory) {
         return SingleSourceShortestPathAlgorithmFactory.create(new SingleSourceShortestPathAlgorithmMaterial() {
             @Override
             public <V, W, E extends DirectedEdge<V>> SingleSourceShortestPathCalcStatus<V, W, E> calc(Graph<V, E> graph, V start, Function<E, W> weightFunction, final InfinitableAddableNumberSystem<W> ns) {

@@ -2,12 +2,11 @@ package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.algo.graph.shortestpath.BellmanFordAlgorithm;
-import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathAlgorithm;
-import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathAlgorithmUsingV2;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
-import org.psjava.ds.graph.DirectedWeightedEdge;
-import org.psjava.ds.graph.MutableDirectedWeightedGraph;
+import org.psjava.ds.graph.SimpleDirectedWeightedEdgeV2;
+import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
 /**
@@ -22,7 +21,7 @@ public class BellmanFordAlgorithmExample {
 
 		// Let's construct a simple graph which contains negatively weighted edge.
 
-		MutableDirectedWeightedGraph<String, Integer> graph = MutableDirectedWeightedGraph.create();
+		SimpleDirectedWeightedGraph<String, Integer> graph = SimpleDirectedWeightedGraph.create();
 		graph.insertVertex("A");
 		graph.insertVertex("B");
 		graph.insertVertex("C");
@@ -32,8 +31,8 @@ public class BellmanFordAlgorithmExample {
 
 		// Then calculate distances from a single source 'A'
 
-		SingleSourceShortestPathAlgorithm algorithm = SingleSourceShortestPathAlgorithmUsingV2.wrap(BellmanFordAlgorithm.getInstance());
-		SingleSourceShortestPathResult<String, Integer, DirectedWeightedEdge<String, Integer>> result1 = algorithm.calc(graph, "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathAlgorithm algorithm = BellmanFordAlgorithm.getInstance();
+		SingleSourceShortestPathResult<String, Integer, SimpleDirectedWeightedEdgeV2<String, Integer>> result1 = algorithm.calc(graph, graph.getWeightFunction(), "A", IntegerNumberSystem.getInstance());
 
 		boolean reachabilityOfC = result1.isReachable("C"); // must be true
 		Assert.assertTrue(reachabilityOfC);
