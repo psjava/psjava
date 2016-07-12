@@ -3,9 +3,9 @@ package org.psjava.algo.graph.shortestpath;
 import org.psjava.ds.Collection;
 import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.graph.AllEdgeInGraph;
-import org.psjava.ds.graph.DirectedWeightedEdge;
+import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.SimpleDirectedGraph;
+import org.psjava.ds.graph.MutableGraph;
 import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
@@ -14,9 +14,9 @@ import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.util.AssertStatus;
 
 // Finds any one of possible negative cycles in a graph.
- public class NegativeCycleFinder {
+public class NegativeCycleFinder {
 
-    private static class AugmentedEdge<V, W, E extends DirectedWeightedEdge<V, W>> implements DirectedWeightedEdge<Object, W> {
+    private static class AugmentedEdge<V, W, E extends DirectedEdge<V>> implements DirectedEdge<Object> {
         private final Object from;
         private final Object to;
         private final W weight;
@@ -39,11 +39,6 @@ import org.psjava.util.AssertStatus;
             return to;
         }
 
-        @Override
-        public W weight() {
-            return weight;
-        }
-
         public E getOriginal() {
             AssertStatus.assertTrue(originalOrNull != null);
             return originalOrNull;
@@ -52,42 +47,47 @@ import org.psjava.util.AssertStatus;
 
     private static final Object VIRTUAL_START = new Object();
 
-    public static <V, W, E extends DirectedWeightedEdge<V, W>> NegativeCycleFinderResult<E> find(Graph<V, E> graph, AddableNumberSystem<W> weightSystem) {
-        Graph<Object, AugmentedEdge<V, W, E>> augmented = augment(graph, weightSystem);
+    public static <V, W, E extends DirectedEdge<V>> NegativeCycleFinderResult<E> find(Graph<V, E> graph, Function<E, W> originalWeight, AddableNumberSystem<W> weightSystem) {
+        Graph<Object, AugmentedEdge<V, W, E>> augmented = augment(graph, weightSystem, originalWeight);
+        Function<AugmentedEdge<V, W, E>, W> augmentedWeight = getWeightFunction();
         InfinitableAddableNumberSystem<W> ns = InfinitableAddableNumberSystem.wrap(weightSystem);
         SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> bellmanFordStatus = BellmanFordAlgorithm.createInitialStatus(augmented, VIRTUAL_START, ns);
-        BellmanFordAlgorithm.relaxEnough(augmented, new Function<AugmentedEdge<V, W, E>, W>() {
-            @Override
-            public W get(AugmentedEdge<V, W, E> input) {
-                return input.weight;
-            }
-        }, bellmanFordStatus, ns);
-        AugmentedEdge<V, W, E> relaxed = relaxAnyEdgeIfPossible(augmented, ns, bellmanFordStatus);
+        BellmanFordAlgorithm.relaxEnough(augmented, augmentedWeight, bellmanFordStatus, ns);
+        AugmentedEdge<V, W, E> relaxed = relaxAnyEdgeIfPossible(augmented, ns, bellmanFordStatus, augmentedWeight);
         return createResult(bellmanFordStatus, relaxed);
     }
 
-    private static <V, W, E extends DirectedWeightedEdge<V, W>> Graph<Object, AugmentedEdge<V, W, E>> augment(Graph<V, E> original, AddableNumberSystem<W> ns) {
-        SimpleDirectedGraph<Object, AugmentedEdge<V, W, E>> r = SimpleDirectedGraph.create();
+    private static <V, W, E extends DirectedEdge<V>> Graph<Object, AugmentedEdge<V, W, E>> augment(Graph<V, E> original, AddableNumberSystem<W> ns, Function<E, W> originalWeight) {
+        MutableGraph<Object, AugmentedEdge<V, W, E>> r = MutableGraph.create();
         for (V v : original.getVertices())
             r.insertVertex(v);
         for (E e : AllEdgeInGraph.wrap(original))
-            r.addEdge(new AugmentedEdge<V, W, E>(e.from(), e.to(), e.weight(), e));
+            r.addEdge(e.from(), new AugmentedEdge<V, W, E>(e.from(), e.to(), originalWeight.get(e), e));
         r.insertVertex(VIRTUAL_START);
         for (V v : original.getVertices())
-            r.addEdge(new AugmentedEdge<V, W, E>(VIRTUAL_START, v, ns.getZero(), null));
+            r.addEdge(VIRTUAL_START, new AugmentedEdge<V, W, E>(VIRTUAL_START, v, ns.getZero(), null));
         return r;
     }
 
-    private static <V, W, E extends DirectedWeightedEdge<V, W>> AugmentedEdge<V, W, E> relaxAnyEdgeIfPossible(Graph<Object, AugmentedEdge<V, W, E>> graph, InfinitableAddableNumberSystem<W> ns,
-                                                                                                              SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status) {
+    private static <V, W, E extends DirectedEdge<V>> Function<AugmentedEdge<V, W, E>, W> getWeightFunction() {
+        return new Function<AugmentedEdge<V, W, E>, W>() {
+            @Override
+            public W get(AugmentedEdge<V, W, E> e) {
+                return e.weight;
+            }
+        };
+    }
+
+    private static <V, W, E extends DirectedEdge<V>> AugmentedEdge<V, W, E> relaxAnyEdgeIfPossible(Graph<Object, AugmentedEdge<V, W, E>> graph, InfinitableAddableNumberSystem<W> ns,
+                                                                                                   SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status, Function<AugmentedEdge<V, W, E>, W> weight) {
         for (AugmentedEdge<V, W, E> e : AllEdgeInGraph.wrap(graph))
-            if (Relax.relax(status.distance, status.previous, e, ns))
+            if (RelaxV2.relax(status.distance, status.previous, e, weight, ns))
                 return e;
         return null;
     }
 
-    private static <V, W, E extends DirectedWeightedEdge<V, W>> NegativeCycleFinderResult<E> createResult(final SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status,
-                                                                                                          final AugmentedEdge<V, W, E> lastRelaxedEdgeOrNull) {
+    private static <V, W, E extends DirectedEdge<V>> NegativeCycleFinderResult<E> createResult(final SingleSourceShortestPathCalcStatus<Object, W, AugmentedEdge<V, W, E>> status,
+                                                                                               final AugmentedEdge<V, W, E> lastRelaxedEdgeOrNull) {
         return new NegativeCycleFinderResult<E>() {
             @Override
             public boolean hasCycle() {
@@ -112,9 +112,6 @@ import org.psjava.util.AssertStatus;
                 return path;
             }
         };
-    }
-
-    private NegativeCycleFinder() {
     }
 
 }
