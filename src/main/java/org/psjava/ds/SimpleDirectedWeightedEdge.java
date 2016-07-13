@@ -1,13 +1,14 @@
-package org.psjava.ds.graph;
+package org.psjava.ds;
 
+import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.math.Function;
 
-public class SimpleDirectedWeightedEdgeV2<V, W> implements DirectedEdge<V> {
+public class SimpleDirectedWeightedEdge<V, W> implements DirectedEdge<V> {
 
-    public static <V, W> Function<SimpleDirectedWeightedEdgeV2<V, W>, W> createWeightFunction() {
-        return new Function<SimpleDirectedWeightedEdgeV2<V, W>, W>() {
+    public static <V, W> Function<SimpleDirectedWeightedEdge<V, W>, W> createWeightFunction() {
+        return new Function<SimpleDirectedWeightedEdge<V, W>, W>() {
             @Override
-            public W get(SimpleDirectedWeightedEdgeV2<V, W> a) {
+            public W get(SimpleDirectedWeightedEdge<V, W> a) {
                 return a.weight;
             }
         };
@@ -17,7 +18,7 @@ public class SimpleDirectedWeightedEdgeV2<V, W> implements DirectedEdge<V> {
     private final V to;
     private final W weight;
 
-    public SimpleDirectedWeightedEdgeV2(V from, V to, W weight) {
+    public SimpleDirectedWeightedEdge(V from, V to, W weight) {
         this.from = from;
         this.to = to;
         this.weight = weight;

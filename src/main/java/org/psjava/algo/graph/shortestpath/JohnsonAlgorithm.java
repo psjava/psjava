@@ -5,7 +5,7 @@ import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.SimpleDirectedWeightedEdgeV2;
+import org.psjava.ds.SimpleDirectedWeightedEdge;
 import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.math.Function;
@@ -27,7 +27,7 @@ public class JohnsonAlgorithm {
             @Override
             public <V, W, E extends DirectedEdge<V>> AllPairShortestPathResult<V, W, E> calc(Graph<V, E> graph, final Function<E, W> weight, final AddableNumberSystem<W> ns) {
                 final SimpleDirectedWeightedGraph<Object, W> augmented = augment(graph, weight, ns);
-                final SingleSourceShortestPathResult<Object, W, SimpleDirectedWeightedEdgeV2<Object, W>> bellmanFordResult = bellmanFord.calc(augmented, augmented.getWeightFunction(), VIRTUAL_START, ns);
+                final SingleSourceShortestPathResult<Object, W, SimpleDirectedWeightedEdge<Object, W>> bellmanFordResult = bellmanFord.calc(augmented, augmented.getWeightFunction(), VIRTUAL_START, ns);
                 Function<E, W> reweightedFunction = reweight(weight, bellmanFordResult, ns);
                 MutableMap<V, SingleSourceShortestPathResult<V, W, E>> dijsktraResult = GoodMutableMapFactory.getInstance().create();
                 for (V v : graph.getVertices())
@@ -49,7 +49,7 @@ public class JohnsonAlgorithm {
         return res;
     }
 
-    private static <V, W, E extends DirectedEdge<V>> Function<E, W> reweight(final Function<E, W> original, final SingleSourceShortestPathResult<Object, W, SimpleDirectedWeightedEdgeV2<Object, W>> bellmanFordResult, final AddableNumberSystem<W> ns) {
+    private static <V, W, E extends DirectedEdge<V>> Function<E, W> reweight(final Function<E, W> original, final SingleSourceShortestPathResult<Object, W, SimpleDirectedWeightedEdge<Object, W>> bellmanFordResult, final AddableNumberSystem<W> ns) {
         return new Function<E, W>() {
             @Override
             public W get(E e) {
@@ -59,7 +59,7 @@ public class JohnsonAlgorithm {
         };
     }
 
-    private static <V, W, E> AllPairShortestPathResult<V, W, E> createUnreweightedResult(final SingleSourceShortestPathResult<Object, W, SimpleDirectedWeightedEdgeV2<Object, W>> bellmanFordResult, final MutableMap<V, SingleSourceShortestPathResult<V, W, E>> dijkstraResult, final AddableNumberSystem<W> ns) {
+    private static <V, W, E> AllPairShortestPathResult<V, W, E> createUnreweightedResult(final SingleSourceShortestPathResult<Object, W, SimpleDirectedWeightedEdge<Object, W>> bellmanFordResult, final MutableMap<V, SingleSourceShortestPathResult<V, W, E>> dijkstraResult, final AddableNumberSystem<W> ns) {
         return new AllPairShortestPathResult<V, W, E>() {
             @Override
             public W getDistance(V from, V to) {

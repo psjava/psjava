@@ -7,7 +7,7 @@ import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
 import org.psjava.algo.AllPairShortestPath;
 import org.psjava.algo.graph.shortestpath.FloydWarshallAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
-import org.psjava.ds.graph.SimpleDirectedWeightedEdgeV2;
+import org.psjava.ds.SimpleDirectedWeightedEdge;
 import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodSingleSourceShortestPathAlgorithm;
@@ -38,7 +38,7 @@ public class ShortestPathAlgorithmExample {
         // Choose algorithm, and run it.
 
         SingleSourceShortestPathAlgorithm algorithm1 = GoodSingleSourceShortestPathAlgorithm.getInstance();
-        SingleSourceShortestPathResult<String, Integer, SimpleDirectedWeightedEdgeV2<String, Integer>> res1 = algorithm1.calc(graph, graph.getWeightFunction(), "A", IntegerNumberSystem.getInstance());
+        SingleSourceShortestPathResult<String, Integer, SimpleDirectedWeightedEdge<String, Integer>> res1 = algorithm1.calc(graph, graph.getWeightFunction(), "A", IntegerNumberSystem.getInstance());
 
         int distanceAToC = res1.getDistance("C");
         boolean reachabilityOfD = res1.isReachable("D");
@@ -46,7 +46,7 @@ public class ShortestPathAlgorithmExample {
         // Let's get the shortest paths of all pairs. Floyd Warshall's algorithm is the simplest implementation.
 
         AllPairShortestPath algoritm2 = FloydWarshallAlgorithm.INSTANCE;
-        AllPairShortestPathResult<String, Integer, SimpleDirectedWeightedEdgeV2<String, Integer>> res2 = algoritm2.calc(graph, graph.getWeightFunction(), IntegerNumberSystem.getInstance());
+        AllPairShortestPathResult<String, Integer, SimpleDirectedWeightedEdge<String, Integer>> res2 = algoritm2.calc(graph, graph.getWeightFunction(), IntegerNumberSystem.getInstance());
 
         int distanceAToB = res2.getDistance("A", "B");
         int distanceBToC = res2.getDistance("B", "C");

@@ -1,22 +1,23 @@
 package org.psjava.ds.graph;
 
 import org.psjava.ds.Collection;
+import org.psjava.ds.SimpleDirectedWeightedEdge;
 import org.psjava.ds.math.Function;
 
-public class SimpleDirectedWeightedGraph<V, W> implements Graph<V, SimpleDirectedWeightedEdgeV2<V, W>> {
+public class SimpleDirectedWeightedGraph<V, W> implements Graph<V, SimpleDirectedWeightedEdge<V, W>> {
 
     public static <V, W> SimpleDirectedWeightedGraph<V, W> create() {
         return new SimpleDirectedWeightedGraph<V, W>();
     }
 
-    private SimpleDirectedGraph<V, SimpleDirectedWeightedEdgeV2<V, W>> g = SimpleDirectedGraph.create();
+    private SimpleDirectedGraph<V, SimpleDirectedWeightedEdge<V, W>> g = SimpleDirectedGraph.create();
 
     public void insertVertex(V v) {
         g.insertVertex(v);
     }
 
     public void addEdge(V from, V to, W weight) {
-        g.addEdge(new SimpleDirectedWeightedEdgeV2<V, W>(from, to, weight));
+        g.addEdge(new SimpleDirectedWeightedEdge<V, W>(from, to, weight));
     }
 
     @Override
@@ -25,7 +26,7 @@ public class SimpleDirectedWeightedGraph<V, W> implements Graph<V, SimpleDirecte
     }
 
     @Override
-    public Iterable<SimpleDirectedWeightedEdgeV2<V, W>> getEdges(V v) {
+    public Iterable<SimpleDirectedWeightedEdge<V, W>> getEdges(V v) {
         return g.getEdges(v);
     }
 
@@ -34,8 +35,8 @@ public class SimpleDirectedWeightedGraph<V, W> implements Graph<V, SimpleDirecte
         return g.toString();
     }
 
-    public Function<SimpleDirectedWeightedEdgeV2<V, W>, W> getWeightFunction() {
-        return SimpleDirectedWeightedEdgeV2.createWeightFunction();
+    public Function<SimpleDirectedWeightedEdge<V, W>, W> getWeightFunction() {
+        return SimpleDirectedWeightedEdge.createWeightFunction();
     }
 
 }

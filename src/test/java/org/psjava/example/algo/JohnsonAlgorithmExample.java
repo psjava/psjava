@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.AllPairShortestPathResult;
 import org.psjava.algo.AllPairShortestPath;
 import org.psjava.algo.graph.shortestpath.JohnsonAlgorithm;
-import org.psjava.ds.graph.SimpleDirectedWeightedEdgeV2;
+import org.psjava.ds.SimpleDirectedWeightedEdge;
 import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodJohnsonAlgorithm;
@@ -35,7 +35,7 @@ public class JohnsonAlgorithmExample {
         // Johnson's algorithm is a combination of Bellman Ford's and Dijkstra's algorithm.
 
         AllPairShortestPath johnson = GoodJohnsonAlgorithm.getInstance();
-        AllPairShortestPathResult<String, Integer, SimpleDirectedWeightedEdgeV2<String, Integer>> res = johnson.calc(graph, graph.getWeightFunction(), IntegerNumberSystem.getInstance());
+        AllPairShortestPathResult<String, Integer, SimpleDirectedWeightedEdge<String, Integer>> res = johnson.calc(graph, graph.getWeightFunction(), IntegerNumberSystem.getInstance());
 
         int distanceAToB = res.getDistance("A", "B"); // must be 15
         int distanceBToC = res.getDistance("B", "A"); // must be -5

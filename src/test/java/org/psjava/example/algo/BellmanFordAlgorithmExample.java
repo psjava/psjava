@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.algo.graph.shortestpath.BellmanFordAlgorithm;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
-import org.psjava.ds.graph.SimpleDirectedWeightedEdgeV2;
+import org.psjava.ds.SimpleDirectedWeightedEdge;
 import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 
@@ -32,7 +32,7 @@ public class BellmanFordAlgorithmExample {
 		// Then calculate distances from a single source 'A'
 
 		SingleSourceShortestPathAlgorithm algorithm = BellmanFordAlgorithm.getInstance();
-		SingleSourceShortestPathResult<String, Integer, SimpleDirectedWeightedEdgeV2<String, Integer>> result1 = algorithm.calc(graph, graph.getWeightFunction(), "A", IntegerNumberSystem.getInstance());
+		SingleSourceShortestPathResult<String, Integer, SimpleDirectedWeightedEdge<String, Integer>> result1 = algorithm.calc(graph, graph.getWeightFunction(), "A", IntegerNumberSystem.getInstance());
 
 		boolean reachabilityOfC = result1.isReachable("C"); // must be true
 		Assert.assertTrue(reachabilityOfC);
