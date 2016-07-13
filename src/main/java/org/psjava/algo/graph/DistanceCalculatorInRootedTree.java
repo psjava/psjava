@@ -3,11 +3,12 @@ package org.psjava.algo.graph;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.SingleSourceDFS;
 import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.graph.DirectedWeightedEdge;
+import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.ds.math.BinaryOperator;
+import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddInvert;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
@@ -27,12 +28,13 @@ public class DistanceCalculatorInRootedTree {
 		this.mapFactory = mapFactory;
 	}
 
-	public <V, W> DistanceCalculatorInRootedTreeResult<V, W> calc(RootedTree<V, DirectedWeightedEdge<V, W>> tree, final AddableNumberSystem<W> ns) {
+	public <V, W, E extends DirectedEdge<V>> DistanceCalculatorInRootedTreeResult<V, W> calc(RootedTree<V, E> tree, final Function<E, W> weight, final AddableNumberSystem<W> ns) {
 		final DynamicArray<W> pathWeights = DynamicArray.create();
 		final MutableMap<V, Integer> discoverIndex = mapFactory.create();
 		final MutableMap<V, Integer> indexOfWalkingDown = mapFactory.create();
 		final MutableMap<V, Integer> indexOfWalkingUp = mapFactory.create();
-		SingleSourceDFS.traverse(tree.graph, tree.root, new DFSVisitorBase<V, DirectedWeightedEdge<V, W>>() {
+
+		SingleSourceDFS.traverse(tree.graph, tree.root, new DFSVisitorBase<V, E>() {
 
 			@Override
 			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
@@ -41,17 +43,17 @@ public class DistanceCalculatorInRootedTree {
 			}
 
 			@Override
-			public void onWalkDown(DirectedWeightedEdge<V, W> outEdge) {
+			public void onWalkDown(E outEdge) {
 				int index = pathWeights.size();
 				indexOfWalkingDown.add(outEdge.to(), index);
-				pathWeights.addToLast(outEdge.weight());
+				pathWeights.addToLast(weight.get(outEdge));
 			}
 
 			@Override
-			public void onWalkUp(DirectedWeightedEdge<V, W> edge) {
+			public void onWalkUp(E edge) {
 				int index = pathWeights.size();
 				indexOfWalkingUp.add(edge.to(), index);
-				pathWeights.addToLast(AddInvert.calc(ns, edge.weight()));
+				pathWeights.addToLast(AddInvert.calc(ns, weight.get(edge)));
 			}
 		});
 

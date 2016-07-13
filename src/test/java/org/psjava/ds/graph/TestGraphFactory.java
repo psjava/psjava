@@ -2,17 +2,6 @@ package org.psjava.ds.graph;
 
 public class TestGraphFactory {
 
-	@Deprecated
-	public static MutableDirectedWeightedGraph<Integer, Integer> createDirectedWeightedNew(int[][] edata) {
-		MutableDirectedWeightedGraph<Integer, Integer> g = new MutableDirectedWeightedGraph<Integer, Integer>();
-		for (int[] e : edata) {
-			g.insertVertex(e[0]);
-			g.insertVertex(e[1]);
-			g.addEdge(e[0], e[1], e[2]);
-		}
-		return g;
-	}
-
 	public static SimpleDirectedWeightedGraph<Integer, Integer> createDirectedWeightedNewV2(int[][] edata) {
 		SimpleDirectedWeightedGraph<Integer, Integer> g = new SimpleDirectedWeightedGraph<Integer, Integer>();
 		for (int[] e : edata) {
@@ -49,17 +38,6 @@ public class TestGraphFactory {
 			g.insertVertex((String) e[0]);
 			g.insertVertex((String) e[1]);
 			g.addEdge((String) e[0], (String) e[1], (Integer) e[2]);
-		}
-		return g;
-	}
-
-	@Deprecated
-	public static MutableDirectedWeightedGraph<String, Integer> createDirectedWeightedNew(Object[][] data) {
-		MutableDirectedWeightedGraph<String, Integer> g = MutableDirectedWeightedGraph.create();
-		for (Object[] e1 : data) {
-			g.insertVertex((String) e1[0]);
-			g.insertVertex((String) e1[1]);
-			g.addEdge((String) e1[0], (String) e1[1], (int) (Integer) e1[2]);
 		}
 		return g;
 	}
