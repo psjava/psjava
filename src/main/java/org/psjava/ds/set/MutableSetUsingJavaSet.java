@@ -9,6 +9,7 @@ import org.psjava.util.IterableToString;
 import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.StrictEqualityTester;
 
+@Deprecated
 public class MutableSetUsingJavaSet<T> implements MutableSet<T> {
 
     private final java.util.Set<T> javaset;

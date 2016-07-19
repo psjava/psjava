@@ -1,5 +1,6 @@
 package org.psjava.ds.set;
 
+@Deprecated
 public interface MutableSet<T> extends Set<T> {
     void clear();
 
