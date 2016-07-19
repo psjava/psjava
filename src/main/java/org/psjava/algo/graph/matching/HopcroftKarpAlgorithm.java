@@ -8,7 +8,7 @@ import org.psjava.ds.Collection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.FirstInArray;
 import org.psjava.ds.array.LastInArray;
-import org.psjava.ds.graph.EdgeFilteredSubNewGraph;
+import org.psjava.ds.graph.EdgeFilteredSubGraph;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.SimpleDirectedGraph;
 import org.psjava.ds.graph.BipartiteGraph;
@@ -108,7 +108,7 @@ public class HopcroftKarpAlgorithm {
 	private static <V> Collection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
 		final DynamicArray<Vertex<V>> finishes = DynamicArray.create();
 
-		BFS.traverse(EdgeFilteredSubNewGraph.wrap(adj, new Filter<Edge<V>>() {
+		BFS.traverse(EdgeFilteredSubGraph.wrap(adj, new Filter<Edge<V>>() {
 			@Override
 			public boolean isAccepted(Edge<V> edge) {
 				// to alternate matched and non-matched edges.
@@ -147,7 +147,7 @@ public class HopcroftKarpAlgorithm {
 	}
 
 	private static <V> void dfs(final Graph<Vertex<V>, Edge<V>> adj, final Collection<Vertex<V>> bfsFinishes, final Object bfsMark) {
-		MultiSourceDFS.traverse(EdgeFilteredSubNewGraph.wrap(adj, new Filter<Edge<V>>() {
+		MultiSourceDFS.traverse(EdgeFilteredSubGraph.wrap(adj, new Filter<Edge<V>>() {
 			@Override
 			public boolean isAccepted(Edge<V> edge) {
 				return edge.status.bfsMark == bfsMark; // uses only edges discovered in bfs step.
