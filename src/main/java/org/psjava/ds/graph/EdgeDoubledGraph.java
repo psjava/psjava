@@ -6,6 +6,7 @@ import org.psjava.util.Converter;
 import org.psjava.util.MergedIterable;
 import org.psjava.util.VarargsIterable;
 
+// todo inline
 public class EdgeDoubledGraph {
 
 	public static <V, W, E1, E2> Graph<V, E2> wrap(final Graph<V, E1> original, final Converter<E1, E2> direction1Converter, final Converter<E1, E2> direction2Converter) {
