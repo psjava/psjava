@@ -1,6 +1,5 @@
 package org.psjava.algo.geometry.convexhull;
 
-import org.psjava.algo.geometry.convexhull.ConvexHullAlgorithm;
 import org.psjava.formula.MinIndexInArray;
 import org.psjava.algo.sequence.sort.SortingAlgorithm;
 import org.psjava.algo.sequence.sort.SortingHelper;
@@ -13,7 +12,6 @@ import org.psjava.ds.geometry.Point2D;
 import org.psjava.ds.geometry.PointByYXComparator;
 import org.psjava.ds.geometry.Polygon2D;
 import org.psjava.ds.numbersystrem.MultipliableNumberSystem;
-import org.psjava.ds.set.Set;
 import org.psjava.formula.geometry.PointByDirectionComparator;
 import org.psjava.formula.geometry.LeftTurn;
 import org.psjava.formula.geometry.PointByDistanceComparator;
@@ -21,6 +19,7 @@ import org.psjava.util.AssertStatus;
 import org.psjava.util.SeriesComparator;
 
 import java.util.Comparator;
+import java.util.Set;
 
 /**
  * O(nlogn)

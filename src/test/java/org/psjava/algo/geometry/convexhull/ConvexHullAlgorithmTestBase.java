@@ -3,13 +3,13 @@ package org.psjava.algo.geometry.convexhull;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.sequence.search.LinearSearch;
+import org.psjava.ds.SetFromIterableV2;
 import org.psjava.ds.array.Array;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.RotatedArray;
 import org.psjava.ds.geometry.Point2D;
 import org.psjava.ds.geometry.Polygon2D;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
-import org.psjava.ds.set.SetFromIterable;
 import org.psjava.util.IterableEqualityTester;
 
 abstract public class ConvexHullAlgorithmTestBase {
@@ -64,7 +64,7 @@ abstract public class ConvexHullAlgorithmTestBase {
 
     public void testAndAssert(int[][] expectedPairs, int[][] data) {
         Array<Point2D<Integer>> expected = toPoints(expectedPairs);
-        Polygon2D<Integer> actual = getAlgorithm().calc(SetFromIterable.create(toPoints(data)), IntegerNumberSystem.getInstance());
+        Polygon2D<Integer> actual = getAlgorithm().calc(SetFromIterableV2.create(toPoints(data)), IntegerNumberSystem.getInstance());
         int index = LinearSearch.search(actual.getCCWOrderPoints(), expected.get(0), -1);
         Assert.assertTrue(index != -1);
         Array<Point2D<Integer>> adjustedActual = RotatedArray.wrap(actual.getCCWOrderPoints(), index);

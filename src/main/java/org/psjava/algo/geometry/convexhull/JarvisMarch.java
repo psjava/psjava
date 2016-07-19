@@ -1,9 +1,9 @@
 package org.psjava.algo.geometry.convexhull;
 
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.Set;
 
-import org.psjava.algo.geometry.convexhull.ConvexHullAlgorithm;
-import org.psjava.ds.Collection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.FirstInArray;
 
@@ -13,7 +13,6 @@ import org.psjava.ds.geometry.PointByYXComparator;
 import org.psjava.ds.geometry.Polygon2D;
 import org.psjava.ds.math.Vector2D;
 import org.psjava.ds.numbersystrem.MultipliableNumberSystem;
-import org.psjava.ds.set.Set;
 import org.psjava.formula.MinInIterable;
 import org.psjava.formula.geometry.DirectionVectorFrom2DPoints;
 import org.psjava.formula.geometry.PointByDirectionComparator;

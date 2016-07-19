@@ -2,6 +2,7 @@ package org.psjava.ds.set;
 
 import org.psjava.goods.GoodMutableSetFactory;
 
+@Deprecated
 public class SetFromIterable {
 
     public static <T> Set<T> create(Iterable<T> iterable) {
