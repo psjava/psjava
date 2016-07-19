@@ -1,11 +1,12 @@
 package org.psjava.algo.graph.bfs;
 
-import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
+import org.psjava.ds.graph.Graph;
 import org.psjava.ds.queue.Queue;
-import org.psjava.ds.set.MutableSet;
-import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.goods.GoodQueueFactory;
+import org.psjava.goods.GoodSetFactory;
+
+import java.util.Set;
 
 public class BFS {
 
@@ -20,7 +21,7 @@ public class BFS {
     }
 
     public static <V, E extends DirectedEdge<V>> void traverse(Graph<V, E> adj, Iterable<V> startVertices, BFSVisitor<V, E> visitor) {
-        MutableSet<V> discovered = GoodMutableSetFactory.getInstance().create();
+        Set<V> discovered = GoodSetFactory.getInstance().create();
         SimpleStopper stopper = new SimpleStopper();
         Queue<QueueItem<V>> queue = GoodQueueFactory.getInstance().create();
         for (V v : startVertices) {
@@ -45,9 +46,6 @@ public class BFS {
                 }
             }
         }
-    }
-
-    private BFS() {
     }
 
 }
