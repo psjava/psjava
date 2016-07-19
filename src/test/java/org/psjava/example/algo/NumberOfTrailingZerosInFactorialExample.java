@@ -10,10 +10,10 @@ import org.psjava.formula.NumberOfTrailingZerosInFactorial;
  */
 public class NumberOfTrailingZerosInFactorialExample {
 
-	@Test
-	public void example() {
-		// 20! = 2432902008176640000
-		int res = NumberOfTrailingZerosInFactorial.calc(20, IntegerNumberSystem.getInstance()); // must be 4
-		Assert.assertEquals(4, res);
-	}
+    @Test
+    public void example() {
+        // 20! = 2432902008176640000
+        int res = NumberOfTrailingZerosInFactorial.calc(20, IntegerNumberSystem.getInstance()); // must be 4
+        Assert.assertEquals(4, res);
+    }
 }

@@ -5,11 +5,11 @@ import org.psjava.ds.map.MutableMapFactory;
 
 public class GoodMutableMapFactory {
 
-	public static MutableMapFactory getInstance() {
-		return JavaHashMapFactory.getInstance();
-	}
+    public static MutableMapFactory getInstance() {
+        return JavaHashMapFactory.getInstance();
+    }
 
-	private GoodMutableMapFactory() {
-	}
+    private GoodMutableMapFactory() {
+    }
 
 }

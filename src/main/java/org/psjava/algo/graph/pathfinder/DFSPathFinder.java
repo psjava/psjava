@@ -10,37 +10,37 @@ import org.psjava.util.VisitorStopper;
 
 public class DFSPathFinder {
 
-	public static PathFinder getInstance() {
-		return new PathFinder() {
-			@Override
-			public <V, E extends DirectedEdge<V>> Collection<E> find(Graph<V, E> adj, V start, final V end, Collection<E> def) {
-				final DynamicArray<E> history = new DynamicArray<E>();
-				SingleSourceDFS.traverse(adj, start, new DFSVisitorBase<V, E>() {
-					@Override
-					public void onWalkDown(E outEdge) {
-						history.addToLast(outEdge);
-					}
+    public static PathFinder getInstance() {
+        return new PathFinder() {
+            @Override
+            public <V, E extends DirectedEdge<V>> Collection<E> find(Graph<V, E> adj, V start, final V end, Collection<E> def) {
+                final DynamicArray<E> history = new DynamicArray<E>();
+                SingleSourceDFS.traverse(adj, start, new DFSVisitorBase<V, E>() {
+                    @Override
+                    public void onWalkDown(E outEdge) {
+                        history.addToLast(outEdge);
+                    }
 
-					@Override
-					public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
-						if (vertex.equals(end))
-							stopper.stop();
-					}
+                    @Override
+                    public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
+                        if (vertex.equals(end))
+                            stopper.stop();
+                    }
 
-					@Override
-					public void onWalkUp(E edge) {
-						history.removeLast();
-					}
-				});
-				if (history.isEmpty())
-					return def;
-				return history;
-			}
+                    @Override
+                    public void onWalkUp(E edge) {
+                        history.removeLast();
+                    }
+                });
+                if (history.isEmpty())
+                    return def;
+                return history;
+            }
 
-		};
-	}
+        };
+    }
 
-	private DFSPathFinder() {
-	}
+    private DFSPathFinder() {
+    }
 
 }

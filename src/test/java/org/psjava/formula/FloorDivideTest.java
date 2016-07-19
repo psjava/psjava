@@ -7,15 +7,15 @@ import org.psjava.formula.FloorDivide;
 
 public class FloorDivideTest {
 
-	private static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
+    private static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
 
-	@Test
-	public void test() {
-		Assert.assertEquals(1, (int) FloorDivide.calc(NS, 3, 2));
-		Assert.assertEquals(1, (int) FloorDivide.calc(NS, -3, -2));
-		Assert.assertEquals(-2, (int) FloorDivide.calc(NS, -3, 2));
-		Assert.assertEquals(-2, (int) FloorDivide.calc(NS, 3, -2));
-		Assert.assertEquals(-1, (int) FloorDivide.calc(NS, -1, 2));
-		Assert.assertEquals(0, (int) FloorDivide.calc(NS, 1, 2));
-	}
+    @Test
+    public void test() {
+        Assert.assertEquals(1, (int) FloorDivide.calc(NS, 3, 2));
+        Assert.assertEquals(1, (int) FloorDivide.calc(NS, -3, -2));
+        Assert.assertEquals(-2, (int) FloorDivide.calc(NS, -3, 2));
+        Assert.assertEquals(-2, (int) FloorDivide.calc(NS, 3, -2));
+        Assert.assertEquals(-1, (int) FloorDivide.calc(NS, -1, 2));
+        Assert.assertEquals(0, (int) FloorDivide.calc(NS, 1, 2));
+    }
 }

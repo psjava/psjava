@@ -5,6 +5,6 @@ import org.psjava.ds.numbersystrem.InfinitableNumber;
 import org.psjava.goods.GoodMutableMapFactory;
 
 public class SingleSourceShortestPathCalcStatus<V, W, E> {
-	public final MutableMap<V, InfinitableNumber<W>> distance = GoodMutableMapFactory.getInstance().create();
-	public final MutableMap<V, E> previous = GoodMutableMapFactory.getInstance().create();
+    public final MutableMap<V, InfinitableNumber<W>> distance = GoodMutableMapFactory.getInstance().create();
+    public final MutableMap<V, E> previous = GoodMutableMapFactory.getInstance().create();
 }

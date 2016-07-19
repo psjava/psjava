@@ -12,18 +12,18 @@ import java.util.Comparator;
 
 public class MaxIndexInArrayTest {
 
-	@Test
-	public void testNormal() {
-		Array<Integer> a = ArrayFromVarargs.create(1, 3, 2);
-		assertEquals(1, MaxIndexInArray.get(a, COMP));
-	}
+    @Test
+    public void testNormal() {
+        Array<Integer> a = ArrayFromVarargs.create(1, 3, 2);
+        assertEquals(1, MaxIndexInArray.get(a, COMP));
+    }
 
-	@Test (expected=RuntimeException.class)
-	public void testEmpty() {
-		DynamicArray<Integer> a = DynamicArray.create();
-		MaxIndexInArray.get(a, COMP);
-	}
+    @Test(expected = RuntimeException.class)
+    public void testEmpty() {
+        DynamicArray<Integer> a = DynamicArray.create();
+        MaxIndexInArray.get(a, COMP);
+    }
 
-	private static final Comparator<Integer> COMP = new DefaultComparator<Integer>();
+    private static final Comparator<Integer> COMP = new DefaultComparator<Integer>();
 
 }

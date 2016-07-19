@@ -2,31 +2,31 @@ package org.psjava.ds.tree.binary;
 
 public interface BinaryTreeNodeWithParent<T> {
 
-	T getData();
+    T getData();
 
-	void setData(T data);
+    void setData(T data);
 
-	boolean hasParent();
+    boolean hasParent();
 
-	BinaryTreeNodeWithParent<T> getParent();
+    BinaryTreeNodeWithParent<T> getParent();
 
-	void putParent(BinaryTreeNodeWithParent<T> parent);
+    void putParent(BinaryTreeNodeWithParent<T> parent);
 
-	void removeParent();
+    void removeParent();
 
-	boolean hasLeft();
+    boolean hasLeft();
 
-	boolean hasRight();
+    boolean hasRight();
 
-	BinaryTreeNodeWithParent<T> getLeft();
+    BinaryTreeNodeWithParent<T> getLeft();
 
-	BinaryTreeNodeWithParent<T> getRight();
+    BinaryTreeNodeWithParent<T> getRight();
 
-	void putLeft(BinaryTreeNodeWithParent<T> child);
+    void putLeft(BinaryTreeNodeWithParent<T> child);
 
-	void putRight(BinaryTreeNodeWithParent<T> child);
+    void putRight(BinaryTreeNodeWithParent<T> child);
 
-	void removeLeft();
+    void removeLeft();
 
-	void removeRight();
+    void removeRight();
 }

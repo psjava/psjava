@@ -1,11 +1,11 @@
 package org.psjava.ds.stack;
 
 public interface Stack<T> {
-	void push(T v);
+    void push(T v);
 
-	T pop();
+    T pop();
 
-	T top();
+    T top();
 
-	boolean isEmpty();
+    boolean isEmpty();
 }

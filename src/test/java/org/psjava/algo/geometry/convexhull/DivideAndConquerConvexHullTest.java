@@ -4,8 +4,8 @@ import org.psjava.goods.GoodSortingAlgorithm;
 
 public class DivideAndConquerConvexHullTest extends ConvexHullAlgorithmTestBase {
 
-	@Override
-	protected ConvexHullAlgorithm getAlgorithm() {
-		return DivideAndConquerConvexHull.getInstance(GoodSortingAlgorithm.getInstance());
-	}
+    @Override
+    protected ConvexHullAlgorithm getAlgorithm() {
+        return DivideAndConquerConvexHull.getInstance(GoodSortingAlgorithm.getInstance());
+    }
 }

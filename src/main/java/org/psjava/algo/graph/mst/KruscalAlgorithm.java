@@ -19,36 +19,36 @@ import org.psjava.util.AssertStatus;
 
 public class KruscalAlgorithm {
 
-	public static MinimumSpanningTreeAlgorithm getInstance(final SortingAlgorithm sort) {
-		return new MinimumSpanningTreeAlgorithm() {
-			@Override
-			public <W, V, E extends UndirectedWeightedEdge<V, W>> Collection<E> calc(Graph<V, E> graph, final AddableNumberSystem<W> ns) {
-				AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
+    public static MinimumSpanningTreeAlgorithm getInstance(final SortingAlgorithm sort) {
+        return new MinimumSpanningTreeAlgorithm() {
+            @Override
+            public <W, V, E extends UndirectedWeightedEdge<V, W>> Collection<E> calc(Graph<V, E> graph, final AddableNumberSystem<W> ns) {
+                AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
 
-				MutableArray<E> edges = MutableArrayFromIterable.create(AllEdgeInGraph.wrap(graph));
+                MutableArray<E> edges = MutableArrayFromIterable.create(AllEdgeInGraph.wrap(graph));
 
-				sort.sort(edges, new Comparator<E>() {
-					@Override
-					public int compare(E e1, E r2) {
-						return ns.compare(e1.weight(), r2.weight());
-					}
-				});
+                sort.sort(edges, new Comparator<E>() {
+                    @Override
+                    public int compare(E e1, E r2) {
+                        return ns.compare(e1.weight(), r2.weight());
+                    }
+                });
 
-				DisjointSet<V> dset = GoodDisjointSet.create();
-				MakeSetAll.make(dset, graph.getVertices());
+                DisjointSet<V> dset = GoodDisjointSet.create();
+                MakeSetAll.make(dset, graph.getVertices());
 
-				DynamicArray<E> result = DynamicArray.create();
-				for (E e : edges) {
-					if (dset.find(e.v1()) != dset.find(e.v2())) {
-						result.addToLast(e);
-						dset.union(e.v1(), e.v2());
-					}
-				}
-				return result;
-			}
-		};
-	}
+                DynamicArray<E> result = DynamicArray.create();
+                for (E e : edges) {
+                    if (dset.find(e.v1()) != dset.find(e.v2())) {
+                        result.addToLast(e);
+                        dset.union(e.v1(), e.v2());
+                    }
+                }
+                return result;
+            }
+        };
+    }
 
-	private KruscalAlgorithm() {
-	}
+    private KruscalAlgorithm() {
+    }
 }

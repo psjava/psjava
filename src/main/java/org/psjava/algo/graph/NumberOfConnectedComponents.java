@@ -10,18 +10,18 @@ import org.psjava.goods.GoodMutableSetFactory;
 
 public class NumberOfConnectedComponents {
 
-	public static <V, E extends UndirectedEdge<V>> int calc(Graph<V, E> graph) {
-		DisjointSet<V> dset = GoodDisjointSet.create();
-		for (V v : graph.getVertices())
-			dset.makeSet(v);
-		for (E e : AllEdgeInGraph.wrap(graph))
-			dset.union(e.v1(), e.v2());
-		MutableSet<V> finalReps = GoodMutableSetFactory.getInstance().create();
-		for (V v : graph.getVertices())
-			finalReps.addIfAbsent(dset.find(v));
-		return finalReps.size();
-	}
+    public static <V, E extends UndirectedEdge<V>> int calc(Graph<V, E> graph) {
+        DisjointSet<V> dset = GoodDisjointSet.create();
+        for (V v : graph.getVertices())
+            dset.makeSet(v);
+        for (E e : AllEdgeInGraph.wrap(graph))
+            dset.union(e.v1(), e.v2());
+        MutableSet<V> finalReps = GoodMutableSetFactory.getInstance().create();
+        for (V v : graph.getVertices())
+            finalReps.addIfAbsent(dset.find(v));
+        return finalReps.size();
+    }
 
-	private NumberOfConnectedComponents() {
-	}
+    private NumberOfConnectedComponents() {
+    }
 }

@@ -5,17 +5,17 @@ package org.psjava.algo.math;
  */
 public class ThomasWangHash64Bit {
 
-	private ThomasWangHash64Bit() {
-	}
+    private ThomasWangHash64Bit() {
+    }
 
-	public static int hash(long v) {
-		v = (~v) + (v << 18); // key = (key << 18) - key - 1;
-		v = v ^ (v >>> 31);
-		v = v * 21; // key = (key + (key << 2)) + (key << 4);
-		v = v ^ (v >>> 11);
-		v = v + (v << 6);
-		v = v ^ (v >>> 22);
-		return (int) v;
-	}
+    public static int hash(long v) {
+        v = (~v) + (v << 18); // key = (key << 18) - key - 1;
+        v = v ^ (v >>> 31);
+        v = v * 21; // key = (key + (key << 2)) + (key << 4);
+        v = v ^ (v >>> 11);
+        v = v + (v << 6);
+        v = v ^ (v >>> 22);
+        return (int) v;
+    }
 
 }

@@ -15,24 +15,24 @@ import org.psjava.goods.GoodMinimumSpanningTreeAlgorithm;
  */
 public class MinimumSpanningTreeAlgorithmExample {
 
-	@Test
-	public void example() {
-		MutableUndirectedWeightedGraph<String, Integer> graph = MutableUndirectedWeightedGraph.create();
-		graph.insertVertex("A");
-		graph.insertVertex("B");
-		graph.insertVertex("C");
-		graph.addEdge("A", "B", 100);
-		graph.addEdge("A", "C", 10);
-		graph.addEdge("B", "C", 20);
+    @Test
+    public void example() {
+        MutableUndirectedWeightedGraph<String, Integer> graph = MutableUndirectedWeightedGraph.create();
+        graph.insertVertex("A");
+        graph.insertVertex("B");
+        graph.insertVertex("C");
+        graph.addEdge("A", "B", 100);
+        graph.addEdge("A", "C", 10);
+        graph.addEdge("B", "C", 20);
 
-		MinimumSpanningTreeAlgorithm algorithm = GoodMinimumSpanningTreeAlgorithm.getInstance();
-		Collection<UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
+        MinimumSpanningTreeAlgorithm algorithm = GoodMinimumSpanningTreeAlgorithm.getInstance();
+        Collection<UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
 
-		int sum = 0;
-		for (UndirectedWeightedEdge<String, Integer> e : tree)
-			sum += e.weight();
-		// sum must be 10+20=30
+        int sum = 0;
+        for (UndirectedWeightedEdge<String, Integer> e : tree)
+            sum += e.weight();
+        // sum must be 10+20=30
 
-		Assert.assertEquals(30, sum);
-	}
+        Assert.assertEquals(30, sum);
+    }
 }

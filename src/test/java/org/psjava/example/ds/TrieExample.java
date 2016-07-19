@@ -12,36 +12,36 @@ import org.psjava.goods.GoodTrieFactory;
  */
 public class TrieExample {
 
-	@Test
-	public void example() {
+    @Test
+    public void example() {
 
-		// Let's construct a character trie.
-		// here, put three sequences.
+        // Let's construct a character trie.
+        // here, put three sequences.
 
-		Trie<Character> trie = GoodTrieFactory.getInstance().create();
-		trie.add(ArrayFromVarargs.create('A', '1'));
-		trie.add(ArrayFromVarargs.create('A', '2'));
-		trie.add(ArrayFromVarargs.create('X', 'Y', 'Z'));
+        Trie<Character> trie = GoodTrieFactory.getInstance().create();
+        trie.add(ArrayFromVarargs.create('A', '1'));
+        trie.add(ArrayFromVarargs.create('A', '2'));
+        trie.add(ArrayFromVarargs.create('X', 'Y', 'Z'));
 
-		// We can get the number of children.
-		// There is 2 child nodes from the root.
+        // We can get the number of children.
+        // There is 2 child nodes from the root.
 
-		int count = trie.getRoot().getChildCount(); // must be 2
-		Assert.assertEquals(2, count);
+        int count = trie.getRoot().getChildCount(); // must be 2
+        Assert.assertEquals(2, count);
 
-		// To get a child node by key, use following methods.
+        // To get a child node by key, use following methods.
 
-		boolean hasChild = trie.getRoot().hasChild('A'); // must be true
-		Assert.assertTrue(hasChild);
+        boolean hasChild = trie.getRoot().hasChild('A'); // must be true
+        Assert.assertTrue(hasChild);
 
-		// To iterate available children, use getEdges() method.
-		// There will be two edge('1', '2') for 'A' node.
+        // To iterate available children, use getEdges() method.
+        // There will be two edge('1', '2') for 'A' node.
 
-		TrieNode<Character> nodeA = trie.getRoot().getChild('A');
-		for (Character c : nodeA.getEdges()) {
-			TrieNode<Character> child = nodeA.getChild(c);
-			Assert.assertNotNull(child);
-		}
-	}
+        TrieNode<Character> nodeA = trie.getRoot().getChild('A');
+        for (Character c : nodeA.getEdges()) {
+            TrieNode<Character> child = nodeA.getChild(c);
+            Assert.assertNotNull(child);
+        }
+    }
 
 }

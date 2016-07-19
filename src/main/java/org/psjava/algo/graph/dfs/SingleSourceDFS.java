@@ -6,11 +6,11 @@ import org.psjava.ds.map.MutableMap;
 
 public class SingleSourceDFS {
 
-	public static <V, E extends DirectedEdge<V>> void traverse(Graph<V, E> adj, V start, DFSVisitor<V, E> visitor) {
-		MutableMap<V, DFSStatus> status = DFSCore.createInitialStatus(adj.getVertices());
-		DFSCore.traverse(adj, status, start, visitor);
-	}
+    public static <V, E extends DirectedEdge<V>> void traverse(Graph<V, E> adj, V start, DFSVisitor<V, E> visitor) {
+        MutableMap<V, DFSStatus> status = DFSCore.createInitialStatus(adj.getVertices());
+        DFSCore.traverse(adj, status, start, visitor);
+    }
 
-	private SingleSourceDFS() {
-	}
+    private SingleSourceDFS() {
+    }
 }

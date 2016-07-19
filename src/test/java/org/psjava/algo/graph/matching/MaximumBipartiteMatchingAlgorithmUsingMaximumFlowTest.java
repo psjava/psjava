@@ -4,8 +4,8 @@ import org.psjava.algo.graph.flownetwork.EdmondsKarpAlgorithm;
 
 public class MaximumBipartiteMatchingAlgorithmUsingMaximumFlowTest extends MaximumBipartiteMatchingAlgorithmTestBase {
 
-	@Override
-	protected MaximumBipartiteMatchingAlgorithm getInstance() {
-		return MaximumBipartiteMatchingAlgorithmUsingMaximumFlow.getInstance(EdmondsKarpAlgorithm.getInstance());
-	}
+    @Override
+    protected MaximumBipartiteMatchingAlgorithm getInstance() {
+        return MaximumBipartiteMatchingAlgorithmUsingMaximumFlow.getInstance(EdmondsKarpAlgorithm.getInstance());
+    }
 }

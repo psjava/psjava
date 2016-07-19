@@ -12,18 +12,18 @@ import org.psjava.util.ReversedComparator;
 
 public class BinarySearchLast {
 
-	public static <I, O> I search(IntegerDivisableNumberSystem<I> inputNumberSystem, Function<I, O> f, Comparator<O> sortedOrder, I begin, I end, O target, I def) {
-		IntegerDivisableNumberSystem<I> ns = inputNumberSystem;
-		I newBegin = AddInvert.calc(ns, Decrease.calc(end, ns));
-		I newEnd = Increase.calc(AddInvert.calc(ns, begin), ns);
-		I subr = BinarySearchFirst.search(ns, ReflectionOnYAxis.create(ns, f), ReversedComparator.wrap(sortedOrder), newBegin, newEnd, target, null);
-		if (subr != null)
-			return AddInvert.calc(ns, subr);
-		else
-			return def;
-	}
+    public static <I, O> I search(IntegerDivisableNumberSystem<I> inputNumberSystem, Function<I, O> f, Comparator<O> sortedOrder, I begin, I end, O target, I def) {
+        IntegerDivisableNumberSystem<I> ns = inputNumberSystem;
+        I newBegin = AddInvert.calc(ns, Decrease.calc(end, ns));
+        I newEnd = Increase.calc(AddInvert.calc(ns, begin), ns);
+        I subr = BinarySearchFirst.search(ns, ReflectionOnYAxis.create(ns, f), ReversedComparator.wrap(sortedOrder), newBegin, newEnd, target, null);
+        if (subr != null)
+            return AddInvert.calc(ns, subr);
+        else
+            return def;
+    }
 
-	private BinarySearchLast() {
-	}
+    private BinarySearchLast() {
+    }
 
 }

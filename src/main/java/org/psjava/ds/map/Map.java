@@ -5,9 +5,9 @@ import org.psjava.ds.KeyValuePair;
 
 public interface Map<K, V> extends Collection<KeyValuePair<K, V>> {
 
-	boolean containsKey(K key);
+    boolean containsKey(K key);
 
-	V get(K key);
+    V get(K key);
 
-	V getOrNull(K key);
+    V getOrNull(K key);
 }

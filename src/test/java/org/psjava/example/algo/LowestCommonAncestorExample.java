@@ -14,28 +14,28 @@ import org.psjava.goods.GoodLowestCommonAncestorAlgorithm;
  */
 public class LowestCommonAncestorExample {
 
-	@Test
-	public void example() {
-		// Let's construct a simple rooted tree. A is the root.
+    @Test
+    public void example() {
+        // Let's construct a simple rooted tree. A is the root.
 
-		MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
-		graph.insertVertex("A");
-		graph.insertVertex("B");
-		graph.insertVertex("C");
-		graph.insertVertex("D");
+        MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
+        graph.insertVertex("A");
+        graph.insertVertex("B");
+        graph.insertVertex("C");
+        graph.insertVertex("D");
 
-		graph.addEdge("A", "B");
-		graph.addEdge("A", "C");
-		graph.addEdge("C", "D");
+        graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
+        graph.addEdge("C", "D");
 
-		// Run it!
+        // Run it!
 
-		LowestCommonAncestorQuerySession<String> session = GoodLowestCommonAncestorAlgorithm.getInstrance().calc(RootedTree.wrap(graph, "A"));
+        LowestCommonAncestorQuerySession<String> session = GoodLowestCommonAncestorAlgorithm.getInstrance().calc(RootedTree.wrap(graph, "A"));
 
-		String result1 = session.query("B", "C"); // must be "A"
-		Assert.assertEquals("A", result1);
+        String result1 = session.query("B", "C"); // must be "A"
+        Assert.assertEquals("A", result1);
 
-		String result2 = session.query("A", "D"); // must be "A"
-		Assert.assertEquals("A", result2);
-	}
+        String result2 = session.query("A", "D"); // must be "A"
+        Assert.assertEquals("A", result2);
+    }
 }

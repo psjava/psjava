@@ -6,12 +6,13 @@ import org.psjava.ds.numbersystrem.AddableNumberSystem;
 
 public class Point2DMovedByDirection {
 
-	public static <T> Point2D<T> get(Point2D<T> p, Vector2D<T> directionVector, AddableNumberSystem<T> ns) {
-		T nx = ns.add(directionVector.x(), p.x());
-		T ny = ns.add(directionVector.y(), p.y());
-		return Point2D.create(nx, ny);
-	}
+    public static <T> Point2D<T> get(Point2D<T> p, Vector2D<T> directionVector, AddableNumberSystem<T> ns) {
+        T nx = ns.add(directionVector.x(), p.x());
+        T ny = ns.add(directionVector.y(), p.y());
+        return Point2D.create(nx, ny);
+    }
 
-	private Point2DMovedByDirection() {}
+    private Point2DMovedByDirection() {
+    }
 
 }

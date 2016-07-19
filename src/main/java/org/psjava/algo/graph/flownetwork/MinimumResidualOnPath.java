@@ -8,16 +8,16 @@ import org.psjava.util.Converter;
 
 public class MinimumResidualOnPath {
 
-	public static <V, F, CE, FE extends FlowNetworkEdge<V, F, CE>> F find(Iterable<FE> path, final AddableNumberSystem<F> ns) {
-		return MinInIterable.min(ConvertedIterable.create(path, new Converter<FE, F>() {
-			@Override
-			public F convert(FE e) {
-				return Residual.calc(e, ns);
-			}
-		}), ns);
-	}
+    public static <V, F, CE, FE extends FlowNetworkEdge<V, F, CE>> F find(Iterable<FE> path, final AddableNumberSystem<F> ns) {
+        return MinInIterable.min(ConvertedIterable.create(path, new Converter<FE, F>() {
+            @Override
+            public F convert(FE e) {
+                return Residual.calc(e, ns);
+            }
+        }), ns);
+    }
 
-	private MinimumResidualOnPath() {
-	}
+    private MinimumResidualOnPath() {
+    }
 
 }

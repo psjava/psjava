@@ -19,58 +19,58 @@ import org.psjava.util.VisitorStopper;
  */
 public class DepthFirstSearchExample {
 
-	@Test
-	public void example() {
+    @Test
+    public void example() {
 
-		// Let's prepare a simple graph.
+        // Let's prepare a simple graph.
 
-		MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
-		graph.insertVertex("A");
-		graph.insertVertex("B");
-		graph.insertVertex("C");
-		graph.insertVertex("D");
+        MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
+        graph.insertVertex("A");
+        graph.insertVertex("B");
+        graph.insertVertex("C");
+        graph.insertVertex("D");
 
-		graph.addEdge("A", "B");
-		graph.addEdge("B", "C");
-		graph.addEdge("C", "D");
-		graph.addEdge("C", "A");
+        graph.addEdge("A", "B");
+        graph.addEdge("B", "C");
+        graph.addEdge("C", "D");
+        graph.addEdge("C", "A");
 
-		// Use 'Visitor' for handling searching events.
-		// Here, we will find the back-edge in the graph.
+        // Use 'Visitor' for handling searching events.
+        // Here, we will find the back-edge in the graph.
 
-		SingleSourceDFS.traverse(graph, "A", new DFSVisitor<String, DirectedEdge<String>>() {
-			@Override
-			public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
-			}
+        SingleSourceDFS.traverse(graph, "A", new DFSVisitor<String, DirectedEdge<String>>() {
+            @Override
+            public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
+            }
 
-			@Override
-			public void onWalkDown(DirectedEdge<String> edge) {
-			}
+            @Override
+            public void onWalkDown(DirectedEdge<String> edge) {
+            }
 
-			@Override
-			public void onBackEdgeFound(DirectedEdge<String> edge) {
-				// Found! the edge:C->A is a back-edge.
-				edge.from(); // must be "C"
-				edge.to(); // must be "A";
-				Assert.assertEquals("C", edge.from());
-				Assert.assertEquals("A", edge.to());
-			}
+            @Override
+            public void onBackEdgeFound(DirectedEdge<String> edge) {
+                // Found! the edge:C->A is a back-edge.
+                edge.from(); // must be "C"
+                edge.to(); // must be "A";
+                Assert.assertEquals("C", edge.from());
+                Assert.assertEquals("A", edge.to());
+            }
 
-			@Override
-			public void onFinish(String vertex, int depth) {
-			}
+            @Override
+            public void onFinish(String vertex, int depth) {
+            }
 
-			@Override
-			public void onWalkUp(DirectedEdge<String> downedEdge) {
-			}
-		});
+            @Override
+            public void onWalkUp(DirectedEdge<String> downedEdge) {
+            }
+        });
 
-		// You can do DFS from multiple sources.
+        // You can do DFS from multiple sources.
 
-		MultiSourceDFS.traverse(graph, VarargsIterable.create("A", "B"), new DFSVisitorBase<String, DirectedEdge<String>>());
+        MultiSourceDFS.traverse(graph, VarargsIterable.create("A", "B"), new DFSVisitorBase<String, DirectedEdge<String>>());
 
-		// If you don't mind visiting order but want to visit all, do this.
+        // If you don't mind visiting order but want to visit all, do this.
 
-		AllSourceDFS.traverse(graph, new DFSVisitorBase<String, DirectedEdge<String>>());
-	}
+        AllSourceDFS.traverse(graph, new DFSVisitorBase<String, DirectedEdge<String>>());
+    }
 }

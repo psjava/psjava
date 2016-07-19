@@ -4,33 +4,33 @@ import org.psjava.ds.Collection;
 
 public class SimpleDirectedGraph<V, E extends DirectedEdge<V>> implements Graph<V, E> {
 
-	public static <V, E extends DirectedEdge<V>> SimpleDirectedGraph<V,E> create() {
-		return new SimpleDirectedGraph<V,E>();
-	}
+    public static <V, E extends DirectedEdge<V>> SimpleDirectedGraph<V, E> create() {
+        return new SimpleDirectedGraph<V, E>();
+    }
 
-	private MutableGraph<V, E> graph = MutableGraph.create();
+    private MutableGraph<V, E> graph = MutableGraph.create();
 
-	public void insertVertex(V v) {
-		graph.insertVertex(v);
-	}
+    public void insertVertex(V v) {
+        graph.insertVertex(v);
+    }
 
-	public void addEdge(E edge) {
-		graph.addEdge(edge.from(), edge);
-	}
+    public void addEdge(E edge) {
+        graph.addEdge(edge.from(), edge);
+    }
 
-	@Override
-	public Collection<V> getVertices() {
-		return graph.getVertices();
-	}
+    @Override
+    public Collection<V> getVertices() {
+        return graph.getVertices();
+    }
 
-	@Override
-	public Iterable<E> getEdges(V v) {
-		return graph.getEdges(v);
-	}
+    @Override
+    public Iterable<E> getEdges(V v) {
+        return graph.getEdges(v);
+    }
 
-	@Override
-	public String toString() {
-		return graph.toString();
-	}
+    @Override
+    public String toString() {
+        return graph.toString();
+    }
 
 }

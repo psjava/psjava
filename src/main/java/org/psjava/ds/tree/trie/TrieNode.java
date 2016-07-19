@@ -1,15 +1,15 @@
 package org.psjava.ds.tree.trie;
 
 public interface TrieNode<T> {
-	int getChildCount();
+    int getChildCount();
 
-	boolean hasChild(T ch);
+    boolean hasChild(T ch);
 
-	TrieNode<T> getChild(T ch);
+    TrieNode<T> getChild(T ch);
 
-	TrieNode<T> getChildOrNull(T ch);
+    TrieNode<T> getChildOrNull(T ch);
 
-	Iterable<T> getEdges();
+    Iterable<T> getEdges();
 
-	void putChild(T ch, TrieNode<T> node);
+    void putChild(T ch, TrieNode<T> node);
 }

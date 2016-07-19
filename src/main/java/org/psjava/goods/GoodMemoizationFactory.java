@@ -4,11 +4,11 @@ import org.psjava.algo.math.optimization.MemoizationFactory;
 
 public class GoodMemoizationFactory {
 
-	public static MemoizationFactory getInstance() {
-		return new MemoizationFactory(GoodMutableMapFactory.getInstance(), GoodMutableSetFactory.getInstance());
-	}
+    public static MemoizationFactory getInstance() {
+        return new MemoizationFactory(GoodMutableMapFactory.getInstance(), GoodMutableSetFactory.getInstance());
+    }
 
-	private GoodMemoizationFactory() {
-	}
+    private GoodMemoizationFactory() {
+    }
 
 }

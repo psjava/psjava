@@ -5,12 +5,12 @@ import org.psjava.ds.array.MutableArrayUsingCharArray;
 
 public class StringReverser {
 
-	public static String getReversed(String a) {
-		char[] temp = a.toCharArray();
-		ArrayReverser.reverse(MutableArrayUsingCharArray.wrap(temp));
-		return new String(temp);
-	}
+    public static String getReversed(String a) {
+        char[] temp = a.toCharArray();
+        ArrayReverser.reverse(MutableArrayUsingCharArray.wrap(temp));
+        return new String(temp);
+    }
 
-	private StringReverser() {
-	}
+    private StringReverser() {
+    }
 }

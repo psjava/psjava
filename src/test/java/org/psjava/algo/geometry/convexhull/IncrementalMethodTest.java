@@ -11,20 +11,20 @@ import org.psjava.goods.GoodSortingAlgorithm;
 
 public class IncrementalMethodTest extends ConvexHullAlgorithmTestBase {
 
-	@Override
-	protected ConvexHullAlgorithm getAlgorithm() {
-		return IncrementalMethod.getInstance(GoodSortingAlgorithm.getInstance());
-	}
+    @Override
+    protected ConvexHullAlgorithm getAlgorithm() {
+        return IncrementalMethod.getInstance(GoodSortingAlgorithm.getInstance());
+    }
 
-	@Test
-	public void testEdgeCase() {
-		Set<Point2D<Integer>> points = SetFromVarargs.create(toPoint(0, 0), toPoint(0, 1), toPoint(0, 2), toPoint(10, 2), toPoint(10, 1), toPoint(10, 0));
-		Array<Point2D<Integer>> hull = getAlgorithm().calc(points, IntegerNumberSystem.getInstance()).getCCWOrderPoints();
-		Assert.assertEquals("((10,0),(10,2),(0,2),(0,0))", hull.toString());
-	}
+    @Test
+    public void testEdgeCase() {
+        Set<Point2D<Integer>> points = SetFromVarargs.create(toPoint(0, 0), toPoint(0, 1), toPoint(0, 2), toPoint(10, 2), toPoint(10, 1), toPoint(10, 0));
+        Array<Point2D<Integer>> hull = getAlgorithm().calc(points, IntegerNumberSystem.getInstance()).getCCWOrderPoints();
+        Assert.assertEquals("((10,0),(10,2),(0,2),(0,0))", hull.toString());
+    }
 
-	private Point2D<Integer> toPoint(int x, int y) {
-		return Point2D.create(x,y);
-	}
+    private Point2D<Integer> toPoint(int x, int y) {
+        return Point2D.create(x, y);
+    }
 
 }

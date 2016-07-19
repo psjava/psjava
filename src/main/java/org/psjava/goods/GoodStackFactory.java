@@ -5,13 +5,13 @@ import org.psjava.ds.stack.StackFactoryUsingDynamicArray;
 
 public class GoodStackFactory {
 
-	private static final StackFactory INSTANCE = StackFactoryUsingDynamicArray.getInstance();
+    private static final StackFactory INSTANCE = StackFactoryUsingDynamicArray.getInstance();
 
-	public static StackFactory getInstance() {
-		return INSTANCE;
-	}
+    public static StackFactory getInstance() {
+        return INSTANCE;
+    }
 
-	private GoodStackFactory() {
-	}
+    private GoodStackFactory() {
+    }
 
 }

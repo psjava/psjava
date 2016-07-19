@@ -8,18 +8,18 @@ import org.psjava.goods.GoodTrieNodeFactory;
 
 public class TrieTest {
 
-	@Test
-	public void testSize() {
-		Trie<Character> trie = new Trie<Character>(GoodTrieNodeFactory.<Character> getInstance());
-		trie.add(toArray("AAB"));
-		trie.add(toArray("AAC"));
-		Assert.assertEquals(1, trie.getRoot().getChildCount());
-		Assert.assertEquals(1, trie.getRoot().getChild('A').getChildCount());
-		Assert.assertEquals(2, trie.getRoot().getChild('A').getChild('A').getChildCount());
-	}
+    @Test
+    public void testSize() {
+        Trie<Character> trie = new Trie<Character>(GoodTrieNodeFactory.<Character>getInstance());
+        trie.add(toArray("AAB"));
+        trie.add(toArray("AAC"));
+        Assert.assertEquals(1, trie.getRoot().getChildCount());
+        Assert.assertEquals(1, trie.getRoot().getChild('A').getChildCount());
+        Assert.assertEquals(2, trie.getRoot().getChild('A').getChild('A').getChildCount());
+    }
 
-	private Array<Character> toArray(String s) {
-		return CharacterArrayUsingString.wrap(s);
-	}
+    private Array<Character> toArray(String s) {
+        return CharacterArrayUsingString.wrap(s);
+    }
 
 }

@@ -9,20 +9,20 @@ import org.psjava.util.VisitorStopper;
 
 public class RootedTreeTester {
 
-	public static <E extends DirectedEdge<V>, V> boolean is(Graph<V, E> graph, V root) {
-		if (CycleDetection.hasCycle(graph))
-			return false;
-		final DataKeeper<Integer> visitCount = DataKeeper.create(0);
-		SingleSourceDFS.traverse(graph, root, new DFSVisitorBase<V, E>() {
-			@Override
-			public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
-				visitCount.set(visitCount.get() + 1);
-			}
-		});
-		return visitCount.get() == graph.getVertices().size();
-	}
+    public static <E extends DirectedEdge<V>, V> boolean is(Graph<V, E> graph, V root) {
+        if (CycleDetection.hasCycle(graph))
+            return false;
+        final DataKeeper<Integer> visitCount = DataKeeper.create(0);
+        SingleSourceDFS.traverse(graph, root, new DFSVisitorBase<V, E>() {
+            @Override
+            public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
+                visitCount.set(visitCount.get() + 1);
+            }
+        });
+        return visitCount.get() == graph.getVertices().size();
+    }
 
-	private RootedTreeTester() {
-	}
+    private RootedTreeTester() {
+    }
 
 }

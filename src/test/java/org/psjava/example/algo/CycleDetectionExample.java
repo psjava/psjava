@@ -11,21 +11,21 @@ import org.psjava.ds.graph.MutableDirectedUnweightedGraph;
  */
 public class CycleDetectionExample {
 
-	@Test
-	public void example() {
-		// Let's prepare a simple graph.
+    @Test
+    public void example() {
+        // Let's prepare a simple graph.
 
-		MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
-		graph.insertVertex("A");
-		graph.insertVertex("B");
-		graph.insertVertex("C");
+        MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
+        graph.insertVertex("A");
+        graph.insertVertex("B");
+        graph.insertVertex("C");
 
-		graph.addEdge("A", "B");
-		graph.addEdge("B", "C");
-		graph.addEdge("C", "B");
+        graph.addEdge("A", "B");
+        graph.addEdge("B", "C");
+        graph.addEdge("C", "B");
 
-		boolean hasCycle = CycleDetection.hasCycle(graph); // must be true
-		Assert.assertTrue(hasCycle);
+        boolean hasCycle = CycleDetection.hasCycle(graph); // must be true
+        Assert.assertTrue(hasCycle);
 
-	}
+    }
 }

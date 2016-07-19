@@ -10,14 +10,14 @@ import static org.junit.Assert.*;
 
 public class PointOnPolygon2DTest {
 
-	public static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
+    public static final IntegerNumberSystem NS = IntegerNumberSystem.getInstance();
 
-	@Test
-	public void testOnePointPolygon() {
-		Iterable<Point2D<Integer>> points = VarargsIterable.create(Point2D.create(0, 0));
-		Polygon2D<Integer> poly = Polygon2D.create(points);
-		assertTrue(PointOnPolygon2D.isOn(Point2D.create(0, 0), poly, NS));
-		assertFalse(PointOnPolygon2D.isOn(Point2D.create(1, 1), poly, NS));
-	}
+    @Test
+    public void testOnePointPolygon() {
+        Iterable<Point2D<Integer>> points = VarargsIterable.create(Point2D.create(0, 0));
+        Polygon2D<Integer> poly = Polygon2D.create(points);
+        assertTrue(PointOnPolygon2D.isOn(Point2D.create(0, 0), poly, NS));
+        assertFalse(PointOnPolygon2D.isOn(Point2D.create(1, 1), poly, NS));
+    }
 
 }

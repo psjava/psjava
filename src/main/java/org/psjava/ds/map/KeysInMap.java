@@ -5,15 +5,15 @@ import org.psjava.util.ConvertedIterable;
 import org.psjava.util.Converter;
 
 public class KeysInMap {
-	public static <K, V> Iterable<K> get(Map<K, V> map) {
-		return ConvertedIterable.create(map, new Converter<KeyValuePair<K, V>, K>() {
-			@Override
-			public K convert(KeyValuePair<K, V> pair) {
-				return pair.getKey();
-			}
-		});
-	}
+    public static <K, V> Iterable<K> get(Map<K, V> map) {
+        return ConvertedIterable.create(map, new Converter<KeyValuePair<K, V>, K>() {
+            @Override
+            public K convert(KeyValuePair<K, V> pair) {
+                return pair.getKey();
+            }
+        });
+    }
 
-	private KeysInMap() {
-	}
+    private KeysInMap() {
+    }
 }

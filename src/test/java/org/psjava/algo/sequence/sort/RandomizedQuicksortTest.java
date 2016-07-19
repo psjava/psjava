@@ -5,9 +5,9 @@ import org.psjava.algo.sequence.sort.RandomizedQuicksort;
 
 public class RandomizedQuicksortTest {
 
-	@Test
-	public void test() {
-		SortingAlgorithmTestCommon.testSimpleSort(RandomizedQuicksort.getInstance());
-	}
+    @Test
+    public void test() {
+        SortingAlgorithmTestCommon.testSimpleSort(RandomizedQuicksort.getInstance());
+    }
 
 }

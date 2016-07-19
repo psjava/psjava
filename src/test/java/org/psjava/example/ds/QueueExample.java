@@ -12,21 +12,21 @@ import org.psjava.goods.GoodQueueFactory;
  */
 public class QueueExample {
 
-	@Test
-	public void example() {
+    @Test
+    public void example() {
 
-		Queue<String> queue = GoodQueueFactory.getInstance().create();
+        Queue<String> queue = GoodQueueFactory.getInstance().create();
 
-		queue.enque("A");
-		queue.enque("B");
+        queue.enque("A");
+        queue.enque("B");
 
-		// Here are operations.
+        // Here are operations.
 
-		String dequed1 = queue.deque(); // must be "A"
-		String dequed2 = queue.deque(); // must be "B"
-		boolean empty = queue.isEmpty(); // must be true
-		Assert.assertEquals("A", dequed1);
-		Assert.assertEquals("B", dequed2);
-		Assert.assertTrue(empty);
-	}
+        String dequed1 = queue.deque(); // must be "A"
+        String dequed2 = queue.deque(); // must be "B"
+        boolean empty = queue.isEmpty(); // must be true
+        Assert.assertEquals("A", dequed1);
+        Assert.assertEquals("B", dequed2);
+        Assert.assertTrue(empty);
+    }
 }

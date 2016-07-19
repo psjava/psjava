@@ -7,12 +7,12 @@ import org.psjava.util.ZeroTo;
 
 public class LengthOfPolygon {
 
-	public static double calc(Polygon2D<Double> polygon) {
-		Array<Point2D<Double>> points = polygon.getCCWOrderPoints();
-		double sum = 0;
-		for (int i : ZeroTo.get(points.size()))
-			sum += DistanceBetweenPoints.calc(points.get(i), points.get((i + 1) % points.size()));
-		return sum;
-	}
+    public static double calc(Polygon2D<Double> polygon) {
+        Array<Point2D<Double>> points = polygon.getCCWOrderPoints();
+        double sum = 0;
+        for (int i : ZeroTo.get(points.size()))
+            sum += DistanceBetweenPoints.calc(points.get(i), points.get((i + 1) % points.size()));
+        return sum;
+    }
 
 }

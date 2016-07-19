@@ -11,23 +11,23 @@ import org.psjava.ds.numbersystrem.AddableNumberSystem;
 
 public class EmptyFlowNetworkGraph {
 
-	public static <V, T, E extends CapacityEdge<V, T>> Graph<V, FlowNetworkEdge<V, T, E>> create(Graph<V, E> capacityGraph, AddableNumberSystem<T> ns) {
-		// TODO extract as a util. when move min cost max flow algorithms.
-		SimpleDirectedGraph<V, FlowNetworkEdge<V, T, E>> g = SimpleDirectedGraph.create();
-		for (V v : capacityGraph.getVertices())
-			g.insertVertex(v);
-		for (E edge : AllEdgeInGraph.wrap(capacityGraph)) {
-			FlowNetworkEdge<V, T, E> original = SimpleFlowNetworkEdge.create(edge.from(), edge.to(), new FlowStatus<T>(edge.capacity(), ns.getZero()), edge);
-			FlowNetworkEdge<V, T, E> skewSymmetry = SimpleFlowNetworkEdge.create(edge.to(), edge.from(), new FlowStatus<T>(ns.getZero(), ns.getZero()), null);
-			original.setOpposite(skewSymmetry);
-			skewSymmetry.setOpposite(original);
-			g.addEdge(original);
-			g.addEdge(skewSymmetry);
-		}
-		return g;
-	}
+    public static <V, T, E extends CapacityEdge<V, T>> Graph<V, FlowNetworkEdge<V, T, E>> create(Graph<V, E> capacityGraph, AddableNumberSystem<T> ns) {
+        // TODO extract as a util. when move min cost max flow algorithms.
+        SimpleDirectedGraph<V, FlowNetworkEdge<V, T, E>> g = SimpleDirectedGraph.create();
+        for (V v : capacityGraph.getVertices())
+            g.insertVertex(v);
+        for (E edge : AllEdgeInGraph.wrap(capacityGraph)) {
+            FlowNetworkEdge<V, T, E> original = SimpleFlowNetworkEdge.create(edge.from(), edge.to(), new FlowStatus<T>(edge.capacity(), ns.getZero()), edge);
+            FlowNetworkEdge<V, T, E> skewSymmetry = SimpleFlowNetworkEdge.create(edge.to(), edge.from(), new FlowStatus<T>(ns.getZero(), ns.getZero()), null);
+            original.setOpposite(skewSymmetry);
+            skewSymmetry.setOpposite(original);
+            g.addEdge(original);
+            g.addEdge(skewSymmetry);
+        }
+        return g;
+    }
 
-	private EmptyFlowNetworkGraph() {
-	}
+    private EmptyFlowNetworkGraph() {
+    }
 
 }

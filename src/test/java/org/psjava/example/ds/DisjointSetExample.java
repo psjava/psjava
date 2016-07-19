@@ -11,23 +11,23 @@ import org.psjava.goods.GoodDisjointSet;
  */
 public class DisjointSetExample {
 
-	@Test
-	public void example() {
+    @Test
+    public void example() {
 
-		DisjointSet<String> set = GoodDisjointSet.create();
+        DisjointSet<String> set = GoodDisjointSet.create();
 
-		set.makeSet("A");
-		set.makeSet("B");
-		set.makeSet("C");
-		set.makeSet("D");
+        set.makeSet("A");
+        set.makeSet("B");
+        set.makeSet("C");
+        set.makeSet("D");
 
-		set.union("C", "D");
+        set.union("C", "D");
 
-		// representiatives for "C", "D" are now same.
+        // representiatives for "C", "D" are now same.
 
-		String rep1 = set.find("C");
-		String rep2 = set.find("D");
-		Assert.assertEquals(rep1, rep2);
-	}
+        String rep1 = set.find("C");
+        String rep2 = set.find("D");
+        Assert.assertEquals(rep1, rep2);
+    }
 
 }

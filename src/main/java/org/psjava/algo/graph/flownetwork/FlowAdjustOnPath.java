@@ -5,12 +5,12 @@ import org.psjava.ds.numbersystrem.AddableNumberSystem;
 
 public class FlowAdjustOnPath {
 
-	public static <V, T> void adjust(Iterable<? extends FlowNetworkEdge<V, T, ?>> path, T add, AddableNumberSystem<T> ns) {
-		for (FlowNetworkEdge<V, T, ?> e : path)
-			FlowAdjust.adjust(e, add, ns);
-	}
+    public static <V, T> void adjust(Iterable<? extends FlowNetworkEdge<V, T, ?>> path, T add, AddableNumberSystem<T> ns) {
+        for (FlowNetworkEdge<V, T, ?> e : path)
+            FlowAdjust.adjust(e, add, ns);
+    }
 
-	private FlowAdjustOnPath() {
-	}
+    private FlowAdjustOnPath() {
+    }
 
 }

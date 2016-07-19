@@ -10,16 +10,16 @@ import org.psjava.ds.array.DynamicArray;
  */
 public class DynamicArrayExample {
 
-	@Test
-	public void example() {
-		// Operations
+    @Test
+    public void example() {
+        // Operations
 
-		DynamicArray<String> array = DynamicArray.create();
-		array.addToLast("A");
-		array.addToLast("B");
-		array.removeLast();
-		array.addToLast("C");
-		Assert.assertEquals(2, array.size());
-	}
+        DynamicArray<String> array = DynamicArray.create();
+        array.addToLast("A");
+        array.addToLast("B");
+        array.removeLast();
+        array.addToLast("C");
+        Assert.assertEquals(2, array.size());
+    }
 
 }

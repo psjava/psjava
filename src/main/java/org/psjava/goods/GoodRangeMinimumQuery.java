@@ -5,8 +5,8 @@ import org.psjava.algo.sequence.rmq.RangeMinimumQuery;
 
 public class GoodRangeMinimumQuery {
 
-	public static RangeMinimumQuery getInstance() {
-		return RangeMinimumQueryUsingSegmentTree.getInstance(GoodSegmentTreeFactory.getInstance());
-	}
+    public static RangeMinimumQuery getInstance() {
+        return RangeMinimumQueryUsingSegmentTree.getInstance(GoodSegmentTreeFactory.getInstance());
+    }
 
 }

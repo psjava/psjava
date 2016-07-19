@@ -14,7 +14,7 @@ import org.psjava.goods.GoodMutableMapFactory;
 
 /**
  * Johnson's algorithm allows negative edge weight. but not negative cycles.
- *
+ * <p>
  * Faster than floyd-warshall's algorithm in sparse graph.
  */
 

@@ -4,7 +4,7 @@ import org.psjava.ds.Collection;
 
 // TODO introduce Optional or as other name.
 public interface NegativeCycleFinderResult<E> {
-	boolean hasCycle();
+    boolean hasCycle();
 
-	Collection<E> getPath();
+    Collection<E> getPath();
 }

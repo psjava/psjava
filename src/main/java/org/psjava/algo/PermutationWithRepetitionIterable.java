@@ -12,19 +12,19 @@ import java.util.Comparator;
 
 public class PermutationWithRepetitionIterable {
 
-	// SRM464-1-250 is a good problem to solve using this.
+    // SRM464-1-250 is a good problem to solve using this.
 
-	public static <T> Iterable<Array<T>> create(Iterable<T> items, final Comparator<T> comparator) {
-		MutableArray<T> initial = MutableArrayFromIterable.create(items);
-		GoodSortingAlgorithm.getInstance().sort(initial, comparator);
-		return IterableUsingStatusUpdater.create(initial, new Updater<Array<T>>() {
-			@Override
-			public Array<T> getUpdatedOrNull(Array<T> current) {
-				MutableArray<T> next = MutableArrayFromIterable.create(current);
-				boolean success = NextPermutation.step(next, comparator);
-				return success ? next : null;
-			}
-		});
-	}
+    public static <T> Iterable<Array<T>> create(Iterable<T> items, final Comparator<T> comparator) {
+        MutableArray<T> initial = MutableArrayFromIterable.create(items);
+        GoodSortingAlgorithm.getInstance().sort(initial, comparator);
+        return IterableUsingStatusUpdater.create(initial, new Updater<Array<T>>() {
+            @Override
+            public Array<T> getUpdatedOrNull(Array<T> current) {
+                MutableArray<T> next = MutableArrayFromIterable.create(current);
+                boolean success = NextPermutation.step(next, comparator);
+                return success ? next : null;
+            }
+        });
+    }
 
 }

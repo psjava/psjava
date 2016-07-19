@@ -9,27 +9,27 @@ import org.psjava.util.ReadOnlyIterator;
 
 public class InOrderIterator {
 
-	public static <D2, D1 extends D2> Iterator<D2> create(final BinaryTreeNodeWithParent<D1> rootOrNull) {
-		return new ReadOnlyIterator<D2>() {
+    public static <D2, D1 extends D2> Iterator<D2> create(final BinaryTreeNodeWithParent<D1> rootOrNull) {
+        return new ReadOnlyIterator<D2>() {
 
-			BinaryTreeNodeWithParent<D1> nextOrNull = (rootOrNull == null) ? null : MinimumFinder.find(rootOrNull);
+            BinaryTreeNodeWithParent<D1> nextOrNull = (rootOrNull == null) ? null : MinimumFinder.find(rootOrNull);
 
-			@Override
-			public boolean hasNext() {
-				return nextOrNull != null;
-			}
+            @Override
+            public boolean hasNext() {
+                return nextOrNull != null;
+            }
 
-			@Override
-			public D2 next() {
-				AssertStatus.assertTrue(nextOrNull != null);
-				BinaryTreeNodeWithParent<D1> r = nextOrNull;
-				nextOrNull = SuccessorFinder.findOrNull(r);
-				return r.getData();
-			}
-		};
-	}
+            @Override
+            public D2 next() {
+                AssertStatus.assertTrue(nextOrNull != null);
+                BinaryTreeNodeWithParent<D1> r = nextOrNull;
+                nextOrNull = SuccessorFinder.findOrNull(r);
+                return r.getData();
+            }
+        };
+    }
 
-	private InOrderIterator() {
-	}
+    private InOrderIterator() {
+    }
 
 }

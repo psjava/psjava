@@ -2,20 +2,20 @@ package org.psjava.ds.deque;
 
 public interface Deque<T> {
 
-	void addToFirst(T v);
+    void addToFirst(T v);
 
-	void addToLast(T e);
+    void addToLast(T e);
 
-	T getFirst();
+    T getFirst();
 
-	T getLast();
+    T getLast();
 
-	T removeFirst();
+    T removeFirst();
 
-	T removeLast();
+    T removeLast();
 
-	boolean isEmpty();
+    boolean isEmpty();
 
-	void clear();
+    void clear();
 
 }

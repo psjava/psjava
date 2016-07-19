@@ -14,25 +14,25 @@ import org.psjava.ds.stack.StackFactoryUsingLinkedList;
  */
 public class StackExample {
 
-	@Test
-	public void example() {
-		StackFactory factory = GoodStackFactory.getInstance();
+    @Test
+    public void example() {
+        StackFactory factory = GoodStackFactory.getInstance();
 
-		Stack<String> stack = factory.create();
-		stack.push("A");
-		stack.push("B");
-		stack.push("C");
+        Stack<String> stack = factory.create();
+        stack.push("A");
+        stack.push("B");
+        stack.push("C");
 
-		// Operations
+        // Operations
 
-		boolean empty = stack.isEmpty(); // must be false
-		String top = stack.top(); // must be "C"
-		String pop1 = stack.pop(); // must be "C"
-		String pop2 = stack.pop(); // must be "B"
+        boolean empty = stack.isEmpty(); // must be false
+        String top = stack.top(); // must be "C"
+        String pop1 = stack.pop(); // must be "C"
+        String pop2 = stack.pop(); // must be "B"
 
-		Assert.assertFalse(empty);
-		Assert.assertEquals("C", top);
-		Assert.assertEquals("C", pop1);
-		Assert.assertEquals("B", pop2);
-	}
+        Assert.assertFalse(empty);
+        Assert.assertEquals("C", top);
+        Assert.assertEquals("C", pop1);
+        Assert.assertEquals("B", pop2);
+    }
 }

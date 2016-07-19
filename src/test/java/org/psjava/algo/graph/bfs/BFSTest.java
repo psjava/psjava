@@ -12,23 +12,23 @@ import org.psjava.util.VisitorStopper;
 
 public class BFSTest {
 
-	@Test
-	public void testTraverse() {
-		String[][] data = { { "A", "B" }, { "B", "C" }, { "A", "C" }, { "B", "D" } };
-		Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirectedNew(data);
-		final DynamicArray<String> log = DynamicArray.create();
-		BFS.traverse(g, VarargsIterable.create("A"), new BFSVisitor<String, DirectedEdge<String>>() {
-			@Override
-			public void onDiscover(String vertex, int depth, VisitorStopper stopper) {
-				log.addToLast(vertex + "(" + depth + ")");
-			}
+    @Test
+    public void testTraverse() {
+        String[][] data = {{"A", "B"}, {"B", "C"}, {"A", "C"}, {"B", "D"}};
+        Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirectedNew(data);
+        final DynamicArray<String> log = DynamicArray.create();
+        BFS.traverse(g, VarargsIterable.create("A"), new BFSVisitor<String, DirectedEdge<String>>() {
+            @Override
+            public void onDiscover(String vertex, int depth, VisitorStopper stopper) {
+                log.addToLast(vertex + "(" + depth + ")");
+            }
 
-			@Override
-			public void onWalk(DirectedEdge<String> e) {
-				log.addToLast(e.toString());
-			}
-		});
-		assertEquals("(A(0),A->B,B(1),A->C,C(1),B->D,D(2))", log.toString());
-	}
+            @Override
+            public void onWalk(DirectedEdge<String> e) {
+                log.addToLast(e.toString());
+            }
+        });
+        assertEquals("(A(0),A->B,B(1),A->C,C(1),B->D,D(2))", log.toString());
+    }
 
 }

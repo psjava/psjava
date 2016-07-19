@@ -6,16 +6,16 @@ import org.psjava.ds.numbersystrem.LongNumberSystem;
 
 public class CeilingDivideTest {
 
-	private static final LongNumberSystem NS = LongNumberSystem.getInstance();
+    private static final LongNumberSystem NS = LongNumberSystem.getInstance();
 
-	@Test
-	public void testPositive() {
-		Assert.assertEquals(4L, (long)CeilingDivide.calc(NS, 10L, 3L));
-	}
+    @Test
+    public void testPositive() {
+        Assert.assertEquals(4L, (long) CeilingDivide.calc(NS, 10L, 3L));
+    }
 
-	@Test(expected = ArithmeticException.class)
-	public void testNegative() {
-		CeilingDivide.calc(NS, -10L, 3L);
-	}
+    @Test(expected = ArithmeticException.class)
+    public void testNegative() {
+        CeilingDivide.calc(NS, -10L, 3L);
+    }
 
 }

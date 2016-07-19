@@ -14,10 +14,10 @@ import org.psjava.util.DefaultComparator;
  * @see {@link ArrayExample}
  */
 public class QuicksortExample {
-	@Test
-	public void example() {
-		MutableArray<Integer> array = MutableArrayFromVarargs.create(2, 1, 3);
-		RandomizedQuicksort.getInstance().sort(array, new DefaultComparator<Integer>());
-		Assert.assertEquals("(1,2,3)", array.toString());
-	}
+    @Test
+    public void example() {
+        MutableArray<Integer> array = MutableArrayFromVarargs.create(2, 1, 3);
+        RandomizedQuicksort.getInstance().sort(array, new DefaultComparator<Integer>());
+        Assert.assertEquals("(1,2,3)", array.toString());
+    }
 }

@@ -9,71 +9,71 @@ import org.psjava.util.AssertStatus;
 
 public class MutableSortedMapUsingJavaTreeMap {
 
-	public static <K, V> MutableSortedMap<K, V> create(Comparator<K> comp) {
-		final TreeMap<K, V> original = new TreeMap<K, V>();
-		return new MutableSortedMap<K, V>() {
-			@Override
-			public void clear() {
-				original.clear();
-			}
+    public static <K, V> MutableSortedMap<K, V> create(Comparator<K> comp) {
+        final TreeMap<K, V> original = new TreeMap<K, V>();
+        return new MutableSortedMap<K, V>() {
+            @Override
+            public void clear() {
+                original.clear();
+            }
 
-			@Override
-			public boolean containsKey(K key) {
-				return original.containsKey(key);
-			}
+            @Override
+            public boolean containsKey(K key) {
+                return original.containsKey(key);
+            }
 
-			@Override
-			public V get(K key) {
-				AssertStatus.assertTrue(original.containsKey(key));
-				return original.get(key);
-			}
+            @Override
+            public V get(K key) {
+                AssertStatus.assertTrue(original.containsKey(key));
+                return original.get(key);
+            }
 
-			@Override
-			public V getOrNull(K key) {
-				return original.get(key);
-			}
+            @Override
+            public V getOrNull(K key) {
+                return original.get(key);
+            }
 
-			@Override
-			public boolean isEmpty() {
-				return original.isEmpty();
-			}
+            @Override
+            public boolean isEmpty() {
+                return original.isEmpty();
+            }
 
-			@Override
-			public Iterator<KeyValuePair<K, V>> iterator() {
-				return MapIteratorFromJavaMap.create(original);
-			}
+            @Override
+            public Iterator<KeyValuePair<K, V>> iterator() {
+                return MapIteratorFromJavaMap.create(original);
+            }
 
-			@Override
-			public void add(K key, V value) {
-				AssertStatus.assertTrue(!original.containsKey(key));
-				original.put(key, value);
-			}
+            @Override
+            public void add(K key, V value) {
+                AssertStatus.assertTrue(!original.containsKey(key));
+                original.put(key, value);
+            }
 
-			@Override
-			public void replace(K key, V value) {
-				AssertStatus.assertTrue(original.containsKey(key));
-				original.put(key, value);
-			}
+            @Override
+            public void replace(K key, V value) {
+                AssertStatus.assertTrue(original.containsKey(key));
+                original.put(key, value);
+            }
 
-			@Override
-			public void addOrReplace(K key, V value) {
-				AssertStatus.assertNotNull(value, "value cannot be a null");
-				original.put(key, value);
-			}
+            @Override
+            public void addOrReplace(K key, V value) {
+                AssertStatus.assertNotNull(value, "value cannot be a null");
+                original.put(key, value);
+            }
 
-			@Override
-			public void remove(K key) {
-				original.remove(key);
-			}
+            @Override
+            public void remove(K key) {
+                original.remove(key);
+            }
 
-			@Override
-			public int size() {
-				return original.size();
-			}
-		};
-	}
+            @Override
+            public int size() {
+                return original.size();
+            }
+        };
+    }
 
-	private MutableSortedMapUsingJavaTreeMap() {
-	}
+    private MutableSortedMapUsingJavaTreeMap() {
+    }
 
 }

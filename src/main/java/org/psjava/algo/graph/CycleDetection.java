@@ -8,18 +8,18 @@ import org.psjava.util.DataKeeper;
 
 public class CycleDetection {
 
-	public static <V, E extends DirectedEdge<V>> boolean hasCycle(Graph<V, E> graph) {
-		final DataKeeper<Boolean> found = DataKeeper.create(false);
-		AllSourceDFS.traverse(graph, new DFSVisitorBase<V, E>() {
-			@Override
-			public void onBackEdgeFound(E edge) {
-				found.set(true);
-			}
-		});
-		return found.get();
-	}
+    public static <V, E extends DirectedEdge<V>> boolean hasCycle(Graph<V, E> graph) {
+        final DataKeeper<Boolean> found = DataKeeper.create(false);
+        AllSourceDFS.traverse(graph, new DFSVisitorBase<V, E>() {
+            @Override
+            public void onBackEdgeFound(E edge) {
+                found.set(true);
+            }
+        });
+        return found.get();
+    }
 
-	private CycleDetection() {
-	}
+    private CycleDetection() {
+    }
 
 }

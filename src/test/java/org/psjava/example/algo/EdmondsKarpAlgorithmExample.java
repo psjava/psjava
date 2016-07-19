@@ -15,33 +15,33 @@ import org.psjava.ds.numbersystrem.IntegerNumberSystem;
  * @implementation {@link FordFulkersonAlgorithm}
  */
 public class EdmondsKarpAlgorithmExample {
-	@Test
-	public void test() {
-		// Construct a graph with capacities.
+    @Test
+    public void test() {
+        // Construct a graph with capacities.
 
-		MutableCapacityGraph<String, Integer> capacityGraph = MutableCapacityGraph.create();
-		capacityGraph.insertVertex("A");
-		capacityGraph.insertVertex("B");
-		capacityGraph.insertVertex("C");
-		capacityGraph.insertVertex("D");
-		capacityGraph.addEdge("A", "B", 4);
-		capacityGraph.addEdge("A", "C", 2);
-		capacityGraph.addEdge("B", "C", 1);
-		capacityGraph.addEdge("B", "D", 4);
-		capacityGraph.addEdge("C", "D", 1);
+        MutableCapacityGraph<String, Integer> capacityGraph = MutableCapacityGraph.create();
+        capacityGraph.insertVertex("A");
+        capacityGraph.insertVertex("B");
+        capacityGraph.insertVertex("C");
+        capacityGraph.insertVertex("D");
+        capacityGraph.addEdge("A", "B", 4);
+        capacityGraph.addEdge("A", "C", 2);
+        capacityGraph.addEdge("B", "C", 1);
+        capacityGraph.addEdge("B", "D", 4);
+        capacityGraph.addEdge("C", "D", 1);
 
-		MaximumFlowAlgorithmResult<Integer, CapacityEdge<String, Integer>> result = EdmondsKarpAlgorithm.getInstance().calc(capacityGraph, "A", "D", IntegerNumberSystem.getInstance());
+        MaximumFlowAlgorithmResult<Integer, CapacityEdge<String, Integer>> result = EdmondsKarpAlgorithm.getInstance().calc(capacityGraph, "A", "D", IntegerNumberSystem.getInstance());
 
-		// Maximum flow is 5.
-		int flow = result.calcTotalFlow();
+        // Maximum flow is 5.
+        int flow = result.calcTotalFlow();
 
-		// Also, you can obtain the flows in each edges by retrieved flow function.
+        // Also, you can obtain the flows in each edges by retrieved flow function.
 
-		Function<CapacityEdge<String, Integer>, Integer> flowFunction = result.calcFlowFunction();
-		for (CapacityEdge<String, Integer> e : capacityGraph.getEdges("A")) {
-			flowFunction.get(e);
-		}
+        Function<CapacityEdge<String, Integer>, Integer> flowFunction = result.calcFlowFunction();
+        for (CapacityEdge<String, Integer> e : capacityGraph.getEdges("A")) {
+            flowFunction.get(e);
+        }
 
-		Assert.assertEquals(5, flow);
-	}
+        Assert.assertEquals(5, flow);
+    }
 }

@@ -11,19 +11,19 @@ import org.psjava.ds.graph.RootedTree;
  */
 public class RootedTreeExample {
 
-	@Test
-	public void example() {
-		MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
-		graph.insertVertex("A");
-		graph.insertVertex("B");
-		graph.insertVertex("C");
+    @Test
+    public void example() {
+        MutableDirectedUnweightedGraph<String> graph = MutableDirectedUnweightedGraph.create();
+        graph.insertVertex("A");
+        graph.insertVertex("B");
+        graph.insertVertex("C");
 
-		graph.addEdge("A", "B");
-		graph.addEdge("A", "C");
+        graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
 
-		// if the given graph is not satisfying restrictions of rooted tree, following will throw runtime exception.
-		RootedTree<String, DirectedEdge<String>> tree = RootedTree.wrap(graph, "A");
+        // if the given graph is not satisfying restrictions of rooted tree, following will throw runtime exception.
+        RootedTree<String, DirectedEdge<String>> tree = RootedTree.wrap(graph, "A");
 
-		Assert.assertNotNull(tree);
-	}
+        Assert.assertNotNull(tree);
+    }
 }

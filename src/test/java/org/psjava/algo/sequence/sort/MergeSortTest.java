@@ -4,8 +4,8 @@ import org.junit.Test;
 import org.psjava.algo.sequence.sort.MergeSort;
 
 public class MergeSortTest {
-	@Test
-	public void test() {
-		SortingAlgorithmTestCommon.testSimpleSort(MergeSort.getInstance());
-	}
+    @Test
+    public void test() {
+        SortingAlgorithmTestCommon.testSimpleSort(MergeSort.getInstance());
+    }
 }

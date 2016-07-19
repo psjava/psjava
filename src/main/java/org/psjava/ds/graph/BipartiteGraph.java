@@ -4,10 +4,10 @@ import org.psjava.ds.Collection;
 
 public interface BipartiteGraph<V> {
 
-	Collection<V> getLeftVertices();
+    Collection<V> getLeftVertices();
 
-	Collection<V> getRightVertices();
+    Collection<V> getRightVertices();
 
-	Iterable<BipartiteGraphEdge<V>> getEdges();
+    Iterable<BipartiteGraphEdge<V>> getEdges();
 
 }

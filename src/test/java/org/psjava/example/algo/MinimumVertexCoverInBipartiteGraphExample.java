@@ -7,10 +7,10 @@ import org.junit.Test;
  */
 public class MinimumVertexCoverInBipartiteGraphExample {
 
-	@Test
-	public void example() {
-		// The only one implentation of minimum vertex cover algorithm is Konig's Theorem
-		// See the detail in Konig's Theorem example
-	}
+    @Test
+    public void example() {
+        // The only one implentation of minimum vertex cover algorithm is Konig's Theorem
+        // See the detail in Konig's Theorem example
+    }
 
 }

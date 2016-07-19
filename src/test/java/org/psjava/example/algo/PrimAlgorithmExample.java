@@ -13,31 +13,30 @@ import org.psjava.goods.GoodMutableMapFactory;
 
 /**
  * @implementation {@link PrimAlgorithm}
- * 
  * @see {@link MinimumSpanningTreeAlgorithmExample}
  */
 public class PrimAlgorithmExample {
 
-	@Test
-	public void example() {
-		MutableUndirectedWeightedGraph<String, Integer> graph = MutableUndirectedWeightedGraph.create();
-		graph.insertVertex("A");
-		graph.insertVertex("B");
-		graph.insertVertex("C");
-		graph.addEdge("A", "B", 100);
-		graph.addEdge("A", "C", 10);
-		graph.addEdge("B", "C", 20);
+    @Test
+    public void example() {
+        MutableUndirectedWeightedGraph<String, Integer> graph = MutableUndirectedWeightedGraph.create();
+        graph.insertVertex("A");
+        graph.insertVertex("B");
+        graph.insertVertex("C");
+        graph.addEdge("A", "B", 100);
+        graph.addEdge("A", "C", 10);
+        graph.addEdge("B", "C", 20);
 
-		MinimumSpanningTreeAlgorithm algorithm = PrimAlgorithm.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
+        MinimumSpanningTreeAlgorithm algorithm = PrimAlgorithm.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
 
-		Collection<UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
+        Collection<UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
 
-		int sum = 0;
-		for (UndirectedWeightedEdge<String, Integer> e : tree)
-			sum += e.weight();
+        int sum = 0;
+        for (UndirectedWeightedEdge<String, Integer> e : tree)
+            sum += e.weight();
 
-		// sum must be 10+20=30
+        // sum must be 10+20=30
 
-		Assert.assertEquals(30, sum);
-	}
+        Assert.assertEquals(30, sum);
+    }
 }

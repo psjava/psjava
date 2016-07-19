@@ -13,49 +13,49 @@ import org.psjava.util.StrictEqualityTester;
 
 public class MapIteratorFromJavaMap {
 
-	public static <K, V> Iterator<KeyValuePair<K, V>> create(final java.util.Map<K, V> map) {
-		return ConvertedIterator.create(map.entrySet().iterator(), new Converter<Map.Entry<K, V>, KeyValuePair<K, V>>() {
-			@Override
-			public KeyValuePair<K, V> convert(java.util.Map.Entry<K, V> e) {
-				return new EntryWrapper<K, V>(e);
-			}
-		});
-	}
+    public static <K, V> Iterator<KeyValuePair<K, V>> create(final java.util.Map<K, V> map) {
+        return ConvertedIterator.create(map.entrySet().iterator(), new Converter<Map.Entry<K, V>, KeyValuePair<K, V>>() {
+            @Override
+            public KeyValuePair<K, V> convert(java.util.Map.Entry<K, V> e) {
+                return new EntryWrapper<K, V>(e);
+            }
+        });
+    }
 
-	private static class EntryWrapper<K, V> implements KeyValuePair<K, V>, EqualityTester<EntryWrapper<K, V>> {
-		private java.util.Map.Entry<K, V> e;
+    private static class EntryWrapper<K, V> implements KeyValuePair<K, V>, EqualityTester<EntryWrapper<K, V>> {
+        private java.util.Map.Entry<K, V> e;
 
-		private EntryWrapper(java.util.Map.Entry<K, V> e) {
-			this.e = e;
-		}
+        private EntryWrapper(java.util.Map.Entry<K, V> e) {
+            this.e = e;
+        }
 
-		@Override
-		public K getKey() {
-			return e.getKey();
-		}
+        @Override
+        public K getKey() {
+            return e.getKey();
+        }
 
-		@Override
-		public V getValue() {
-			return e.getValue();
-		}
+        @Override
+        public V getValue() {
+            return e.getValue();
+        }
 
-		@Override
-		public boolean equals(Object obj) {
-			return StrictEqualityTester.areEqual(this, obj, this);
-		}
+        @Override
+        public boolean equals(Object obj) {
+            return StrictEqualityTester.areEqual(this, obj, this);
+        }
 
-		@Override
-		public boolean areEqual(EntryWrapper<K, V> o1, EntryWrapper<K, V> o2) {
-			return KeyValuePairEqualityTester.are(o1, o2);
-		}
+        @Override
+        public boolean areEqual(EntryWrapper<K, V> o1, EntryWrapper<K, V> o2) {
+            return KeyValuePairEqualityTester.are(o1, o2);
+        }
 
-		@Override
-		public int hashCode() {
-			return KeyValuePairHash.hash(this);
-		}
-	}
+        @Override
+        public int hashCode() {
+            return KeyValuePairHash.hash(this);
+        }
+    }
 
-	private MapIteratorFromJavaMap() {
-	}
+    private MapIteratorFromJavaMap() {
+    }
 
 }

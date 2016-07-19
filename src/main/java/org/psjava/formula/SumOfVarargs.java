@@ -5,11 +5,11 @@ import org.psjava.util.VarargsIterable;
 
 public class SumOfVarargs {
 
-	public static <T> T calc(AddableNumberSystem<T> ns, T... values) {
-		return Sum.calc(ns, VarargsIterable.create(values));
-	}
+    public static <T> T calc(AddableNumberSystem<T> ns, T... values) {
+        return Sum.calc(ns, VarargsIterable.create(values));
+    }
 
-	private SumOfVarargs() {
-	}
+    private SumOfVarargs() {
+    }
 
 }

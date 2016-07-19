@@ -5,12 +5,12 @@ import org.psjava.algo.sequence.sort.SortingAlgorithm;
 
 public class GoodSortingAlgorithm {
 
-	private static final SortingAlgorithm INSTANCE = RandomizedQuicksort.getInstance();
+    private static final SortingAlgorithm INSTANCE = RandomizedQuicksort.getInstance();
 
-	public static SortingAlgorithm getInstance() {
-		return INSTANCE;
-	}
+    public static SortingAlgorithm getInstance() {
+        return INSTANCE;
+    }
 
-	private GoodSortingAlgorithm() {
-	}
+    private GoodSortingAlgorithm() {
+    }
 }

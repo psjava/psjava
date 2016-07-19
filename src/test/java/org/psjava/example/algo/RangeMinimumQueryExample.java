@@ -21,25 +21,25 @@ import org.psjava.util.DefaultComparator;
  */
 public class RangeMinimumQueryExample {
 
-	@Test
-	public void example() {
-		Array<String> array = ArrayFromVarargs.create("A", "E", "B", "C", "G");
+    @Test
+    public void example() {
+        Array<String> array = ArrayFromVarargs.create("A", "E", "B", "C", "G");
 
-		RangeMinimumQuerySession session = GoodRangeMinimumQuery.getInstance().preprocess(array, new DefaultComparator<String>());
+        RangeMinimumQuerySession session = GoodRangeMinimumQuery.getInstance().preprocess(array, new DefaultComparator<String>());
 
-		int index1 = session.getIndex(1, 4); // must be 2, that is the index of "B" among ("E", "B", "C")
-		Assert.assertEquals(2, index1);
+        int index1 = session.getIndex(1, 4); // must be 2, that is the index of "B" among ("E", "B", "C")
+        Assert.assertEquals(2, index1);
 
-		int index2 = session.getIndex(0, 3); // must be 0, that is the index of "A" among ("A", "E", "B")
-		Assert.assertEquals(0, index2);
+        int index2 = session.getIndex(0, 3); // must be 0, that is the index of "A" among ("A", "E", "B")
+        Assert.assertEquals(0, index2);
 
-		// There are several implementations of range minimum query problem.
-		// They have different time & space complexity. See the detail in an article of TopCoder
-		// http://www.topcoder.com/tc?d1=tutorials&d2=lowestCommonAncestor&module=Static
+        // There are several implementations of range minimum query problem.
+        // They have different time & space complexity. See the detail in an article of TopCoder
+        // http://www.topcoder.com/tc?d1=tutorials&d2=lowestCommonAncestor&module=Static
 
-		RangeMinimumQueryUsingSegmentTree.getInstance(GoodSegmentTreeFactory.getInstance());
-		RangeMinimumQueryBySquareRootApproach.getInstance();
-		RangeMinimumQueryUsingSparseTable.getInstance();
+        RangeMinimumQueryUsingSegmentTree.getInstance(GoodSegmentTreeFactory.getInstance());
+        RangeMinimumQueryBySquareRootApproach.getInstance();
+        RangeMinimumQueryUsingSparseTable.getInstance();
 
-	}
+    }
 }

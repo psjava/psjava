@@ -6,8 +6,8 @@ import org.psjava.goods.GoodSegmentTreeFactory;
 
 public class RangeMinimumQueryUsingSegmentTreeTest extends RangeMinimumQueryTestBase {
 
-	protected RangeMinimumQuery getInstance() {
-		return RangeMinimumQueryUsingSegmentTree.getInstance(GoodSegmentTreeFactory.getInstance());
-	}
+    protected RangeMinimumQuery getInstance() {
+        return RangeMinimumQueryUsingSegmentTree.getInstance(GoodSegmentTreeFactory.getInstance());
+    }
 
 }

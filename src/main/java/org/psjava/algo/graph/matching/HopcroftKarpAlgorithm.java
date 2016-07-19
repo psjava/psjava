@@ -28,185 +28,185 @@ import org.psjava.util.ZeroTo;
 
 public class HopcroftKarpAlgorithm {
 
-	public static MaximumBipartiteMatchingAlgorithm getInstance() {
-		return new MaximumBipartiteMatchingAlgorithm() {
-			@Override
-			public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> bg) {
-				Graph<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);
-				while (true) {
-					Object bfsMark = new Object();
-					Collection<Vertex<V>> bfsFinishes = bfs(adj, bfsMark);
-					if (bfsFinishes.isEmpty())
-						break;
-					dfs(adj, bfsFinishes, bfsMark);
-				}
-				return createResult(adj);
-			}
+    public static MaximumBipartiteMatchingAlgorithm getInstance() {
+        return new MaximumBipartiteMatchingAlgorithm() {
+            @Override
+            public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> bg) {
+                Graph<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);
+                while (true) {
+                    Object bfsMark = new Object();
+                    Collection<Vertex<V>> bfsFinishes = bfs(adj, bfsMark);
+                    if (bfsFinishes.isEmpty())
+                        break;
+                    dfs(adj, bfsFinishes, bfsMark);
+                }
+                return createResult(adj);
+            }
 
-		};
-	}
+        };
+    }
 
-	private static enum Side {
-		LEFT, RIGHT
-	}
+    private static enum Side {
+        LEFT, RIGHT
+    }
 
-	private static class Vertex<V> {
-		V original;
-		Side side;
-		boolean free = true;
+    private static class Vertex<V> {
+        V original;
+        Side side;
+        boolean free = true;
 
-		Vertex(V original, Side side) {
-			this.original = original;
-			this.side = side;
-		}
-	}
+        Vertex(V original, Side side) {
+            this.original = original;
+            this.side = side;
+        }
+    }
 
-	private static class EdgeStatus {
-		boolean inMatch = false;
-		Object bfsMark = null;
-	}
+    private static class EdgeStatus {
+        boolean inMatch = false;
+        Object bfsMark = null;
+    }
 
-	private static class Edge<V> implements DirectedEdge<Vertex<V>> {
-		final Vertex<V> from, to;
-		final EdgeStatus status;
+    private static class Edge<V> implements DirectedEdge<Vertex<V>> {
+        final Vertex<V> from, to;
+        final EdgeStatus status;
 
-		Edge(Vertex<V> from, Vertex<V> to, EdgeStatus status) {
-			this.from = from;
-			this.to = to;
-			this.status = status;
-		}
+        Edge(Vertex<V> from, Vertex<V> to, EdgeStatus status) {
+            this.from = from;
+            this.to = to;
+            this.status = status;
+        }
 
-		@Override
-		public Vertex<V> from() {
-			return from;
-		}
+        @Override
+        public Vertex<V> from() {
+            return from;
+        }
 
-		@Override
-		public Vertex<V> to() {
-			return to;
-		}
+        @Override
+        public Vertex<V> to() {
+            return to;
+        }
 
-	}
+    }
 
-	private static <V> Graph<Vertex<V>, Edge<V>> wrapAsGraph(BipartiteGraph<V> bg) {
-		MutableMap<V, Vertex<V>> vertex = GoodMutableMapFactory.getInstance().create();
-		for (V v : bg.getLeftVertices())
-			vertex.add(v, new Vertex<V>(v, Side.LEFT));
-		for (V v : bg.getRightVertices())
-			vertex.add(v, new Vertex<V>(v, Side.RIGHT));
-		SimpleDirectedGraph<Vertex<V>, Edge<V>> graph = SimpleDirectedGraph.create();
-		for (Vertex<V> v : ValuesInMap.get(vertex))
-			graph.insertVertex(v);
-		for (BipartiteGraphEdge<V> e : bg.getEdges()) {
-			EdgeStatus status = new EdgeStatus();
-			graph.addEdge(new Edge<V>(vertex.get(e.left()), vertex.get(e.right()), status));
-			graph.addEdge(new Edge<V>(vertex.get(e.right()), vertex.get(e.left()), status));
-		}
-		return graph;
-	}
+    private static <V> Graph<Vertex<V>, Edge<V>> wrapAsGraph(BipartiteGraph<V> bg) {
+        MutableMap<V, Vertex<V>> vertex = GoodMutableMapFactory.getInstance().create();
+        for (V v : bg.getLeftVertices())
+            vertex.add(v, new Vertex<V>(v, Side.LEFT));
+        for (V v : bg.getRightVertices())
+            vertex.add(v, new Vertex<V>(v, Side.RIGHT));
+        SimpleDirectedGraph<Vertex<V>, Edge<V>> graph = SimpleDirectedGraph.create();
+        for (Vertex<V> v : ValuesInMap.get(vertex))
+            graph.insertVertex(v);
+        for (BipartiteGraphEdge<V> e : bg.getEdges()) {
+            EdgeStatus status = new EdgeStatus();
+            graph.addEdge(new Edge<V>(vertex.get(e.left()), vertex.get(e.right()), status));
+            graph.addEdge(new Edge<V>(vertex.get(e.right()), vertex.get(e.left()), status));
+        }
+        return graph;
+    }
 
-	private static <V> Collection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
-		final DynamicArray<Vertex<V>> finishes = DynamicArray.create();
+    private static <V> Collection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
+        final DynamicArray<Vertex<V>> finishes = DynamicArray.create();
 
-		BFS.traverse(EdgeFilteredSubGraph.wrap(adj, new Filter<Edge<V>>() {
-			@Override
-			public boolean isAccepted(Edge<V> edge) {
-				// to alternate matched and non-matched edges.
-				if (edge.from.side == Side.LEFT)
-					return !edge.status.inMatch;
-				else
-					return edge.status.inMatch;
-			}
-		}), FilteredIterable.create(adj.getVertices(), new Filter<Vertex<V>>() {
-			@Override
-			public boolean isAccepted(Vertex<V> v) {
-				return (v.side == Side.LEFT) && v.free;
-			}
-		}), new BFSVisitor<Vertex<V>, Edge<V>>() {
-			int finishDepth = -1;
+        BFS.traverse(EdgeFilteredSubGraph.wrap(adj, new Filter<Edge<V>>() {
+            @Override
+            public boolean isAccepted(Edge<V> edge) {
+                // to alternate matched and non-matched edges.
+                if (edge.from.side == Side.LEFT)
+                    return !edge.status.inMatch;
+                else
+                    return edge.status.inMatch;
+            }
+        }), FilteredIterable.create(adj.getVertices(), new Filter<Vertex<V>>() {
+            @Override
+            public boolean isAccepted(Vertex<V> v) {
+                return (v.side == Side.LEFT) && v.free;
+            }
+        }), new BFSVisitor<Vertex<V>, Edge<V>>() {
+            int finishDepth = -1;
 
-			@Override
-			public void onDiscover(Vertex<V> vertex, int depth, VisitorStopper stopper) {
-				if (finishDepth == -1 || depth <= finishDepth) {
-					if (vertex.side == Side.RIGHT && vertex.free) {
-						finishDepth = depth;
-						finishes.addToLast(vertex);
-					}
-				} else {
-					stopper.stop();
-				}
-			}
+            @Override
+            public void onDiscover(Vertex<V> vertex, int depth, VisitorStopper stopper) {
+                if (finishDepth == -1 || depth <= finishDepth) {
+                    if (vertex.side == Side.RIGHT && vertex.free) {
+                        finishDepth = depth;
+                        finishes.addToLast(vertex);
+                    }
+                } else {
+                    stopper.stop();
+                }
+            }
 
-			@Override
-			public void onWalk(Edge<V> e) {
-				e.status.bfsMark = mark;
-			}
+            @Override
+            public void onWalk(Edge<V> e) {
+                e.status.bfsMark = mark;
+            }
 
-		});
-		return finishes;
-	}
+        });
+        return finishes;
+    }
 
-	private static <V> void dfs(final Graph<Vertex<V>, Edge<V>> adj, final Collection<Vertex<V>> bfsFinishes, final Object bfsMark) {
-		MultiSourceDFS.traverse(EdgeFilteredSubGraph.wrap(adj, new Filter<Edge<V>>() {
-			@Override
-			public boolean isAccepted(Edge<V> edge) {
-				return edge.status.bfsMark == bfsMark; // uses only edges discovered in bfs step.
-			}
-		}), bfsFinishes, new DFSVisitorBase<Vertex<V>, Edge<V>>() {
-			DynamicArray<Edge<V>> path = DynamicArray.create();
+    private static <V> void dfs(final Graph<Vertex<V>, Edge<V>> adj, final Collection<Vertex<V>> bfsFinishes, final Object bfsMark) {
+        MultiSourceDFS.traverse(EdgeFilteredSubGraph.wrap(adj, new Filter<Edge<V>>() {
+            @Override
+            public boolean isAccepted(Edge<V> edge) {
+                return edge.status.bfsMark == bfsMark; // uses only edges discovered in bfs step.
+            }
+        }), bfsFinishes, new DFSVisitorBase<Vertex<V>, Edge<V>>() {
+            DynamicArray<Edge<V>> path = DynamicArray.create();
 
-			@Override
-			public void onWalkDown(Edge<V> edge) {
-				path.addToLast(edge);
-			}
+            @Override
+            public void onWalkDown(Edge<V> edge) {
+                path.addToLast(edge);
+            }
 
-			@Override
-			public void onWalkUp(Edge<V> downedEdge) {
-				path.removeLast();
-			}
+            @Override
+            public void onWalkUp(Edge<V> downedEdge) {
+                path.removeLast();
+            }
 
-			@Override
-			public void onDiscovered(Vertex<V> v, int depth, VisitorStopper stopper) {
-				if (wasBfsStart(v)) {
-					for (int index : ZeroTo.get(path.size()))
-						path.get(index).status.inMatch = (index % 2 == 0);
-					FirstInArray.getFirst(path).from.free = false;
-					LastInArray.getLast(path).to.free = false;
-				}
-			}
+            @Override
+            public void onDiscovered(Vertex<V> v, int depth, VisitorStopper stopper) {
+                if (wasBfsStart(v)) {
+                    for (int index : ZeroTo.get(path.size()))
+                        path.get(index).status.inMatch = (index % 2 == 0);
+                    FirstInArray.getFirst(path).from.free = false;
+                    LastInArray.getLast(path).to.free = false;
+                }
+            }
 
-			private boolean wasBfsStart(Vertex<V> v) {
-				return v.side == Side.LEFT && v.free;
-			}
+            private boolean wasBfsStart(Vertex<V> v) {
+                return v.side == Side.LEFT && v.free;
+            }
 
-		});
-	}
+        });
+    }
 
-	private static <V> MaximumBipartiteMatchingResult<V> createResult(Graph<Vertex<V>, Edge<V>> adj) {
-		final MutableMap<V, V> match = GoodMutableMapFactory.getInstance().create();
-		for (Vertex<V> v : adj.getVertices())
-			for (Edge<V> e : adj.getEdges(v))
-				if (e.status.inMatch)
-					match.add(e.from().original, e.to().original);
+    private static <V> MaximumBipartiteMatchingResult<V> createResult(Graph<Vertex<V>, Edge<V>> adj) {
+        final MutableMap<V, V> match = GoodMutableMapFactory.getInstance().create();
+        for (Vertex<V> v : adj.getVertices())
+            for (Edge<V> e : adj.getEdges(v))
+                if (e.status.inMatch)
+                    match.add(e.from().original, e.to().original);
 
-		return new MaximumBipartiteMatchingResult<V>() {
-			@Override
-			public V getMatchedVertex(V v) {
-				return match.get(v);
-			}
+        return new MaximumBipartiteMatchingResult<V>() {
+            @Override
+            public V getMatchedVertex(V v) {
+                return match.get(v);
+            }
 
-			@Override
-			public int getMaxMatchCount() {
-				return match.size() / 2;
-			}
+            @Override
+            public int getMaxMatchCount() {
+                return match.size() / 2;
+            }
 
-			@Override
-			public boolean hasMatch(V v) {
-				return match.containsKey(v);
-			}
-		};
-	}
+            @Override
+            public boolean hasMatch(V v) {
+                return match.containsKey(v);
+            }
+        };
+    }
 
-	private HopcroftKarpAlgorithm() {
-	}
+    private HopcroftKarpAlgorithm() {
+    }
 }

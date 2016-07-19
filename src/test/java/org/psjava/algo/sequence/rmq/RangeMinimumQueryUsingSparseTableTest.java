@@ -5,8 +5,8 @@ import org.psjava.algo.sequence.rmq.RangeMinimumQueryUsingSparseTable;
 
 public class RangeMinimumQueryUsingSparseTableTest extends RangeMinimumQueryTestBase {
 
-	protected RangeMinimumQuery getInstance() {
-		return RangeMinimumQueryUsingSparseTable.getInstance();
-	}
+    protected RangeMinimumQuery getInstance() {
+        return RangeMinimumQueryUsingSparseTable.getInstance();
+    }
 
 }

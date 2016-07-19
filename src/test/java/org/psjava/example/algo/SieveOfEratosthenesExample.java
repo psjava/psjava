@@ -11,20 +11,20 @@ import org.psjava.ds.array.Array;
  */
 public class SieveOfEratosthenesExample {
 
-	@Test
-	public void example() {
+    @Test
+    public void example() {
 
-		// Select sieve algorithm, and just call it.
+        // Select sieve algorithm, and just call it.
 
-		PrimeNumberSieve sieve = SieveOfEratosthenes.getInstance();
-		Array<Integer> primes = sieve.calcList(30);
+        PrimeNumberSieve sieve = SieveOfEratosthenes.getInstance();
+        Array<Integer> primes = sieve.calcList(30);
 
-		int number = primes.size(); // there are 10 primes. between [1~30]
-		int prime1st = primes.get(0); // first prime is 2
-		int prime8th = primes.get(7); // 8th prime is 19
+        int number = primes.size(); // there are 10 primes. between [1~30]
+        int prime1st = primes.get(0); // first prime is 2
+        int prime8th = primes.get(7); // 8th prime is 19
 
-		Assert.assertEquals(10, number);
-		Assert.assertEquals(2, prime1st);
-		Assert.assertEquals(19, prime8th);
-	}
+        Assert.assertEquals(10, number);
+        Assert.assertEquals(2, prime1st);
+        Assert.assertEquals(19, prime8th);
+    }
 }

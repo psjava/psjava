@@ -21,47 +21,50 @@ import org.psjava.util.AssertStatus;
 import org.psjava.util.ReversedComparator;
 import org.psjava.util.SeriesComparator;
 
-/** O(nlogn) */
+/**
+ * O(nlogn)
+ */
 public class IncrementalMethod {
 
-	public static ConvexHullAlgorithm getInstance(final SortingAlgorithm sortAlgorithm) {
-		return new ConvexHullAlgorithm() {
-			@Override
-			public <T> Polygon2D<T> calc(Set<Point2D<T>> src, MultipliableNumberSystem<T> ns) {
-				AssertStatus.assertTrue(!src.isEmpty(), "src must not be empty");
-				if(src.size() == 1)
-					return Polygon2D.create(src);
-				MutableArray<Point2D<T>> array = MutableArrayFromIterable.create(src);
-				sortAlgorithm.sort(array, SeriesComparator.create(ReversedComparator.wrap(PointByXComparator.create(ns)), PointByYComparator.create(ns)));
-				DynamicArray<Point2D<T>> upHull = getLeftTurningHalfHullFromFirstPoint(array, ns);
-				DynamicArray<Point2D<T>> downHull = getLeftTurningHalfHullFromFirstPoint(ReversedArray.wrap(array), ns);
-				adjustToPreventDuplication(upHull, downHull);
-				return Polygon2D.create(MergedArray.wrap(upHull, downHull));
-			}
-		};
-	}
+    public static ConvexHullAlgorithm getInstance(final SortingAlgorithm sortAlgorithm) {
+        return new ConvexHullAlgorithm() {
+            @Override
+            public <T> Polygon2D<T> calc(Set<Point2D<T>> src, MultipliableNumberSystem<T> ns) {
+                AssertStatus.assertTrue(!src.isEmpty(), "src must not be empty");
+                if (src.size() == 1)
+                    return Polygon2D.create(src);
+                MutableArray<Point2D<T>> array = MutableArrayFromIterable.create(src);
+                sortAlgorithm.sort(array, SeriesComparator.create(ReversedComparator.wrap(PointByXComparator.create(ns)), PointByYComparator.create(ns)));
+                DynamicArray<Point2D<T>> upHull = getLeftTurningHalfHullFromFirstPoint(array, ns);
+                DynamicArray<Point2D<T>> downHull = getLeftTurningHalfHullFromFirstPoint(ReversedArray.wrap(array), ns);
+                adjustToPreventDuplication(upHull, downHull);
+                return Polygon2D.create(MergedArray.wrap(upHull, downHull));
+            }
+        };
+    }
 
-	private static <T> DynamicArray<Point2D<T>> getLeftTurningHalfHullFromFirstPoint(Array<Point2D<T>> order, MultipliableNumberSystem<T> ns) {
-		DynamicArray<Point2D<T>> result = DynamicArray.create();
-		result.addToLast(FirstInArray.getFirst(order));
-		for(Point2D<T> newPoint : order) {
-			while (canRemoveLastPoint(result, newPoint, ns))
-				result.removeLast();
-			result.addToLast(newPoint);
-		}
-		return result;
-	}
+    private static <T> DynamicArray<Point2D<T>> getLeftTurningHalfHullFromFirstPoint(Array<Point2D<T>> order, MultipliableNumberSystem<T> ns) {
+        DynamicArray<Point2D<T>> result = DynamicArray.create();
+        result.addToLast(FirstInArray.getFirst(order));
+        for (Point2D<T> newPoint : order) {
+            while (canRemoveLastPoint(result, newPoint, ns))
+                result.removeLast();
+            result.addToLast(newPoint);
+        }
+        return result;
+    }
 
-	private static <T> boolean canRemoveLastPoint(Array<Point2D<T>> array, Point2D<T> newPoint, MultipliableNumberSystem<T> ns) {
-		return array.size() >= 2 && !LeftTurn.is(array.get(array.size() - 2), LastInArray.getLast(array), newPoint, ns);
-	}
+    private static <T> boolean canRemoveLastPoint(Array<Point2D<T>> array, Point2D<T> newPoint, MultipliableNumberSystem<T> ns) {
+        return array.size() >= 2 && !LeftTurn.is(array.get(array.size() - 2), LastInArray.getLast(array), newPoint, ns);
+    }
 
-	private static <T> void adjustToPreventDuplication(DynamicArray<Point2D<T>> upHull, DynamicArray<Point2D<T>> downHull) {
-		if(upHull.size() >= 2) {
-			upHull.removeLast();
-			downHull.removeLast();
-		}
-	}
+    private static <T> void adjustToPreventDuplication(DynamicArray<Point2D<T>> upHull, DynamicArray<Point2D<T>> downHull) {
+        if (upHull.size() >= 2) {
+            upHull.removeLast();
+            downHull.removeLast();
+        }
+    }
 
-	private IncrementalMethod() {}
+    private IncrementalMethod() {
+    }
 }

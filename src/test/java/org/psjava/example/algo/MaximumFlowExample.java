@@ -15,34 +15,34 @@ import org.psjava.ds.numbersystrem.IntegerNumberSystem;
  * @see {@link EdmondsKarpAlgorithmExample}
  */
 public class MaximumFlowExample {
-	@Test
-	public void test() {
-		// Construct a graph with capacities.
+    @Test
+    public void test() {
+        // Construct a graph with capacities.
 
-		MutableCapacityGraph<String, Integer> capacityGraph = MutableCapacityGraph.create();
-		capacityGraph.insertVertex("A");
-		capacityGraph.insertVertex("B");
-		capacityGraph.insertVertex("C");
-		capacityGraph.insertVertex("D");
-		capacityGraph.addEdge("A", "B", 4);
-		capacityGraph.addEdge("A", "C", 2);
-		capacityGraph.addEdge("B", "C", 1);
-		capacityGraph.addEdge("B", "D", 4);
-		capacityGraph.addEdge("C", "D", 1);
+        MutableCapacityGraph<String, Integer> capacityGraph = MutableCapacityGraph.create();
+        capacityGraph.insertVertex("A");
+        capacityGraph.insertVertex("B");
+        capacityGraph.insertVertex("C");
+        capacityGraph.insertVertex("D");
+        capacityGraph.addEdge("A", "B", 4);
+        capacityGraph.addEdge("A", "C", 2);
+        capacityGraph.addEdge("B", "C", 1);
+        capacityGraph.addEdge("B", "D", 4);
+        capacityGraph.addEdge("C", "D", 1);
 
-		// Choose Algorithm, and run it.
+        // Choose Algorithm, and run it.
 
-		MaximumFlowAlgorithm algorithm = EdmondsKarpAlgorithm.getInstance();
-		MaximumFlowAlgorithmResult<Integer, CapacityEdge<String, Integer>> result = algorithm.calc(capacityGraph, "A", "D", IntegerNumberSystem.getInstance());
+        MaximumFlowAlgorithm algorithm = EdmondsKarpAlgorithm.getInstance();
+        MaximumFlowAlgorithmResult<Integer, CapacityEdge<String, Integer>> result = algorithm.calc(capacityGraph, "A", "D", IntegerNumberSystem.getInstance());
 
-		int maximumFlow = result.calcTotalFlow(); // must be 5
-		Assert.assertEquals(5, maximumFlow);
+        int maximumFlow = result.calcTotalFlow(); // must be 5
+        Assert.assertEquals(5, maximumFlow);
 
-		// Also, you can obtain the flows in each edges by retrieved flow function.
+        // Also, you can obtain the flows in each edges by retrieved flow function.
 
-		Function<CapacityEdge<String, Integer>, Integer> flowFunction = result.calcFlowFunction();
-		for (CapacityEdge<String, Integer> e : capacityGraph.getEdges("A")) {
-			flowFunction.get(e);
-		}
-	}
+        Function<CapacityEdge<String, Integer>, Integer> flowFunction = result.calcFlowFunction();
+        for (CapacityEdge<String, Integer> e : capacityGraph.getEdges("A")) {
+            flowFunction.get(e);
+        }
+    }
 }

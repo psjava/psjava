@@ -5,9 +5,10 @@ import org.psjava.algo.geometry.convexhull.GrahamScan;
 
 public class GoodConvexHullAlgorithm {
 
-	public static ConvexHullAlgorithm getInstance() {
-		return GrahamScan.getInstance(GoodSortingAlgorithm.getInstance());
-	}
+    public static ConvexHullAlgorithm getInstance() {
+        return GrahamScan.getInstance(GoodSortingAlgorithm.getInstance());
+    }
 
-	private GoodConvexHullAlgorithm() {}
+    private GoodConvexHullAlgorithm() {
+    }
 }

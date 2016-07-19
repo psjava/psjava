@@ -8,9 +8,9 @@ import org.psjava.util.DefaultComparator;
 
 public class MaxInVarargsTest {
 
-	@Test
-	public void max() {
-		assertEquals(4, (int) MaxInVarargs.max(new DefaultComparator<Integer>(), 3, 4, 2));
-	}
+    @Test
+    public void max() {
+        assertEquals(4, (int) MaxInVarargs.max(new DefaultComparator<Integer>(), 3, 4, 2));
+    }
 
 }

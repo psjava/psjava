@@ -6,11 +6,11 @@ import org.psjava.util.VarargsIterable;
 
 public class MaxInVarargs {
 
-	public static <T> T max(Comparator<T> comp, T... values) {
-		return MaxInIterable.max(VarargsIterable.create(values), comp);
-	}
+    public static <T> T max(Comparator<T> comp, T... values) {
+        return MaxInIterable.max(VarargsIterable.create(values), comp);
+    }
 
-	private MaxInVarargs() {
-	}
+    private MaxInVarargs() {
+    }
 
 }

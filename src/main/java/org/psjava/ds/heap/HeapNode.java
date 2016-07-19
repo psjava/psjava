@@ -1,11 +1,11 @@
 package org.psjava.ds.heap;
 
 public interface HeapNode<T> {
-	T getKey();
+    T getKey();
 
-	boolean isInHeap();
+    boolean isInHeap();
 
-	void decreaseKey(T newKey);
+    void decreaseKey(T newKey);
 
-	void delete();
+    void delete();
 }

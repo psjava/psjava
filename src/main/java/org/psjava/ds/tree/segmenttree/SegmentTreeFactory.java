@@ -5,6 +5,6 @@ import org.psjava.ds.math.BinaryOperator;
 
 public interface SegmentTreeFactory {
 
-	<T> SegmentTree<T> create(Array<T> initialList, BinaryOperator<T> operator);
+    <T> SegmentTree<T> create(Array<T> initialList, BinaryOperator<T> operator);
 
 }

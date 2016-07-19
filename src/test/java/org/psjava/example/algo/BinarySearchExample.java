@@ -23,37 +23,37 @@ import org.psjava.util.ReversedComparator;
  */
 public class BinarySearchExample {
 
-	@Test
-	public void example() {
+    @Test
+    public void example() {
 
-		// Let's search 5 in a increasingly sorted array.
+        // Let's search 5 in a increasingly sorted array.
 
-		Array<Integer> inc = ArrayFromVarargs.create(1, 3, 5, 7, 9);
-		int res1 = BinarySearchFirstInArray.search(inc, new DefaultComparator<Integer>(), 5, -1); // must be 2
-		int res2 = BinarySearchFirstInArray.search(inc, new DefaultComparator<Integer>(), 6, -1); // must be -1, given by argument.
-		Assert.assertEquals(2, res1);
-		Assert.assertEquals(-1, res2);
+        Array<Integer> inc = ArrayFromVarargs.create(1, 3, 5, 7, 9);
+        int res1 = BinarySearchFirstInArray.search(inc, new DefaultComparator<Integer>(), 5, -1); // must be 2
+        int res2 = BinarySearchFirstInArray.search(inc, new DefaultComparator<Integer>(), 6, -1); // must be -1, given by argument.
+        Assert.assertEquals(2, res1);
+        Assert.assertEquals(-1, res2);
 
-		// Following is an example for decreasing array.
-		// In this example, you can use a reversed comparator.
+        // Following is an example for decreasing array.
+        // In this example, you can use a reversed comparator.
 
-		Array<Integer> dec = ArrayFromVarargs.create(9, 7, 5, 3, 1);
-		int res3 = BinarySearchFirstInArray.search(dec, ReversedComparator.wrap(new DefaultComparator<Integer>()), 3, -1);
-		Assert.assertEquals(3, res3);
+        Array<Integer> dec = ArrayFromVarargs.create(9, 7, 5, 3, 1);
+        int res3 = BinarySearchFirstInArray.search(dec, ReversedComparator.wrap(new DefaultComparator<Integer>()), 3, -1);
+        Assert.assertEquals(3, res3);
 
-		// You don't have to prepare an array. Any function is enough.
-		// Create a function 'y=8x', and let's search 'x' for 'y'=800.
+        // You don't have to prepare an array. Any function is enough.
+        // Create a function 'y=8x', and let's search 'x' for 'y'=800.
 
-		Function<Integer, Integer> f = new Function<Integer, Integer>() {
-			@Override
-			public Integer get(Integer x) {
-				return x * 8;
-			}
-		};
+        Function<Integer, Integer> f = new Function<Integer, Integer>() {
+            @Override
+            public Integer get(Integer x) {
+                return x * 8;
+            }
+        };
 
-		// x must be 100.
-		int x = BinarySearchFirst.search(IntegerNumberSystem.getInstance(), f, new DefaultComparator<Integer>(), 0, 999999, 800, -1);
-		Assert.assertEquals(100, x);
-	}
+        // x must be 100.
+        int x = BinarySearchFirst.search(IntegerNumberSystem.getInstance(), f, new DefaultComparator<Integer>(), 0, 999999, 800, -1);
+        Assert.assertEquals(100, x);
+    }
 
 }

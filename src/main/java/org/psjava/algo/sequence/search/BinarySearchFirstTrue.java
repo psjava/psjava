@@ -6,11 +6,11 @@ import org.psjava.ds.numbersystrem.IntegerDivisableNumberSystem;
 
 public class BinarySearchFirstTrue {
 
-	public static <I> I search(IntegerDivisableNumberSystem<I> inputNumberSystem, Function<I, Boolean> falseToTrueFunction, I begin, I end, I def) {
-		return BinarySearchFirst.search(inputNumberSystem, falseToTrueFunction, BooleanDefaultComparator.getInstance(), begin, end, Boolean.TRUE, def);
-	}
+    public static <I> I search(IntegerDivisableNumberSystem<I> inputNumberSystem, Function<I, Boolean> falseToTrueFunction, I begin, I end, I def) {
+        return BinarySearchFirst.search(inputNumberSystem, falseToTrueFunction, BooleanDefaultComparator.getInstance(), begin, end, Boolean.TRUE, def);
+    }
 
-	private BinarySearchFirstTrue() {
-	}
+    private BinarySearchFirstTrue() {
+    }
 
 }

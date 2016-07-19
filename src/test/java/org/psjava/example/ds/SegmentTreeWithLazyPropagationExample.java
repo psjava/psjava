@@ -13,31 +13,31 @@ import org.psjava.ds.tree.segmenttree.RangeUpdatableSegmentTree;
  * @implementation {@link RangeUpdatableSegmentTree}
  */
 public class SegmentTreeWithLazyPropagationExample {
-	@Test
-	public void example() {
+    @Test
+    public void example() {
 
-		// This is an advanced version of segment tree.
-		// This updates the values of given range in O(logn) time.
+        // This is an advanced version of segment tree.
+        // This updates the values of given range in O(logn) time.
 
-		Array<Integer> init = MutableArrayFromVarargs.create(1, 1, 1, 1, 1);
+        Array<Integer> init = MutableArrayFromVarargs.create(1, 1, 1, 1, 1);
 
-		RangeUpdatableSegmentTree<Integer> sumTree = RangeUpdatableSegmentTree.create(init, new BinaryOperator<Integer>() {
-			@Override
-			public Integer calc(Integer a, Integer b) {
-				return a + b;
-			}
-		});
+        RangeUpdatableSegmentTree<Integer> sumTree = RangeUpdatableSegmentTree.create(init, new BinaryOperator<Integer>() {
+            @Override
+            public Integer calc(Integer a, Integer b) {
+                return a + b;
+            }
+        });
 
-		// Query by range.
+        // Query by range.
 
-		int sum1 = sumTree.query(0, 5); // must be 5=1+1+1+1+1
-		Assert.assertEquals(5, sum1);
+        int sum1 = sumTree.query(0, 5); // must be 5=1+1+1+1+1
+        Assert.assertEquals(5, sum1);
 
-		// Update by range, this is done fast!
+        // Update by range, this is done fast!
 
-		sumTree.updateRange(1, 4, 100);
-		int sum2 = sumTree.query(0, 5); // must be 302=1+100+100+100+1
-		Assert.assertEquals(302, sum2);
+        sumTree.updateRange(1, 4, 100);
+        int sum2 = sumTree.query(0, 5); // must be 302=1+100+100+100+1
+        Assert.assertEquals(302, sum2);
 
-	}
+    }
 }

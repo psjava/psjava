@@ -5,11 +5,11 @@ import org.psjava.algo.graph.mst.MinimumSpanningTreeAlgorithm;
 
 public class GoodMinimumSpanningTreeAlgorithm {
 
-	public static MinimumSpanningTreeAlgorithm getInstance() {
-		return KruscalAlgorithm.getInstance(GoodSortingAlgorithm.getInstance());
-	}
+    public static MinimumSpanningTreeAlgorithm getInstance() {
+        return KruscalAlgorithm.getInstance(GoodSortingAlgorithm.getInstance());
+    }
 
-	private GoodMinimumSpanningTreeAlgorithm() {
-	}
+    private GoodMinimumSpanningTreeAlgorithm() {
+    }
 
 }

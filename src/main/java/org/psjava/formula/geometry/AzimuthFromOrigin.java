@@ -6,11 +6,11 @@ import org.psjava.ds.geometry.Point2D;
 
 public class AzimuthFromOrigin {
 
-	public static Azimuth calc(Point2D<Double> p) {
-		return AzimuthFromPoint.calc(p, DoublePointOrigin.ORIGIN);
-	}
+    public static Azimuth calc(Point2D<Double> p) {
+        return AzimuthFromPoint.calc(p, DoublePointOrigin.ORIGIN);
+    }
 
-	private AzimuthFromOrigin() {
-	}
+    private AzimuthFromOrigin() {
+    }
 
 }

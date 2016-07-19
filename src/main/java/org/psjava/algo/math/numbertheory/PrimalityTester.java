@@ -1,5 +1,5 @@
 package org.psjava.algo.math.numbertheory;
 
 public interface PrimalityTester {
-	boolean isPrime(long v);
+    boolean isPrime(long v);
 }

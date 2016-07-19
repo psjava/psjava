@@ -4,55 +4,55 @@ import org.psjava.util.AssertStatus;
 
 public class SimpleFlowNetworkEdge<V, F> {
 
-	public static <V, F, E> FlowNetworkEdge<V, F, E> create(final V from, final V to, final FlowStatus<F> flowStatus, final E originalEdgeOfNonSymmetryOrNull) {
-		return new FlowNetworkEdge<V, F, E>() {
-			FlowNetworkEdge<V, F, E> opposite;
+    public static <V, F, E> FlowNetworkEdge<V, F, E> create(final V from, final V to, final FlowStatus<F> flowStatus, final E originalEdgeOfNonSymmetryOrNull) {
+        return new FlowNetworkEdge<V, F, E>() {
+            FlowNetworkEdge<V, F, E> opposite;
 
-			@Override
-			public V from() {
-				return from;
-			}
+            @Override
+            public V from() {
+                return from;
+            }
 
-			@Override
-			public V to() {
-				return to;
-			}
+            @Override
+            public V to() {
+                return to;
+            }
 
-			@Override
-			public FlowStatus<F> getFlowStatus() {
-				return flowStatus;
-			}
+            @Override
+            public FlowStatus<F> getFlowStatus() {
+                return flowStatus;
+            }
 
-			@Override
-			public FlowNetworkEdge<V, F, E> getOpposite() {
-				AssertStatus.assertTrue(opposite != null, "Reversed edge is not set");
-				return opposite;
-			}
+            @Override
+            public FlowNetworkEdge<V, F, E> getOpposite() {
+                AssertStatus.assertTrue(opposite != null, "Reversed edge is not set");
+                return opposite;
+            }
 
-			@Override
-			public void setOpposite(FlowNetworkEdge<V, F, E> edge) {
-				this.opposite = edge;
-			}
+            @Override
+            public void setOpposite(FlowNetworkEdge<V, F, E> edge) {
+                this.opposite = edge;
+            }
 
-			@Override
-			public boolean isSkewSymmetryEdge() {
-				return originalEdgeOfNonSymmetryOrNull == null;
-			}
+            @Override
+            public boolean isSkewSymmetryEdge() {
+                return originalEdgeOfNonSymmetryOrNull == null;
+            }
 
-			@Override
-			public E getOriginalCapacityEdge() {
-				AssertStatus.assertTrue(!isSkewSymmetryEdge(), "the edge is symmetry edge");
-				return originalEdgeOfNonSymmetryOrNull;
-			}
+            @Override
+            public E getOriginalCapacityEdge() {
+                AssertStatus.assertTrue(!isSkewSymmetryEdge(), "the edge is symmetry edge");
+                return originalEdgeOfNonSymmetryOrNull;
+            }
 
-			@Override
-			public String toString() {
-				return DirectedEdgeToString.toString(this) + "(" + getFlowStatus() + ")";
-			}
-		};
-	}
+            @Override
+            public String toString() {
+                return DirectedEdgeToString.toString(this) + "(" + getFlowStatus() + ")";
+            }
+        };
+    }
 
-	private SimpleFlowNetworkEdge() {
-	}
+    private SimpleFlowNetworkEdge() {
+    }
 
 }

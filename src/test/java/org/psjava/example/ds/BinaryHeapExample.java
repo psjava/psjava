@@ -13,34 +13,34 @@ import org.psjava.util.DefaultComparator;
  */
 public class BinaryHeapExample {
 
-	@Test
-	public void example() {
+    @Test
+    public void example() {
 
-		// Let's create a small heap.
+        // Let's create a small heap.
 
-		Heap<Integer> heap =BinaryHeapFactory.getInstance().create(new DefaultComparator<Integer>());
-		heap.insert(100);
-		heap.insert(300);
-		heap.insert(200);
+        Heap<Integer> heap = BinaryHeapFactory.getInstance().create(new DefaultComparator<Integer>());
+        heap.insert(100);
+        heap.insert(300);
+        heap.insert(200);
 
-		// This is most basic operation. Extraction of minimum.
+        // This is most basic operation. Extraction of minimum.
 
-		int extracted = heap.extractMinimum(); // must be 100
-		Assert.assertEquals(100, extracted);
+        int extracted = heap.extractMinimum(); // must be 100
+        Assert.assertEquals(100, extracted);
 
-		// You can only get the miminum without extraction by 'getMinimum()'.
+        // You can only get the miminum without extraction by 'getMinimum()'.
 
-		int minimum1 = heap.getMinimum(); // must be 200
-		Assert.assertEquals(200, minimum1);
+        int minimum1 = heap.getMinimum(); // must be 200
+        Assert.assertEquals(200, minimum1);
 
-		// Let's do decrease-key operation.
-		// when you insert, keep the node like a pointer . And decrease it with the node.
+        // Let's do decrease-key operation.
+        // when you insert, keep the node like a pointer . And decrease it with the node.
 
-		HeapNode<Integer> node = heap.insert(400);
-		node.decreaseKey(10); // decrease 400 -> 10
+        HeapNode<Integer> node = heap.insert(400);
+        node.decreaseKey(10); // decrease 400 -> 10
 
-		int minimum2 = heap.getMinimum(); // must be 10
-		Assert.assertEquals(10, minimum2);
-	}
+        int minimum2 = heap.getMinimum(); // must be 10
+        Assert.assertEquals(10, minimum2);
+    }
 
 }

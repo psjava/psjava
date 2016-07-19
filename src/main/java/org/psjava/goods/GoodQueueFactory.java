@@ -5,13 +5,13 @@ import org.psjava.ds.queue.QueueFactoryUsingDeque;
 
 public class GoodQueueFactory {
 
-	private static QueueFactory instance = QueueFactoryUsingDeque.getInstance(GoodDequeFactory.getInstance());
+    private static QueueFactory instance = QueueFactoryUsingDeque.getInstance(GoodDequeFactory.getInstance());
 
-	public static QueueFactory getInstance() {
-		return instance;
-	}
+    public static QueueFactory getInstance() {
+        return instance;
+    }
 
-	private GoodQueueFactory() {
-	}
+    private GoodQueueFactory() {
+    }
 
 }

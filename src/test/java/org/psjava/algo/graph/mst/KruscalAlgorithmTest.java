@@ -5,8 +5,8 @@ import org.psjava.goods.GoodSortingAlgorithm;
 
 public class KruscalAlgorithmTest extends MinimumSpanningTreeAlgorithmTestBase {
 
-	public MinimumSpanningTreeAlgorithm getInstance() {
-		return KruscalAlgorithm.getInstance(GoodSortingAlgorithm.getInstance());
-	}
+    public MinimumSpanningTreeAlgorithm getInstance() {
+        return KruscalAlgorithm.getInstance(GoodSortingAlgorithm.getInstance());
+    }
 
 }

@@ -4,11 +4,11 @@ package org.psjava.ds.heap;
  * min-heap
  */
 public interface Heap<T> {
-	T getMinimum();
+    T getMinimum();
 
-	HeapNode<T> insert(T v);
+    HeapNode<T> insert(T v);
 
-	T extractMinimum();
+    T extractMinimum();
 
-	boolean isEmpty();
+    boolean isEmpty();
 }

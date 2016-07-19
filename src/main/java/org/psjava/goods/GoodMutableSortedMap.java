@@ -7,11 +7,11 @@ import org.psjava.ds.map.MutableSortedMapUsingJavaTreeMap;
 
 public class GoodMutableSortedMap {
 
-	public static <K, V> MutableSortedMap<K, V> create(Comparator<K> comp) {
-		return MutableSortedMapUsingJavaTreeMap.<K, V> create(comp);
-	}
+    public static <K, V> MutableSortedMap<K, V> create(Comparator<K> comp) {
+        return MutableSortedMapUsingJavaTreeMap.<K, V>create(comp);
+    }
 
-	private GoodMutableSortedMap() {
-	}
+    private GoodMutableSortedMap() {
+    }
 
 }

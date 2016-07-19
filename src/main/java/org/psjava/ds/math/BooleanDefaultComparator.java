@@ -6,13 +6,13 @@ import org.psjava.util.DefaultComparator;
 
 public class BooleanDefaultComparator {
 
-	private static final Comparator<Boolean> INSTANCE = new DefaultComparator<Boolean>();
+    private static final Comparator<Boolean> INSTANCE = new DefaultComparator<Boolean>();
 
-	public static Comparator<Boolean> getInstance() {
-		return INSTANCE;
-	}
+    public static Comparator<Boolean> getInstance() {
+        return INSTANCE;
+    }
 
-	private BooleanDefaultComparator() {
-	}
+    private BooleanDefaultComparator() {
+    }
 
 }

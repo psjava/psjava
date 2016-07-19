@@ -13,32 +13,32 @@ import org.psjava.goods.GoodSegmentTreeFactory;
  * @implementation {@link SegmentTreeByArrayImplementation}
  */
 public class SegmentTreeExample {
-	@Test
-	public void example() {
+    @Test
+    public void example() {
 
-		// Create an initial tree with an array, and a binary operator.
-		// The binary operator can be adder, multiplier or anything you define.
+        // Create an initial tree with an array, and a binary operator.
+        // The binary operator can be adder, multiplier or anything you define.
 
-		Array<Integer> init = MutableArrayFromVarargs.create(4, 3, 1, 5, 2);
+        Array<Integer> init = MutableArrayFromVarargs.create(4, 3, 1, 5, 2);
 
-		SegmentTree<Integer> maxTree = GoodSegmentTreeFactory.getInstance().create(init, new BinaryOperator<Integer>() {
-			@Override
-			public Integer calc(Integer a, Integer b) {
-				return Math.max(a, b);
-			}
-		});
+        SegmentTree<Integer> maxTree = GoodSegmentTreeFactory.getInstance().create(init, new BinaryOperator<Integer>() {
+            @Override
+            public Integer calc(Integer a, Integer b) {
+                return Math.max(a, b);
+            }
+        });
 
-		// query by range.
+        // query by range.
 
-		int max1 = maxTree.query(1, 4); // maximum is 5 among (3, 1, 5)
-		Assert.assertEquals(5, max1);
+        int max1 = maxTree.query(1, 4); // maximum is 5 among (3, 1, 5)
+        Assert.assertEquals(5, max1);
 
-		// update one element. and query again to get updated result.
+        // update one element. and query again to get updated result.
 
-		maxTree.update(2, 99);
+        maxTree.update(2, 99);
 
-		int max2 = maxTree.query(1, 4); // now, maximum is 99 among (3, 99, 5)
-		Assert.assertEquals(99, max2);
+        int max2 = maxTree.query(1, 4); // now, maximum is 99 among (3, 99, 5)
+        Assert.assertEquals(99, max2);
 
-	}
+    }
 }
