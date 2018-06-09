@@ -3,7 +3,7 @@ package org.psjava.ds.graph;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.set.MutableSet;
-import org.psjava.ds.set.Set;
+import org.psjava.ds.set.PSSet;
 import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.util.AssertStatus;
@@ -30,7 +30,7 @@ public class MutableGraph<V, E> implements Graph<V, E> {
     }
 
     @Override
-    public Set<V> getVertices() {
+    public PSSet<V> getVertices() {
         return vertices;
     }
 

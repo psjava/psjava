@@ -77,9 +77,9 @@ public class MutableSetUsingJavaSet<T> implements MutableSet<T> {
 
     @Override
     public boolean equals(Object obj) {
-        return StrictEqualityTester.areEqual(this, obj, new EqualityTester<Set<T>>() {
+        return StrictEqualityTester.areEqual(this, obj, new EqualityTester<PSSet<T>>() {
             @Override
-            public boolean areEqual(Set<T> o1, Set<T> o2) {
+            public boolean areEqual(PSSet<T> o1, PSSet<T> o2) {
                 return SetEqualityTester.areEqual(o1, o2);
             }
         });

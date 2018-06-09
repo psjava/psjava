@@ -1,7 +1,7 @@
 package org.psjava.ds.set;
 
 @Deprecated
-public interface MutableSet<T> extends Set<T> {
+public interface MutableSet<T> extends PSSet<T> {
     void clear();
 
     void add(T v);
