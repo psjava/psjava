@@ -4,7 +4,7 @@ import org.psjava.ds.KeyValuePair;
 
 public class MapEqualityTester {
 
-    public static <K, V> boolean areEqual(Map<K, V> m1, Map<K, V> m2) {
+    public static <K, V> boolean areEqual(PSMap<K, V> m1, PSMap<K, V> m2) {
         if (m1.size() != m2.size())
             return false;
         for (KeyValuePair<K, V> pair : m1) {

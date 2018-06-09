@@ -4,7 +4,7 @@ import org.psjava.util.DataGetter;
 
 public class DataGetterFromMap {
 
-    public static <K, V> DataGetter<K, V> wrap(final Map<K, V> map) {
+    public static <K, V> DataGetter<K, V> wrap(final PSMap<K, V> map) {
         return new DataGetter<K, V>() {
             @Override
             public V get(K k) {

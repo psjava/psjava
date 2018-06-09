@@ -81,9 +81,9 @@ public class MutableMapUsingJavaMap {
 
             @Override
             public boolean equals(Object obj) {
-                return StrictEqualityTester.areEqual(this, obj, new EqualityTester<Map<K, V>>() {
+                return StrictEqualityTester.areEqual(this, obj, new EqualityTester<PSMap<K, V>>() {
                     @Override
-                    public boolean areEqual(Map<K, V> m1, Map<K, V> m2) {
+                    public boolean areEqual(PSMap<K, V> m1, PSMap<K, V> m2) {
                         return MapEqualityTester.areEqual(m1, m2);
                     }
                 });

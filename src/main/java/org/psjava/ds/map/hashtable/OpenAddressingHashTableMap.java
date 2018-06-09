@@ -3,7 +3,7 @@ package org.psjava.ds.map.hashtable;
 import java.util.Iterator;
 
 import org.psjava.ds.KeyValuePair;
-import org.psjava.ds.map.Map;
+import org.psjava.ds.map.PSMap;
 import org.psjava.ds.map.MapEqualityTester;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.util.AssertStatus;
@@ -240,9 +240,9 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 
     @Override
     public boolean equals(Object obj) {
-        return StrictEqualityTester.areEqual(this, obj, new EqualityTester<Map<K, V>>() {
+        return StrictEqualityTester.areEqual(this, obj, new EqualityTester<PSMap<K, V>>() {
             @Override
-            public boolean areEqual(Map<K, V> o1, Map<K, V> o2) {
+            public boolean areEqual(PSMap<K, V> o1, PSMap<K, V> o2) {
                 return MapEqualityTester.areEqual(o1, o2);
             }
         });
