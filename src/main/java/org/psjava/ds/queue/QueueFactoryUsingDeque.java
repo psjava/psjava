@@ -1,6 +1,6 @@
 package org.psjava.ds.queue;
 
-import org.psjava.ds.deque.Deque;
+import org.psjava.ds.deque.PSDeque;
 import org.psjava.ds.deque.DequeFactory;
 
 public class QueueFactoryUsingDeque {
@@ -9,7 +9,7 @@ public class QueueFactoryUsingDeque {
         return new QueueFactory() {
             @Override
             public <T> Queue<T> create() {
-                final Deque<T> deque = dequeFactory.create();
+                final PSDeque<T> deque = dequeFactory.create();
                 return new Queue<T>() {
                     @Override
                     public void enque(T v) {

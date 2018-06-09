@@ -5,7 +5,7 @@ public class DynamicArrayDequeFactory {
     public static DequeFactory getInstance() {
         return new DequeFactory() {
             @Override
-            public <T> Deque<T> create() {
+            public <T> PSDeque<T> create() {
                 return DynamicArrayDeque.create();
             }
         };

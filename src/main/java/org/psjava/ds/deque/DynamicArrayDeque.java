@@ -4,7 +4,7 @@ import org.psjava.util.AssertStatus;
 import org.psjava.util.Java1DArray;
 import org.psjava.util.ZeroTo;
 
-public class DynamicArrayDeque<T> implements Deque<T> {
+public class DynamicArrayDeque<T> implements PSDeque<T> {
 
     public static <T> DynamicArrayDeque<T> create() {
         return new DynamicArrayDeque<T>();

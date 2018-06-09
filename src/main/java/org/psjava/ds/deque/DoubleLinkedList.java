@@ -6,7 +6,7 @@ import org.psjava.ds.Collection;
 import org.psjava.util.IterableToString;
 import org.psjava.util.ReadOnlyIterator;
 
-public class DoubleLinkedList<T> implements Deque<T>, Collection<T> {
+public class DoubleLinkedList<T> implements PSDeque<T>, Collection<T> {
 
     public static <T> DoubleLinkedList<T> create() {
         return new DoubleLinkedList<T>();

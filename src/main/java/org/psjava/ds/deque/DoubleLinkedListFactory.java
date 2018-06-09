@@ -5,7 +5,7 @@ public class DoubleLinkedListFactory {
     public static DequeFactory getInstance() {
         return new DequeFactory() {
             @Override
-            public <T> Deque<T> create() {
+            public <T> PSDeque<T> create() {
                 return DoubleLinkedList.create();
             }
         };
