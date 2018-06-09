@@ -1,6 +1,6 @@
 package org.psjava.algo;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFromIterable;
 import org.psjava.goods.GoodSortingAlgorithm;
@@ -14,12 +14,12 @@ public class PermutationWithRepetitionIterable {
 
     // SRM464-1-250 is a good problem to solve using this.
 
-    public static <T> Iterable<Array<T>> create(Iterable<T> items, final Comparator<T> comparator) {
+    public static <T> Iterable<PSArray<T>> create(Iterable<T> items, final Comparator<T> comparator) {
         MutableArray<T> initial = MutableArrayFromIterable.create(items);
         GoodSortingAlgorithm.getInstance().sort(initial, comparator);
-        return IterableUsingStatusUpdater.create(initial, new Updater<Array<T>>() {
+        return IterableUsingStatusUpdater.create(initial, new Updater<PSArray<T>>() {
             @Override
-            public Array<T> getUpdatedOrNull(Array<T> current) {
+            public PSArray<T> getUpdatedOrNull(PSArray<T> current) {
                 MutableArray<T> next = MutableArrayFromIterable.create(current);
                 boolean success = NextPermutation.step(next, comparator);
                 return success ? next : null;

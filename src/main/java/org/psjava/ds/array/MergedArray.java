@@ -5,7 +5,7 @@ import org.psjava.util.GetterByIndex;
 
 public class MergedArray {
 
-    public static <T> Array<T> wrap(final Array<T> left, final Array<T> right) {
+    public static <T> PSArray<T> wrap(final PSArray<T> left, final PSArray<T> right) {
         return ArrayFromItemGetter.create(left.size() + right.size(), new GetterByIndex<T>() {
             @Override
             public T get(int index) {

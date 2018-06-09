@@ -5,7 +5,7 @@ import java.util.Iterator;
 import org.psjava.util.ReadOnlyIterator;
 
 public class ArrayIterator {
-    public static <T> Iterator<T> create(final Array<T> a) {
+    public static <T> Iterator<T> create(final PSArray<T> a) {
         return new ReadOnlyIterator<T>() {
             int p = 0;
 

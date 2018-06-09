@@ -2,7 +2,7 @@ package org.psjava.algo.math.numbertheory;
 
 import java.util.Arrays;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.util.ZeroTo;
 
@@ -17,7 +17,7 @@ public class SieveOfEratosthenes {
     public static PrimeNumberSieve getInstance() {
         return new PrimeNumberSieve() {
             @Override
-            public Array<Integer> calcList(int max) {
+            public PSArray<Integer> calcList(int max) {
                 boolean[] prime = new boolean[max + 1];
                 Arrays.fill(prime, true);
                 prime[0] = false;

@@ -2,8 +2,7 @@ package org.psjava.algo.sequence.search;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.sequence.search.BinarySearchFirstInArray;
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArrayUsingIntArray;
 import org.psjava.util.DefaultComparator;
 
@@ -13,7 +12,7 @@ public class BinarySearchFirstInArrayTest {
 
     @Test
     public void test() {
-        Array<Integer> a = MutableArrayUsingIntArray.wrap(new int[]{1, 3, 3, 5, 7, 9});
+        PSArray<Integer> a = MutableArrayUsingIntArray.wrap(new int[]{1, 3, 3, 5, 7, 9});
         Assert.assertEquals(1, BinarySearchFirstInArray.search(a, COMP, 3, -1));
         Assert.assertEquals(-1, BinarySearchFirstInArray.search(a, COMP, 6, -1));
     }

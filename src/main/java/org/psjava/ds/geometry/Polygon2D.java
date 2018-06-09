@@ -1,6 +1,6 @@
 package org.psjava.ds.geometry;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArrayFromIterable;
 
 public class Polygon2D<T> {
@@ -9,13 +9,13 @@ public class Polygon2D<T> {
         return new Polygon2D<T>(ccwOrderPoints);
     }
 
-    private final Array<Point2D<T>> ccwOrderPoints;
+    private final PSArray<Point2D<T>> ccwOrderPoints;
 
     private Polygon2D(Iterable<Point2D<T>> ccwOrderPoints) {
         this.ccwOrderPoints = MutableArrayFromIterable.create(ccwOrderPoints);
     }
 
-    public Array<Point2D<T>> getCCWOrderPoints() {
+    public PSArray<Point2D<T>> getCCWOrderPoints() {
         return ccwOrderPoints;
     }
 

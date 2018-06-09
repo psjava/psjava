@@ -5,7 +5,7 @@ import org.psjava.util.GetterByIndex;
 
 public class RotatedArray {
 
-    public static <T> Array<T> wrap(final Array<T> original, final int newStartIndex) {
+    public static <T> PSArray<T> wrap(final PSArray<T> original, final int newStartIndex) {
         return ArrayFromItemGetter.create(original.size(), new GetterByIndex<T>() {
             @Override
             public T get(int index) {

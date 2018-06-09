@@ -8,7 +8,7 @@ import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.IterableToString;
 import org.psjava.util.StrictEqualityTester;
 
-public class DynamicArray<T> implements MutableArray<T>, EqualityTester<Array<T>> {
+public class DynamicArray<T> implements MutableArray<T>, EqualityTester<PSArray<T>> {
 
     public static <T> DynamicArray<T> create() {
         return new DynamicArray<T>();
@@ -75,7 +75,7 @@ public class DynamicArray<T> implements MutableArray<T>, EqualityTester<Array<T>
     }
 
     @Override
-    public boolean areEqual(Array<T> o1, Array<T> o2) {
+    public boolean areEqual(PSArray<T> o1, PSArray<T> o2) {
         return IterableEqualityTester.areEqual(o1, o2);
     }
 

@@ -9,7 +9,7 @@ import org.psjava.formula.geometry.StraightOrder;
 import org.psjava.formula.geometry.RightTurn;
 import org.psjava.formula.MinIndexInArray;
 import org.psjava.algo.sequence.sort.SortingAlgorithm;
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFromIterable;
@@ -43,36 +43,36 @@ public class DivideAndConquerConvexHull {
                 Comparator<Point2D<T>> xrycomp = SeriesComparator.create(xcomp, ReversedComparator.wrap(ycomp));
                 MutableArray<Point2D<T>> array = MutableArrayFromIterable.create(src);
                 sortingAlgorithm.sort(array, xycomp);
-                Array<Point2D<T>> hullPoints = getConvexHullPointsRecursively(array, 0, array.size(), xycomp, xrycomp, ns);
+                PSArray<Point2D<T>> hullPoints = getConvexHullPointsRecursively(array, 0, array.size(), xycomp, xrycomp, ns);
                 return Polygon2D.create(hullPoints);
             }
         };
     }
 
-    private static <T> Array<Point2D<T>> getConvexHullPointsRecursively(Array<Point2D<T>> src, int start, int end, Comparator<Point2D<T>> xycomp, Comparator<Point2D<T>> xrycomp, MultipliableNumberSystem<T> ns) {
+    private static <T> PSArray<Point2D<T>> getConvexHullPointsRecursively(PSArray<Point2D<T>> src, int start, int end, Comparator<Point2D<T>> xycomp, Comparator<Point2D<T>> xrycomp, MultipliableNumberSystem<T> ns) {
         if (end - start <= 2)
             return SubArray.wrap(src, start, end);
         int m = (start + end) / 2;
-        Array<Point2D<T>> left = getConvexHullPointsRecursively(src, start, m, xycomp, xrycomp, ns);
-        Array<Point2D<T>> right = getConvexHullPointsRecursively(src, m, end, xycomp, xrycomp, ns);
+        PSArray<Point2D<T>> left = getConvexHullPointsRecursively(src, start, m, xycomp, xrycomp, ns);
+        PSArray<Point2D<T>> right = getConvexHullPointsRecursively(src, m, end, xycomp, xrycomp, ns);
         return merge(left, right, xycomp, xrycomp, ns);
     }
 
-    private static <T> Array<Point2D<T>> merge(Array<Point2D<T>> left, Array<Point2D<T>> right, Comparator<Point2D<T>> xycomp, Comparator<Point2D<T>> xrycomp, MultipliableNumberSystem<T> ns) {
+    private static <T> PSArray<Point2D<T>> merge(PSArray<Point2D<T>> left, PSArray<Point2D<T>> right, Comparator<Point2D<T>> xycomp, Comparator<Point2D<T>> xrycomp, MultipliableNumberSystem<T> ns) {
         int leftUp = MaxIndexInArray.get(left, xycomp);
         int leftDown = MaxIndexInArray.get(left, xrycomp);
         int rightUp = MinIndexInArray.get(right, xrycomp);
         int rightDown = MinIndexInArray.get(right, xycomp);
         Index2D upIndex = findBridgeIndexes(right, left, rightUp, leftUp, ns);
         Index2D downIndex = findBridgeIndexes(left, right, leftDown, rightDown, ns);
-        Array<Point2D<T>> leftHalf = wrapToRotatingSubArray(left, upIndex.i2, downIndex.i1);
-        Array<Point2D<T>> rightHalf = wrapToRotatingSubArray(right, downIndex.i2, upIndex.i1);
-        Array<Point2D<T>> hullPoints = getPointsWithoutOnLine(MergedArray.wrap(leftHalf, rightHalf), ns);
+        PSArray<Point2D<T>> leftHalf = wrapToRotatingSubArray(left, upIndex.i2, downIndex.i1);
+        PSArray<Point2D<T>> rightHalf = wrapToRotatingSubArray(right, downIndex.i2, upIndex.i1);
+        PSArray<Point2D<T>> hullPoints = getPointsWithoutOnLine(MergedArray.wrap(leftHalf, rightHalf), ns);
         return hullPoints;
     }
 
     // early, later are ordered by ccw order.
-    private static <T> Index2D findBridgeIndexes(Array<Point2D<T>> earlyHull, Array<Point2D<T>> laterHull, int earlyStart, int laterStart, MultipliableNumberSystem<T> ns) {
+    private static <T> Index2D findBridgeIndexes(PSArray<Point2D<T>> earlyHull, PSArray<Point2D<T>> laterHull, int earlyStart, int laterStart, MultipliableNumberSystem<T> ns) {
         int early = earlyStart;
         int later = laterStart;
         while (true) {
@@ -88,7 +88,7 @@ public class DivideAndConquerConvexHull {
         return new Index2D(early, later);
     }
 
-    private static <T> Array<Point2D<T>> getPointsWithoutOnLine(Array<Point2D<T>> src, MultipliableNumberSystem<T> ns) {
+    private static <T> PSArray<Point2D<T>> getPointsWithoutOnLine(PSArray<Point2D<T>> src, MultipliableNumberSystem<T> ns) {
         if (src.size() < 3)
             return src;
         DynamicArray<Point2D<T>> r = DynamicArray.create();
@@ -110,7 +110,7 @@ public class DivideAndConquerConvexHull {
         return (index - 1 + size) % size;
     }
 
-    private static <T> Array<T> wrapToRotatingSubArray(Array<T> a, int from, int to) {
+    private static <T> PSArray<T> wrapToRotatingSubArray(PSArray<T> a, int from, int to) {
         int length = (to - from + a.size()) % a.size() + 1;
         return SubArray.wrap(RotatedArray.wrap(a, from), 0, length);
     }

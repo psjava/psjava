@@ -1,7 +1,7 @@
 package org.psjava.algo.geometry.convexhull;
 
 import org.psjava.algo.sequence.sort.SortingAlgorithm;
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.FirstInArray;
 import org.psjava.ds.array.LastInArray;
@@ -44,7 +44,7 @@ public class IncrementalMethod {
         };
     }
 
-    private static <T> DynamicArray<Point2D<T>> getLeftTurningHalfHullFromFirstPoint(Array<Point2D<T>> order, MultipliableNumberSystem<T> ns) {
+    private static <T> DynamicArray<Point2D<T>> getLeftTurningHalfHullFromFirstPoint(PSArray<Point2D<T>> order, MultipliableNumberSystem<T> ns) {
         DynamicArray<Point2D<T>> result = DynamicArray.create();
         result.addToLast(FirstInArray.getFirst(order));
         for (Point2D<T> newPoint : order) {
@@ -55,7 +55,7 @@ public class IncrementalMethod {
         return result;
     }
 
-    private static <T> boolean canRemoveLastPoint(Array<Point2D<T>> array, Point2D<T> newPoint, MultipliableNumberSystem<T> ns) {
+    private static <T> boolean canRemoveLastPoint(PSArray<Point2D<T>> array, Point2D<T> newPoint, MultipliableNumberSystem<T> ns) {
         return array.size() >= 2 && !LeftTurn.is(array.get(array.size() - 2), LastInArray.getLast(array), newPoint, ns);
     }
 

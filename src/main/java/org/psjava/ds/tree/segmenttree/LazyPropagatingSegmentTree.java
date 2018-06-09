@@ -1,6 +1,6 @@
 package org.psjava.ds.tree.segmenttree;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.tree.BinaryTreeNode;
 import org.psjava.ds.tree.BinaryTreeNodeFactory;
 
@@ -27,7 +27,7 @@ public class LazyPropagatingSegmentTree<T, U> {
     private final int size;
     final BinaryTreeNode<NodeData> root;
 
-    public LazyPropagatingSegmentTree(Array<T> initialData, EnhancedRangeUpdatableSegmentTreeOperator<T, U> operator) {
+    public LazyPropagatingSegmentTree(PSArray<T> initialData, EnhancedRangeUpdatableSegmentTreeOperator<T, U> operator) {
         this.operator = operator;
         size = initialData.size();
         if (size > 0)
@@ -36,7 +36,7 @@ public class LazyPropagatingSegmentTree<T, U> {
             root = null;
     }
 
-    private BinaryTreeNode<NodeData> construct(Array<T> initialData, int start, int end) {
+    private BinaryTreeNode<NodeData> construct(PSArray<T> initialData, int start, int end) {
         if (end - start == 1) {
             return BinaryTreeNodeFactory.create(new NodeData(initialData.get(start)));
         } else {

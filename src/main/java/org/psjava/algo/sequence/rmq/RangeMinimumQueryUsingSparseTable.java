@@ -2,7 +2,7 @@ package org.psjava.algo.sequence.rmq;
 
 import java.util.Comparator;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.formula.IntegerBinaryLogarithm;
 import org.psjava.util.FromTo;
 import org.psjava.util.ZeroTo;
@@ -19,7 +19,7 @@ public class RangeMinimumQueryUsingSparseTable {
     public static RangeMinimumQuery getInstance() {
         return new RangeMinimumQuery() {
             @Override
-            public <T> RangeMinimumQuerySession preprocess(final Array<T> a, final Comparator<T> comp) {
+            public <T> RangeMinimumQuerySession preprocess(final PSArray<T> a, final Comparator<T> comp) {
 
                 int p = Math.max(0, IntegerBinaryLogarithm.calc(a.size()) + 1);
                 final int[][] table = new int[a.size()][p];

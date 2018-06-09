@@ -2,7 +2,7 @@ package org.psjava.algo.sequence.rmq;
 
 import java.util.Comparator;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFactory;
 import org.psjava.ds.math.BinaryOperator;
@@ -23,7 +23,7 @@ public class RangeMinimumQueryUsingSegmentTree {
     public static RangeMinimumQuery getInstance(final SegmentTreeFactory treeFactory) {
         return new RangeMinimumQuery() {
             @Override
-            public <T> RangeMinimumQuerySession preprocess(final Array<T> a, final Comparator<T> comp) {
+            public <T> RangeMinimumQuerySession preprocess(final PSArray<T> a, final Comparator<T> comp) {
                 MutableArray<Integer> indexes = MutableArrayFactory.create(a.size(), 0);
                 for (int i : ZeroTo.get(a.size()))
                     indexes.set(i, i);

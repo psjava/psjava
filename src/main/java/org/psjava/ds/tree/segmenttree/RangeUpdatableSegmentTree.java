@@ -1,18 +1,18 @@
 package org.psjava.ds.tree.segmenttree;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.math.BinaryOperator;
 import org.psjava.formula.Power;
 
 public class RangeUpdatableSegmentTree<T> implements SegmentTree<T> {
 
-    public static final <T> RangeUpdatableSegmentTree<T> create(Array<T> initialData, BinaryOperator<T> operator) {
+    public static final <T> RangeUpdatableSegmentTree<T> create(PSArray<T> initialData, BinaryOperator<T> operator) {
         return new RangeUpdatableSegmentTree<T>(initialData, operator);
     }
 
     private LazyPropagatingSegmentTree<T, T> sub;
 
-    private RangeUpdatableSegmentTree(Array<T> initialData, final BinaryOperator<T> operator) {
+    private RangeUpdatableSegmentTree(PSArray<T> initialData, final BinaryOperator<T> operator) {
         sub = new LazyPropagatingSegmentTree<T, T>(initialData, new EnhancedRangeUpdatableSegmentTreeOperator<T, T>() {
             @Override
             public T mergeRangeValue(T oldRangeValue, int rangeSize, T updateData) {

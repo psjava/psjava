@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.sequence.search.BinarySearchFirst;
 import org.psjava.algo.sequence.search.BinarySearchFirstInArray;
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.ArrayFromVarargs;
 import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
@@ -28,7 +28,7 @@ public class BinarySearchExample {
 
         // Let's search 5 in a increasingly sorted array.
 
-        Array<Integer> inc = ArrayFromVarargs.create(1, 3, 5, 7, 9);
+        PSArray<Integer> inc = ArrayFromVarargs.create(1, 3, 5, 7, 9);
         int res1 = BinarySearchFirstInArray.search(inc, new DefaultComparator<Integer>(), 5, -1); // must be 2
         int res2 = BinarySearchFirstInArray.search(inc, new DefaultComparator<Integer>(), 6, -1); // must be -1, given by argument.
         Assert.assertEquals(2, res1);
@@ -37,7 +37,7 @@ public class BinarySearchExample {
         // Following is an example for decreasing array.
         // In this example, you can use a reversed comparator.
 
-        Array<Integer> dec = ArrayFromVarargs.create(9, 7, 5, 3, 1);
+        PSArray<Integer> dec = ArrayFromVarargs.create(9, 7, 5, 3, 1);
         int res3 = BinarySearchFirstInArray.search(dec, ReversedComparator.wrap(new DefaultComparator<Integer>()), 3, -1);
         Assert.assertEquals(3, res3);
 

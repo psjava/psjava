@@ -5,7 +5,7 @@ import org.psjava.util.GetterByIndex;
 
 public class ReversedArray {
 
-    public static <T> Array<T> wrap(final Array<T> original) {
+    public static <T> PSArray<T> wrap(final PSArray<T> original) {
         return ArrayFromItemGetter.create(original.size(), new GetterByIndex<T>() {
             @Override
             public T get(int index) {

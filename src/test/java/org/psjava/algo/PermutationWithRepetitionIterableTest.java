@@ -2,7 +2,7 @@ package org.psjava.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArrayUsingIntArray;
 import org.psjava.util.DefaultComparator;
 
@@ -14,7 +14,7 @@ public class PermutationWithRepetitionIterableTest {
         Assert.assertEquals("((1,1,2),(1,2,1),(2,1,1))", create(1, 2, 1).toString());
     }
 
-    private Iterable<Array<Integer>> create(int... items) {
+    private Iterable<PSArray<Integer>> create(int... items) {
         return PermutationWithRepetitionIterable.create(MutableArrayUsingIntArray.wrap(items), new DefaultComparator<Integer>());
     }
 

@@ -5,7 +5,7 @@ import org.psjava.util.GetterByIndex;
 
 public class CharacterArrayUsingString {
 
-    public static Array<Character> wrap(final String s) {
+    public static PSArray<Character> wrap(final String s) {
         return ArrayFromItemGetter.create(s.length(), new GetterByIndex<Character>() {
             @Override
             public Character get(int index) {

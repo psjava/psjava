@@ -1,12 +1,12 @@
 package org.psjava.util;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArrayFromIterable;
 
 public class SubSetIterable {
 
     public static <T> Iterable<Iterable<T>> create(final Iterable<T> superSet) {
-        final Array<T> array = MutableArrayFromIterable.create(superSet);
+        final PSArray<T> array = MutableArrayFromIterable.create(superSet);
         AssertStatus.assertTrue(array.size() <= 30, "too big set to iterate sub set");
         return ConvertedIterable.create(ZeroTo.get(1 << array.size()), new Converter<Integer, Iterable<T>>() {
             @Override

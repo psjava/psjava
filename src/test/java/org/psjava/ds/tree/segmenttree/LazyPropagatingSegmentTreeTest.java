@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArrayFromVarargs;
 import org.psjava.ds.array.UniformArray;
 import org.psjava.util.FromTo;
@@ -64,7 +64,7 @@ public class LazyPropagatingSegmentTreeTest {
         }
     }
 
-    private LazyPropagatingSegmentTree<Integer, Integer> createAddTree(Array<Integer> init) {
+    private LazyPropagatingSegmentTree<Integer, Integer> createAddTree(PSArray<Integer> init) {
         return new LazyPropagatingSegmentTree<Integer, Integer>(init, new EnhancedRangeUpdatableSegmentTreeOperator<Integer, Integer>() {
 
             @Override

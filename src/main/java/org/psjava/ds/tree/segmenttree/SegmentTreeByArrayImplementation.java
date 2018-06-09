@@ -1,6 +1,6 @@
 package org.psjava.ds.tree.segmenttree;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.BinaryTreeByArray;
 import org.psjava.util.AssertStatus;
@@ -15,7 +15,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
     private final BinaryTreeByArray<T> tree;
     private final int size;
 
-    public SegmentTreeByArrayImplementation(final Array<T> initialData, final BinaryOperator<T> merger) {
+    public SegmentTreeByArrayImplementation(final PSArray<T> initialData, final BinaryOperator<T> merger) {
         this.merger = merger;
         size = initialData.size();
         tree = new BinaryTreeByArray<T>();
@@ -23,7 +23,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
         construct(root, initialData, 0, initialData.size());
     }
 
-    private void construct(int node, Array<T> initialData, int start, int end) {
+    private void construct(int node, PSArray<T> initialData, int start, int end) {
         if (end - start == 1) {
             tree.setValue(node, initialData.get(start));
         } else {

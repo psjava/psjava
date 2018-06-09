@@ -2,7 +2,7 @@ package org.psjava.algo.sequence.rmq;
 
 import java.util.Comparator;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.formula.CeilingDivide;
 import org.psjava.util.AssertStatus;
@@ -21,7 +21,7 @@ public class RangeMinimumQueryBySquareRootApproach {
     public static RangeMinimumQuery getInstance() {
         return new RangeMinimumQuery() {
             @Override
-            public <T> RangeMinimumQuerySession preprocess(final Array<T> a, final Comparator<T> comp) {
+            public <T> RangeMinimumQuerySession preprocess(final PSArray<T> a, final Comparator<T> comp) {
                 final int partLength = Math.max(1, (int) Math.sqrt(a.size()));
                 final int[] minInPart = new int[CeilingDivide.calc(IntegerNumberSystem.getInstance(), a.size(), partLength)];
                 for (int i : ZeroTo.get(minInPart.length)) {

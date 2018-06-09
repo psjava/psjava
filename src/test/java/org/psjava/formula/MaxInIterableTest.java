@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Comparator;
 
 import org.junit.Test;
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.MutableArrayFromVarargs;
 import org.psjava.util.DefaultComparator;
@@ -16,7 +16,7 @@ public class MaxInIterableTest {
 
     @Test
     public void testMax() {
-        Array<Integer> a = MutableArrayFromVarargs.create(1, 3, 2);
+        PSArray<Integer> a = MutableArrayFromVarargs.create(1, 3, 2);
         assertEquals(3, (int) MaxInIterable.max(a, COMP));
     }
 

@@ -5,7 +5,7 @@ import org.psjava.util.GetterByIndex;
 
 public class UniformArray {
 
-    public static <T> Array<T> create(final T value, final int size) {
+    public static <T> PSArray<T> create(final T value, final int size) {
         return ArrayFromItemGetter.create(size, new GetterByIndex<T>() {
             @Override
             public T get(int index) {

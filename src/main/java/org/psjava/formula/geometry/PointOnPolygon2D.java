@@ -1,6 +1,6 @@
 package org.psjava.formula.geometry;
 
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.geometry.Point2D;
 import org.psjava.ds.geometry.Polygon2D;
 import org.psjava.ds.geometry.Segment2D;
@@ -10,7 +10,7 @@ import org.psjava.util.ZeroTo;
 public class PointOnPolygon2D {
 
     public static <T> boolean isOn(Point2D<T> point, Polygon2D<T> polygon, MultipliableNumberSystem<T> ns) {
-        Array<Point2D<T>> points = polygon.getCCWOrderPoints();
+        PSArray<Point2D<T>> points = polygon.getCCWOrderPoints();
         if (points.size() == 1)
             return point.equals(points.get(0));
         for (int i : ZeroTo.get(points.size())) {

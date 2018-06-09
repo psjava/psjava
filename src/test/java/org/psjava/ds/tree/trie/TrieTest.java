@@ -2,7 +2,7 @@ package org.psjava.ds.tree.trie;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.CharacterArrayUsingString;
 import org.psjava.goods.GoodTrieNodeFactory;
 
@@ -18,7 +18,7 @@ public class TrieTest {
         Assert.assertEquals(2, trie.getRoot().getChild('A').getChild('A').getChildCount());
     }
 
-    private Array<Character> toArray(String s) {
+    private PSArray<Character> toArray(String s) {
         return CharacterArrayUsingString.wrap(s);
     }
 

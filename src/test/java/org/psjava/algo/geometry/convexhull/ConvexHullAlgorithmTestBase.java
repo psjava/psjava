@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.sequence.search.LinearSearch;
 import org.psjava.ds.SetFromIterableV2;
-import org.psjava.ds.array.Array;
+import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.RotatedArray;
 import org.psjava.ds.geometry.Point2D;
@@ -63,15 +63,15 @@ abstract public class ConvexHullAlgorithmTestBase {
     }
 
     public void testAndAssert(int[][] expectedPairs, int[][] data) {
-        Array<Point2D<Integer>> expected = toPoints(expectedPairs);
+        PSArray<Point2D<Integer>> expected = toPoints(expectedPairs);
         Polygon2D<Integer> actual = getAlgorithm().calc(SetFromIterableV2.create(toPoints(data)), IntegerNumberSystem.getInstance());
         int index = LinearSearch.search(actual.getCCWOrderPoints(), expected.get(0), -1);
         Assert.assertTrue(index != -1);
-        Array<Point2D<Integer>> adjustedActual = RotatedArray.wrap(actual.getCCWOrderPoints(), index);
+        PSArray<Point2D<Integer>> adjustedActual = RotatedArray.wrap(actual.getCCWOrderPoints(), index);
         Assert.assertTrue(IterableEqualityTester.areEqual(expected, adjustedActual));
     }
 
-    private Array<Point2D<Integer>> toPoints(int[][] expectedHull) {
+    private PSArray<Point2D<Integer>> toPoints(int[][] expectedHull) {
         DynamicArray<Point2D<Integer>> points = DynamicArray.create();
         for (int[] pair : expectedHull)
             points.addToLast(Point2D.create(pair[0], pair[1]));

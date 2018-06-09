@@ -1,5 +1,5 @@
 package org.psjava.ds.array;
 
-public interface MutableArray<T> extends Array<T> {
+public interface MutableArray<T> extends PSArray<T> {
     void set(int index, T value);
 }

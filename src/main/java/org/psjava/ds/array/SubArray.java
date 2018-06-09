@@ -5,7 +5,7 @@ import org.psjava.util.GetterByIndex;
 
 public class SubArray {
 
-    public static <T> Array<T> wrap(final Array<T> original, final int start, final int end) {
+    public static <T> PSArray<T> wrap(final PSArray<T> original, final int start, final int end) {
         return ArrayFromItemGetter.create(end - start, new GetterByIndex<T>() {
             @Override
             public T get(int index) {
