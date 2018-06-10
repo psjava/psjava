@@ -3,7 +3,7 @@ package org.psjava.example.ds;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.goods.GoodStackFactory;
-import org.psjava.ds.stack.Stack;
+import org.psjava.ds.stack.PSStack;
 import org.psjava.ds.stack.StackFactory;
 import org.psjava.ds.stack.StackFactoryUsingDynamicArray;
 import org.psjava.ds.stack.StackFactoryUsingLinkedList;
@@ -18,7 +18,7 @@ public class StackExample {
     public void example() {
         StackFactory factory = GoodStackFactory.getInstance();
 
-        Stack<String> stack = factory.create();
+        PSStack<String> stack = factory.create();
         stack.push("A");
         stack.push("B");
         stack.push("C");

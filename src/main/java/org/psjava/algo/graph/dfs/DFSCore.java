@@ -8,7 +8,7 @@ import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodStackFactory;
-import org.psjava.ds.stack.Stack;
+import org.psjava.ds.stack.PSStack;
 import org.psjava.goods.GoodMutableMapFactory;
 
 public class DFSCore {
@@ -35,7 +35,7 @@ public class DFSCore {
     }
 
     public static <V, E extends DirectedEdge<V>> void traverse(Graph<V, E> graph, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
-        Stack<StackItem<V, E>> stack = GoodStackFactory.getInstance().create();
+        PSStack<StackItem<V, E>> stack = GoodStackFactory.getInstance().create();
         status.replace(start, DFSStatus.DISCOVERED);
         SimpleStopper stopper = new SimpleStopper();
         visitor.onDiscovered(start, 0, stopper);

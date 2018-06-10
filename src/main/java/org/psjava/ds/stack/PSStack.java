@@ -1,6 +1,7 @@
 package org.psjava.ds.stack;
 
-public interface Stack<T> {
+@Deprecated
+public interface PSStack<T> {
     void push(T v);
 
     T pop();

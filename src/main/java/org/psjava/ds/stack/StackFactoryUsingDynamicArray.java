@@ -8,8 +8,8 @@ public class StackFactoryUsingDynamicArray {
     public static StackFactory getInstance() {
         return new StackFactory() {
             @Override
-            public <T> Stack<T> create() {
-                return new Stack<T>() {
+            public <T> PSStack<T> create() {
+                return new PSStack<T>() {
                     DynamicArray<T> a = DynamicArray.create();
 
                     @Override
