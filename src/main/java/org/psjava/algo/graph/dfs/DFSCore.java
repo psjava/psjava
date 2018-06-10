@@ -1,10 +1,8 @@
 package org.psjava.algo.graph.dfs;
 
 import org.psjava.AdjacencyList;
+import org.psjava.DFSStatusMap;
 import org.psjava.algo.graph.bfs.SimpleStopper;
-import org.psjava.ds.PSCollection;
-import org.psjava.ds.map.MutableMap;
-import org.psjava.goods.GoodMutableMapFactory;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -27,16 +25,9 @@ public class DFSCore {
         }
     }
 
-    public static <V> MutableMap<V, DFSStatus> createInitialStatus(PSCollection<V> vertices) {
-        MutableMap<V, DFSStatus> r = GoodMutableMapFactory.getInstance().create();
-        for (V v : vertices)
-            r.add(v, DFSStatus.NOT_DISCOVERED); // TODO let empty as not discovered then vertices is not required
-        return r;
-    }
-
-    public static <V, E> void traverse(AdjacencyList<V, E> adj, Function<E, V> destination, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
+    public static <V, E> void traverse(AdjacencyList<V, E> adj, Function<E, V> destination, DFSStatusMap<V> status, V start, DFSVisitor<V, E> visitor) {
         Deque<StackItem<V, E>> stack = new ArrayDeque<>();
-        status.replace(start, DFSStatus.DISCOVERED);
+        status.set(start, DFSStatus.DISCOVERED);
         SimpleStopper stopper = new SimpleStopper();
         visitor.onDiscovered(start, 0, stopper);
         Iterator<E> iterator = adj.get(start).iterator();
@@ -51,7 +42,7 @@ public class DFSCore {
                 DFSStatus nextc = status.get(nextv);
                 if (nextc == DFSStatus.NOT_DISCOVERED) {
                     visitor.onWalkDown(edge);
-                    status.replace(item.v, DFSStatus.DISCOVERED);
+                    status.set(item.v, DFSStatus.DISCOVERED);
                     visitor.onDiscovered(nextv, item.depth + 1, stopper);
                     stack.addLast(new StackItem<>(nextv, edge, item.depth + 1, adj.get(nextv).iterator()));
                 } else if (nextc == DFSStatus.DISCOVERED) {
@@ -59,15 +50,12 @@ public class DFSCore {
                 }
             } else {
                 stack.pollLast();
-                status.replace(item.v, DFSStatus.EXPLORED);
+                status.set(item.v, DFSStatus.EXPLORED);
                 visitor.onFinish(item.v, item.depth);
                 if (item.e != null)
                     visitor.onWalkUp(item.e);
             }
         }
-    }
-
-    private DFSCore() {
     }
 
 }
