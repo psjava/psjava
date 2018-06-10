@@ -1,15 +1,15 @@
 package org.psjava.algo.graph.dfs;
 
-import java.util.Iterator;
-import java.util.function.Function;
-
 import org.psjava.AdjacencyList;
 import org.psjava.algo.graph.bfs.SimpleStopper;
 import org.psjava.ds.PSCollection;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.goods.GoodStackFactory;
-import org.psjava.ds.stack.PSStack;
 import org.psjava.goods.GoodMutableMapFactory;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.function.Function;
 
 public class DFSCore {
 
@@ -35,7 +35,7 @@ public class DFSCore {
     }
 
     public static <V, E> void traverse(AdjacencyList<V, E> adj, Function<E, V> destination, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
-        PSStack<StackItem<V, E>> stack = GoodStackFactory.getInstance().create();
+        Deque<StackItem<V, E>> stack = new ArrayDeque<>();
         status.replace(start, DFSStatus.DISCOVERED);
         SimpleStopper stopper = new SimpleStopper();
         visitor.onDiscovered(start, 0, stopper);
@@ -43,7 +43,7 @@ public class DFSCore {
         stack.push(new StackItem<>(start, null, 0, iterator));
 
         while (!stack.isEmpty() && !stopper.isStopped()) {
-            StackItem<V, E> item = stack.top();
+            StackItem<V, E> item = stack.peekLast();
 
             if (item.iter.hasNext()) {
                 E edge = item.iter.next();
@@ -53,12 +53,12 @@ public class DFSCore {
                     visitor.onWalkDown(edge);
                     status.replace(item.v, DFSStatus.DISCOVERED);
                     visitor.onDiscovered(nextv, item.depth + 1, stopper);
-                    stack.push(new StackItem<>(nextv, edge, item.depth + 1, adj.get(nextv).iterator()));
+                    stack.addLast(new StackItem<>(nextv, edge, item.depth + 1, adj.get(nextv).iterator()));
                 } else if (nextc == DFSStatus.DISCOVERED) {
                     visitor.onBackEdgeFound(edge);
                 }
             } else {
-                stack.pop();
+                stack.pollLast();
                 status.replace(item.v, DFSStatus.EXPLORED);
                 visitor.onFinish(item.v, item.depth);
                 if (item.e != null)
