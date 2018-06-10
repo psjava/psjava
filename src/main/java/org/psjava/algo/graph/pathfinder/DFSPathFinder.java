@@ -2,7 +2,7 @@ package org.psjava.algo.graph.pathfinder;
 
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.SingleSourceDFS;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
@@ -13,7 +13,7 @@ public class DFSPathFinder {
     public static PathFinder getInstance() {
         return new PathFinder() {
             @Override
-            public <V, E extends DirectedEdge<V>> Collection<E> find(Graph<V, E> adj, V start, final V end, Collection<E> def) {
+            public <V, E extends DirectedEdge<V>> PSCollection<E> find(Graph<V, E> adj, V start, final V end, PSCollection<E> def) {
                 final DynamicArray<E> history = new DynamicArray<E>();
                 SingleSourceDFS.traverse(adj, start, new DFSVisitorBase<V, E>() {
                     @Override

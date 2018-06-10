@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.SimpleDirectedWeightedEdge;
 import org.psjava.ds.math.Function;
 
@@ -21,7 +21,7 @@ public class SimpleDirectedWeightedGraph<V, W> implements Graph<V, SimpleDirecte
     }
 
     @Override
-    public Collection<V> getVertices() {
+    public PSCollection<V> getVertices() {
         return g.getVertices();
     }
 

@@ -1,7 +1,7 @@
 package org.psjava.ds;
 
 @Deprecated
-public interface Collection<T> extends Iterable<T> {
+public interface PSCollection<T> extends Iterable<T> {
     int size();
 
     boolean isEmpty();

@@ -1,10 +1,10 @@
 package org.psjava.algo.graph.shortestpath;
 
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 
 // TODO introduce Optional or as other name.
 public interface NegativeCycleFinderResult<E> {
     boolean hasCycle();
 
-    Collection<E> getPath();
+    PSCollection<E> getPath();
 }

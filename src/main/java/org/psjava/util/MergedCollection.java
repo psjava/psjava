@@ -2,12 +2,12 @@ package org.psjava.util;
 
 import java.util.Iterator;
 
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 
 public class MergedCollection {
 
-    public static <T> Collection<T> wrap(final Iterable<? extends Collection<? extends T>> collections) {
-        return new Collection<T>() {
+    public static <T> PSCollection<T> wrap(final Iterable<? extends PSCollection<? extends T>> collections) {
+        return new PSCollection<T>() {
             @Override
             public Iterator<T> iterator() {
                 return MergedIterator.create(collections);
@@ -15,7 +15,7 @@ public class MergedCollection {
 
             @Override
             public boolean isEmpty() {
-                for (Collection<? extends T> c : collections)
+                for (PSCollection<? extends T> c : collections)
                     if (!c.isEmpty())
                         return false;
                 return true;
@@ -24,7 +24,7 @@ public class MergedCollection {
             @Override
             public int size() {
                 int sum = 0;
-                for (Collection<? extends T> c : collections)
+                for (PSCollection<? extends T> c : collections)
                     sum += c.size();
                 return sum;
             }

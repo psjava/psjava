@@ -2,12 +2,12 @@ package org.psjava.util;
 
 import java.util.Iterator;
 
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 
 public class SingleElementCollection<T> {
 
-    public static <T> Collection<T> create(final T value) {
-        return new Collection<T>() {
+    public static <T> PSCollection<T> create(final T value) {
+        return new PSCollection<T>() {
             @Override
             public boolean isEmpty() {
                 return false;

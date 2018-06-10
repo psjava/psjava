@@ -1,9 +1,9 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 
 public interface Graph<V, E> {
-    Collection<V> getVertices();
+    PSCollection<V> getVertices();
 
     Iterable<E> getEdges(V from);
 }

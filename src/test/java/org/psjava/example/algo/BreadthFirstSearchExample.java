@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.bfs.BFS;
 import org.psjava.algo.graph.bfs.BFSVisitor;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.graph.MutableDirectedUnweightedGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.util.SingleElementCollection;
@@ -33,7 +33,7 @@ public class BreadthFirstSearchExample {
 
         // Then find a path from "A" to "D" by BFS.
 
-        Collection<String> starts = SingleElementCollection.create("A"); // You can specify multiple vertices. But here is one start vertex.
+        PSCollection<String> starts = SingleElementCollection.create("A"); // You can specify multiple vertices. But here is one start vertex.
 
         BFS.traverse(g, starts, new BFSVisitor<String, DirectedEdge<String>>() {
             @Override

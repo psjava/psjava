@@ -4,7 +4,7 @@ import org.psjava.algo.graph.bfs.BFS;
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.MultiSourceDFS;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.FirstInArray;
 import org.psjava.ds.array.LastInArray;
@@ -34,7 +34,7 @@ public class HopcroftKarpAlgorithm {
                 Graph<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);
                 while (true) {
                     Object bfsMark = new Object();
-                    Collection<Vertex<V>> bfsFinishes = bfs(adj, bfsMark);
+                    PSCollection<Vertex<V>> bfsFinishes = bfs(adj, bfsMark);
                     if (bfsFinishes.isEmpty())
                         break;
                     dfs(adj, bfsFinishes, bfsMark);
@@ -104,7 +104,7 @@ public class HopcroftKarpAlgorithm {
         return graph;
     }
 
-    private static <V> Collection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
+    private static <V> PSCollection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
         final DynamicArray<Vertex<V>> finishes = DynamicArray.create();
 
         Graph<Vertex<V>, Edge<V>> subGraph = EdgeFilteredSubGraph.wrap(adj, edge -> {
@@ -141,7 +141,7 @@ public class HopcroftKarpAlgorithm {
         return finishes;
     }
 
-    private static <V> void dfs(final Graph<Vertex<V>, Edge<V>> adj, final Collection<Vertex<V>> bfsFinishes, final Object bfsMark) {
+    private static <V> void dfs(final Graph<Vertex<V>, Edge<V>> adj, final PSCollection<Vertex<V>> bfsFinishes, final Object bfsMark) {
         // uses only edges discovered in bfs step.
         Graph<Vertex<V>, Edge<V>> subGraph = EdgeFilteredSubGraph.wrap(adj, edge -> edge.status.bfsMark == bfsMark);
 

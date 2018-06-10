@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 
 public class SimpleDirectedGraph<V, E extends DirectedEdge<V>> implements Graph<V, E> {
 
@@ -19,7 +19,7 @@ public class SimpleDirectedGraph<V, E extends DirectedEdge<V>> implements Graph<
     }
 
     @Override
-    public Collection<V> getVertices() {
+    public PSCollection<V> getVertices() {
         return graph.getVertices();
     }
 

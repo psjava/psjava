@@ -3,7 +3,7 @@ package org.psjava.algo.graph.mst;
 import java.util.Comparator;
 
 import org.psjava.algo.graph.NumberOfConnectedComponents;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.OppositeInUndirectedEdge;
@@ -23,7 +23,7 @@ public class PrimAlgorithm {
     public static MinimumSpanningTreeAlgorithm getInstance(final HeapFactory heapFactory, final MutableMapFactory mapFactory) {
         return new MinimumSpanningTreeAlgorithm() {
             @Override
-            public <W, V, E extends UndirectedWeightedEdge<V, W>> Collection<E> calc(Graph<V, E> graph, AddableNumberSystem<W> weightSystem) {
+            public <W, V, E extends UndirectedWeightedEdge<V, W>> PSCollection<E> calc(Graph<V, E> graph, AddableNumberSystem<W> weightSystem) {
                 AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
                 final InfinitableAddableNumberSystem<W> ns = InfinitableAddableNumberSystem.wrap(weightSystem);
 

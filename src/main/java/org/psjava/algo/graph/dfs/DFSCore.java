@@ -3,7 +3,7 @@ package org.psjava.algo.graph.dfs;
 import java.util.Iterator;
 
 import org.psjava.algo.graph.bfs.SimpleStopper;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
@@ -27,7 +27,7 @@ public class DFSCore {
         }
     }
 
-    public static <V> MutableMap<V, DFSStatus> createInitialStatus(Collection<V> vertices) {
+    public static <V> MutableMap<V, DFSStatus> createInitialStatus(PSCollection<V> vertices) {
         MutableMap<V, DFSStatus> r = GoodMutableMapFactory.getInstance().create();
         for (V v : vertices)
             r.add(v, DFSStatus.NOT_DISCOVERED);

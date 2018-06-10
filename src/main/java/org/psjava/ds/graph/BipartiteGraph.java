@@ -1,12 +1,12 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 
 public interface BipartiteGraph<V> {
 
-    Collection<V> getLeftVertices();
+    PSCollection<V> getLeftVertices();
 
-    Collection<V> getRightVertices();
+    PSCollection<V> getRightVertices();
 
     Iterable<BipartiteGraphEdge<V>> getEdges();
 

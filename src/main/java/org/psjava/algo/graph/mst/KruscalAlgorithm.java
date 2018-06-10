@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import org.psjava.algo.graph.NumberOfConnectedComponents;
 import org.psjava.algo.sequence.sort.SortingAlgorithm;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFromIterable;
@@ -22,7 +22,7 @@ public class KruscalAlgorithm {
     public static MinimumSpanningTreeAlgorithm getInstance(final SortingAlgorithm sort) {
         return new MinimumSpanningTreeAlgorithm() {
             @Override
-            public <W, V, E extends UndirectedWeightedEdge<V, W>> Collection<E> calc(Graph<V, E> graph, final AddableNumberSystem<W> ns) {
+            public <W, V, E extends UndirectedWeightedEdge<V, W>> PSCollection<E> calc(Graph<V, E> graph, final AddableNumberSystem<W> ns) {
                 AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
 
                 MutableArray<E> edges = MutableArrayFromIterable.create(AllEdgeInGraph.wrap(graph));

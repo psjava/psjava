@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.set.MutableSet;
 import org.psjava.goods.GoodMutableSetFactory;
@@ -38,12 +38,12 @@ public class MutableBipartiteGraph<V> implements BipartiteGraph<V> {
     }
 
     @Override
-    public Collection<V> getLeftVertices() {
+    public PSCollection<V> getLeftVertices() {
         return left;
     }
 
     @Override
-    public Collection<V> getRightVertices() {
+    public PSCollection<V> getRightVertices() {
         return right;
     }
 

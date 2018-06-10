@@ -2,7 +2,7 @@ package org.psjava.algo.graph.mst;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.graph.MutableUndirectedWeightedGraph;
 import org.psjava.ds.graph.TestGraphFactory;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
@@ -32,7 +32,7 @@ abstract public class MinimumSpanningTreeAlgorithmTestBase {
 
     private void assertResult(MutableUndirectedWeightedGraph<String, Integer> graph, int expectedTotal) {
         int total = 0;
-        Collection<UndirectedWeightedEdge<String, Integer>> tree = getInstance().calc(graph, IntegerNumberSystem.getInstance());
+        PSCollection<UndirectedWeightedEdge<String, Integer>> tree = getInstance().calc(graph, IntegerNumberSystem.getInstance());
         for (UndirectedWeightedEdge<String, Integer> e : tree)
             total += e.weight();
         Assert.assertEquals(expectedTotal, total);

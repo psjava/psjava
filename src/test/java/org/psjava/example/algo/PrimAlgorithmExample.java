@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.mst.MinimumSpanningTreeAlgorithm;
 import org.psjava.algo.graph.mst.PrimAlgorithm;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.graph.MutableUndirectedWeightedGraph;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
 import org.psjava.ds.heap.BinaryHeapFactory;
@@ -29,7 +29,7 @@ public class PrimAlgorithmExample {
 
         MinimumSpanningTreeAlgorithm algorithm = PrimAlgorithm.getInstance(BinaryHeapFactory.getInstance(), GoodMutableMapFactory.getInstance());
 
-        Collection<UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
+        PSCollection<UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
 
         int sum = 0;
         for (UndirectedWeightedEdge<String, Integer> e : tree)

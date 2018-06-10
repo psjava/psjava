@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.psjava.algo.graph.mst.KruscalAlgorithm;
 import org.psjava.algo.graph.mst.MinimumSpanningTreeAlgorithm;
 import org.psjava.algo.sequence.sort.RandomizedQuicksort;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.graph.MutableUndirectedWeightedGraph;
 import org.psjava.ds.graph.UndirectedWeightedEdge;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
@@ -28,7 +28,7 @@ public class KruscalAlgorithmExample {
 
         MinimumSpanningTreeAlgorithm algorithm = KruscalAlgorithm.getInstance(RandomizedQuicksort.getInstance());
 
-        Collection<UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
+        PSCollection<UndirectedWeightedEdge<String, Integer>> tree = algorithm.calc(graph, IntegerNumberSystem.getInstance());
 
         int sum = 0;
         for (UndirectedWeightedEdge<String, Integer> e : tree)

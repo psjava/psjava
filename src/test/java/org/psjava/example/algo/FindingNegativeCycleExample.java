@@ -3,7 +3,7 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.shortestpath.NegativeCycleFinder;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.SimpleDirectedWeightedEdge;
 import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
@@ -37,7 +37,7 @@ public class FindingNegativeCycleExample {
         // then, there is a negative cycle.
 
         boolean cycled2 = NegativeCycleFinder.find(g, g.getWeightFunction(), NS).hasCycle();
-        Collection<SimpleDirectedWeightedEdge<String, Integer>> path = NegativeCycleFinder.find(g, g.getWeightFunction(), NS).getPath();
+        PSCollection<SimpleDirectedWeightedEdge<String, Integer>> path = NegativeCycleFinder.find(g, g.getWeightFunction(), NS).getPath();
 
         Assert.assertFalse(cycled1);
         Assert.assertTrue(cycled2);

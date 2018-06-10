@@ -1,7 +1,7 @@
 package org.psjava.algo.graph.shortestpath;
 
 import org.psjava.algo.Relax;
-import org.psjava.ds.Collection;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedEdge;
@@ -96,7 +96,7 @@ public class NegativeCycleFinder {
             }
 
             @Override
-            public Collection<E> getPath() {
+            public PSCollection<E> getPath() {
                 AssertStatus.assertTrue(hasCycle(), "no cycle");
                 MutableSet<Object> visited = GoodMutableSetFactory.getInstance().create();
                 DoubleLinkedList<E> path = DoubleLinkedList.create();
