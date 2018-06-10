@@ -19,7 +19,7 @@ public class DFSCoreTest {
         Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirectedNew(new String[][]{{"1", "2"}, {"2", "3"}, {"3", "1"}});
         res = "";
         MutableMap<String, DFSStatus> status = DFSCore.createInitialStatus(g.getVertices());
-        DFSCore.traverse(g, DirectedEdge::to, status, "1", new DFSVisitor<String, DirectedEdge<String>>() {
+        DFSCore.traverse(g::getEdges, DirectedEdge::to, status, "1", new DFSVisitor<String, DirectedEdge<String>>() {
             @Override
             public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
                 res += "N" + vertex;
@@ -53,7 +53,7 @@ public class DFSCoreTest {
         Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirectedNew(new String[][]{{"A", "B"}, {"B", "C"}, {"C", "D"}});
         MutableMap<String, DFSStatus> status = DFSCore.createInitialStatus(g.getVertices());
         res = "";
-        DFSCore.traverse(g, DirectedEdge::to, status, "A", new DFSVisitorBase<String, DirectedEdge<String>>() {
+        DFSCore.traverse(g::getEdges, DirectedEdge::to, status, "A", new DFSVisitorBase<String, DirectedEdge<String>>() {
             @Override
             public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
                 res += vertex;

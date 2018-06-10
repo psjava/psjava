@@ -1,5 +1,6 @@
 package org.psjava.algo.graph.dfs;
 
+import org.psjava.AdjacencyList;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
@@ -14,10 +15,11 @@ public class MultiSourceDFS {
     }
 
     public static <V, E> void traverse(Graph<V, E> graph, Function<E, V> destination, Iterable<V> visitOrder, DFSVisitor<V, E> visitor) {
+        AdjacencyList<V, E> adj = graph::getEdges;
         MutableMap<V, DFSStatus> status = DFSCore.createInitialStatus(graph.getVertices());
         for (V v : visitOrder)
             if (status.get(v) == DFSStatus.NOT_DISCOVERED)
-                DFSCore.traverse(graph, destination, status, v, visitor);
+                DFSCore.traverse(adj, destination, status, v, visitor);
     }
 
 }
