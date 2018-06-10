@@ -1,11 +1,11 @@
 package org.psjava.algo.graph.dfs;
 
 import java.util.Iterator;
+import java.util.function.Function;
 
 import org.psjava.algo.graph.bfs.SimpleStopper;
 import org.psjava.ds.PSCollection;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodStackFactory;
 import org.psjava.ds.stack.PSStack;
@@ -34,26 +34,26 @@ public class DFSCore {
         return r;
     }
 
-    public static <V, E extends DirectedEdge<V>> void traverse(Graph<V, E> graph, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
+    public static <V, E> void traverse(Graph<V, E> graph, Function<E, V> destination, MutableMap<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
         PSStack<StackItem<V, E>> stack = GoodStackFactory.getInstance().create();
         status.replace(start, DFSStatus.DISCOVERED);
         SimpleStopper stopper = new SimpleStopper();
         visitor.onDiscovered(start, 0, stopper);
         Iterator<E> iterator = graph.getEdges(start).iterator();
-        stack.push(new StackItem<V, E>(start, null, 0, iterator));
+        stack.push(new StackItem<>(start, null, 0, iterator));
 
         while (!stack.isEmpty() && !stopper.isStopped()) {
             StackItem<V, E> item = stack.top();
 
             if (item.iter.hasNext()) {
                 E edge = item.iter.next();
-                V nextv = edge.to();
+                V nextv = destination.apply(edge);
                 DFSStatus nextc = status.get(nextv);
                 if (nextc == DFSStatus.NOT_DISCOVERED) {
                     visitor.onWalkDown(edge);
                     status.replace(item.v, DFSStatus.DISCOVERED);
                     visitor.onDiscovered(nextv, item.depth + 1, stopper);
-                    stack.push(new StackItem<V, E>(nextv, edge, item.depth + 1, graph.getEdges(nextv).iterator()));
+                    stack.push(new StackItem<>(nextv, edge, item.depth + 1, graph.getEdges(nextv).iterator()));
                 } else if (nextc == DFSStatus.DISCOVERED) {
                     visitor.onBackEdgeFound(edge);
                 }
