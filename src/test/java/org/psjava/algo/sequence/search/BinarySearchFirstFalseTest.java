@@ -2,9 +2,9 @@ package org.psjava.algo.sequence.search;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.sequence.search.BinarySearchFirstFalse;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
+
+import java.util.function.Function;
 
 public class BinarySearchFirstFalseTest {
 
@@ -12,7 +12,7 @@ public class BinarySearchFirstFalseTest {
     public void test() {
         int index = BinarySearchFirstFalse.search(IntegerNumberSystem.getInstance(), new Function<Integer, Boolean>() {
             @Override
-            public Boolean get(Integer index) {
+            public Boolean apply(Integer index) {
                 return index < 400;
             }
         }, -10000, 10000, -1);

@@ -1,6 +1,6 @@
 package org.psjava.algo.graph.flownetwork;
 
-import org.psjava.ds.math.Function;
+import java.util.function.Function;
 
 public interface MaximumFlowAlgorithmResult<F, E> {
     F calcTotalFlow();

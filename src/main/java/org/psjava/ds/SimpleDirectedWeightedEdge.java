@@ -1,14 +1,15 @@
 package org.psjava.ds;
 
 import org.psjava.ds.graph.DirectedEdge;
-import org.psjava.ds.math.Function;
+
+import java.util.function.Function;
 
 public class SimpleDirectedWeightedEdge<V, W> implements DirectedEdge<V> {
 
     public static <V, W> Function<SimpleDirectedWeightedEdge<V, W>, W> createWeightFunction() {
         return new Function<SimpleDirectedWeightedEdge<V, W>, W>() {
             @Override
-            public W get(SimpleDirectedWeightedEdge<V, W> a) {
+            public W apply(SimpleDirectedWeightedEdge<V, W> a) {
                 return a.weight;
             }
         };

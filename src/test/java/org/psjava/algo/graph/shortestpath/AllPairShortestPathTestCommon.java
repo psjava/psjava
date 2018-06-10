@@ -34,7 +34,7 @@ abstract public class AllPairShortestPathTestCommon {
                 Assert.assertEquals(expected[i][j], (int) actual.getDistance(toString(i), toString(j)));
                 int tot = 0;
                 for (SimpleDirectedWeightedEdge<String, Integer> e : actual.getPath(toString(i), toString(j)))
-                    tot += g.getWeightFunction().get(e);
+                    tot += g.getWeightFunction().apply(e);
                 Assert.assertEquals(expected[i][j], tot);
             }
         }

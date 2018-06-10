@@ -9,10 +9,10 @@ import org.psjava.ds.heap.HeapFactory;
 import org.psjava.ds.heap.HeapNode;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
 
 import java.util.Comparator;
+import java.util.function.Function;
 
 public class DijkstraAlgorithm {
 

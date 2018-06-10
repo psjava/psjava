@@ -2,9 +2,10 @@ package org.psjava.algo;
 
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableNumber;
+
+import java.util.function.Function;
 
 public class Relax {
 
@@ -13,7 +14,7 @@ public class Relax {
         if (fromDistance.isInfinity())
             return false;
 
-        InfinitableNumber<W> weight = InfinitableNumber.getFiniteInstance(weightFunction.get(edge));
+        InfinitableNumber<W> weight = InfinitableNumber.getFiniteInstance(weightFunction.apply(edge));
         InfinitableNumber<W> oldDistance = distance.get(edge.to());
         InfinitableNumber<W> newDistance = ns.add(fromDistance, weight);
         if (ns.compare(oldDistance, newDistance) > 0) {

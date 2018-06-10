@@ -1,9 +1,9 @@
 package org.psjava.algo.sequence.search;
 
 import java.util.Comparator;
+import java.util.function.Function;
 
 import org.psjava.ds.math.BooleanDefaultComparator;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerDivisableNumberSystem;
 import org.psjava.util.ReversedComparator;
 

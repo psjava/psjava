@@ -7,12 +7,13 @@ import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.MutableGraph;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
 import org.psjava.ds.set.MutableSet;
 import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.util.AssertStatus;
+
+import java.util.function.Function;
 
 // Finds any one of possible negative cycles in a graph.
 public class NegativeCycleFinder {
@@ -63,7 +64,7 @@ public class NegativeCycleFinder {
         for (V v : original.getVertices())
             r.insertVertex(v);
         for (E e : AllEdgeInGraph.wrap(original))
-            r.addEdge(e.from(), new AugmentedEdge<V, W, E>(e.from(), e.to(), originalWeight.get(e), e));
+            r.addEdge(e.from(), new AugmentedEdge<V, W, E>(e.from(), e.to(), originalWeight.apply(e), e));
         r.insertVertex(VIRTUAL_START);
         for (V v : original.getVertices())
             r.addEdge(VIRTUAL_START, new AugmentedEdge<V, W, E>(VIRTUAL_START, v, ns.getZero(), null));
@@ -73,7 +74,7 @@ public class NegativeCycleFinder {
     private static <V, W, E extends DirectedEdge<V>> Function<AugmentedEdge<V, W, E>, W> getWeightFunction() {
         return new Function<AugmentedEdge<V, W, E>, W>() {
             @Override
-            public W get(AugmentedEdge<V, W, E> e) {
+            public W apply(AugmentedEdge<V, W, E> e) {
                 return e.weight;
             }
         };

@@ -1,13 +1,13 @@
 package org.psjava.algo.graph.shortestpath;
 
 import java.util.LinkedList;
+import java.util.function.Function;
 
 import org.psjava.algo.AllPairShortestPath;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.util.AssertStatus;
@@ -35,8 +35,8 @@ public class FloydWarshallAlgorithm {
 
             for (E edge : AllEdgeInGraph.wrap(graph)) {
                 Status<V, E, W> s = status.get(Pair.create(edge.from(), edge.to()));
-                if (s.distance == null || ns.compare(s.distance, weight.get(edge)) > 0) {
-                    s.distance = weight.get(edge);
+                if (s.distance == null || ns.compare(s.distance, weight.apply(edge)) > 0) {
+                    s.distance = weight.apply(edge);
                     s.directEdge = edge;
                 }
             }

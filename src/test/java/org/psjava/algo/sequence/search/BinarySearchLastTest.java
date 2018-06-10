@@ -2,10 +2,10 @@ package org.psjava.algo.sequence.search;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.sequence.search.BinarySearchLast;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.util.DefaultComparator;
+
+import java.util.function.Function;
 
 public class BinarySearchLastTest {
 
@@ -16,7 +16,7 @@ public class BinarySearchLastTest {
     public void test() {
         Function<Integer, Integer> f = new Function<Integer, Integer>() {
             @Override
-            public Integer get(Integer input) {
+            public Integer apply(Integer input) {
                 return input / 2;
             }
         };

@@ -8,9 +8,10 @@ import org.psjava.ds.graph.Graph;
 import org.psjava.ds.SimpleDirectedWeightedEdge;
 import org.psjava.ds.graph.SimpleDirectedWeightedGraph;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
+
+import java.util.function.Function;
 
 /**
  * Johnson's algorithm allows negative edge weight. but not negative cycles.
@@ -45,16 +46,16 @@ public class JohnsonAlgorithm {
             res.addEdge(VIRTUAL_START, v, ns.getZero());
         }
         for (E e : AllEdgeInGraph.wrap(original))
-            res.addEdge(e.from(), e.to(), weight.get(e));
+            res.addEdge(e.from(), e.to(), weight.apply(e));
         return res;
     }
 
     private static <V, W, E extends DirectedEdge<V>> Function<E, W> reweight(final Function<E, W> original, final SingleSourceShortestPathResult<Object, W, SimpleDirectedWeightedEdge<Object, W>> bellmanFordResult, final AddableNumberSystem<W> ns) {
         return new Function<E, W>() {
             @Override
-            public W get(E e) {
+            public W apply(E e) {
                 W adjust = ns.subtract(bellmanFordResult.getDistance(e.from()), bellmanFordResult.getDistance(e.to()));
-                return ns.add(original.get(e), adjust);
+                return ns.add(original.apply(e), adjust);
             }
         };
     }

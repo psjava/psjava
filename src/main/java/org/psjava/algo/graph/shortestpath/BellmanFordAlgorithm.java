@@ -5,10 +5,11 @@ import org.psjava.algo.SingleSourceShortestPathAlgorithm;
 import org.psjava.ds.graph.AllEdgeInGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
 import org.psjava.util.AssertStatus;
+
+import java.util.function.Function;
 
 public class BellmanFordAlgorithm {
 

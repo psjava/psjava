@@ -6,10 +6,11 @@ import org.psjava.algo.sequence.search.BinarySearchFirst;
 import org.psjava.algo.sequence.search.BinarySearchFirstInArray;
 import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.ArrayFromVarargs;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.util.DefaultComparator;
 import org.psjava.util.ReversedComparator;
+
+import java.util.function.Function;
 
 /**
  * @implementation {@link BinarySearchFirst}
@@ -46,7 +47,7 @@ public class BinarySearchExample {
 
         Function<Integer, Integer> f = new Function<Integer, Integer>() {
             @Override
-            public Integer get(Integer x) {
+            public Integer apply(Integer x) {
                 return x * 8;
             }
         };

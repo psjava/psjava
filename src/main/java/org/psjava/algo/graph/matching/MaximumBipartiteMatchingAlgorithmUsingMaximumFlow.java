@@ -10,9 +10,10 @@ import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.MutableCapacityGraph;
 import org.psjava.ds.map.PSMap;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
+
+import java.util.function.Function;
 
 public class MaximumBipartiteMatchingAlgorithmUsingMaximumFlow {
 
@@ -52,7 +53,7 @@ public class MaximumBipartiteMatchingAlgorithmUsingMaximumFlow {
         Function<CapacityEdge<Object, Integer>, Integer> flowFunction = maxFlowResult.calcFlowFunction();
         MutableMap<V, V> map = GoodMutableMapFactory.getInstance().create();
         for (CapacityEdge<Object, Integer> e : AllEdgeInGraph.wrap(augmented)) {
-            if (flowFunction.get(e) == 1) {
+            if (flowFunction.apply(e) == 1) {
                 if (e.from() != VIRTUAL_START && e.to() != VIRTUAl_END) {
                     map.add((V) e.from(), (V) e.to());
                     map.add((V) e.to(), (V) e.from());

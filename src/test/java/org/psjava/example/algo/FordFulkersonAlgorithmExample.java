@@ -8,8 +8,9 @@ import org.psjava.algo.graph.flownetwork.MaximumFlowAlgorithmResult;
 import org.psjava.algo.graph.pathfinder.DFSPathFinder;
 import org.psjava.ds.graph.CapacityEdge;
 import org.psjava.ds.graph.MutableCapacityGraph;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
+
+import java.util.function.Function;
 
 /**
  * @implementation {@link FordFulkersonAlgorithm}
@@ -42,7 +43,7 @@ public class FordFulkersonAlgorithmExample {
 
         Function<CapacityEdge<String, Integer>, Integer> flowFunction = result.calcFlowFunction();
         for (CapacityEdge<String, Integer> e : capacityGraph.getEdges("A"))
-            flowFunction.get(e);
+            flowFunction.apply(e);
 
         Assert.assertEquals(5, flow);
     }

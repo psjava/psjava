@@ -8,12 +8,13 @@ import org.psjava.ds.graph.RootedTree;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.ds.math.BinaryOperator;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddInvert;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
 import org.psjava.ds.tree.segmenttree.SegmentTreeFactory;
 import org.psjava.util.VisitorStopper;
+
+import java.util.function.Function;
 
 // TODO this is not used any problem. solve something to prove this.
 public class DistanceCalculatorInRootedTree {
@@ -46,14 +47,14 @@ public class DistanceCalculatorInRootedTree {
             public void onWalkDown(E outEdge) {
                 int index = pathWeights.size();
                 indexOfWalkingDown.add(outEdge.to(), index);
-                pathWeights.addToLast(weight.get(outEdge));
+                pathWeights.addToLast(weight.apply(outEdge));
             }
 
             @Override
             public void onWalkUp(E edge) {
                 int index = pathWeights.size();
                 indexOfWalkingUp.add(edge.to(), index);
-                pathWeights.addToLast(AddInvert.calc(ns, weight.get(edge)));
+                pathWeights.addToLast(AddInvert.calc(ns, weight.apply(edge)));
             }
         });
 

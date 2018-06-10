@@ -1,8 +1,8 @@
 package org.psjava.algo.sequence.search;
 
 import java.util.Comparator;
+import java.util.function.Function;
 
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddInvert;
 import org.psjava.ds.numbersystrem.IntegerDivisableNumberSystem;
 import org.psjava.formula.Decrease;

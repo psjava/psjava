@@ -2,9 +2,9 @@ package org.psjava.algo.sequence.search;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.sequence.search.BinarySearchLastFalse;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
+
+import java.util.function.Function;
 
 public class BinarySearchLastFalseTest {
 
@@ -12,7 +12,7 @@ public class BinarySearchLastFalseTest {
     public void testNormal() {
         int actual = BinarySearchLastFalse.search(IntegerNumberSystem.getInstance(), new Function<Integer, Boolean>() {
             @Override
-            public Boolean get(Integer x) {
+            public Boolean apply(Integer x) {
                 return x >= 5;
             }
         }, 0, 10, -1);

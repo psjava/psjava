@@ -5,9 +5,10 @@ import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResult;
 import org.psjava.algo.graph.shortestpath.SingleSourceShortestPathResultFactory;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
+
+import java.util.function.Function;
 
 public class SingleSourceShortestPathAlgorithmFactory {
 

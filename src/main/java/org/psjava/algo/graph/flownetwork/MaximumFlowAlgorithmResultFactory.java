@@ -4,9 +4,10 @@ import org.psjava.algo.math.FunctionFromMap;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.FlowNetworkEdge;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.ds.math.Function;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
+
+import java.util.function.Function;
 
 public class MaximumFlowAlgorithmResultFactory {
 
