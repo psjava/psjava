@@ -2,14 +2,13 @@ package org.psjava.algo.graph.matching;
 
 import org.psjava.AdjacencyList;
 import org.psjava.EdgeFilteredSubAdjacencyList;
+import org.psjava.First;
+import org.psjava.Last;
+import org.psjava.RemoveLast;
 import org.psjava.algo.graph.bfs.BFS;
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.MultiSourceDFS;
-import org.psjava.ds.PSCollection;
-import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.array.FirstInArray;
-import org.psjava.ds.array.LastInArray;
 import org.psjava.ds.graph.EdgeFilteredSubGraph;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.SimpleDirectedGraph;
@@ -23,6 +22,10 @@ import org.psjava.util.FilteredIterable;
 import org.psjava.util.VisitorStopper;
 import org.psjava.util.ZeroTo;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 // O(V*root(E))
 public class HopcroftKarpAlgorithm {
 
@@ -33,7 +36,7 @@ public class HopcroftKarpAlgorithm {
                 Graph<Vertex<V>, Edge<V>> graph = wrapAsGraph(bg);
                 while (true) {
                     Object bfsMark = new Object();
-                    PSCollection<Vertex<V>> bfsFinishes = bfs(graph, bfsMark);
+                    Collection<Vertex<V>> bfsFinishes = bfs(graph, bfsMark);
                     if (bfsFinishes.isEmpty())
                         break;
                     dfs(graph::getEdges, bfsFinishes, bfsMark);
@@ -103,8 +106,8 @@ public class HopcroftKarpAlgorithm {
         return graph;
     }
 
-    private static <V> PSCollection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
-        final DynamicArray<Vertex<V>> finishes = DynamicArray.create();
+    private static <V> Collection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
+        final List<Vertex<V>> finishes = new ArrayList<>();
 
         Graph<Vertex<V>, Edge<V>> subGraph = EdgeFilteredSubGraph.wrap(adj, edge -> {
             // to alternate matched and non-matched edges.
@@ -124,7 +127,7 @@ public class HopcroftKarpAlgorithm {
                 if (finishDepth == -1 || depth <= finishDepth) {
                     if (vertex.side == Side.RIGHT && vertex.free) {
                         finishDepth = depth;
-                        finishes.addToLast(vertex);
+                        finishes.add(vertex);
                     }
                 } else {
                     stopper.stop();
@@ -140,21 +143,21 @@ public class HopcroftKarpAlgorithm {
         return finishes;
     }
 
-    private static <V> void dfs(AdjacencyList<Vertex<V>, Edge<V>> adj, final PSCollection<Vertex<V>> bfsFinishes, final Object bfsMark) {
+    private static <V> void dfs(AdjacencyList<Vertex<V>, Edge<V>> adj, Collection<Vertex<V>> bfsFinishes, Object bfsMark) {
         // uses only edges discovered in bfs step.
         AdjacencyList<Vertex<V>, Edge<V>> subAdj = EdgeFilteredSubAdjacencyList.wrap(adj, edge -> edge.status.bfsMark == bfsMark);
 
         MultiSourceDFS.traverse(subAdj, DirectedEdge::to, bfsFinishes, new DFSVisitorBase<Vertex<V>, Edge<V>>() {
-            DynamicArray<Edge<V>> path = DynamicArray.create();
+            List<Edge<V>> path = new ArrayList<>();
 
             @Override
             public void onWalkDown(Edge<V> edge) {
-                path.addToLast(edge);
+                path.add(edge);
             }
 
             @Override
             public void onWalkUp(Edge<V> downedEdge) {
-                path.removeLast();
+                RemoveLast.removeLast(path);
             }
 
             @Override
@@ -162,8 +165,8 @@ public class HopcroftKarpAlgorithm {
                 if (wasBfsStart(v)) {
                     for (int index : ZeroTo.get(path.size()))
                         path.get(index).status.inMatch = (index % 2 == 0);
-                    FirstInArray.getFirst(path).from.free = false;
-                    LastInArray.getLast(path).to.free = false;
+                    First.first(path).from.free = false;
+                    Last.last(path).to.free = false;
                 }
             }
 
