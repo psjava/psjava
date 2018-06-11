@@ -38,14 +38,14 @@ public class DFSCore {
 
             if (item.iter.hasNext()) {
                 E edge = item.iter.next();
-                V nextv = destination.apply(edge);
-                DFSStatus nextc = status.get(nextv);
-                if (nextc == DFSStatus.NOT_DISCOVERED) {
+                V dest = destination.apply(edge);
+                DFSStatus destStatus = status.get(dest);
+                if (destStatus == DFSStatus.NOT_DISCOVERED) {
                     visitor.onWalkDown(edge);
                     status.set(item.v, DFSStatus.DISCOVERED);
-                    visitor.onDiscovered(nextv, item.depth + 1, stopper);
-                    stack.addLast(new StackItem<>(nextv, edge, item.depth + 1, adj.get(nextv).iterator()));
-                } else if (nextc == DFSStatus.DISCOVERED) {
+                    visitor.onDiscovered(dest, item.depth + 1, stopper);
+                    stack.addLast(new StackItem<>(dest, edge, item.depth + 1, adj.get(dest).iterator()));
+                } else if (destStatus == DFSStatus.DISCOVERED) {
                     visitor.onBackEdgeFound(edge);
                 }
             } else {
