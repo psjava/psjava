@@ -1,5 +1,7 @@
 package org.psjava.algo.graph.matching;
 
+import org.psjava.AdjacencyList;
+import org.psjava.EdgeFilteredSubAdjacencyList;
 import org.psjava.algo.graph.bfs.BFS;
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
@@ -21,25 +23,22 @@ import org.psjava.util.FilteredIterable;
 import org.psjava.util.VisitorStopper;
 import org.psjava.util.ZeroTo;
 
-/**
- * O(V*root(E))
- */
-
+// O(V*root(E))
 public class HopcroftKarpAlgorithm {
 
     public static MaximumBipartiteMatchingAlgorithm getInstance() {
         return new MaximumBipartiteMatchingAlgorithm() {
             @Override
             public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> bg) {
-                Graph<Vertex<V>, Edge<V>> adj = wrapAsGraph(bg);
+                Graph<Vertex<V>, Edge<V>> graph = wrapAsGraph(bg);
                 while (true) {
                     Object bfsMark = new Object();
-                    PSCollection<Vertex<V>> bfsFinishes = bfs(adj, bfsMark);
+                    PSCollection<Vertex<V>> bfsFinishes = bfs(graph, bfsMark);
                     if (bfsFinishes.isEmpty())
                         break;
-                    dfs(adj, bfsFinishes, bfsMark);
+                    dfs(graph::getEdges, bfsFinishes, bfsMark);
                 }
-                return createResult(adj);
+                return createResult(graph);
             }
 
         };
@@ -141,11 +140,11 @@ public class HopcroftKarpAlgorithm {
         return finishes;
     }
 
-    private static <V> void dfs(final Graph<Vertex<V>, Edge<V>> adj, final PSCollection<Vertex<V>> bfsFinishes, final Object bfsMark) {
+    private static <V> void dfs(AdjacencyList<Vertex<V>, Edge<V>> adj, final PSCollection<Vertex<V>> bfsFinishes, final Object bfsMark) {
         // uses only edges discovered in bfs step.
-        Graph<Vertex<V>, Edge<V>> subGraph = EdgeFilteredSubGraph.wrap(adj, edge -> edge.status.bfsMark == bfsMark);
+        AdjacencyList<Vertex<V>, Edge<V>> subAdj = EdgeFilteredSubAdjacencyList.wrap(adj, edge -> edge.status.bfsMark == bfsMark);
 
-        MultiSourceDFS.traverse(subGraph, bfsFinishes, new DFSVisitorBase<Vertex<V>, Edge<V>>() {
+        MultiSourceDFS.traverse(subAdj, DirectedEdge::to, bfsFinishes, new DFSVisitorBase<Vertex<V>, Edge<V>>() {
             DynamicArray<Edge<V>> path = DynamicArray.create();
 
             @Override
@@ -200,6 +199,4 @@ public class HopcroftKarpAlgorithm {
         };
     }
 
-    private HopcroftKarpAlgorithm() {
-    }
 }
