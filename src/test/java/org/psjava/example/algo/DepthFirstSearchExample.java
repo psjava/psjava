@@ -57,7 +57,7 @@ public class DepthFirstSearchExample {
             }
 
             @Override
-            public void onFinish(String vertex, int depth) {
+            public void onFinish(String vertex) {
             }
 
             @Override

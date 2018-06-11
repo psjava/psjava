@@ -9,7 +9,7 @@ public class DFSVisitorBase<V, E> implements DFSVisitor<V, E> {
     }
 
     @Override
-    public void onFinish(V vertex, int depth) {
+    public void onFinish(V vertex) {
     }
 
     @Override

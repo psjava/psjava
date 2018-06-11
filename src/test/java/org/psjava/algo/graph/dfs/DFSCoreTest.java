@@ -30,7 +30,7 @@ public class DFSCoreTest {
             }
 
             @Override
-            public void onFinish(String vertex, int depth) {
+            public void onFinish(String vertex) {
                 res += "F" + vertex;
             }
 

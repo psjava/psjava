@@ -51,7 +51,7 @@ public class DFSCore {
             } else {
                 stack.pollLast();
                 status.set(item.v, DFSStatus.EXPLORED);
-                visitor.onFinish(item.v, item.depth);
+                visitor.onFinish(item.v);
                 if (item.e != null)
                     visitor.onWalkUp(item.e);
             }
