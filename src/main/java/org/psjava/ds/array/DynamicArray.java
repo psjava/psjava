@@ -8,6 +8,7 @@ import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.IterableToString;
 import org.psjava.util.StrictEqualityTester;
 
+@Deprecated
 public class DynamicArray<T> implements MutableArray<T>, EqualityTester<PSArray<T>> {
 
     public static <T> DynamicArray<T> create() {
