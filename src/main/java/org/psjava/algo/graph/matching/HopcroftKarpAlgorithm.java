@@ -162,16 +162,12 @@ public class HopcroftKarpAlgorithm {
 
             @Override
             public void onDiscovered(Vertex<V> v, int depth, VisitorStopper stopper) {
-                if (wasBfsStart(v)) {
+                if (v.side == Side.LEFT && v.free) {
                     for (int index : ZeroTo.get(path.size()))
                         path.get(index).status.inMatch = (index % 2 == 0);
                     First.first(path).from.free = false;
                     Last.last(path).to.free = false;
                 }
-            }
-
-            private boolean wasBfsStart(Vertex<V> v) {
-                return v.side == Side.LEFT && v.free;
             }
 
         });
