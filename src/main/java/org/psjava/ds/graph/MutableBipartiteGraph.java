@@ -7,6 +7,7 @@ import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.util.AssertStatus;
 import org.psjava.util.IterableToString;
 
+@Deprecated
 public class MutableBipartiteGraph<V> implements BipartiteGraph<V> {
 
     public static <V> MutableBipartiteGraph<V> create() {
