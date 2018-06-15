@@ -1,10 +1,10 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.PSCollection;
+import java.util.Collection;
 
 @Deprecated
 public interface Graph<V, E> {
-    PSCollection<V> getVertices();
+    Collection<V> getVertices();
 
     Iterable<E> getEdges(V from);
 }

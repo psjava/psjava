@@ -1,12 +1,12 @@
 package org.psjava.ds.graph;
 
+import org.psjava.ds.HashSetFactory;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.ds.set.MutableSet;
-import org.psjava.ds.set.PSSet;
 import org.psjava.goods.GoodMutableMapFactory;
-import org.psjava.goods.GoodMutableSetFactory;
 import org.psjava.util.AssertStatus;
+
+import java.util.Set;
 
 public class MutableGraph<V, E> implements Graph<V, E> {
 
@@ -14,7 +14,7 @@ public class MutableGraph<V, E> implements Graph<V, E> {
         return new MutableGraph<V, E>();
     }
 
-    private MutableSet<V> vertices = GoodMutableSetFactory.getInstance().create();
+    private Set<V> vertices = HashSetFactory.INSTANCE.create();
     private MutableMap<V, DynamicArray<E>> edgeMap = GoodMutableMapFactory.getInstance().create();
 
     public void insertVertex(V v) {
@@ -30,7 +30,7 @@ public class MutableGraph<V, E> implements Graph<V, E> {
     }
 
     @Override
-    public PSSet<V> getVertices() {
+    public Set<V> getVertices() {
         return vertices;
     }
 

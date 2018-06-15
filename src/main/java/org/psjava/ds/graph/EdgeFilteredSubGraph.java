@@ -1,15 +1,16 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.PSCollection;
 import org.psjava.util.Filter;
 import org.psjava.util.FilteredIterable;
+
+import java.util.Collection;
 
 public class EdgeFilteredSubGraph {
 
     public static <V, E> Graph<V, E> wrap(final Graph<V, E> original, final Filter<E> filter) {
         return new Graph<V, E>() {
             @Override
-            public PSCollection<V> getVertices() {
+            public Collection<V> getVertices() {
                 return original.getVertices();
             }
 

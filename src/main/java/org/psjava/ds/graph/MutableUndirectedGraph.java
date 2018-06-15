@@ -1,7 +1,8 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.PSCollection;
 import org.psjava.util.AssertStatus;
+
+import java.util.Collection;
 
 public class MutableUndirectedGraph<V, E extends UndirectedEdge<V>> implements Graph<V, E> {
 
@@ -27,7 +28,7 @@ public class MutableUndirectedGraph<V, E extends UndirectedEdge<V>> implements G
     }
 
     @Override
-    public PSCollection<V> getVertices() {
+    public Collection<V> getVertices() {
         return g.getVertices();
     }
 

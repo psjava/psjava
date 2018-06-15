@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.PSCollection;
+import java.util.Collection;
 
 public class MutableCapacityGraph<V, F> implements Graph<V, CapacityEdge<V, F>> {
 
@@ -16,7 +16,7 @@ public class MutableCapacityGraph<V, F> implements Graph<V, CapacityEdge<V, F>> 
     }
 
     @Override
-    public PSCollection<V> getVertices() {
+    public Collection<V> getVertices() {
         return g.getVertices();
     }
 

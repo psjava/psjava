@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.PSCollection;
+import java.util.Collection;
 
 public class MutableUndirectedUnweightedGraph<V> implements Graph<V, UndirectedEdge<V>> {
 
@@ -19,7 +19,7 @@ public class MutableUndirectedUnweightedGraph<V> implements Graph<V, UndirectedE
     }
 
     @Override
-    public PSCollection<V> getVertices() {
+    public Collection<V> getVertices() {
         return g.getVertices();
     }
 

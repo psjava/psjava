@@ -1,10 +1,11 @@
 package org.psjava.ds.graph;
 
-import org.psjava.ds.PSCollection;
 import org.psjava.util.ConvertedIterable;
 import org.psjava.util.Converter;
 import org.psjava.util.MergedIterable;
 import org.psjava.util.VarargsIterable;
+
+import java.util.Collection;
 
 // todo inline
 public class EdgeDoubledGraph {
@@ -12,7 +13,7 @@ public class EdgeDoubledGraph {
     public static <V, W, E1, E2> Graph<V, E2> wrap(final Graph<V, E1> original, final Converter<E1, E2> direction1Converter, final Converter<E1, E2> direction2Converter) {
         return new Graph<V, E2>() {
             @Override
-            public PSCollection<V> getVertices() {
+            public Collection<V> getVertices() {
                 return original.getVertices();
             }
 

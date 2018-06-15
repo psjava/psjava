@@ -8,13 +8,12 @@ import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.algo.graph.dfs.DFSCore;
 import org.psjava.algo.graph.dfs.DFSStatus;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
-import org.psjava.ds.PSCollection;
-import org.psjava.ds.graph.EdgeFilteredSubGraph;
-import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.SimpleDirectedGraph;
 import org.psjava.ds.graph.BipartiteGraph;
 import org.psjava.ds.graph.BipartiteGraphEdge;
 import org.psjava.ds.graph.DirectedEdge;
+import org.psjava.ds.graph.EdgeFilteredSubGraph;
+import org.psjava.ds.graph.Graph;
+import org.psjava.ds.graph.SimpleDirectedGraph;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.ValuesInMap;
 import org.psjava.goods.GoodMutableMapFactory;
@@ -163,7 +162,7 @@ public class HopcroftKarpAlgorithm {
     }
 
     private static <V, E> void dfs(
-            PSCollection<V> vertices,
+            Collection<V> vertices,
             AdjacencyList<V, E> adj,
             Function<E, V> destination,
             Function<V, DFSStatus> getDfsStatus,
