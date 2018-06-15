@@ -32,7 +32,7 @@ public class HopcroftKarpAlgorithm {
     public static MaximumBipartiteMatchingAlgorithm getInstance() {
         return new MaximumBipartiteMatchingAlgorithm() {
             @Override
-            public <V> MaximumBipartiteMatchingResult<V> calc(BipartiteGraph<V> bg) {
+            public <V> int calc(BipartiteGraph<V> bg) {
                 Graph<Vertex<V>, Edge<V>> graph = wrapAsGraph(bg);
                 while (true) {
                     Object bfsMark = new Object();
@@ -41,13 +41,17 @@ public class HopcroftKarpAlgorithm {
                         break;
                     dfs(graph::getEdges, bfsFinishes, bfsMark);
                 }
-                return createResult(graph);
+                int count = 0;
+                for (Vertex<V> v : graph.getVertices())
+                    for (Edge<V> e : graph.getEdges(v))
+                        if (e.status.inMatch && e.from.side == Side.LEFT)
+                            count++;
+                return count;
             }
-
         };
     }
 
-    private static enum Side {
+    private enum Side {
         LEFT, RIGHT
     }
 
@@ -171,31 +175,6 @@ public class HopcroftKarpAlgorithm {
             }
 
         });
-    }
-
-    private static <V> MaximumBipartiteMatchingResult<V> createResult(Graph<Vertex<V>, Edge<V>> adj) {
-        final MutableMap<V, V> match = GoodMutableMapFactory.getInstance().create();
-        for (Vertex<V> v : adj.getVertices())
-            for (Edge<V> e : adj.getEdges(v))
-                if (e.status.inMatch)
-                    match.add(e.from().original, e.to().original);
-
-        return new MaximumBipartiteMatchingResult<V>() {
-            @Override
-            public V getMatchedVertex(V v) {
-                return match.get(v);
-            }
-
-            @Override
-            public int getMaxMatchCount() {
-                return match.size() / 2;
-            }
-
-            @Override
-            public boolean hasMatch(V v) {
-                return match.containsKey(v);
-            }
-        };
     }
 
 }

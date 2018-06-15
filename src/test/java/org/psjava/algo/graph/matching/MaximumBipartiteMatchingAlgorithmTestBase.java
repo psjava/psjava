@@ -4,9 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.graph.MutableBipartiteGraph;
 
-import java.util.Set;
-import java.util.TreeSet;
-
 public abstract class MaximumBipartiteMatchingAlgorithmTestBase {
     @Test
     public void testCLRS() {
@@ -17,15 +14,7 @@ public abstract class MaximumBipartiteMatchingAlgorithmTestBase {
             g.insertRightVertex(subd[1]);
             g.addEdge(subd[0], subd[1]);
         }
-
-        MaximumBipartiteMatchingResult<Integer> r = getInstance().calc(g);
-        Assert.assertEquals(3, r.getMaxMatchCount());
-
-        Set<Integer> rightSet = new TreeSet<Integer>();
-        for (int left : g.getLeftVertices())
-            if (r.hasMatch(left))
-                rightSet.add(r.getMatchedVertex(left));
-        Assert.assertEquals(3, rightSet.size());
+        Assert.assertEquals(3, getInstance().calc(g));
     }
 
     protected abstract MaximumBipartiteMatchingAlgorithm getInstance();
