@@ -171,14 +171,13 @@ public class HopcroftKarpAlgorithm {
             Consumer<V> unFree,
             Consumer<E> toggleMatch,
             Collection<V> bfsFinishes,
-            Filter<E> wasBfs
+            Filter<E> wasInBfs
     ) {
 
         // uses only edges discovered in bfs step.
-        AdjacencyList<V, E> subAdj = EdgeFilteredSubAdjacencyList.wrap(adj, wasBfs);
+        AdjacencyList<V, E> subAdj = EdgeFilteredSubAdjacencyList.wrap(adj, wasInBfs);
 
-        for (V v : vertices)
-            setDfsStatus.accept(v, null);
+        vertices.forEach(v -> setDfsStatus.accept(v, null));
 
         for (V start : bfsFinishes) {
             if (getDfsStatus.apply(start) == null) {
