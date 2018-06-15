@@ -15,13 +15,13 @@ public class DFSCore {
         public V v;
         public E e;
         public int depth;
-        Iterator<E> iter;
+        Iterator<E> remainEdges;
 
-        StackItem(V v, E e, int d, Iterator<E> iter) {
+        StackItem(V v, E e, int d, Iterator<E> remainEdges) {
             this.v = v;
             this.e = e;
             this.depth = d;
-            this.iter = iter;
+            this.remainEdges = remainEdges;
         }
     }
 
@@ -36,8 +36,8 @@ public class DFSCore {
         while (!stack.isEmpty() && !stopper.isStopped()) {
             StackItem<V, E> item = stack.peekLast();
 
-            if (item.iter.hasNext()) {
-                E edge = item.iter.next();
+            if (item.remainEdges.hasNext()) {
+                E edge = item.remainEdges.next();
                 V dest = destination.apply(edge);
                 DFSStatus destStatus = status.get(dest);
                 if (destStatus == DFSStatus.NOT_DISCOVERED) {
