@@ -2,13 +2,13 @@ package org.psjava.algo.graph.matching;
 
 import org.psjava.AdjacencyList;
 import org.psjava.EdgeFilteredSubAdjacencyList;
-import org.psjava.First;
-import org.psjava.Last;
 import org.psjava.RemoveLast;
 import org.psjava.algo.graph.bfs.BFS;
 import org.psjava.algo.graph.bfs.BFSVisitor;
+import org.psjava.algo.graph.dfs.DFSCore;
+import org.psjava.algo.graph.dfs.DFSStatus;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
-import org.psjava.algo.graph.dfs.MultiSourceDFS;
+import org.psjava.ds.PSCollection;
 import org.psjava.ds.graph.EdgeFilteredSubGraph;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.SimpleDirectedGraph;
@@ -18,13 +18,16 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.ValuesInMap;
 import org.psjava.goods.GoodMutableMapFactory;
+import org.psjava.util.Filter;
 import org.psjava.util.FilteredIterable;
 import org.psjava.util.VisitorStopper;
-import org.psjava.util.ZeroTo;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 // O(V*root(E))
 public class HopcroftKarpAlgorithm {
@@ -39,14 +42,25 @@ public class HopcroftKarpAlgorithm {
                     Collection<Vertex<V>> bfsFinishes = bfs(graph, bfsMark);
                     if (bfsFinishes.isEmpty())
                         break;
-                    dfs(graph::getEdges, bfsFinishes, bfsMark);
+                    dfs(
+                            graph.getVertices(),
+                            graph::getEdges,
+                            Edge::to,
+                            v -> v.dfsStatus,
+                            (v, status) -> v.dfsStatus = status,
+                            v -> v.free,
+                            v -> v.free = false,
+                            e -> e.status.inMatch = !e.status.inMatch,
+                            bfsFinishes,
+                            e -> e.status.bfsMark == bfsMark
+                    );
                 }
                 int count = 0;
                 for (Vertex<V> v : graph.getVertices())
                     for (Edge<V> e : graph.getEdges(v))
-                        if (e.status.inMatch && e.from.side == Side.LEFT)
+                        if (e.status.inMatch)
                             count++;
-                return count;
+                return count / 2;
             }
         };
     }
@@ -57,6 +71,7 @@ public class HopcroftKarpAlgorithm {
 
     private static class Vertex<V> {
         V original;
+        DFSStatus dfsStatus = null;
         Side side;
         boolean free = true;
 
@@ -147,34 +162,51 @@ public class HopcroftKarpAlgorithm {
         return finishes;
     }
 
-    private static <V> void dfs(AdjacencyList<Vertex<V>, Edge<V>> adj, Collection<Vertex<V>> bfsFinishes, Object bfsMark) {
+    private static <V, E> void dfs(
+            PSCollection<V> vertices,
+            AdjacencyList<V, E> adj,
+            Function<E, V> destination,
+            Function<V, DFSStatus> getDfsStatus,
+            BiConsumer<V, DFSStatus> setDfsStatus,
+            Function<V, Boolean> isFree,
+            Consumer<V> unFree,
+            Consumer<E> toggleMatch,
+            Collection<V> bfsFinishes,
+            Filter<E> wasBfs
+    ) {
+
         // uses only edges discovered in bfs step.
-        AdjacencyList<Vertex<V>, Edge<V>> subAdj = EdgeFilteredSubAdjacencyList.wrap(adj, edge -> edge.status.bfsMark == bfsMark);
+        AdjacencyList<V, E> subAdj = EdgeFilteredSubAdjacencyList.wrap(adj, wasBfs);
 
-        MultiSourceDFS.traverse(subAdj, DirectedEdge::to, bfsFinishes, new DFSVisitorBase<Vertex<V>, Edge<V>>() {
-            List<Edge<V>> path = new ArrayList<>();
+        for (V v : vertices)
+            setDfsStatus.accept(v, null);
 
-            @Override
-            public void onWalkDown(Edge<V> edge) {
-                path.add(edge);
+        for (V start : bfsFinishes) {
+            if (getDfsStatus.apply(start) == null) {
+                List<E> path = new ArrayList<>();
+                DFSCore.traverse(start, subAdj, destination, getDfsStatus, setDfsStatus, new DFSVisitorBase<V, E>() {
+                    @Override
+                    public void onWalkDown(E edge) {
+                        path.add(edge);
+                    }
+
+                    @Override
+                    public void onWalkUp(E downedEdge) {
+                        RemoveLast.removeLast(path);
+                    }
+
+                    @Override
+                    public void onDiscovered(V v, int depth, VisitorStopper stopper) {
+                        if (path.size() % 2 == 1 && isFree.apply(v)) {
+                            path.forEach(toggleMatch);
+                            unFree.accept(start);
+                            unFree.accept(v);
+                            stopper.stop();
+                        }
+                    }
+                });
             }
-
-            @Override
-            public void onWalkUp(Edge<V> downedEdge) {
-                RemoveLast.removeLast(path);
-            }
-
-            @Override
-            public void onDiscovered(Vertex<V> v, int depth, VisitorStopper stopper) {
-                if (v.side == Side.LEFT && v.free) {
-                    for (int index : ZeroTo.get(path.size()))
-                        path.get(index).status.inMatch = (index % 2 == 0);
-                    First.first(path).from.free = false;
-                    Last.last(path).to.free = false;
-                }
-            }
-
-        });
+        }
     }
 
 }

@@ -6,7 +6,7 @@ import org.psjava.algo.graph.bfs.SimpleStopper;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 public class DFSCore {
@@ -25,9 +25,17 @@ public class DFSCore {
         }
     }
 
-    public static <V, E> void traverse(AdjacencyList<V, E> adj, Function<E, V> destination, Map<V, DFSStatus> status, V start, DFSVisitor<V, E> visitor) {
+    public static <V, E> void traverse(
+            V start,
+            AdjacencyList<V, E> adj,
+            Function<E, V> destination,
+            Function<V, DFSStatus> getStatus,
+            BiConsumer<V, DFSStatus> setStatus,
+            DFSVisitor<V, E> visitor
+    ) {
+
         Deque<StackItem<V, E>> stack = new ArrayDeque<>();
-        status.put(start, DFSStatus.DISCOVERED);
+        setStatus.accept(start, DFSStatus.DISCOVERED);
         SimpleStopper stopper = new SimpleStopper();
         visitor.onDiscovered(start, 0, stopper);
         Iterator<E> iterator = adj.get(start).iterator();
@@ -39,10 +47,10 @@ public class DFSCore {
             if (item.remainEdges.hasNext()) {
                 E edge = item.remainEdges.next();
                 V dest = destination.apply(edge);
-                DFSStatus destStatus = status.get(dest);
+                DFSStatus destStatus = getStatus.apply(dest);
                 if (destStatus == null) {
                     visitor.onWalkDown(edge);
-                    status.put(item.vertex, DFSStatus.DISCOVERED);
+                    setStatus.accept(item.vertex, DFSStatus.DISCOVERED);
                     visitor.onDiscovered(dest, item.depth + 1, stopper);
                     stack.addLast(new StackItem<>(edge, dest, item.depth + 1, adj.get(dest).iterator()));
                 } else if (destStatus == DFSStatus.DISCOVERED) {
@@ -50,7 +58,7 @@ public class DFSCore {
                 }
             } else {
                 stack.pollLast();
-                status.put(item.vertex, DFSStatus.EXPLORED);
+                setStatus.accept(item.vertex, DFSStatus.EXPLORED);
                 visitor.onFinish(item.vertex);
                 if (item.previousEdgeOrNull != null)
                     visitor.onWalkUp(item.previousEdgeOrNull);
