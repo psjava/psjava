@@ -54,12 +54,8 @@ public class HopcroftKarpAlgorithm {
                             e -> e.status.bfsMark == bfsMark
                     );
                 }
-                int count = 0;
-                for (Vertex<V> v : graph.getVertices())
-                    for (Edge<V> e : graph.getEdges(v))
-                        if (e.status.inMatch)
-                            count++;
-                return count / 2;
+                long freeCount = graph.getVertices().stream().filter(v -> !v.free).count();
+                return (int) (freeCount / 2);
             }
         };
     }
