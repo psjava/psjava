@@ -4,11 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.DFSStatusMap;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.TestGraphFactory;
 import org.psjava.util.VisitorStopper;
+
+import java.util.HashMap;
 
 public class DFSCoreTest {
 
@@ -18,7 +19,7 @@ public class DFSCoreTest {
     public void testSimpleTraverseScenario() {
         Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirectedNew(new String[][]{{"1", "2"}, {"2", "3"}, {"3", "1"}});
         res = "";
-        DFSCore.traverse(g::getEdges, DirectedEdge::to, new DFSStatusMap<>(), "1", new DFSVisitor<String, DirectedEdge<String>>() {
+        DFSCore.traverse(g::getEdges, DirectedEdge::to, new HashMap<>(), "1", new DFSVisitor<String, DirectedEdge<String>>() {
             @Override
             public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
                 res += "N" + vertex;
@@ -51,7 +52,7 @@ public class DFSCoreTest {
     public void testStopper() {
         Graph<String, DirectedEdge<String>> g = TestGraphFactory.createDirectedNew(new String[][]{{"A", "B"}, {"B", "C"}, {"C", "D"}});
         res = "";
-        DFSCore.traverse(g::getEdges, DirectedEdge::to, new DFSStatusMap<>(), "A", new DFSVisitorBase<String, DirectedEdge<String>>() {
+        DFSCore.traverse(g::getEdges, DirectedEdge::to, new HashMap<>(), "A", new DFSVisitorBase<String, DirectedEdge<String>>() {
             @Override
             public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
                 res += vertex;
