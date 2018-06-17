@@ -23,10 +23,10 @@ public class BFSCore {
     public static <V, E> void traverse(
             AdjacencyList<V, E> adj,
             Function<E, V> destination,
-            Iterable<V> startVertices,
-            BFSVisitor<V, E> visitor,
             Function<V, BFSStatus> getStatus,
-            BiConsumer<V, BFSStatus> setStatus
+            BiConsumer<V, BFSStatus> setStatus,
+            Iterable<V> startVertices,
+            BFSVisitor<V, E> visitor
     ) {
         SimpleStopper stopper = new SimpleStopper();
         Deque<QueueItem<V>> queue = new ArrayDeque<>();

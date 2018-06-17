@@ -15,9 +15,9 @@ public class BFS {
     @Deprecated
     public static <V, E extends DirectedEdge<V>> void traverse(Graph<V, E> adj, Iterable<V> startVertices, BFSVisitor<V, E> visitor) {
         Map<V, BFSStatus> discovered = new HashMap<>();
-        Function<V, BFSStatus> contains = v -> discovered.getOrDefault(v, BFSStatus.NOT_DISCOVERED);
-        BiConsumer<V, BFSStatus> add = discovered::put;
-        BFSCore.traverse(adj::getEdges, DirectedEdge::to, startVertices, visitor, contains, add);
+        Function<V, BFSStatus> getStatus = v -> discovered.getOrDefault(v, BFSStatus.NOT_DISCOVERED);
+        BiConsumer<V, BFSStatus> setStatus = discovered::put;
+        BFSCore.traverse(adj::getEdges, DirectedEdge::to, getStatus, setStatus, startVertices, visitor);
     }
 
 }

@@ -136,7 +136,7 @@ public class HopcroftKarpAlgorithm {
         Iterable<Vertex<V>> freeLeftVertexes = FilteredIterable.create(adj.getVertices(), v -> (v.side == Side.LEFT) && v.free);
 
         adj.getVertices().forEach(v -> v.bfsStatus = BFSStatus.NOT_DISCOVERED);
-        BFSCore.traverse(subGraph::getEdges, DirectedEdge::to, freeLeftVertexes, new BFSVisitor<Vertex<V>, Edge<V>>() {
+        BFSCore.traverse(subGraph::getEdges, DirectedEdge::to, v -> v.bfsStatus, (v1, s) -> v1.bfsStatus = s, freeLeftVertexes, new BFSVisitor<Vertex<V>, Edge<V>>() {
             int finishDepth = -1;
 
             @Override
@@ -156,7 +156,7 @@ public class HopcroftKarpAlgorithm {
                 e.status.bfsMark = mark;
             }
 
-        }, v -> v.bfsStatus, (v1, s) -> v1.bfsStatus = s);
+        });
         return finishes;
     }
 
