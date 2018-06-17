@@ -2,13 +2,12 @@ package org.psjava;
 
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.algo.graph.bfs.SimpleStopper;
-import org.psjava.ds.graph.DirectedEdge;
-import org.psjava.ds.graph.Graph;
 import org.psjava.goods.GoodSetFactory;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Set;
+import java.util.function.Function;
 
 public class BFSCore {
 
@@ -22,7 +21,7 @@ public class BFSCore {
         }
     }
 
-    public static <V, E extends DirectedEdge<V>> void traverse(Graph<V, E> adj, Iterable<V> startVertices, BFSVisitor<V, E> visitor) {
+    public static <V, E> void traverse(AdjacencyList<V, E> adj, Function<E, V> destination, Iterable<V> startVertices, BFSVisitor<V, E> visitor) {
         Set<V> discovered = GoodSetFactory.getInstance().create();
         SimpleStopper stopper = new SimpleStopper();
         Deque<QueueItem<V>> queue = new ArrayDeque<>();
@@ -36,8 +35,8 @@ public class BFSCore {
 
         while (!queue.isEmpty() && !stopper.isStopped()) {
             QueueItem<V> cur = queue.pollFirst();
-            for (E edge : adj.getEdges(cur.v)) {
-                V dest = edge.to();
+            for (E edge : adj.get(cur.v)) {
+                V dest = destination.apply(edge);
                 if (!discovered.contains(dest)) {
                     discovered.add(dest);
                     visitor.onWalk(edge);
