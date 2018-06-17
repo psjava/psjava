@@ -1,9 +1,10 @@
 package org.psjava.algo.graph.matching;
 
 import org.psjava.AdjacencyList;
+import org.psjava.BFSCore;
+import org.psjava.BFSStatus;
 import org.psjava.EdgeFilteredSubAdjacencyList;
 import org.psjava.RemoveLast;
-import org.psjava.algo.graph.bfs.BFS;
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.algo.graph.dfs.DFSCore;
 import org.psjava.algo.graph.dfs.DFSStatus;
@@ -66,8 +67,9 @@ public class HopcroftKarpAlgorithm {
 
     private static class Vertex<V> {
         V original;
-        DFSStatus dfsStatus = null;
         Side side;
+        DFSStatus dfsStatus = null;
+        BFSStatus bfsStatus = null;
         boolean free = true;
 
         Vertex(V original, Side side) {
@@ -133,7 +135,8 @@ public class HopcroftKarpAlgorithm {
 
         Iterable<Vertex<V>> freeLeftVertexes = FilteredIterable.create(adj.getVertices(), v -> (v.side == Side.LEFT) && v.free);
 
-        BFS.traverse(subGraph, freeLeftVertexes, new BFSVisitor<Vertex<V>, Edge<V>>() {
+        adj.getVertices().forEach(v -> v.bfsStatus = BFSStatus.NOT_DISCOVERED);
+        BFSCore.traverse(subGraph::getEdges, DirectedEdge::to, freeLeftVertexes, new BFSVisitor<Vertex<V>, Edge<V>>() {
             int finishDepth = -1;
 
             @Override
@@ -153,7 +156,7 @@ public class HopcroftKarpAlgorithm {
                 e.status.bfsMark = mark;
             }
 
-        });
+        }, v -> v.bfsStatus, (v1, s) -> v1.bfsStatus = s);
         return finishes;
     }
 
