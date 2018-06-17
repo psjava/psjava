@@ -2,11 +2,10 @@ package org.psjava;
 
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.algo.graph.bfs.SimpleStopper;
-import org.psjava.goods.GoodSetFactory;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Set;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 public class BFSCore {
@@ -21,13 +20,19 @@ public class BFSCore {
         }
     }
 
-    public static <V, E> void traverse(AdjacencyList<V, E> adj, Function<E, V> destination, Iterable<V> startVertices, BFSVisitor<V, E> visitor) {
-        Set<V> discovered = GoodSetFactory.getInstance().create();
+    public static <V, E> void traverse(
+            AdjacencyList<V, E> adj,
+            Function<E, V> destination,
+            Iterable<V> startVertices,
+            BFSVisitor<V, E> visitor,
+            Function<V, BFSStatus> getStatus,
+            BiConsumer<V, BFSStatus> setStatus
+    ) {
         SimpleStopper stopper = new SimpleStopper();
         Deque<QueueItem<V>> queue = new ArrayDeque<>();
         for (V v : startVertices) {
             queue.addLast(new QueueItem<>(0, v));
-            discovered.add(v);
+            setStatus.accept(v, BFSStatus.DISCOVERED);
             visitor.onDiscover(v, 0, stopper);
             if (stopper.isStopped())
                 break;
@@ -37,8 +42,8 @@ public class BFSCore {
             QueueItem<V> cur = queue.pollFirst();
             for (E edge : adj.get(cur.v)) {
                 V dest = destination.apply(edge);
-                if (!discovered.contains(dest)) {
-                    discovered.add(dest);
+                if (getStatus.apply(dest) == BFSStatus.NOT_DISCOVERED) {
+                    setStatus.accept(dest, BFSStatus.DISCOVERED);
                     visitor.onWalk(edge);
                     visitor.onDiscover(dest, cur.depth + 1, stopper);
                     if (stopper.isStopped())
