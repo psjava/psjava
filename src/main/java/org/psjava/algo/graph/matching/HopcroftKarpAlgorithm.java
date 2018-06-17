@@ -11,19 +11,15 @@ import org.psjava.algo.graph.dfs.DFSStatus;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.ds.graph.BipartiteGraph;
 import org.psjava.ds.graph.BipartiteGraphEdge;
-import org.psjava.ds.graph.DirectedEdge;
-import org.psjava.ds.graph.Graph;
-import org.psjava.ds.graph.SimpleDirectedGraph;
-import org.psjava.ds.map.MutableMap;
-import org.psjava.ds.map.ValuesInMap;
-import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.util.Filter;
 import org.psjava.util.FilteredIterable;
 import org.psjava.util.VisitorStopper;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -35,17 +31,31 @@ public class HopcroftKarpAlgorithm {
         return new MaximumBipartiteMatchingAlgorithm() {
             @Override
             public <V> int calc(BipartiteGraph<V> bg) {
-                Graph<Vertex<V>, Edge<V>> graph = wrapAsGraph(bg);
-                Collection<Vertex<V>> vertices = graph.getVertices();
-                AdjacencyList<Vertex<V>, Edge<V>> adj = graph::getEdges;
+                Map<V, Vertex<V>> vertex = new HashMap<>();
+                for (V left : bg.getLeftVertices())
+                    vertex.put(left, new Vertex<>(left, Side.LEFT));
+                for (V right : bg.getRightVertices())
+                    vertex.put(right, new Vertex<>(right, Side.RIGHT));
+
+                Map<Vertex<V>, List<Edge<V>>> adj = new HashMap<>();
+                vertex.values().forEach(it -> adj.put(it, new ArrayList<>()));
+                for (BipartiteGraphEdge<V> e : bg.getEdges()) {
+                    EdgeStatus status = new EdgeStatus();
+                    Vertex<V> left = vertex.get(e.left());
+                    Vertex<V> right = vertex.get(e.right());
+                    adj.get(left).add(new Edge<>(left, right, status));
+                    adj.get(right).add(new Edge<>(right, left, status));
+                }
+
+                Collection<Vertex<V>> vertices = vertex.values();
                 while (true) {
                     Object bfsMark = new Object();
-                    Collection<Vertex<V>> bfsFinishes = bfs(vertices, adj, bfsMark);
+                    Collection<Vertex<V>> bfsFinishes = bfs(vertices, adj::get, bfsMark);
                     if (bfsFinishes.isEmpty())
                         break;
                     dfs(
                             vertices,
-                            adj,
+                            adj::get,
                             e -> e.to,
                             v -> v.dfsStatus,
                             (v, status) -> v.dfsStatus = status,
@@ -67,8 +77,8 @@ public class HopcroftKarpAlgorithm {
     }
 
     private static class Vertex<V> {
-        V original;
-        Side side;
+        final V original;
+        final Side side;
         DFSStatus dfsStatus = null;
         BFSStatus bfsStatus = null;
         boolean free = true;
@@ -84,7 +94,7 @@ public class HopcroftKarpAlgorithm {
         Object bfsMark = null;
     }
 
-    private static class Edge<V> implements DirectedEdge<Vertex<V>> {
+    private static class Edge<V> {
         final Vertex<V> from, to;
         final EdgeStatus status;
 
@@ -93,34 +103,6 @@ public class HopcroftKarpAlgorithm {
             this.to = to;
             this.status = status;
         }
-
-        @Override
-        public Vertex<V> from() {
-            return from;
-        }
-
-        @Override
-        public Vertex<V> to() {
-            return to;
-        }
-
-    }
-
-    private static <V> Graph<Vertex<V>, Edge<V>> wrapAsGraph(BipartiteGraph<V> bg) {
-        MutableMap<V, Vertex<V>> vertex = GoodMutableMapFactory.getInstance().create();
-        for (V v : bg.getLeftVertices())
-            vertex.add(v, new Vertex<V>(v, Side.LEFT));
-        for (V v : bg.getRightVertices())
-            vertex.add(v, new Vertex<V>(v, Side.RIGHT));
-        SimpleDirectedGraph<Vertex<V>, Edge<V>> graph = SimpleDirectedGraph.create();
-        for (Vertex<V> v : ValuesInMap.get(vertex))
-            graph.insertVertex(v);
-        for (BipartiteGraphEdge<V> e : bg.getEdges()) {
-            EdgeStatus status = new EdgeStatus();
-            graph.addEdge(new Edge<V>(vertex.get(e.left()), vertex.get(e.right()), status));
-            graph.addEdge(new Edge<V>(vertex.get(e.right()), vertex.get(e.left()), status));
-        }
-        return graph;
     }
 
     private static <V> Collection<Vertex<V>> bfs(Collection<Vertex<V>> vertices, AdjacencyList<Vertex<V>, Edge<V>> adj, final Object mark) {
