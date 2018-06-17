@@ -46,7 +46,7 @@ public class HopcroftKarpAlgorithm {
                     dfs(
                             vertices,
                             adj,
-                            Edge::to,
+                            e -> e.to,
                             v -> v.dfsStatus,
                             (v, status) -> v.dfsStatus = status,
                             v -> v.free,
@@ -137,7 +137,7 @@ public class HopcroftKarpAlgorithm {
         Iterable<Vertex<V>> freeLeftVertexes = FilteredIterable.create(vertices, v -> (v.side == Side.LEFT) && v.free);
 
         vertices.forEach(v -> v.bfsStatus = BFSStatus.NOT_DISCOVERED);
-        BFSCore.traverse(subAdj, DirectedEdge::to, v -> v.bfsStatus, (v, s) -> v.bfsStatus = s, freeLeftVertexes, new BFSVisitor<Vertex<V>, Edge<V>>() {
+        BFSCore.traverse(subAdj, e -> e.to, v -> v.bfsStatus, (v, s) -> v.bfsStatus = s, freeLeftVertexes, new BFSVisitor<Vertex<V>, Edge<V>>() {
             int finishDepth = -1;
 
             @Override
