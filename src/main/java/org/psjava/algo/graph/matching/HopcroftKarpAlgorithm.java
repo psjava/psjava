@@ -12,7 +12,6 @@ import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.ds.graph.BipartiteGraph;
 import org.psjava.ds.graph.BipartiteGraphEdge;
 import org.psjava.ds.graph.DirectedEdge;
-import org.psjava.ds.graph.EdgeFilteredSubGraph;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.SimpleDirectedGraph;
 import org.psjava.ds.map.MutableMap;
@@ -37,14 +36,16 @@ public class HopcroftKarpAlgorithm {
             @Override
             public <V> int calc(BipartiteGraph<V> bg) {
                 Graph<Vertex<V>, Edge<V>> graph = wrapAsGraph(bg);
+                Collection<Vertex<V>> vertices = graph.getVertices();
+                AdjacencyList<Vertex<V>, Edge<V>> adj = graph::getEdges;
                 while (true) {
                     Object bfsMark = new Object();
-                    Collection<Vertex<V>> bfsFinishes = bfs(graph, bfsMark);
+                    Collection<Vertex<V>> bfsFinishes = bfs(vertices, adj, bfsMark);
                     if (bfsFinishes.isEmpty())
                         break;
                     dfs(
-                            graph.getVertices(),
-                            graph::getEdges,
+                            vertices,
+                            adj,
                             Edge::to,
                             v -> v.dfsStatus,
                             (v, status) -> v.dfsStatus = status,
@@ -55,7 +56,7 @@ public class HopcroftKarpAlgorithm {
                             e -> e.status.bfsMark == bfsMark
                     );
                 }
-                long freeCount = graph.getVertices().stream().filter(v -> !v.free).count();
+                long freeCount = vertices.stream().filter(v -> !v.free).count();
                 return (int) (freeCount / 2);
             }
         };
@@ -122,10 +123,10 @@ public class HopcroftKarpAlgorithm {
         return graph;
     }
 
-    private static <V> Collection<Vertex<V>> bfs(final Graph<Vertex<V>, Edge<V>> adj, final Object mark) {
+    private static <V> Collection<Vertex<V>> bfs(Collection<Vertex<V>> vertices, AdjacencyList<Vertex<V>, Edge<V>> adj, final Object mark) {
         final List<Vertex<V>> finishes = new ArrayList<>();
 
-        Graph<Vertex<V>, Edge<V>> subGraph = EdgeFilteredSubGraph.wrap(adj, edge -> {
+        AdjacencyList<Vertex<V>, Edge<V>> subAdj = EdgeFilteredSubAdjacencyList.wrap(adj, edge -> {
             // to alternate matched and non-matched edges.
             if (edge.from.side == Side.LEFT)
                 return !edge.status.inMatch;
@@ -133,10 +134,10 @@ public class HopcroftKarpAlgorithm {
                 return edge.status.inMatch;
         });
 
-        Iterable<Vertex<V>> freeLeftVertexes = FilteredIterable.create(adj.getVertices(), v -> (v.side == Side.LEFT) && v.free);
+        Iterable<Vertex<V>> freeLeftVertexes = FilteredIterable.create(vertices, v -> (v.side == Side.LEFT) && v.free);
 
-        adj.getVertices().forEach(v -> v.bfsStatus = BFSStatus.NOT_DISCOVERED);
-        BFSCore.traverse(subGraph::getEdges, DirectedEdge::to, v -> v.bfsStatus, (v1, s) -> v1.bfsStatus = s, freeLeftVertexes, new BFSVisitor<Vertex<V>, Edge<V>>() {
+        vertices.forEach(v -> v.bfsStatus = BFSStatus.NOT_DISCOVERED);
+        BFSCore.traverse(subAdj, DirectedEdge::to, v -> v.bfsStatus, (v, s) -> v.bfsStatus = s, freeLeftVertexes, new BFSVisitor<Vertex<V>, Edge<V>>() {
             int finishDepth = -1;
 
             @Override
