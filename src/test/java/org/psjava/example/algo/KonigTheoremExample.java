@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.psjava.algo.graph.KonigTheorem;
 import org.psjava.algo.graph.MinimumVertexCoverAlgorithmInBipartiteGraph;
 import org.psjava.algo.graph.matching.HopcroftKarpAlgorithm;
-import org.psjava.ds.graph.MutableBipartiteGraph;
+import org.psjava.ds.graph.BipartiteGraph;
 
 /**
  * @implementation {@link org.psjava.algo.graph.KonigTheorem}
@@ -16,7 +16,7 @@ public class KonigTheoremExample {
 
     @Test
     public void example() {
-        MutableBipartiteGraph<String> g = new MutableBipartiteGraph<>();
+        BipartiteGraph<String> g = new BipartiteGraph<>();
 
         g.insertLeftVertex("A");
         g.insertLeftVertex("B");

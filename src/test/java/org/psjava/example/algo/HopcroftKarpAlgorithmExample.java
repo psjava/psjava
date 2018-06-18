@@ -3,7 +3,7 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.matching.HopcroftKarpAlgorithm;
-import org.psjava.ds.graph.MutableBipartiteGraph;
+import org.psjava.ds.graph.BipartiteGraph;
 
 /**
  * @implementation {@link HopcroftKarpAlgorithm}
@@ -15,7 +15,7 @@ public class HopcroftKarpAlgorithmExample {
 
         // Let's make a simple bipartite graph.
 
-        MutableBipartiteGraph<String> g = new MutableBipartiteGraph<>();
+        BipartiteGraph<String> g = new BipartiteGraph<>();
 
         g.insertLeftVertex("L1");
         g.insertLeftVertex("L2");
