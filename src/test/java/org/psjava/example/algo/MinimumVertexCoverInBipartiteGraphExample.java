@@ -3,7 +3,7 @@ package org.psjava.example.algo;
 import org.junit.Test;
 
 /**
- * @see {@link org.psjava.example.algo.KonigTheoremExample}
+ * @see {@link org.psjava.example.algo.MinimumVertexCoverExample}
  */
 public class MinimumVertexCoverInBipartiteGraphExample {
 
