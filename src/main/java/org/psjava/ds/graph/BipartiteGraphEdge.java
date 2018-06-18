@@ -1,7 +1,11 @@
 package org.psjava.ds.graph;
 
-public interface BipartiteGraphEdge<V> {
-    V left();
+public class BipartiteGraphEdge<V> {
+    public final V left;
+    public final V right;
 
-    V right();
+    public BipartiteGraphEdge(V left, V right) {
+        this.left = left;
+        this.right = right;
+    }
 }

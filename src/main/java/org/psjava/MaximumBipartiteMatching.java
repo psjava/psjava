@@ -32,8 +32,8 @@ public class MaximumBipartiteMatching {
         vertex.values().forEach(it -> adj.put(it, new ArrayList<>()));
         for (BipartiteGraphEdge<V> e : bg.getEdges()) {
             EdgeStatus status = new EdgeStatus();
-            Vertex<V> left = vertex.get(e.left());
-            Vertex<V> right = vertex.get(e.right());
+            Vertex<V> left = vertex.get(e.left);
+            Vertex<V> right = vertex.get(e.right);
             adj.get(left).add(new Edge<>(left, right, status));
             adj.get(right).add(new Edge<>(right, left, status));
         }

@@ -1,7 +1,6 @@
 package org.psjava;
 
 import org.psjava.ds.graph.BipartiteGraphEdge;
-import org.psjava.ds.graph.SimpleBipartiteGraphEdge;
 import org.psjava.util.AssertStatus;
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class BipartiteGraph<V> {
     public void addEdge(final V left, final V right) {
         assertVertexExist(left, lefts);
         assertVertexExist(right, rights);
-        edges.add(SimpleBipartiteGraphEdge.create(left, right));
+        edges.add(new BipartiteGraphEdge<>(left, right));
     }
 
     private void assertVertexExist(V v, Set<V> set) {
