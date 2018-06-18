@@ -1,6 +1,5 @@
 package org.psjava;
 
-import org.psjava.ds.graph.BipartiteGraphEdge;
 import org.psjava.util.AssertStatus;
 
 import java.util.ArrayList;
@@ -36,15 +35,15 @@ public class BipartiteGraph<V> {
         AssertStatus.assertTrue(set.contains(v), "vertex is not in graph");
     }
 
-    public Collection<V> getLeftVertices() {
+    Collection<V> getLeftVertices() {
         return Collections.unmodifiableCollection(lefts);
     }
 
-    public Collection<V> getRightVertices() {
+    Collection<V> getRightVertices() {
         return Collections.unmodifiableCollection(rights);
     }
 
-    public Collection<BipartiteGraphEdge<V>> getEdges() {
+    Collection<BipartiteGraphEdge<V>> getEdges() {
         return Collections.unmodifiableCollection(edges);
     }
 }

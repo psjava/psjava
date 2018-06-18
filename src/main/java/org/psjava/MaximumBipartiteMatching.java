@@ -4,7 +4,6 @@ import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.algo.graph.dfs.DFSCore;
 import org.psjava.algo.graph.dfs.DFSStatus;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
-import org.psjava.ds.graph.BipartiteGraphEdge;
 import org.psjava.util.FilteredIterable;
 import org.psjava.util.VisitorStopper;
 
