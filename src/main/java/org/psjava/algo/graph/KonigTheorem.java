@@ -1,11 +1,14 @@
 package org.psjava.algo.graph;
 
-import org.psjava.algo.graph.matching.MaximumBipartiteMatchingAlgorithm;
+import org.psjava.MaximumBipartiteMatching;
+import org.psjava.ds.graph.BipartiteGraph;
 
+// implementation : Konig theorem
+// TODO rename MinimumVertexCover
 public class KonigTheorem {
 
-    public static MinimumVertexCoverAlgorithmInBipartiteGraph getInstance(final MaximumBipartiteMatchingAlgorithm subAlgorithm) {
-        return subAlgorithm::calc;
+    public static <V> int calculate(BipartiteGraph<V> bg) {
+        return MaximumBipartiteMatching.calculate(bg);
     }
 
 }

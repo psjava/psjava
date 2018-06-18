@@ -3,8 +3,6 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.algo.graph.KonigTheorem;
-import org.psjava.algo.graph.MinimumVertexCoverAlgorithmInBipartiteGraph;
-import org.psjava.MaximumBipartiteMatching;
 import org.psjava.ds.graph.BipartiteGraph;
 
 /**
@@ -34,9 +32,8 @@ public class KonigTheoremExample {
 
         // By Konig's Theorem, In any bipartite graph, the number of edges in a maximum matching equals the number of vertices in a minimum vertex cover.
         // So matching algorithm is used in its implementation. In this example, Hopcroft-Karp algorithm is used.
-        MinimumVertexCoverAlgorithmInBipartiteGraph algorithm = KonigTheorem.getInstance(MaximumBipartiteMatching::calculate);
 
-        int number = algorithm.calcMinimumVertexCover(g); // result is 2, ("A", "C")
+        int number = KonigTheorem.calculate(g); // result is 2, ("A", "C")
         Assert.assertEquals(2, number);
     }
 
