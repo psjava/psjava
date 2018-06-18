@@ -9,8 +9,8 @@ public class MaximumBipartiteMatchingTest {
         BipartiteGraph<Integer> g = new BipartiteGraph<>();
         int[][] d = {{0, 5}, {1, 5}, {1, 7}, {2, 6}, {2, 7}, {2, 8}, {3, 7}, {4, 7}};
         for (int[] subd : d) {
-            g.insertLeftVertex(subd[0]);
-            g.insertRightVertex(subd[1]);
+            g.addLeft(subd[0]);
+            g.addRight(subd[1]);
             g.addEdge(subd[0], subd[1]);
         }
         Assert.assertEquals(3, MaximumBipartiteMatching.calculate(g));

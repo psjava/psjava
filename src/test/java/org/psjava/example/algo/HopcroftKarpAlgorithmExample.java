@@ -17,11 +17,11 @@ public class HopcroftKarpAlgorithmExample {
 
         BipartiteGraph<String> g = new BipartiteGraph<>();
 
-        g.insertLeftVertex("L1");
-        g.insertLeftVertex("L2");
-        g.insertLeftVertex("L3");
-        g.insertRightVertex("R1");
-        g.insertRightVertex("R2");
+        g.addLeft("L1");
+        g.addLeft("L2");
+        g.addLeft("L3");
+        g.addRight("R1");
+        g.addRight("R2");
 
         g.addEdge("L1", "R1");
         g.addEdge("L1", "R2");

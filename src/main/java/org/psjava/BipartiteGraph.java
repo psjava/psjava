@@ -15,12 +15,12 @@ public class BipartiteGraph<V> {
     private Set<V> rights = new HashSet<>();
     private List<BipartiteGraphEdge<V>> edges = new ArrayList<>();
 
-    public void insertLeftVertex(V v) {
+    public void addLeft(V v) {
         AssertStatus.assertTrue(!rights.contains(v));
         lefts.add(v);
     }
 
-    public void insertRightVertex(V v) {
+    public void addRight(V v) {
         AssertStatus.assertTrue(!lefts.contains(v));
         rights.add(v);
     }

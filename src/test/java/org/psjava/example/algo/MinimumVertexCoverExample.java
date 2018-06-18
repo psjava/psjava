@@ -16,13 +16,13 @@ public class MinimumVertexCoverExample {
     public void example() {
         BipartiteGraph<String> g = new BipartiteGraph<>();
 
-        g.insertLeftVertex("A");
-        g.insertLeftVertex("B");
-        g.insertLeftVertex("C");
+        g.addLeft("A");
+        g.addLeft("B");
+        g.addLeft("C");
 
-        g.insertRightVertex("X");
-        g.insertRightVertex("Y");
-        g.insertRightVertex("Z");
+        g.addRight("X");
+        g.addRight("Y");
+        g.addRight("Z");
 
         g.addEdge("A", "X");
         g.addEdge("A", "Y");
