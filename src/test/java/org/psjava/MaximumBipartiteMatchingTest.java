@@ -1,10 +1,9 @@
-package org.psjava.algo.graph.matching;
+package org.psjava;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.BipartiteGraph;
 
-public abstract class MaximumBipartiteMatchingAlgorithmTestBase {
+public class MaximumBipartiteMatchingTest {
     @Test
     public void testCLRS() {
         BipartiteGraph<Integer> g = new BipartiteGraph<>();
@@ -14,8 +13,7 @@ public abstract class MaximumBipartiteMatchingAlgorithmTestBase {
             g.insertRightVertex(subd[1]);
             g.addEdge(subd[0], subd[1]);
         }
-        Assert.assertEquals(3, getInstance().calc(g));
+        Assert.assertEquals(3, MaximumBipartiteMatching.calculate(g));
     }
 
-    protected abstract MaximumBipartiteMatchingAlgorithm getInstance();
 }
