@@ -1,7 +1,5 @@
 package org.psjava;
 
-import org.psjava.ds.graph.BipartiteGraph;
-
 // implementation : Konig theorem
 public class MinimumVertexCover {
 

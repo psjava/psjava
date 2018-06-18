@@ -3,7 +3,7 @@ package org.psjava.example.algo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.MaximumBipartiteMatching;
-import org.psjava.ds.graph.BipartiteGraph;
+import org.psjava.BipartiteGraph;
 
 /**
  * @implementation {@link MaximumBipartiteMatching}

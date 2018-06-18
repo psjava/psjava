@@ -1,6 +1,6 @@
 package org.psjava.algo.graph.matching;
 
-import org.psjava.ds.graph.BipartiteGraph;
+import org.psjava.BipartiteGraph;
 
 @Deprecated
 public interface MaximumBipartiteMatchingAlgorithm {

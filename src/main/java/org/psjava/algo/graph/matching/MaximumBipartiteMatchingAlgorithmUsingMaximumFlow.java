@@ -1,7 +1,7 @@
 package org.psjava.algo.graph.matching;
 
 import org.psjava.algo.graph.flownetwork.MaximumFlowAlgorithm;
-import org.psjava.ds.graph.BipartiteGraph;
+import org.psjava.BipartiteGraph;
 import org.psjava.ds.graph.BipartiteGraphEdge;
 import org.psjava.ds.graph.CapacityEdge;
 import org.psjava.ds.graph.Graph;
