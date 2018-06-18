@@ -12,10 +12,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 // implementation : Hopcroft Karp algorithm. O(V*root(E))
 public class MaximumBipartiteMatching {
@@ -43,21 +39,10 @@ public class MaximumBipartiteMatching {
             Collection<Vertex<V>> bfsFinishes = bfs(vertices, adj::get, bfsMark);
             if (bfsFinishes.isEmpty())
                 break;
-            dfs(
-                    vertices,
-                    adj::get,
-                    e -> e.to,
-                    v -> v.dfsStatus,
-                    (v, status) -> v.dfsStatus = status,
-                    v -> v.free,
-                    v -> v.free = false,
-                    e -> e.status.inMatch = !e.status.inMatch,
-                    bfsFinishes,
-                    e -> e.status.bfsMark == bfsMark
-            );
+            dfs(vertices, adj::get, bfsFinishes, bfsMark);
         }
-        long freeCount = vertices.stream().filter(v -> !v.free).count();
-        return (int) (freeCount / 2);
+        long nonFreeCount = vertices.stream().filter(v -> !v.free).count();
+        return (int) (nonFreeCount / 2);
     }
 
     private enum Side {
@@ -131,44 +116,32 @@ public class MaximumBipartiteMatching {
         return finishes;
     }
 
-    private static <V, E> void dfs(
-            Collection<V> vertices,
-            AdjacencyList<V, E> adj,
-            Function<E, V> destination,
-            Function<V, DFSStatus> getDfsStatus,
-            BiConsumer<V, DFSStatus> setDfsStatus,
-            Function<V, Boolean> isFree,
-            Consumer<V> unFree,
-            Consumer<E> toggleMatch,
-            Collection<V> bfsFinishes,
-            Predicate<E> wasInBfs
-    ) {
-
+    private static <V> void dfs(Collection<Vertex<V>> vertices, AdjacencyList<Vertex<V>, Edge<V>> adj, Collection<Vertex<V>> bfsFinishes, Object bfsMark) {
         // uses only edges discovered in bfs step.
-        AdjacencyList<V, E> subAdj = EdgeFilteredSubAdjacencyList.wrap(adj, wasInBfs);
+        AdjacencyList<Vertex<V>, Edge<V>> subAdj = EdgeFilteredSubAdjacencyList.wrap(adj, e -> e.status.bfsMark == bfsMark);
 
-        vertices.forEach(v -> setDfsStatus.accept(v, null));
+        vertices.forEach(v1 -> v1.dfsStatus = null);
 
-        for (V start : bfsFinishes) {
-            if (getDfsStatus.apply(start) == null) {
-                List<E> path = new ArrayList<>();
-                DFSCore.traverse(start, subAdj, destination, getDfsStatus, setDfsStatus, new DFSVisitorBase<V, E>() {
+        for (Vertex<V> start : bfsFinishes) {
+            if (start.dfsStatus == null) {
+                List<Edge<V>> path = new ArrayList<>();
+                DFSCore.traverse(start, subAdj, e -> e.to, v -> v.dfsStatus, (v, status) -> v.dfsStatus = status, new DFSVisitorBase<Vertex<V>, Edge<V>>() {
                     @Override
-                    public void onWalkDown(E edge) {
+                    public void onWalkDown(Edge<V> edge) {
                         path.add(edge);
                     }
 
                     @Override
-                    public void onWalkUp(E downedEdge) {
+                    public void onWalkUp(Edge<V> downedEdge) {
                         RemoveLast.removeLast(path);
                     }
 
                     @Override
-                    public void onDiscovered(V v, int depth, VisitorStopper stopper) {
-                        if (path.size() % 2 == 1 && isFree.apply(v)) {
-                            path.forEach(toggleMatch);
-                            unFree.accept(start);
-                            unFree.accept(v);
+                    public void onDiscovered(Vertex<V> v, int depth, VisitorStopper stopper) {
+                        if (path.size() % 2 == 1 && v.free) {
+                            path.forEach(e -> e.status.inMatch = !e.status.inMatch);
+                            start.free = false;
+                            v.free = false;
                             stopper.stop();
                         }
                     }
