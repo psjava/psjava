@@ -2,11 +2,11 @@ package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.algo.graph.matching.HopcroftKarpAlgorithm;
+import org.psjava.MaximumBipartiteMatching;
 import org.psjava.ds.graph.BipartiteGraph;
 
 /**
- * @implementation {@link HopcroftKarpAlgorithm}
+ * @implementation {@link MaximumBipartiteMatching}
  */
 public class HopcroftKarpAlgorithmExample {
 
@@ -30,7 +30,7 @@ public class HopcroftKarpAlgorithmExample {
 
         // In this example, (L1-R2, L2-R1) is one of the solutions.
 
-        int matchCount = HopcroftKarpAlgorithm.calculate(g); // must be 2
+        int matchCount = MaximumBipartiteMatching.calculate(g); // must be 2
 
         Assert.assertEquals(2, matchCount);
     }

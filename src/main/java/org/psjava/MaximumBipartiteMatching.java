@@ -1,10 +1,5 @@
-package org.psjava.algo.graph.matching;
+package org.psjava;
 
-import org.psjava.AdjacencyList;
-import org.psjava.BFSCore;
-import org.psjava.BFSStatus;
-import org.psjava.EdgeFilteredSubAdjacencyList;
-import org.psjava.RemoveLast;
 import org.psjava.algo.graph.bfs.BFSVisitor;
 import org.psjava.algo.graph.dfs.DFSCore;
 import org.psjava.algo.graph.dfs.DFSStatus;
@@ -24,8 +19,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-// O(V*root(E))
-public class HopcroftKarpAlgorithm {
+// implementation : Hopcroft Karp algorithm. O(V*root(E))
+public class MaximumBipartiteMatching {
 
     public static <V> int calculate(BipartiteGraph<V> bg) {
         Map<V, Vertex<V>> vertex = new HashMap<>();
