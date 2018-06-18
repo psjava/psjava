@@ -3,7 +3,6 @@ package org.psjava.util;
 import java.util.Iterator;
 
 public class IteratorToString {
-
     public static <T> String toString(Iterator<T> iter) {
         StringBuilder sb = new StringBuilder();
         sb.append('(');
@@ -16,8 +15,4 @@ public class IteratorToString {
         sb.append(')');
         return sb.toString();
     }
-
-    private IteratorToString() {
-    }
-
 }

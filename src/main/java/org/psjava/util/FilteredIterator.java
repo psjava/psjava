@@ -35,7 +35,4 @@ public class FilteredIterator {
         };
     }
 
-    private FilteredIterator() {
-    }
-
 }

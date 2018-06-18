@@ -17,7 +17,4 @@ public class AssertStatus {
         if (!v)
             throw new RuntimeException(message);
     }
-
-    private AssertStatus() {
-    }
 }
