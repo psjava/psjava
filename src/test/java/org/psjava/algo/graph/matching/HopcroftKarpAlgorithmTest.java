@@ -4,7 +4,7 @@ public class HopcroftKarpAlgorithmTest extends MaximumBipartiteMatchingAlgorithm
 
     @Override
     protected MaximumBipartiteMatchingAlgorithm getInstance() {
-        return HopcroftKarpAlgorithm.getInstance();
+        return HopcroftKarpAlgorithm::calculate;
     }
 
 }

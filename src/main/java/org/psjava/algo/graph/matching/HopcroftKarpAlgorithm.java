@@ -27,49 +27,44 @@ import java.util.function.Predicate;
 // O(V*root(E))
 public class HopcroftKarpAlgorithm {
 
-    public static MaximumBipartiteMatchingAlgorithm getInstance() {
-        return new MaximumBipartiteMatchingAlgorithm() {
-            @Override
-            public <V> int calc(BipartiteGraph<V> bg) {
-                Map<V, Vertex<V>> vertex = new HashMap<>();
-                for (V left : bg.getLeftVertices())
-                    vertex.put(left, new Vertex<>(left, Side.LEFT));
-                for (V right : bg.getRightVertices())
-                    vertex.put(right, new Vertex<>(right, Side.RIGHT));
+    public static <V> int calculate(BipartiteGraph<V> bg) {
+        Map<V, Vertex<V>> vertex = new HashMap<>();
+        for (V left : bg.getLeftVertices())
+            vertex.put(left, new Vertex<>(left, Side.LEFT));
+        for (V right : bg.getRightVertices())
+            vertex.put(right, new Vertex<>(right, Side.RIGHT));
 
-                Map<Vertex<V>, List<Edge<V>>> adj = new HashMap<>();
-                vertex.values().forEach(it -> adj.put(it, new ArrayList<>()));
-                for (BipartiteGraphEdge<V> e : bg.getEdges()) {
-                    EdgeStatus status = new EdgeStatus();
-                    Vertex<V> left = vertex.get(e.left());
-                    Vertex<V> right = vertex.get(e.right());
-                    adj.get(left).add(new Edge<>(left, right, status));
-                    adj.get(right).add(new Edge<>(right, left, status));
-                }
+        Map<Vertex<V>, List<Edge<V>>> adj = new HashMap<>();
+        vertex.values().forEach(it -> adj.put(it, new ArrayList<>()));
+        for (BipartiteGraphEdge<V> e : bg.getEdges()) {
+            EdgeStatus status = new EdgeStatus();
+            Vertex<V> left = vertex.get(e.left());
+            Vertex<V> right = vertex.get(e.right());
+            adj.get(left).add(new Edge<>(left, right, status));
+            adj.get(right).add(new Edge<>(right, left, status));
+        }
 
-                Collection<Vertex<V>> vertices = vertex.values();
-                while (true) {
-                    Object bfsMark = new Object();
-                    Collection<Vertex<V>> bfsFinishes = bfs(vertices, adj::get, bfsMark);
-                    if (bfsFinishes.isEmpty())
-                        break;
-                    dfs(
-                            vertices,
-                            adj::get,
-                            e -> e.to,
-                            v -> v.dfsStatus,
-                            (v, status) -> v.dfsStatus = status,
-                            v -> v.free,
-                            v -> v.free = false,
-                            e -> e.status.inMatch = !e.status.inMatch,
-                            bfsFinishes,
-                            e -> e.status.bfsMark == bfsMark
-                    );
-                }
-                long freeCount = vertices.stream().filter(v -> !v.free).count();
-                return (int) (freeCount / 2);
-            }
-        };
+        Collection<Vertex<V>> vertices = vertex.values();
+        while (true) {
+            Object bfsMark = new Object();
+            Collection<Vertex<V>> bfsFinishes = bfs(vertices, adj::get, bfsMark);
+            if (bfsFinishes.isEmpty())
+                break;
+            dfs(
+                    vertices,
+                    adj::get,
+                    e -> e.to,
+                    v -> v.dfsStatus,
+                    (v, status) -> v.dfsStatus = status,
+                    v -> v.free,
+                    v -> v.free = false,
+                    e -> e.status.inMatch = !e.status.inMatch,
+                    bfsFinishes,
+                    e -> e.status.bfsMark == bfsMark
+            );
+        }
+        long freeCount = vertices.stream().filter(v -> !v.free).count();
+        return (int) (freeCount / 2);
     }
 
     private enum Side {
