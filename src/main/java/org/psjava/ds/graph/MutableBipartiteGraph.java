@@ -10,10 +10,6 @@ import org.psjava.util.IterableToString;
 @Deprecated
 public class MutableBipartiteGraph<V> implements BipartiteGraph<V> {
 
-    public static <V> MutableBipartiteGraph<V> create() {
-        return new MutableBipartiteGraph<V>();
-    }
-
     private MutableSet<V> left = GoodMutableSetFactory.getInstance().create();
     private MutableSet<V> right = GoodMutableSetFactory.getInstance().create();
     private DynamicArray<BipartiteGraphEdge<V>> edges = DynamicArray.create();

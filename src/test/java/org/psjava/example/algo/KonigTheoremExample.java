@@ -16,7 +16,7 @@ public class KonigTheoremExample {
 
     @Test
     public void example() {
-        MutableBipartiteGraph<String> g = MutableBipartiteGraph.create();
+        MutableBipartiteGraph<String> g = new MutableBipartiteGraph<>();
 
         g.insertLeftVertex("A");
         g.insertLeftVertex("B");

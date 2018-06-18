@@ -7,7 +7,7 @@ import org.psjava.ds.graph.MutableBipartiteGraph;
 public abstract class MaximumBipartiteMatchingAlgorithmTestBase {
     @Test
     public void testCLRS() {
-        MutableBipartiteGraph<Integer> g = MutableBipartiteGraph.create();
+        MutableBipartiteGraph<Integer> g = new MutableBipartiteGraph<>();
         int[][] d = {{0, 5}, {1, 5}, {1, 7}, {2, 6}, {2, 7}, {2, 8}, {3, 7}, {4, 7}};
         for (int[] subd : d) {
             g.insertLeftVertex(subd[0]);

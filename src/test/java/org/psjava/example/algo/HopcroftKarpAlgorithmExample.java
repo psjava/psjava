@@ -15,7 +15,7 @@ public class HopcroftKarpAlgorithmExample {
 
         // Let's make a simple bipartite graph.
 
-        MutableBipartiteGraph<String> g = MutableBipartiteGraph.create();
+        MutableBipartiteGraph<String> g = new MutableBipartiteGraph<>();
 
         g.insertLeftVertex("L1");
         g.insertLeftVertex("L2");
