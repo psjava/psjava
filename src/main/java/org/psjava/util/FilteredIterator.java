@@ -1,10 +1,11 @@
 package org.psjava.util;
 
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 public class FilteredIterator {
 
-    public static <T> Iterator<T> create(final Iterator<? extends T> a, final Filter<T> filter) {
+    public static <T> Iterator<T> create(final Iterator<? extends T> a, final Predicate<T> filter) {
         return new ReadOnlyIterator<T>() {
             T next = null;
             Iterator<? extends T> cursor = a;
@@ -26,7 +27,7 @@ public class FilteredIterator {
             private void tryToStepNext() {
                 while (next == null && cursor.hasNext()) {
                     T value = cursor.next();
-                    if (filter.isAccepted(value))
+                    if (filter.test(value))
                         next = value;
                 }
             }

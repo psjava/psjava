@@ -4,6 +4,8 @@ import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.UniformArray;
 import org.psjava.util.*;
 
+import java.util.function.Predicate;
+
 public class KSizeSubSetIterable {
 
     public static <T> Iterable<Iterable<T>> create(final PSArray<T> superSet, int k) {
@@ -15,9 +17,9 @@ public class KSizeSubSetIterable {
         return ConvertedIterable.create(permutations, new Converter<PSArray<Boolean>, Iterable<T>>() {
             @Override
             public Iterable<T> convert(final PSArray<Boolean> permutation) {
-                return ConvertedIterable.create(FilteredIterable.create(ZeroTo.get(permutation.size()), new Filter<Integer>() {
+                return ConvertedIterable.create(FilteredIterable.create(ZeroTo.get(permutation.size()), new Predicate<Integer>() {
                     @Override
-                    public boolean isAccepted(Integer index) {
+                    public boolean test(Integer index) {
                         return permutation.get(index);
                     }
                 }), new Converter<Integer, T>() {

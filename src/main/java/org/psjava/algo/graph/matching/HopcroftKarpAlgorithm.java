@@ -11,7 +11,6 @@ import org.psjava.algo.graph.dfs.DFSStatus;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.ds.graph.BipartiteGraph;
 import org.psjava.ds.graph.BipartiteGraphEdge;
-import org.psjava.util.Filter;
 import org.psjava.util.FilteredIterable;
 import org.psjava.util.VisitorStopper;
 
@@ -23,6 +22,7 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 // O(V*root(E))
 public class HopcroftKarpAlgorithm {
@@ -153,7 +153,7 @@ public class HopcroftKarpAlgorithm {
             Consumer<V> unFree,
             Consumer<E> toggleMatch,
             Collection<V> bfsFinishes,
-            Filter<E> wasInBfs
+            Predicate<E> wasInBfs
     ) {
 
         // uses only edges discovered in bfs step.

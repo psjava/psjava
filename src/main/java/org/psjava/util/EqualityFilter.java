@@ -1,14 +1,11 @@
 package org.psjava.util;
 
+import java.util.function.Predicate;
+
 public class EqualityFilter {
 
-    public static <T> Filter<T> create(final T target) {
-        return new Filter<T>() {
-            @Override
-            public boolean isAccepted(T v) {
-                return target.equals(v);
-            }
-        };
+    public static <T> Predicate<T> create(final T target) {
+        return target::equals;
     }
 
 }

@@ -1,13 +1,13 @@
 package org.psjava.ds.graph;
 
-import org.psjava.util.Filter;
 import org.psjava.util.FilteredIterable;
 
 import java.util.Collection;
+import java.util.function.Predicate;
 
 public class EdgeFilteredSubGraph {
 
-    public static <V, E> Graph<V, E> wrap(final Graph<V, E> original, final Filter<E> filter) {
+    public static <V, E> Graph<V, E> wrap(final Graph<V, E> original, final Predicate<E> filter) {
         return new Graph<V, E>() {
             @Override
             public Collection<V> getVertices() {

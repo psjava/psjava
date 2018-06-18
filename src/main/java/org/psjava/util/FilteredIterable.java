@@ -1,19 +1,11 @@
 package org.psjava.util;
 
-import java.util.Iterator;
+import java.util.function.Predicate;
 
 public class FilteredIterable {
 
-    public static <T> Iterable<T> create(final Iterable<? extends T> original, final Filter<T> filter) {
-        return IterableUsingIteratorFactory.create(new IteratorFactory<T>() {
-            @Override
-            public Iterator<T> create() {
-                return FilteredIterator.create(original.iterator(), filter);
-            }
-        });
-    }
-
-    private FilteredIterable() {
+    public static <T> Iterable<T> create(final Iterable<? extends T> original, final Predicate<T> filter) {
+        return IterableUsingIteratorFactory.create(() -> FilteredIterator.create(original.iterator(), filter));
     }
 
 }

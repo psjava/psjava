@@ -10,12 +10,7 @@ public class FilteredIteratorTest {
 
     @Test
     public void testCreate() {
-        assertEquals(toArrayList(2, 4), TestUtil.toArrayListFromIterator(FilteredIterator.create(toArrayList(1, 2, 3, 4, 5).iterator(), new Filter<Integer>() {
-            @Override
-            public boolean isAccepted(Integer v) {
-                return v % 2 == 0;
-            }
-        })));
+        assertEquals(toArrayList(2, 4), TestUtil.toArrayListFromIterator(FilteredIterator.create(toArrayList(1, 2, 3, 4, 5).iterator(), v -> v % 2 == 0)));
     }
 
 }

@@ -1,6 +1,7 @@
 package org.psjava.ds.map.hashtable;
 
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 import org.psjava.ds.KeyValuePair;
 import org.psjava.ds.map.PSMap;
@@ -9,7 +10,6 @@ import org.psjava.ds.map.MutableMap;
 import org.psjava.util.AssertStatus;
 import org.psjava.util.ConvertedIterator;
 import org.psjava.util.Converter;
-import org.psjava.util.Filter;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.FilteredIterator;
 import org.psjava.util.Java1DArray;
@@ -215,9 +215,9 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 
     @Override
     public Iterator<KeyValuePair<K, V>> iterator() {
-        return ConvertedIterator.create(FilteredIterator.create(VarargsIterator.create(bucket), new Filter<Entry<K, V>>() {
+        return ConvertedIterator.create(FilteredIterator.create(VarargsIterator.create(bucket), new Predicate<Entry<K, V>>() {
             @Override
-            public boolean isAccepted(Entry<K, V> v) {
+            public boolean test(Entry<K, V> v) {
                 return v != null && v.keyOrNull != null;
             }
         }), new Converter<Entry<K, V>, KeyValuePair<K, V>>() {
