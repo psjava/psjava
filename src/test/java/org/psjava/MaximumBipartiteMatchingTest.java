@@ -3,6 +3,9 @@ package org.psjava;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class MaximumBipartiteMatchingTest {
     @Test
     public void testCLRS() {
@@ -13,7 +16,16 @@ public class MaximumBipartiteMatchingTest {
             g.addRight(subd[1]);
             g.addEdge(subd[0], subd[1]);
         }
-        Assert.assertEquals(3, MaximumBipartiteMatching.calculate(g));
+        MaximumBipartiteMatchingResult<Integer> res = MaximumBipartiteMatching.calculateV2(g);
+        Assert.assertEquals(3, res.getCount());
+
+        List<String> matches = g.getLeftVertices().stream().flatMap(left ->
+                g.getRightVertices().stream()
+                        .filter(right -> res.isMatch(left, right))
+                        .map(right -> left + ":" + right)
+        ).collect(Collectors.toList());
+
+        Assert.assertEquals("[0:5, 1:7, 2:6]", matches.toString());
     }
 
 }

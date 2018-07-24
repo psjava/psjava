@@ -5,6 +5,8 @@ import org.psjava.algo.graph.dfs.DFSCore;
 import org.psjava.algo.graph.dfs.DFSStatus;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.util.FilteredIterable;
+import org.psjava.util.Pair;
+import org.psjava.util.SingletonKeeper;
 import org.psjava.util.VisitorStopper;
 
 import java.util.ArrayList;
@@ -12,11 +14,17 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 // implementation : Hopcroft Karp algorithm. O(V*root(E))
 public class MaximumBipartiteMatching {
 
     public static <V> int calculate(BipartiteGraph<V> bg) {
+        return calculateV2(bg).getCount();
+    }
+
+    public static <V> MaximumBipartiteMatchingResult<V> calculateV2(BipartiteGraph<V> bg) {
         Map<V, Vertex<V>> vertex = new HashMap<>();
         for (V left : bg.getLeftVertices())
             vertex.put(left, new Vertex<>(left, Side.LEFT));
@@ -41,8 +49,8 @@ public class MaximumBipartiteMatching {
                 break;
             dfs(vertices, adj::get, bfsFinishes, bfsMark);
         }
-        long nonFreeCount = vertices.stream().filter(v -> !v.free).count();
-        return (int) (nonFreeCount / 2);
+
+        return constructResult(vertices, adj);
     }
 
     private enum Side {
@@ -148,6 +156,28 @@ public class MaximumBipartiteMatching {
                 });
             }
         }
+    }
+
+    private static <V> MaximumBipartiteMatchingResult<V> constructResult(Collection<Vertex<V>> vertices, Map<Vertex<V>, List<Edge<V>>> adj) {
+        return new MaximumBipartiteMatchingResult<V>() {
+            @Override
+            public int getCount() {
+                long nonFreeCount = vertices.stream().filter(v -> !v.free).count();
+                return (int) (nonFreeCount / 2);
+            }
+
+            SingletonKeeper<Set<Pair<V, V>>> matchPairsKeeper = new SingletonKeeper<>(() -> adj.values().stream()
+                    .flatMap(Collection::stream)
+                    .filter(edge -> edge.from.side == Side.LEFT && edge.status.inMatch)
+                    .map(edge -> Pair.create(edge.from.original, edge.to.original))
+                    .collect(Collectors.toSet())
+            );
+
+            @Override
+            public boolean isMatch(V left, V right) {
+                return matchPairsKeeper.getInstance().contains(Pair.create(left, right));
+            }
+        };
     }
 
 }
