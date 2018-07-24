@@ -4,7 +4,7 @@ package org.psjava;
 public class MinimumVertexCover {
 
     public static <V> int calculate(BipartiteGraph<V> bg) {
-        return MaximumBipartiteMatching.calculate(bg);
+        return MaximumBipartiteMatching.calculate(bg).getCount();
     }
 
 }

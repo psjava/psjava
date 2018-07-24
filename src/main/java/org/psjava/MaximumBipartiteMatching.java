@@ -20,11 +20,7 @@ import java.util.stream.Collectors;
 // implementation : Hopcroft Karp algorithm. O(V*root(E))
 public class MaximumBipartiteMatching {
 
-    public static <V> int calculate(BipartiteGraph<V> bg) {
-        return calculateV2(bg).getCount();
-    }
-
-    public static <V> MaximumBipartiteMatchingResult<V> calculateV2(BipartiteGraph<V> bg) {
+    public static <V> MaximumBipartiteMatchingResult<V> calculate(BipartiteGraph<V> bg) {
         Map<V, Vertex<V>> vertex = new HashMap<>();
         for (V left : bg.getLeftVertices())
             vertex.put(left, new Vertex<>(left, Side.LEFT));

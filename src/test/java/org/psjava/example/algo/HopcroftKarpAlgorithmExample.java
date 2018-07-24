@@ -30,7 +30,7 @@ public class HopcroftKarpAlgorithmExample {
 
         // In this example, (L1-R2, L2-R1) is one of the solutions.
 
-        int matchCount = MaximumBipartiteMatching.calculate(g); // must be 2
+        int matchCount = MaximumBipartiteMatching.calculate(g).getCount(); // must be 2
 
         Assert.assertEquals(2, matchCount);
     }

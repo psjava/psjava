@@ -16,7 +16,7 @@ public class MaximumBipartiteMatchingTest {
             g.addRight(subd[1]);
             g.addEdge(subd[0], subd[1]);
         }
-        MaximumBipartiteMatchingResult<Integer> res = MaximumBipartiteMatching.calculateV2(g);
+        MaximumBipartiteMatchingResult<Integer> res = MaximumBipartiteMatching.calculate(g);
         Assert.assertEquals(3, res.getCount());
 
         List<String> matches = g.getLeftVertices().stream().flatMap(left ->
