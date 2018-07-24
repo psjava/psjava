@@ -16,12 +16,12 @@ public class BipartiteGraph<V> {
     private List<BipartiteGraphEdge<V>> edges = new ArrayList<>();
 
     public void addLeft(V v) {
-        Assertion.ensure(!rights.contains(v));
+        Assertion.ensure(!rights.contains(v), () -> "already in right side. vertex=" + v);
         lefts.add(v);
     }
 
     public void addRight(V v) {
-        Assertion.ensure(!lefts.contains(v));
+        Assertion.ensure(!lefts.contains(v), () -> "already in left size. vertex=" + v);
         rights.add(v);
     }
 
@@ -32,7 +32,7 @@ public class BipartiteGraph<V> {
     }
 
     private void assertVertexExist(V v, Set<V> set) {
-        Assertion.ensure(set.contains(v), "vertex is not in graph");
+        Assertion.ensure(set.contains(v), () -> "vertex is not in graph. vertex=" + v);
     }
 
     Collection<V> getLeftVertices() {
