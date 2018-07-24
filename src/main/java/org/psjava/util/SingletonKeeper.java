@@ -1,18 +1,19 @@
 package org.psjava.util;
 
-// TODO introduce static factor method
+import java.util.function.Supplier;
+
 public class SingletonKeeper<T> {
 
-    private Factory<T> factory;
+    private Supplier<T> factory;
     private T instance;
 
-    public SingletonKeeper(Factory<T> factory) {
+    public SingletonKeeper(Supplier<T> factory) {
         this.factory = factory;
     }
 
     public T getInstance() {
         if (instance == null)
-            instance = factory.create();
+            instance = factory.get();
         return instance;
     }
 
