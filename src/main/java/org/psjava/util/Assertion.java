@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 public class Assertion {
     public static void ensure(boolean v) {
-        ensure(v, "");
+        ensure(v, "assertion failed");
     }
 
     public static void ensureNotNull(Object v) {
