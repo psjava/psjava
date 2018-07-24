@@ -2,7 +2,7 @@ package org.psjava.formula;
 
 import java.util.Comparator;
 
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class MaxInIterable {
 
@@ -11,7 +11,7 @@ public class MaxInIterable {
         for (T a : iterable)
             if (max == null || comp.compare(max, a) < 0)
                 max = a;
-        AssertStatus.assertTrue(max != null, "Empty Iterable");
+        Assertion.ensure(max != null, "Empty Iterable");
         return max;
     }
 

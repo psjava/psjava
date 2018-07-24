@@ -7,7 +7,7 @@ import org.psjava.ds.KeyValuePair;
 import org.psjava.ds.tree.binary.bst.BinarySearchTree;
 import org.psjava.ds.tree.binary.bst.InsertionResult;
 import org.psjava.ds.tree.binary.bst.RemoveResult;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.IterableToString;
 
 public class MutableSortedMapUsingBinarySearchTree {
@@ -25,7 +25,7 @@ public class MutableSortedMapUsingBinarySearchTree {
             @Override
             public V get(K key) {
                 KeyValuePair<K, V> pair = tree.findPairOrNull(key);
-                AssertStatus.assertNotNull(pair, "not exist for key");
+                Assertion.ensureNotNull(pair, "not exist for key");
                 return pair.getValue();
             }
 
@@ -40,14 +40,14 @@ public class MutableSortedMapUsingBinarySearchTree {
             @Override
             public void add(K key, V value) {
                 InsertionResult res = tree.insertOrUpdate(key, value);
-                AssertStatus.assertTrue(res == InsertionResult.INSERTED);
+                Assertion.ensure(res == InsertionResult.INSERTED);
                 size++;
             }
 
             @Override
             public void replace(K key, V value) {
                 InsertionResult res = tree.insertOrUpdate(key, value);
-                AssertStatus.assertTrue(res == InsertionResult.UPDATED);
+                Assertion.ensure(res == InsertionResult.UPDATED);
             }
 
             @Override

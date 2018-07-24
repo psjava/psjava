@@ -3,7 +3,7 @@ package org.psjava.ds.map;
 import java.util.Iterator;
 
 import org.psjava.ds.KeyValuePair;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.StrictEqualityTester;
@@ -21,7 +21,7 @@ public class MutableMapUsingJavaMap {
             /** always check existence because java'map allows null value */
             @Override
             public V get(K key) {
-                AssertStatus.assertTrue(map.containsKey(key), "key is not int the map");
+                Assertion.ensure(map.containsKey(key), "key is not int the map");
                 return map.get(key);
             }
 
@@ -34,13 +34,13 @@ public class MutableMapUsingJavaMap {
             /** always check existence because java'map allows null value */
             @Override
             public void add(K key, V value) {
-                AssertStatus.assertTrue(!map.containsKey(key), "already contains");
+                Assertion.ensure(!map.containsKey(key), "already contains");
                 map.put(key, value);
             }
 
             @Override
             public void replace(K key, V value) {
-                AssertStatus.assertTrue(map.containsKey(key), "key is not in map");
+                Assertion.ensure(map.containsKey(key), "key is not in map");
                 map.put(key, value);
             }
 

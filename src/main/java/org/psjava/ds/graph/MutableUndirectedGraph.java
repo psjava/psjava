@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 import java.util.Collection;
 
@@ -24,7 +24,7 @@ public class MutableUndirectedGraph<V, E extends UndirectedEdge<V>> implements G
     }
 
     private void assertVertexExist(V v) {
-        AssertStatus.assertTrue(g.getVertices().contains(v), "vertex is not in graph");
+        Assertion.ensure(g.getVertices().contains(v), "vertex is not in graph");
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.TreeMap;
 
 import org.psjava.ds.KeyValuePair;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class MutableSortedMapUsingJavaTreeMap {
 
@@ -24,7 +24,7 @@ public class MutableSortedMapUsingJavaTreeMap {
 
             @Override
             public V get(K key) {
-                AssertStatus.assertTrue(original.containsKey(key));
+                Assertion.ensure(original.containsKey(key));
                 return original.get(key);
             }
 
@@ -45,19 +45,19 @@ public class MutableSortedMapUsingJavaTreeMap {
 
             @Override
             public void add(K key, V value) {
-                AssertStatus.assertTrue(!original.containsKey(key));
+                Assertion.ensure(!original.containsKey(key));
                 original.put(key, value);
             }
 
             @Override
             public void replace(K key, V value) {
-                AssertStatus.assertTrue(original.containsKey(key));
+                Assertion.ensure(original.containsKey(key));
                 original.put(key, value);
             }
 
             @Override
             public void addOrReplace(K key, V value) {
-                AssertStatus.assertNotNull(value, "value cannot be a null");
+                Assertion.ensureNotNull(value, "value cannot be a null");
                 original.put(key, value);
             }
 

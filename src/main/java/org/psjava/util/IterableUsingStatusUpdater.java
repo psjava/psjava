@@ -19,7 +19,7 @@ public class IterableUsingStatusUpdater {
                     @Override
                     public T next() {
                         T current = nextStatusOrNull;
-                        AssertStatus.assertNotNull(current);
+                        Assertion.ensureNotNull(current);
                         nextStatusOrNull = updater.getUpdatedOrNull(current);
                         return current;
                     }

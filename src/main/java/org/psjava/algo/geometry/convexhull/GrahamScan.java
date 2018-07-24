@@ -15,7 +15,7 @@ import org.psjava.ds.numbersystrem.MultipliableNumberSystem;
 import org.psjava.formula.geometry.PointByDirectionComparator;
 import org.psjava.formula.geometry.LeftTurn;
 import org.psjava.formula.geometry.PointByDistanceComparator;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.SeriesComparator;
 
 import java.util.Comparator;
@@ -30,7 +30,7 @@ public class GrahamScan {
         return new ConvexHullAlgorithm() {
             @Override
             public <T> Polygon2D<T> calc(Set<Point2D<T>> src, MultipliableNumberSystem<T> ns) {
-                AssertStatus.assertTrue(!src.isEmpty(), "points must not be empty");
+                Assertion.ensure(!src.isEmpty(), "points must not be empty");
                 MutableArray<Point2D<T>> points = MutableArrayFromIterable.create(src);
                 int pivotIndex = findPivot(points, ns);
                 moveToFront(points, pivotIndex);

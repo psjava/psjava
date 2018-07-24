@@ -1,6 +1,6 @@
 package org.psjava.ds.graph;
 
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class SimpleFlowNetworkEdge<V, F> {
 
@@ -25,7 +25,7 @@ public class SimpleFlowNetworkEdge<V, F> {
 
             @Override
             public FlowNetworkEdge<V, F, E> getOpposite() {
-                AssertStatus.assertTrue(opposite != null, "Reversed edge is not set");
+                Assertion.ensure(opposite != null, "Reversed edge is not set");
                 return opposite;
             }
 
@@ -41,7 +41,7 @@ public class SimpleFlowNetworkEdge<V, F> {
 
             @Override
             public E getOriginalCapacityEdge() {
-                AssertStatus.assertTrue(!isSkewSymmetryEdge(), "the edge is symmetry edge");
+                Assertion.ensure(!isSkewSymmetryEdge(), "the edge is symmetry edge");
                 return originalEdgeOfNonSymmetryOrNull;
             }
 

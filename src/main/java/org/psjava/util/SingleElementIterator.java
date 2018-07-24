@@ -15,7 +15,7 @@ public class SingleElementIterator {
 
             @Override
             public T next() {
-                AssertStatus.assertTrue(!read, "no item anymore");
+                Assertion.ensure(!read, "no item anymore");
                 read = true;
                 return value;
             }

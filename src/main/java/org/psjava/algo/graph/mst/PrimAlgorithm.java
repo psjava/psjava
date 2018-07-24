@@ -16,7 +16,7 @@ import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableNumber;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class PrimAlgorithm {
 
@@ -24,7 +24,7 @@ public class PrimAlgorithm {
         return new MinimumSpanningTreeAlgorithm() {
             @Override
             public <W, V, E extends UndirectedWeightedEdge<V, W>> PSCollection<E> calc(Graph<V, E> graph, AddableNumberSystem<W> weightSystem) {
-                AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
+                Assertion.ensure(NumberOfConnectedComponents.calc(graph) <= 1);
                 final InfinitableAddableNumberSystem<W> ns = InfinitableAddableNumberSystem.wrap(weightSystem);
 
                 DynamicArray<E> result = DynamicArray.create();

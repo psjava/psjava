@@ -17,7 +17,7 @@ import org.psjava.formula.MinInIterable;
 import org.psjava.formula.geometry.DirectionVectorFrom2DPoints;
 import org.psjava.formula.geometry.PointByDirectionComparator;
 import org.psjava.formula.geometry.PointByDistanceComparator;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.ReversedComparator;
 import org.psjava.util.SeriesComparator;
 
@@ -30,7 +30,7 @@ public class JarvisMarch {
         return new ConvexHullAlgorithm() {
             @Override
             public <T> Polygon2D<T> calc(Set<Point2D<T>> points, MultipliableNumberSystem<T> ns) {
-                AssertStatus.assertTrue(!points.isEmpty(), "points must not be empty");
+                Assertion.ensure(!points.isEmpty(), "points must not be empty");
                 DynamicArray<Point2D<T>> hull = DynamicArray.create();
                 Point2D<T> currentPoint = MinInIterable.min(points, PointByYXComparator.create(ns));
                 Vector2D<T> currentDirection = Vector2D.create(ns.getOne(), ns.getZero());

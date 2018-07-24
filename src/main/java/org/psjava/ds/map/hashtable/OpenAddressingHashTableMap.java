@@ -7,7 +7,7 @@ import org.psjava.ds.KeyValuePair;
 import org.psjava.ds.map.PSMap;
 import org.psjava.ds.map.MapEqualityTester;
 import org.psjava.ds.map.MutableMap;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.ConvertedIterator;
 import org.psjava.util.Converter;
 import org.psjava.util.EqualityTester;
@@ -36,13 +36,13 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 
         @Override
         public K getKey() {
-            AssertStatus.assertTrue(keyOrNull != null);
+            Assertion.ensure(keyOrNull != null);
             return keyOrNull;
         }
 
         @Override
         public V getValue() {
-            AssertStatus.assertTrue(keyOrNull != null);
+            Assertion.ensure(keyOrNull != null);
             return value;
         }
 
@@ -92,7 +92,7 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
             @Override
             public boolean visitAndGetContinuity(int pos) {
                 if (bucket[pos] != null) {
-                    AssertStatus.assertTrue(!isKeyInBucket(pos, key, keyHash), "already contains the key");
+                    Assertion.ensure(!isKeyInBucket(pos, key, keyHash), "already contains the key");
                     return true;
                 } else {
                     bucket[pos] = new Entry<K, V>(key, value, keyHash);
@@ -106,7 +106,7 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
     @Override
     public void replace(K key, V value) {
         Entry<K, V> entry = findEntry(key, null);
-        AssertStatus.assertNotNull(entry, "key is not exist");
+        Assertion.ensureNotNull(entry, "key is not exist");
         entry.value = value;
     }
 
@@ -157,7 +157,7 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
     @Override
     public V get(K key) {
         Entry<K, V> e = findEntry(key, null);
-        AssertStatus.assertTrue(e != null, "key is not in the map");
+        Assertion.ensure(e != null, "key is not in the map");
         return e.value;
     }
 

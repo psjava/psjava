@@ -3,7 +3,7 @@ package org.psjava.algo.sequence.rmq;
 import java.util.Comparator;
 
 import org.psjava.ds.array.PSArray;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.FromTo;
 
 /**
@@ -21,7 +21,7 @@ public class OnDemandRangeMinimumQuery {
             public <T> RangeMinimumQuerySession preprocess(final PSArray<T> array, final Comparator<T> comp) {
                 return new RangeMinimumQuerySession() {
                     public int getIndex(int start, int end) {
-                        AssertStatus.assertTrue(start < end);
+                        Assertion.ensure(start < end);
                         int r = start;
                         for (int i : FromTo.get(start + 1, end))
                             r = RangeMinimumQueryUtil.selectSmallestIndex(array, r, i, comp);

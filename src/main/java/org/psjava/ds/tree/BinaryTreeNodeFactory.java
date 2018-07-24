@@ -1,6 +1,6 @@
 package org.psjava.ds.tree;
 
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class BinaryTreeNodeFactory {
 
@@ -32,13 +32,13 @@ public class BinaryTreeNodeFactory {
 
             @Override
             public BinaryTreeNode<T> getLeft() {
-                AssertStatus.assertTrue(hasLeft());
+                Assertion.ensure(hasLeft());
                 return left;
             }
 
             @Override
             public BinaryTreeNode<T> getRight() {
-                AssertStatus.assertTrue(hasRight());
+                Assertion.ensure(hasRight());
                 return right;
             }
 
@@ -54,13 +54,13 @@ public class BinaryTreeNodeFactory {
 
             @Override
             public void removeLeft() {
-                AssertStatus.assertTrue(hasLeft());
+                Assertion.ensure(hasLeft());
                 left = null;
             }
 
             @Override
             public void removeRight() {
-                AssertStatus.assertTrue(hasRight());
+                Assertion.ensure(hasRight());
                 right = null;
             }
 

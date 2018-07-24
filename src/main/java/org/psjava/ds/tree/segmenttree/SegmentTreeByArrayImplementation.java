@@ -3,7 +3,7 @@ package org.psjava.ds.tree.segmenttree;
 import org.psjava.ds.array.PSArray;
 import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.BinaryTreeByArray;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 /**
  * This class is for only simple replacement updating. This class has an advantage of BinaryTreeByArray's speed.
@@ -39,7 +39,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 
     @Override
     public T query(int start, int end) {
-        AssertStatus.assertTrue(start < end, "invalid range");
+        Assertion.ensure(start < end, "invalid range");
         return queryRecursively(tree.getRootPointer(), 0, size, start, end);
     }
 

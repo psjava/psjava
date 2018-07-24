@@ -11,7 +11,7 @@ import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
 import org.psjava.ds.set.MutableSet;
 import org.psjava.goods.GoodMutableSetFactory;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 import java.util.function.Function;
 
@@ -42,7 +42,7 @@ public class NegativeCycleFinder {
         }
 
         public E getOriginal() {
-            AssertStatus.assertTrue(originalOrNull != null);
+            Assertion.ensure(originalOrNull != null);
             return originalOrNull;
         }
     }
@@ -98,7 +98,7 @@ public class NegativeCycleFinder {
 
             @Override
             public PSCollection<E> getPath() {
-                AssertStatus.assertTrue(hasCycle(), "no cycle");
+                Assertion.ensure(hasCycle(), "no cycle");
                 MutableSet<Object> visited = GoodMutableSetFactory.getInstance().create();
                 DoubleLinkedList<E> path = DoubleLinkedList.create();
                 AugmentedEdge<V, W, E> curEdge = lastRelaxedEdgeOrNull;

@@ -15,7 +15,7 @@ import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.set.DisjointSet;
 import org.psjava.ds.set.MakeSetAll;
 import org.psjava.goods.GoodDisjointSet;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class KruscalAlgorithm {
 
@@ -23,7 +23,7 @@ public class KruscalAlgorithm {
         return new MinimumSpanningTreeAlgorithm() {
             @Override
             public <W, V, E extends UndirectedWeightedEdge<V, W>> PSCollection<E> calc(Graph<V, E> graph, final AddableNumberSystem<W> ns) {
-                AssertStatus.assertTrue(NumberOfConnectedComponents.calc(graph) <= 1);
+                Assertion.ensure(NumberOfConnectedComponents.calc(graph) <= 1);
 
                 MutableArray<E> edges = MutableArrayFromIterable.create(AllEdgeInGraph.wrap(graph));
 

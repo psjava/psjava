@@ -10,7 +10,7 @@ import org.psjava.ds.graph.Graph;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.goods.GoodMutableMapFactory;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.Pair;
 
 public class FloydWarshallAlgorithm {
@@ -57,7 +57,7 @@ public class FloydWarshallAlgorithm {
                     }
 
             for (V k : graph.getVertices())
-                AssertStatus.assertTrue(!ns.isNegative(status.get(Pair.create(k, k)).distance), "contains negative cycle");
+                Assertion.ensure(!ns.isNegative(status.get(Pair.create(k, k)).distance), "contains negative cycle");
 
             return createResult(status);
         }
@@ -93,13 +93,13 @@ public class FloydWarshallAlgorithm {
             }
 
             private void assertReachable(V from, V to) {
-                AssertStatus.assertTrue(isReachable(from, to), "not reachable");
+                Assertion.ensure(isReachable(from, to), "not reachable");
             }
 
             @Override
             public boolean isReachable(V from, V to) {
                 Status<V, E, W> s = status.getOrNull(Pair.create(from, to));
-                AssertStatus.assertTrue(s != null, "not valid vertex");
+                Assertion.ensure(s != null, "not valid vertex");
                 return s.distance != null;
             }
 

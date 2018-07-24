@@ -6,7 +6,7 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.PSMap;
 import org.psjava.ds.numbersystrem.InfinitableNumber;
 import org.psjava.util.VarargsToString;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class SingleSourceShortestPathResultFactory {
 
@@ -34,7 +34,7 @@ public class SingleSourceShortestPathResultFactory {
             }
 
             private void assertReachable(V to) {
-                AssertStatus.assertTrue(isReachable(to), "Not reachable");
+                Assertion.ensure(isReachable(to), "Not reachable");
             }
 
             @Override

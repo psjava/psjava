@@ -1,6 +1,6 @@
 package org.psjava.ds.tree.binary;
 
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class BinaryTreeNodeUtil {
 
@@ -26,15 +26,15 @@ public class BinaryTreeNodeUtil {
     }
 
     public static <T> void connectAsLeftChild(BinaryTreeNodeWithParent<T> node, BinaryTreeNodeWithParent<T> parent) {
-        AssertStatus.assertTrue(!parent.hasLeft());
-        AssertStatus.assertTrue(!node.hasParent());
+        Assertion.ensure(!parent.hasLeft());
+        Assertion.ensure(!node.hasParent());
         parent.putLeft(node);
         node.putParent(parent);
     }
 
     public static <T> void connectAsRightChild(BinaryTreeNodeWithParent<T> node, BinaryTreeNodeWithParent<T> parent) {
-        AssertStatus.assertTrue(!parent.hasRight());
-        AssertStatus.assertTrue(!node.hasParent());
+        Assertion.ensure(!parent.hasRight());
+        Assertion.ensure(!node.hasParent());
         parent.putRight(node);
         node.putParent(parent);
     }

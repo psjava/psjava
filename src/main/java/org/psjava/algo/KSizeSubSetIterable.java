@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 public class KSizeSubSetIterable {
 
     public static <T> Iterable<Iterable<T>> create(final PSArray<T> superSet, int k) {
-        AssertStatus.assertTrue(k <= superSet.size());
+        Assertion.ensure(k <= superSet.size());
         PSArray<Boolean> trues = UniformArray.create(true, k);
         PSArray<Boolean> falses = UniformArray.create(false, superSet.size() - k);
         Iterable<Boolean> flags = MergedIterable.wrap(VarargsIterable.create(trues, falses));

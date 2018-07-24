@@ -20,7 +20,7 @@ import org.psjava.ds.geometry.PointByYComparator;
 import org.psjava.ds.geometry.Polygon2D;
 import org.psjava.ds.numbersystrem.MultipliableNumberSystem;
 import org.psjava.formula.geometry.LeftTurn;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.Index2D;
 import org.psjava.util.ReversedComparator;
 import org.psjava.util.SeriesComparator;
@@ -36,7 +36,7 @@ public class DivideAndConquerConvexHull {
         return new ConvexHullAlgorithm() {
             @Override
             public <T> Polygon2D<T> calc(Set<Point2D<T>> src, MultipliableNumberSystem<T> ns) {
-                AssertStatus.assertTrue(!src.isEmpty(), "points must not be empty");
+                Assertion.ensure(!src.isEmpty(), "points must not be empty");
                 Comparator<Point2D<T>> xcomp = PointByXComparator.create(ns);
                 Comparator<Point2D<T>> ycomp = PointByYComparator.create(ns);
                 Comparator<Point2D<T>> xycomp = SeriesComparator.create(xcomp, ycomp);

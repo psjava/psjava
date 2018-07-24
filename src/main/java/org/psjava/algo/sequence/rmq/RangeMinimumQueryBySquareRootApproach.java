@@ -5,7 +5,7 @@ import java.util.Comparator;
 import org.psjava.ds.array.PSArray;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.formula.CeilingDivide;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.FromTo;
 import org.psjava.util.ZeroTo;
 
@@ -33,7 +33,7 @@ public class RangeMinimumQueryBySquareRootApproach {
                 return new RangeMinimumQuerySession() {
                     @Override
                     public int getIndex(int start, int end) {
-                        AssertStatus.assertTrue(start < end);
+                        Assertion.ensure(start < end);
                         int firstPart = start / partLength;
                         int lastPart = (end - 1) / partLength;
                         int r = start;

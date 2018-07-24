@@ -1,7 +1,7 @@
 package org.psjava.ds.array;
 
 import org.psjava.ds.MutableArrayFromItemSetter;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.GetterByIndex;
 import org.psjava.util.SetterByIndex;
 
@@ -12,14 +12,14 @@ public class MutableSubArray {
         return MutableArrayFromItemSetter.create(size, new GetterByIndex<T>() {
             @Override
             public T get(int index) {
-                AssertStatus.assertTrue(0 <= index && index < size);
+                Assertion.ensure(0 <= index && index < size);
                 return superArray.get(start + index);
             }
 
         }, new SetterByIndex<T>() {
             @Override
             public void set(int index, T value) {
-                AssertStatus.assertTrue(0 <= index && index < size);
+                Assertion.ensure(0 <= index && index < size);
                 superArray.set(start + index, value);
             }
         });

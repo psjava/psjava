@@ -1,6 +1,6 @@
 package org.psjava.ds.tree.binary;
 
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class BinaryTreeNodeWithParentFactory {
 
@@ -28,19 +28,19 @@ public class BinaryTreeNodeWithParentFactory {
 
             @Override
             public BinaryTreeNodeWithParent<T> getParent() {
-                AssertStatus.assertTrue(hasParent());
+                Assertion.ensure(hasParent());
                 return parentOrNull;
             }
 
             @Override
             public void removeParent() {
-                AssertStatus.assertTrue(parentOrNull != null);
+                Assertion.ensure(parentOrNull != null);
                 parentOrNull = null;
             }
 
             @Override
             public void putParent(BinaryTreeNodeWithParent<T> parent) {
-                AssertStatus.assertTrue(parent != null);
+                Assertion.ensure(parent != null);
                 parentOrNull = parent;
             }
 
@@ -56,13 +56,13 @@ public class BinaryTreeNodeWithParentFactory {
 
             @Override
             public BinaryTreeNodeWithParent<T> getLeft() {
-                AssertStatus.assertTrue(hasLeft());
+                Assertion.ensure(hasLeft());
                 return leftOrNull;
             }
 
             @Override
             public BinaryTreeNodeWithParent<T> getRight() {
-                AssertStatus.assertTrue(hasRight());
+                Assertion.ensure(hasRight());
                 return rightOrNull;
             }
 
@@ -78,13 +78,13 @@ public class BinaryTreeNodeWithParentFactory {
 
             @Override
             public void removeLeft() {
-                AssertStatus.assertTrue(hasLeft());
+                Assertion.ensure(hasLeft());
                 leftOrNull = null;
             }
 
             @Override
             public void removeRight() {
-                AssertStatus.assertTrue(hasRight());
+                Assertion.ensure(hasRight());
                 rightOrNull = null;
             }
 

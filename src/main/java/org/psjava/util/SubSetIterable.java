@@ -9,7 +9,7 @@ public class SubSetIterable {
 
     public static <T> Iterable<Iterable<T>> create(final Iterable<T> superSet) {
         final PSArray<T> array = MutableArrayFromIterable.create(superSet);
-        AssertStatus.assertTrue(array.size() <= 30, "too big set to iterate sub set");
+        Assertion.ensure(array.size() <= 30, "too big set to iterate sub set");
         return ConvertedIterable.create(ZeroTo.get(1 << array.size()), new Converter<Integer, Iterable<T>>() {
             @Override
             public Iterable<T> convert(final Integer bits) {

@@ -7,7 +7,7 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.numbersystrem.InfinitableAddableNumberSystem;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 import java.util.function.Function;
 
@@ -43,7 +43,7 @@ public class BellmanFordAlgorithm {
     private static <V, W, E extends DirectedEdge<V>> void relaxToCheckNegativeCycle(Graph<V, E> graph, Function<E, W> weight, SingleSourceShortestPathCalcStatus<V, W, E> status, InfinitableAddableNumberSystem<W> ns) {
         for (E e : AllEdgeInGraph.wrap(graph)) {
             boolean relaxed = Relax.relax(status.distance, status.previous, e, weight, ns);
-            AssertStatus.assertTrue(!relaxed, "contains negative cycle");
+            Assertion.ensure(!relaxed, "contains negative cycle");
         }
     }
 

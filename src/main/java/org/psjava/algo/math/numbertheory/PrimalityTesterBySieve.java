@@ -1,7 +1,7 @@
 package org.psjava.algo.math.numbertheory;
 
 import org.psjava.ds.SetFromIterableV2;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 import java.util.Set;
 
@@ -12,7 +12,7 @@ public class PrimalityTesterBySieve {
         return new PrimalityTester() {
             @Override
             public boolean isPrime(long v) {
-                AssertStatus.assertTrue(v <= max, "Too big number. adjust limit");
+                Assertion.ensure(v <= max, "Too big number. adjust limit");
                 return set.contains((int) v);
             }
         };

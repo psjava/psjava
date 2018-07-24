@@ -1,6 +1,6 @@
 package org.psjava.ds.deque;
 
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.Java1DArray;
 import org.psjava.util.ZeroTo;
 
@@ -48,14 +48,14 @@ public class DynamicArrayDeque<T> implements PSDeque<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T getFirst() {
-        AssertStatus.assertTrue(!isEmpty());
+        Assertion.ensure(!isEmpty());
         return (T) array[start];
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public T getLast() {
-        AssertStatus.assertTrue(!isEmpty());
+        Assertion.ensure(!isEmpty());
         return (T) array[(end - 1 + array.length) % array.length];
     }
 
@@ -67,7 +67,7 @@ public class DynamicArrayDeque<T> implements PSDeque<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T removeFirst() {
-        AssertStatus.assertTrue(!isEmpty());
+        Assertion.ensure(!isEmpty());
         T r = (T) array[start];
         start = (start + 1) % array.length;
         return r;
@@ -76,7 +76,7 @@ public class DynamicArrayDeque<T> implements PSDeque<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T removeLast() {
-        AssertStatus.assertTrue(!isEmpty());
+        Assertion.ensure(!isEmpty());
         end = (end - 1 + array.length) % array.length;
         return (T) array[end];
     }

@@ -1,7 +1,7 @@
 package org.psjava.ds.tree;
 
 import org.psjava.ds.array.DynamicArray;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.BooleanIterable;
 
 public class BinaryTreeByArray<T> {
@@ -75,7 +75,7 @@ public class BinaryTreeByArray<T> {
     }
 
     private void assertHasNode(int pointer) {
-        AssertStatus.assertTrue(hasNode(pointer));
+        Assertion.ensure(hasNode(pointer));
     }
 
     private boolean hasNode(int pointer) {

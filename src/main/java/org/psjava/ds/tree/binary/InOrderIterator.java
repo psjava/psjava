@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import org.psjava.ds.tree.binary.bst.MinimumFinder;
 import org.psjava.ds.tree.binary.bst.SuccessorFinder;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.ReadOnlyIterator;
 
 public class InOrderIterator {
@@ -21,7 +21,7 @@ public class InOrderIterator {
 
             @Override
             public D2 next() {
-                AssertStatus.assertTrue(nextOrNull != null);
+                Assertion.ensure(nextOrNull != null);
                 BinaryTreeNodeWithParent<D1> r = nextOrNull;
                 nextOrNull = SuccessorFinder.findOrNull(r);
                 return r.getData();

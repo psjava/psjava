@@ -3,7 +3,7 @@ package org.psjava.ds.set;
 import java.util.Iterator;
 
 import org.psjava.ds.map.SetEqualityTester;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.EqualityTester;
 import org.psjava.util.IterableToString;
 import org.psjava.util.OrderFreeIterableHash;
@@ -31,7 +31,7 @@ public class MutableSetUsingJavaSet<T> implements MutableSet<T> {
     @Override
     public void add(T v) {
         boolean added = javaset.add(v);
-        AssertStatus.assertTrue(added, "Already exist in set");
+        Assertion.ensure(added, "Already exist in set");
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MutableSetUsingJavaSet<T> implements MutableSet<T> {
     @Override
     public void remove(T v) {
         boolean removed = javaset.remove(v);
-        AssertStatus.assertTrue(removed, "given value is not in set");
+        Assertion.ensure(removed, "given value is not in set");
     }
 
     @Override

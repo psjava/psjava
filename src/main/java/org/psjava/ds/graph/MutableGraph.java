@@ -4,7 +4,7 @@ import org.psjava.ds.HashSetFactory;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.goods.GoodMutableMapFactory;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 import java.util.Set;
 
@@ -25,7 +25,7 @@ public class MutableGraph<V, E> implements Graph<V, E> {
     }
 
     public void addEdge(V from, E edge) {
-        AssertStatus.assertTrue(edgeMap.containsKey(from), "Given vertex is not in the graph");
+        Assertion.ensure(edgeMap.containsKey(from), "Given vertex is not in the graph");
         edgeMap.get(from).addToLast(edge);
     }
 

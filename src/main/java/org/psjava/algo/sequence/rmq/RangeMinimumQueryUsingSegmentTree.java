@@ -8,7 +8,7 @@ import org.psjava.ds.array.MutableArrayFactory;
 import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
 import org.psjava.ds.tree.segmenttree.SegmentTreeFactory;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 import org.psjava.util.ZeroTo;
 
 /**
@@ -34,7 +34,7 @@ public class RangeMinimumQueryUsingSegmentTree {
                 });
                 return new RangeMinimumQuerySession() {
                     public int getIndex(int start, int end) {
-                        AssertStatus.assertTrue(start < end);
+                        Assertion.ensure(start < end);
                         return tree.query(start, end);
                     }
                 };

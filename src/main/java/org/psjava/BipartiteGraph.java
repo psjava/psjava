@@ -1,6 +1,6 @@
 package org.psjava;
 
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,12 +16,12 @@ public class BipartiteGraph<V> {
     private List<BipartiteGraphEdge<V>> edges = new ArrayList<>();
 
     public void addLeft(V v) {
-        AssertStatus.assertTrue(!rights.contains(v));
+        Assertion.ensure(!rights.contains(v));
         lefts.add(v);
     }
 
     public void addRight(V v) {
-        AssertStatus.assertTrue(!lefts.contains(v));
+        Assertion.ensure(!lefts.contains(v));
         rights.add(v);
     }
 
@@ -32,7 +32,7 @@ public class BipartiteGraph<V> {
     }
 
     private void assertVertexExist(V v, Set<V> set) {
-        AssertStatus.assertTrue(set.contains(v), "vertex is not in graph");
+        Assertion.ensure(set.contains(v), "vertex is not in graph");
     }
 
     Collection<V> getLeftVertices() {

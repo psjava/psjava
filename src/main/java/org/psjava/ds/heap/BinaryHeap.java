@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import org.psjava.ds.array.ArraySwapper;
 import org.psjava.ds.array.DynamicArray;
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class BinaryHeap<T> implements Heap<T> {
 
@@ -29,13 +29,13 @@ public class BinaryHeap<T> implements Heap<T> {
 
     @Override
     public T getMinimum() {
-        AssertStatus.assertTrue(!isEmpty(), "empty");
+        Assertion.ensure(!isEmpty(), "empty");
         return array.get(0).key;
     }
 
     @Override
     public T extractMinimum() {
-        AssertStatus.assertTrue(!isEmpty(), "heap is empty");
+        Assertion.ensure(!isEmpty(), "heap is empty");
         swapNode(0, array.size() - 1);
         Node r = array.removeLast();
         heapify(0);
@@ -128,7 +128,7 @@ public class BinaryHeap<T> implements Heap<T> {
         }
 
         private void assertNotDeleted() {
-            AssertStatus.assertTrue(pos != -1, "Node is not in heap (deleted)");
+            Assertion.ensure(pos != -1, "Node is not in heap (deleted)");
         }
 
         @Override

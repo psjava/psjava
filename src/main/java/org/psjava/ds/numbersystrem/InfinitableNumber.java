@@ -1,6 +1,6 @@
 package org.psjava.ds.numbersystrem;
 
-import org.psjava.util.AssertStatus;
+import org.psjava.util.Assertion;
 
 public class InfinitableNumber<T> {
 
@@ -23,7 +23,7 @@ public class InfinitableNumber<T> {
     }
 
     public T getValue() {
-        AssertStatus.assertTrue(valueOrNull != null);
+        Assertion.ensure(valueOrNull != null);
         return valueOrNull;
     }
 
