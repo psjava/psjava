@@ -1,12 +1,13 @@
 package org.psjava.ds.tree.segmenttree;
 
 import org.psjava.ds.array.PSArray;
-import org.psjava.ds.math.BinaryOperator;
 import org.psjava.formula.Power;
+
+import java.util.function.BinaryOperator;
 
 public class RangeUpdatableSegmentTree<T> implements SegmentTree<T> {
 
-    public static final <T> RangeUpdatableSegmentTree<T> create(PSArray<T> initialData, BinaryOperator<T> operator) {
+    public static <T> RangeUpdatableSegmentTree<T> create(PSArray<T> initialData, BinaryOperator<T> operator) {
         return new RangeUpdatableSegmentTree<T>(initialData, operator);
     }
 
@@ -21,7 +22,7 @@ public class RangeUpdatableSegmentTree<T> implements SegmentTree<T> {
 
             @Override
             public T mergeSingleValue(T v1, T v2) {
-                return operator.calc(v1, v2);
+                return operator.apply(v1, v2);
             }
 
             @Override

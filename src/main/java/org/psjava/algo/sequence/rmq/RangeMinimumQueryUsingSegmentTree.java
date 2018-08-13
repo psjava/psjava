@@ -5,7 +5,6 @@ import java.util.Comparator;
 import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFactory;
-import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
 import org.psjava.ds.tree.segmenttree.SegmentTreeFactory;
 import org.psjava.util.Assertion;
@@ -27,11 +26,7 @@ public class RangeMinimumQueryUsingSegmentTree {
                 MutableArray<Integer> indexes = MutableArrayFactory.create(a.size(), 0);
                 for (int i : ZeroTo.get(a.size()))
                     indexes.set(i, i);
-                final SegmentTree<Integer> tree = treeFactory.create(indexes, new BinaryOperator<Integer>() {
-                    public Integer calc(Integer i1, Integer i2) {
-                        return RangeMinimumQueryUtil.selectSmallestIndex(a, i1, i2, comp);
-                    }
-                });
+                final SegmentTree<Integer> tree = treeFactory.create(indexes, (i1, i2) -> RangeMinimumQueryUtil.selectSmallestIndex(a, i1, i2, comp));
                 return new RangeMinimumQuerySession() {
                     public int getIndex(int start, int end) {
                         Assertion.ensure(start < end);

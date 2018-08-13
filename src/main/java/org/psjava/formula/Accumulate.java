@@ -1,17 +1,14 @@
 package org.psjava.formula;
 
-import org.psjava.ds.math.BinaryOperator;
+import java.util.function.BinaryOperator;
 
 public class Accumulate {
 
     public static <T> T calc(Iterable<T> values, T init, BinaryOperator<T> op) {
         T r = init;
         for (T v : values)
-            r = op.calc(r, v);
+            r = op.apply(r, v);
         return r;
-    }
-
-    private Accumulate() {
     }
 
 }

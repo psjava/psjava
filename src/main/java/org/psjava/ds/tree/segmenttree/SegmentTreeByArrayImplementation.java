@@ -1,9 +1,10 @@
 package org.psjava.ds.tree.segmenttree;
 
 import org.psjava.ds.array.PSArray;
-import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.BinaryTreeByArray;
 import org.psjava.util.Assertion;
+
+import java.util.function.BinaryOperator;
 
 /**
  * This class is for only simple replacement updating. This class has an advantage of BinaryTreeByArray's speed.
@@ -33,7 +34,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
             int right = tree.putChild(node, true, any);
             construct(left, initialData, start, mid);
             construct(right, initialData, mid, end);
-            tree.setValue(node, merger.calc(tree.getValue(left), tree.getValue(right)));
+            tree.setValue(node, merger.apply(tree.getValue(left), tree.getValue(right)));
         }
     }
 
@@ -53,7 +54,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
             else if (mid <= start)
                 return queryRecursively(tree.getRight(node), mid, nodeEnd, start, end);
             else
-                return merger.calc(queryRecursively(tree.getLeft(node), nodeStart, mid, start, mid), queryRecursively(tree.getRight(node), mid, nodeEnd, mid, end));
+                return merger.apply(queryRecursively(tree.getLeft(node), nodeStart, mid, start, mid), queryRecursively(tree.getRight(node), mid, nodeEnd, mid, end));
         }
     }
 
@@ -73,7 +74,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
                 updateRecursively(left, nodeStart, mid, position, value);
             else
                 updateRecursively(right, mid, nodeEnd, position, value);
-            tree.setValue(node, merger.calc(tree.getValue(left), tree.getValue(right)));
+            tree.setValue(node, merger.apply(tree.getValue(left), tree.getValue(right)));
         }
     }
 }

@@ -7,7 +7,6 @@ import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
-import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.numbersystrem.AddInvert;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
@@ -58,7 +57,7 @@ public class DistanceCalculatorInRootedTree {
             }
         });
 
-        final SegmentTree<W> segmentTree = segmentTreeFactory.create(pathWeights, createAdder(ns));
+        final SegmentTree<W> segmentTree = segmentTreeFactory.create(pathWeights, ns::add);
         final LowestCommonAncestorQuerySession<V> lcaSession = lca.calc(tree);
 
         return new DistanceCalculatorInRootedTreeResult<V, W>() {
@@ -82,12 +81,4 @@ public class DistanceCalculatorInRootedTree {
         };
     }
 
-    private static <T> BinaryOperator<T> createAdder(final AddableNumberSystem<T> ns) {
-        return new BinaryOperator<T>() {
-            @Override
-            public T calc(T d1, T d2) {
-                return ns.add(d1, d2);
-            }
-        };
-    }
 }

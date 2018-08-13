@@ -1,7 +1,8 @@
 package org.psjava.ds.tree.segmenttree;
 
 import org.psjava.ds.array.PSArray;
-import org.psjava.ds.math.BinaryOperator;
+
+import java.util.function.BinaryOperator;
 
 public interface SegmentTreeFactory {
 

@@ -1,6 +1,6 @@
 package org.psjava.formula;
 
-import org.psjava.ds.math.BinaryOperator;
+import java.util.function.BinaryOperator;
 
 public class Power {
 
@@ -9,14 +9,11 @@ public class Power {
             return value;
         } else {
             T sub = calc(value, n / 2, operator);
-            T r = operator.calc(sub, sub);
+            T r = operator.apply(sub, sub);
             if (n % 2 == 1)
-                r = operator.calc(r, value);
+                r = operator.apply(r, value);
             return r;
         }
-    }
-
-    private Power() {
     }
 
 }

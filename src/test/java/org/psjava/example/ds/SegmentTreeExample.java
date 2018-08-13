@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArrayFromVarargs;
-import org.psjava.ds.math.BinaryOperator;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
 import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
 import org.psjava.goods.GoodSegmentTreeFactory;
@@ -21,12 +20,7 @@ public class SegmentTreeExample {
 
         PSArray<Integer> init = MutableArrayFromVarargs.create(4, 3, 1, 5, 2);
 
-        SegmentTree<Integer> maxTree = GoodSegmentTreeFactory.getInstance().create(init, new BinaryOperator<Integer>() {
-            @Override
-            public Integer calc(Integer a, Integer b) {
-                return Math.max(a, b);
-            }
-        });
+        SegmentTree<Integer> maxTree = GoodSegmentTreeFactory.getInstance().create(init, Math::max);
 
         // query by range.
 
