@@ -5,7 +5,7 @@ import org.psjava.formula.Power;
 
 import java.util.function.BinaryOperator;
 
-public class RangeUpdatableSegmentTree<T> implements SegmentTree<T> {
+public class RangeUpdatableSegmentTree<T>  {
 
     public static <T> RangeUpdatableSegmentTree<T> create(PSArray<T> initialData, BinaryOperator<T> operator) {
         return new RangeUpdatableSegmentTree<T>(initialData, operator);
@@ -32,12 +32,10 @@ public class RangeUpdatableSegmentTree<T> implements SegmentTree<T> {
         });
     }
 
-    @Override
     public T query(int start, int end) {
         return sub.queryRange(start, end);
     }
 
-    @Override
     public void update(int p, final T v) {
         updateRange(p, p + 1, v);
     }
