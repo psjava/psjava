@@ -8,7 +8,6 @@ import org.psjava.ds.map.MutableMap;
 import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.ds.numbersystrem.AddInvert;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
-import org.psjava.ds.tree.segmenttree.SegmentTree;
 import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
 import org.psjava.util.VisitorStopper;
 
@@ -56,7 +55,7 @@ public class DistanceCalculatorInRootedTree {
             }
         });
 
-        final SegmentTree<W> segmentTree = new SegmentTreeByArrayImplementation<>(pathWeights, ns::add);
+        final SegmentTreeByArrayImplementation<W> segmentTree = new SegmentTreeByArrayImplementation<>(pathWeights, ns::add);
         final LowestCommonAncestorQuerySession<V> lcaSession = lca.calc(tree);
 
         return new DistanceCalculatorInRootedTreeResult<V, W>() {

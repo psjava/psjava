@@ -2,7 +2,6 @@ package org.psjava.example.ds;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.tree.segmenttree.SegmentTree;
 import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
 
 import java.util.Arrays;
@@ -20,7 +19,7 @@ public class SegmentTreeExample {
 
         List<Integer> init = Arrays.asList(4, 3, 1, 5, 2);
 
-        SegmentTree<Integer> maxTree = new SegmentTreeByArrayImplementation<>(init, Math::max);
+        SegmentTreeByArrayImplementation<Integer> maxTree = new SegmentTreeByArrayImplementation<>(init, Math::max);
 
         // query by range.
 

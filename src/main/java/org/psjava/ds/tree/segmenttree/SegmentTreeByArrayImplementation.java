@@ -10,7 +10,7 @@ import java.util.function.BinaryOperator;
  * This class is for only simple replacement updating. This class has an advantage of BinaryTreeByArray's speed.
  */
 
-public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
+public class SegmentTreeByArrayImplementation<T> {
 
     private final BinaryOperator<T> merger;
     private final BinaryTreeByArray<T> tree;
@@ -40,7 +40,6 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
         }
     }
 
-    @Override
     public T query(int start, int end) {
         Assertion.ensure(start < end && end <= size, () -> "invalid range start=" + start + ", end=" + end);
         return queryRecursively(tree.getRootPointer(), 0, size, start, end);
@@ -60,7 +59,6 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
         }
     }
 
-    @Override
     public void update(int position, T value) {
         Assertion.ensure(position < size);
         updateRecursively(tree.getRootPointer(), 0, size, position, value);
