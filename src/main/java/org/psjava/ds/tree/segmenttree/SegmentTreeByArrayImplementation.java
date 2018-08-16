@@ -19,8 +19,10 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
         this.merger = merger;
         size = initialData.size();
         tree = new BinaryTreeByArray<T>();
-        int root = tree.createRoot(initialData.get(0));
-        construct(root, initialData, 0, initialData.size());
+        if (!initialData.isEmpty()) {
+            int root = tree.createRoot(initialData.get(0));
+            construct(root, initialData, 0, initialData.size());
+        }
     }
 
     private void construct(int node, PSArray<T> initialData, int start, int end) {
@@ -39,7 +41,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 
     @Override
     public T query(int start, int end) {
-        Assertion.ensure(start < end, () -> "invalid range start=" + start + ", end=" + end);
+        Assertion.ensure(start < end && end <= size, () -> "invalid range start=" + start + ", end=" + end);
         return queryRecursively(tree.getRootPointer(), 0, size, start, end);
     }
 
@@ -59,6 +61,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
 
     @Override
     public void update(int position, T value) {
+        Assertion.ensure(position < size);
         updateRecursively(tree.getRootPointer(), 0, size, position, value);
     }
 
