@@ -1,9 +1,7 @@
 package org.psjava.ds.tree.segmenttree;
 
-import org.psjava.ds.array.PSArray;
 import org.psjava.ds.tree.BinaryTreeByArray;
 import org.psjava.util.Assertion;
-import org.psjava.util.ListFromIterable;
 
 import java.util.List;
 import java.util.function.BinaryOperator;
@@ -17,11 +15,6 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
     private final BinaryOperator<T> merger;
     private final BinaryTreeByArray<T> tree;
     private final int size;
-
-    @Deprecated
-    public SegmentTreeByArrayImplementation(final PSArray<T> initialData, final BinaryOperator<T> merger) {
-        this(ListFromIterable.create(initialData), merger);
-    }
 
     public SegmentTreeByArrayImplementation(final List<T> initialData, final BinaryOperator<T> merger) {
         this.merger = merger;
