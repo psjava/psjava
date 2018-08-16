@@ -19,7 +19,7 @@ public class SegmentTree<T> {
     public SegmentTree(final List<T> initialData, final BinaryOperator<T> merger) {
         this.merger = merger;
         size = initialData.size();
-        tree = new BinaryTreeByArray<T>();
+        tree = new BinaryTreeByArray<>();
         if (!initialData.isEmpty()) {
             int root = tree.createRoot(initialData.get(0));
             construct(root, initialData, 0, initialData.size());
