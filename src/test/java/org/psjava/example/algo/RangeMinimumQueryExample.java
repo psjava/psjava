@@ -2,6 +2,7 @@ package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.psjava.algo.sequence.rmq.RangeMinimumQuery;
 import org.psjava.algo.sequence.rmq.RangeMinimumQueryBySquareRootApproach;
 import org.psjava.algo.sequence.rmq.RangeMinimumQuerySession;
 import org.psjava.algo.sequence.rmq.RangeMinimumQueryUsingSegmentTree;
@@ -10,7 +11,6 @@ import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.ArrayFromVarargs;
 import org.psjava.example.ds.ArrayExample;
 import org.psjava.goods.GoodRangeMinimumQuery;
-import org.psjava.goods.GoodSegmentTreeFactory;
 import org.psjava.util.DefaultComparator;
 
 /**
@@ -37,9 +37,9 @@ public class RangeMinimumQueryExample {
         // They have different time & space complexity. See the detail in an article of TopCoder
         // http://www.topcoder.com/tc?d1=tutorials&d2=lowestCommonAncestor&module=Static
 
-        RangeMinimumQueryUsingSegmentTree.getInstance(GoodSegmentTreeFactory.getInstance());
-        RangeMinimumQueryBySquareRootApproach.getInstance();
-        RangeMinimumQueryUsingSparseTable.getInstance();
+        RangeMinimumQuery impl1 = RangeMinimumQueryUsingSegmentTree.INSTANCE;
+        RangeMinimumQuery impl2 = RangeMinimumQueryBySquareRootApproach.getInstance();
+        RangeMinimumQuery impl3 = RangeMinimumQueryUsingSparseTable.getInstance();
 
     }
 }

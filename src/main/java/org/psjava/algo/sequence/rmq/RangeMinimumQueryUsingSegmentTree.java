@@ -6,7 +6,7 @@ import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArray;
 import org.psjava.ds.array.MutableArrayFactory;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
-import org.psjava.ds.tree.segmenttree.SegmentTreeFactory;
+import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
 import org.psjava.util.Assertion;
 import org.psjava.util.ZeroTo;
 
@@ -19,25 +19,18 @@ import org.psjava.util.ZeroTo;
  */
 public class RangeMinimumQueryUsingSegmentTree {
 
-    public static RangeMinimumQuery getInstance(final SegmentTreeFactory treeFactory) {
-        return new RangeMinimumQuery() {
-            @Override
-            public <T> RangeMinimumQuerySession preprocess(final PSArray<T> a, final Comparator<T> comp) {
-                MutableArray<Integer> indexes = MutableArrayFactory.create(a.size(), 0);
-                for (int i : ZeroTo.get(a.size()))
-                    indexes.set(i, i);
-                final SegmentTree<Integer> tree = treeFactory.create(indexes, (i1, i2) -> RangeMinimumQueryUtil.selectSmallestIndex(a, i1, i2, comp));
-                return new RangeMinimumQuerySession() {
-                    public int getIndex(int start, int end) {
-                        Assertion.ensure(start < end);
-                        return tree.query(start, end);
-                    }
-                };
-            }
-        };
-    }
-
-    private RangeMinimumQueryUsingSegmentTree() {
-    }
+    public static final RangeMinimumQuery INSTANCE = new RangeMinimumQuery() {
+        @Override
+        public <T> RangeMinimumQuerySession preprocess(final PSArray<T> a, final Comparator<T> comp) {
+            MutableArray<Integer> indexes = MutableArrayFactory.create(a.size(), 0);
+            for (int i : ZeroTo.get(a.size()))
+                indexes.set(i, i);
+            final SegmentTree<Integer> tree = new SegmentTreeByArrayImplementation<>(indexes, (i1, i2) -> RangeMinimumQueryUtil.selectSmallestIndex(a, i1, i2, comp));
+            return (start, end) -> {
+                Assertion.ensure(start < end);
+                return tree.query(start, end);
+            };
+        }
+    };
 
 }
