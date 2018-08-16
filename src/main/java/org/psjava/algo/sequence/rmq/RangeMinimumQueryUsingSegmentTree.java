@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.psjava.ds.array.PSArray;
-import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
+import org.psjava.SegmentTree;
 import org.psjava.util.Assertion;
 
 /**
@@ -23,7 +23,7 @@ public class RangeMinimumQueryUsingSegmentTree {
         public <T> RangeMinimumQuerySession preprocess(final PSArray<T> a, final Comparator<T> comp) {
             List<Integer> init = IntStream.range(0, a.size())
                     .boxed().collect(Collectors.toList());
-            final SegmentTreeByArrayImplementation<Integer> tree = new SegmentTreeByArrayImplementation<>(init, (i1, i2) -> RangeMinimumQueryUtil.selectSmallestIndex(a, i1, i2, comp));
+            final SegmentTree<Integer> tree = new SegmentTree<>(init, (i1, i2) -> RangeMinimumQueryUtil.selectSmallestIndex(a, i1, i2, comp));
             return (start, end) -> {
                 Assertion.ensure(start < end);
                 return tree.query(start, end);
