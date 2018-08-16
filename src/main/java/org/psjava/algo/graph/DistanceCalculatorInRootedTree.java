@@ -10,7 +10,7 @@ import org.psjava.ds.map.MutableMapFactory;
 import org.psjava.ds.numbersystrem.AddInvert;
 import org.psjava.ds.numbersystrem.AddableNumberSystem;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
-import org.psjava.ds.tree.segmenttree.SegmentTreeFactory;
+import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
 import org.psjava.util.VisitorStopper;
 
 import java.util.function.Function;
@@ -19,12 +19,10 @@ import java.util.function.Function;
 public class DistanceCalculatorInRootedTree {
 
     private final LowestCommonAncestorAlgorithm lca;
-    private final SegmentTreeFactory segmentTreeFactory;
     private final MutableMapFactory mapFactory;
 
-    public DistanceCalculatorInRootedTree(LowestCommonAncestorAlgorithm lca, SegmentTreeFactory segmentTreeFactory, MutableMapFactory mapFactory) {
+    public DistanceCalculatorInRootedTree(LowestCommonAncestorAlgorithm lca, MutableMapFactory mapFactory) {
         this.lca = lca;
-        this.segmentTreeFactory = segmentTreeFactory;
         this.mapFactory = mapFactory;
     }
 
@@ -57,7 +55,7 @@ public class DistanceCalculatorInRootedTree {
             }
         });
 
-        final SegmentTree<W> segmentTree = segmentTreeFactory.create(pathWeights, ns::add);
+        final SegmentTree<W> segmentTree = new SegmentTreeByArrayImplementation<>(pathWeights, ns::add);
         final LowestCommonAncestorQuerySession<V> lcaSession = lca.calc(tree);
 
         return new DistanceCalculatorInRootedTreeResult<V, W>() {

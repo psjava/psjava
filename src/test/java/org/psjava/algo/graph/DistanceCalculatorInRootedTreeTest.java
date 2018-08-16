@@ -7,13 +7,12 @@ import org.psjava.ds.graph.TestGraphFactory;
 import org.psjava.ds.numbersystrem.IntegerNumberSystem;
 import org.psjava.goods.GoodLowestCommonAncestorAlgorithm;
 import org.psjava.goods.GoodMutableMapFactory;
-import org.psjava.goods.GoodSegmentTreeFactory;
 
 import static org.junit.Assert.assertEquals;
 
 public class DistanceCalculatorInRootedTreeTest {
 
-    private static final DistanceCalculatorInRootedTree INSTANCE = new DistanceCalculatorInRootedTree(GoodLowestCommonAncestorAlgorithm.getInstrance(), GoodSegmentTreeFactory.getInstance(), GoodMutableMapFactory.getInstance());
+    private static final DistanceCalculatorInRootedTree INSTANCE = new DistanceCalculatorInRootedTree(GoodLowestCommonAncestorAlgorithm.getInstrance(), GoodMutableMapFactory.getInstance());
 
     @Test
     public void testCalc() {
