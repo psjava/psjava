@@ -1,5 +1,6 @@
 package org.psjava.util;
 
+import org.psjava.StrictEqualityTester;
 import org.psjava.algo.math.PairHash;
 
 public class Index4D {

@@ -12,7 +12,7 @@ import org.psjava.util.Converter;
 import org.psjava.util.FilteredIterator;
 import org.psjava.util.Java1DArray;
 import org.psjava.util.OrderFreeIterableHash;
-import org.psjava.util.StrictEqualityTester;
+import org.psjava.StrictEqualityTester;
 import org.psjava.util.VarargsIterator;
 
 /**

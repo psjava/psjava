@@ -5,7 +5,7 @@ import java.util.Iterator;
 import org.psjava.util.IterableEqualityTester;
 import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.IterableToString;
-import org.psjava.util.StrictEqualityTester;
+import org.psjava.StrictEqualityTester;
 
 @Deprecated
 public class DynamicArray<T> implements MutableArray<T> {

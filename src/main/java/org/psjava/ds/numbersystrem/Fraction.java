@@ -1,6 +1,6 @@
 package org.psjava.ds.numbersystrem;
 
-import org.psjava.util.StrictEqualityTester;
+import org.psjava.StrictEqualityTester;
 
 public class Fraction<T> {
 

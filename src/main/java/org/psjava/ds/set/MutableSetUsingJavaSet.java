@@ -6,7 +6,7 @@ import org.psjava.ds.map.SetEqualityTester;
 import org.psjava.util.Assertion;
 import org.psjava.util.IterableToString;
 import org.psjava.util.OrderFreeIterableHash;
-import org.psjava.util.StrictEqualityTester;
+import org.psjava.StrictEqualityTester;
 
 @Deprecated
 public class MutableSetUsingJavaSet<T> implements MutableSet<T> {

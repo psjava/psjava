@@ -1,7 +1,7 @@
 package org.psjava.ds.geometry;
 
 import org.psjava.goods.GoodLongHash;
-import org.psjava.util.StrictEqualityTester;
+import org.psjava.StrictEqualityTester;
 
 public class Angle {
 

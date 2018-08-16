@@ -5,7 +5,7 @@ import java.util.Iterator;
 import org.psjava.ds.KeyValuePair;
 import org.psjava.util.Assertion;
 import org.psjava.util.OrderFreeIterableHash;
-import org.psjava.util.StrictEqualityTester;
+import org.psjava.StrictEqualityTester;
 
 public class MutableMapUsingJavaMap {
 

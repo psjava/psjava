@@ -1,4 +1,4 @@
-package org.psjava.util;
+package org.psjava;
 
 import java.util.function.BiPredicate;
 

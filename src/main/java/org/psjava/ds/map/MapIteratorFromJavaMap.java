@@ -8,7 +8,7 @@ import org.psjava.ds.KeyValuePairEqualityTester;
 import org.psjava.ds.KeyValuePairHash;
 import org.psjava.util.ConvertedIterator;
 import org.psjava.util.Converter;
-import org.psjava.util.StrictEqualityTester;
+import org.psjava.StrictEqualityTester;
 
 public class MapIteratorFromJavaMap {
 

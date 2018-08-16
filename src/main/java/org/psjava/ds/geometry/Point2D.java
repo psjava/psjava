@@ -1,6 +1,6 @@
 package org.psjava.ds.geometry;
 
-import org.psjava.util.StrictEqualityTester;
+import org.psjava.StrictEqualityTester;
 
 public class Point2D<T> {
 

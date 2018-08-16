@@ -1,5 +1,6 @@
 package org.psjava.util;
 
+import org.psjava.StrictEqualityTester;
 import org.psjava.algo.math.PairHash;
 
 public class Triple<T1, T2, T3> {
