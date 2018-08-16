@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import org.psjava.ds.map.SetEqualityTester;
 import org.psjava.util.Assertion;
-import org.psjava.util.EqualityTester;
 import org.psjava.util.IterableToString;
 import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.StrictEqualityTester;
@@ -77,12 +76,7 @@ public class MutableSetUsingJavaSet<T> implements MutableSet<T> {
 
     @Override
     public boolean equals(Object obj) {
-        return StrictEqualityTester.areEqual(this, obj, new EqualityTester<PSSet<T>>() {
-            @Override
-            public boolean areEqual(PSSet<T> o1, PSSet<T> o2) {
-                return SetEqualityTester.areEqual(o1, o2);
-            }
-        });
+        return StrictEqualityTester.areEqual(this, obj, SetEqualityTester::areEqual);
     }
 
 }

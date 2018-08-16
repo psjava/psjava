@@ -4,13 +4,11 @@ import java.util.Iterator;
 import java.util.function.Predicate;
 
 import org.psjava.ds.KeyValuePair;
-import org.psjava.ds.map.PSMap;
 import org.psjava.ds.map.MapEqualityTester;
 import org.psjava.ds.map.MutableMap;
 import org.psjava.util.Assertion;
 import org.psjava.util.ConvertedIterator;
 import org.psjava.util.Converter;
-import org.psjava.util.EqualityTester;
 import org.psjava.util.FilteredIterator;
 import org.psjava.util.Java1DArray;
 import org.psjava.util.OrderFreeIterableHash;
@@ -240,12 +238,7 @@ public class OpenAddressingHashTableMap<K, V> implements MutableMap<K, V> {
 
     @Override
     public boolean equals(Object obj) {
-        return StrictEqualityTester.areEqual(this, obj, new EqualityTester<PSMap<K, V>>() {
-            @Override
-            public boolean areEqual(PSMap<K, V> o1, PSMap<K, V> o2) {
-                return MapEqualityTester.areEqual(o1, o2);
-            }
-        });
+        return StrictEqualityTester.areEqual(this, obj, MapEqualityTester::areEqual);
     }
 
     @Override

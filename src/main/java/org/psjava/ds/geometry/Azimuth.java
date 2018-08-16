@@ -1,10 +1,9 @@
 package org.psjava.ds.geometry;
 
 import org.psjava.goods.GoodLongHash;
-import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
 
-public class Azimuth implements EqualityTester<Azimuth> {
+public class Azimuth {
 
     private static final double DOUBLE_PI = Math.PI + Math.PI;
 
@@ -35,12 +34,7 @@ public class Azimuth implements EqualityTester<Azimuth> {
 
     @Override
     public final boolean equals(Object v) {
-        return StrictEqualityTester.areEqual(this, v, this);
-    }
-
-    @Override
-    public boolean areEqual(Azimuth o1, Azimuth o2) {
-        return o1.radian == o2.radian;
+        return StrictEqualityTester.areEqual(this, v, (o1, o2) -> o1.radian == o2.radian);
     }
 
     @Override

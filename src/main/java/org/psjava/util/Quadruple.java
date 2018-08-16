@@ -2,7 +2,7 @@ package org.psjava.util;
 
 import org.psjava.algo.math.PairHash;
 
-public class Quadruple<T1, T2, T3, T4> implements EqualityTester<Quadruple<T1, T2, T3, T4>> {
+public class Quadruple<T1, T2, T3, T4> {
 
     public static <T1, T2, T3, T4> Quadruple<T1, T2, T3, T4> create(T1 v1, T2 v2, T3 v3, T4 v4) {
         return new Quadruple<T1, T2, T3, T4>(v1, v2, v3, v4);
@@ -22,12 +22,7 @@ public class Quadruple<T1, T2, T3, T4> implements EqualityTester<Quadruple<T1, T
 
     @Override
     public boolean equals(Object obj) {
-        return StrictEqualityTester.areEqual(this, obj, this);
-    }
-
-    @Override
-    public boolean areEqual(Quadruple<T1, T2, T3, T4> o1, Quadruple<T1, T2, T3, T4> o2) {
-        return o1.v1.equals(o2.v1) && o1.v2.equals(o2.v2) && o1.v3.equals(o2.v3) && o1.v4.equals(o2.v4);
+        return StrictEqualityTester.areEqual(this, obj, (a, b) -> a.v1.equals(b.v1) && a.v2.equals(b.v2) && a.v3.equals(b.v3) && a.v4.equals(b.v4));
     }
 
     @Override

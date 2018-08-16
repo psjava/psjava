@@ -1,10 +1,8 @@
 package org.psjava.util;
 
 import org.psjava.algo.math.PairHash;
-import org.psjava.util.EqualityTester;
-import org.psjava.util.StrictEqualityTester;
 
-public class Index3D implements EqualityTester<Index3D> {
+public class Index3D {
 
     public final int i1;
     public final int i2;
@@ -18,12 +16,7 @@ public class Index3D implements EqualityTester<Index3D> {
 
     @Override
     public boolean equals(Object obj) {
-        return StrictEqualityTester.areEqual(this, obj, this);
-    }
-
-    @Override
-    public boolean areEqual(Index3D o1, Index3D o2) {
-        return o1.i1 == o2.i1 && o1.i2 == o2.i2 && o1.i3 == o2.i3;
+        return StrictEqualityTester.areEqual(this, obj, (o1, o2) -> o1.i1 == o2.i1 && o1.i2 == o2.i2 && o1.i3 == o2.i3);
     }
 
     @Override

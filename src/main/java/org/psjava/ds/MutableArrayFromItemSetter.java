@@ -2,7 +2,6 @@ package org.psjava.ds;
 
 import org.psjava.ds.array.ArrayIterator;
 import org.psjava.ds.array.MutableArray;
-import org.psjava.util.EqualityTester;
 import org.psjava.util.GetterByIndex;
 import org.psjava.util.IterableEqualityTester;
 import org.psjava.util.IterableToString;
@@ -45,12 +44,7 @@ public class MutableArrayFromItemSetter {
 
             @Override
             public boolean equals(Object obj) {
-                return StrictEqualityTester.areEqual(this, obj, new EqualityTester<MutableArray<T>>() {
-                    @Override
-                    public boolean areEqual(MutableArray<T> o1, MutableArray<T> o2) {
-                        return IterableEqualityTester.areEqual(o1, o2);
-                    }
-                });
+                return StrictEqualityTester.areEqual(this, obj, IterableEqualityTester::areEqual);
             }
 
             @Override

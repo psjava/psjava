@@ -1,9 +1,8 @@
 package org.psjava.ds.geometry;
 
-import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
 
-public class Point2D<T> implements EqualityTester<Point2D<T>> {
+public class Point2D<T> {
 
     public static <T> Point2D<T> create(T x, T y) {
         return new Point2D<T>(x, y);
@@ -27,12 +26,7 @@ public class Point2D<T> implements EqualityTester<Point2D<T>> {
 
     @Override
     public final boolean equals(Object o) {
-        return StrictEqualityTester.areEqual(this, o, this);
-    }
-
-    @Override
-    public boolean areEqual(Point2D<T> o1, Point2D<T> o2) {
-        return o1.x.equals(o2.x) && o1.y.equals(o2.y);
+        return StrictEqualityTester.areEqual(this, o, (a, b) -> a.x.equals(b.x) && a.y.equals(b.y));
     }
 
     public final int hashCode() {

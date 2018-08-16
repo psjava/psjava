@@ -8,7 +8,6 @@ import org.psjava.ds.KeyValuePairEqualityTester;
 import org.psjava.ds.KeyValuePairHash;
 import org.psjava.util.ConvertedIterator;
 import org.psjava.util.Converter;
-import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
 
 public class MapIteratorFromJavaMap {
@@ -22,7 +21,7 @@ public class MapIteratorFromJavaMap {
         });
     }
 
-    private static class EntryWrapper<K, V> implements KeyValuePair<K, V>, EqualityTester<EntryWrapper<K, V>> {
+    private static class EntryWrapper<K, V> implements KeyValuePair<K, V> {
         private java.util.Map.Entry<K, V> e;
 
         private EntryWrapper(java.util.Map.Entry<K, V> e) {
@@ -41,12 +40,7 @@ public class MapIteratorFromJavaMap {
 
         @Override
         public boolean equals(Object obj) {
-            return StrictEqualityTester.areEqual(this, obj, this);
-        }
-
-        @Override
-        public boolean areEqual(EntryWrapper<K, V> o1, EntryWrapper<K, V> o2) {
-            return KeyValuePairEqualityTester.are(o1, o2);
+            return StrictEqualityTester.areEqual(this, obj, KeyValuePairEqualityTester::are);
         }
 
         @Override

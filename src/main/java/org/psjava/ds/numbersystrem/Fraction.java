@@ -1,9 +1,8 @@
 package org.psjava.ds.numbersystrem;
 
-import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
 
-public class Fraction<T> implements EqualityTester<Fraction<T>> {
+public class Fraction<T> {
 
     public static <T> Fraction<T> valueOf(T numerator, T denominator) {
         // cache? difficult because of generic. :(
@@ -29,12 +28,7 @@ public class Fraction<T> implements EqualityTester<Fraction<T>> {
 
     @Override
     public boolean equals(Object obj) {
-        return StrictEqualityTester.areEqual(this, obj, this);
-    }
-
-    @Override
-    public boolean areEqual(Fraction<T> o1, Fraction<T> o2) {
-        return o1.numerator.equals(o2.numerator) && o1.denominator.equals(o2.denominator);
+        return StrictEqualityTester.areEqual(this, obj, (o1, o2) -> o1.numerator.equals(o2.numerator) && o1.denominator.equals(o2.denominator));
     }
 
     @Override

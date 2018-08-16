@@ -1,9 +1,8 @@
 package org.psjava.ds.geometry;
 
-import org.psjava.util.EqualityTester;
 import org.psjava.util.StrictEqualityTester;
 
-public class Segment2D<T> implements EqualityTester<Segment2D<T>> {
+public class Segment2D<T> {
 
     public static <T> Segment2D<T> create(Point2D<T> p1, Point2D<T> p2) {
         return new Segment2D<T>(p1, p2);
@@ -32,12 +31,7 @@ public class Segment2D<T> implements EqualityTester<Segment2D<T>> {
     }
 
     public final boolean equals(Object obj) {
-        return StrictEqualityTester.areEqual(this, obj, this);
-    }
-
-    @Override
-    public boolean areEqual(Segment2D<T> o1, Segment2D<T> o2) {
-        return (o2.p1.equals(o1.p1) && o2.p2.equals(o1.p2)) || (o2.p1.equals(o1.p2) && o2.p2.equals(o1.p1));
+        return StrictEqualityTester.areEqual(this, obj, (a, b) -> (b.p1.equals(a.p1) && b.p2.equals(a.p2)) || (b.p1.equals(a.p2) && b.p2.equals(a.p1)));
     }
 
     public final int hashCode() {

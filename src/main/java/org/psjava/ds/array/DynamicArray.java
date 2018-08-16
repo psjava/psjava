@@ -2,14 +2,13 @@ package org.psjava.ds.array;
 
 import java.util.Iterator;
 
-import org.psjava.util.EqualityTester;
 import org.psjava.util.IterableEqualityTester;
 import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.IterableToString;
 import org.psjava.util.StrictEqualityTester;
 
 @Deprecated
-public class DynamicArray<T> implements MutableArray<T>, EqualityTester<PSArray<T>> {
+public class DynamicArray<T> implements MutableArray<T> {
 
     public static <T> DynamicArray<T> create() {
         return new DynamicArray<T>();
@@ -72,12 +71,7 @@ public class DynamicArray<T> implements MutableArray<T>, EqualityTester<PSArray<
 
     @Override
     public boolean equals(Object obj) {
-        return StrictEqualityTester.areEqual(this, obj, this);
-    }
-
-    @Override
-    public boolean areEqual(PSArray<T> o1, PSArray<T> o2) {
-        return IterableEqualityTester.areEqual(o1, o2);
+        return StrictEqualityTester.areEqual(this, obj, IterableEqualityTester::areEqual);
     }
 
     @Override

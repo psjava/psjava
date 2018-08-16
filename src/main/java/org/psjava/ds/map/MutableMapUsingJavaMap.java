@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import org.psjava.ds.KeyValuePair;
 import org.psjava.util.Assertion;
-import org.psjava.util.EqualityTester;
 import org.psjava.util.OrderFreeIterableHash;
 import org.psjava.util.StrictEqualityTester;
 
@@ -81,12 +80,7 @@ public class MutableMapUsingJavaMap {
 
             @Override
             public boolean equals(Object obj) {
-                return StrictEqualityTester.areEqual(this, obj, new EqualityTester<PSMap<K, V>>() {
-                    @Override
-                    public boolean areEqual(PSMap<K, V> m1, PSMap<K, V> m2) {
-                        return MapEqualityTester.areEqual(m1, m2);
-                    }
-                });
+                return StrictEqualityTester.areEqual(this, obj, MapEqualityTester::areEqual);
             }
 
             @Override
