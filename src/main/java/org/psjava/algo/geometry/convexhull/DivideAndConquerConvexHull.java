@@ -3,6 +3,7 @@ package org.psjava.algo.geometry.convexhull;
 import java.util.Comparator;
 import java.util.Set;
 
+import org.psjava.IntPair;
 import org.psjava.ds.array.MergedArray;
 import org.psjava.ds.array.RotatedArray;
 import org.psjava.formula.geometry.StraightOrder;
@@ -21,7 +22,6 @@ import org.psjava.ds.geometry.Polygon2D;
 import org.psjava.ds.numbersystrem.MultipliableNumberSystem;
 import org.psjava.formula.geometry.LeftTurn;
 import org.psjava.util.Assertion;
-import org.psjava.util.Index2D;
 import org.psjava.util.ReversedComparator;
 import org.psjava.util.SeriesComparator;
 
@@ -63,16 +63,16 @@ public class DivideAndConquerConvexHull {
         int leftDown = MaxIndexInArray.get(left, xrycomp);
         int rightUp = MinIndexInArray.get(right, xrycomp);
         int rightDown = MinIndexInArray.get(right, xycomp);
-        Index2D upIndex = findBridgeIndexes(right, left, rightUp, leftUp, ns);
-        Index2D downIndex = findBridgeIndexes(left, right, leftDown, rightDown, ns);
-        PSArray<Point2D<T>> leftHalf = wrapToRotatingSubArray(left, upIndex.i2, downIndex.i1);
-        PSArray<Point2D<T>> rightHalf = wrapToRotatingSubArray(right, downIndex.i2, upIndex.i1);
+        IntPair upIndex = findBridgeIndexes(right, left, rightUp, leftUp, ns);
+        IntPair downIndex = findBridgeIndexes(left, right, leftDown, rightDown, ns);
+        PSArray<Point2D<T>> leftHalf = wrapToRotatingSubArray(left, upIndex.v2, downIndex.v1);
+        PSArray<Point2D<T>> rightHalf = wrapToRotatingSubArray(right, downIndex.v2, upIndex.v1);
         PSArray<Point2D<T>> hullPoints = getPointsWithoutOnLine(MergedArray.wrap(leftHalf, rightHalf), ns);
         return hullPoints;
     }
 
     // early, later are ordered by ccw order.
-    private static <T> Index2D findBridgeIndexes(PSArray<Point2D<T>> earlyHull, PSArray<Point2D<T>> laterHull, int earlyStart, int laterStart, MultipliableNumberSystem<T> ns) {
+    private static <T> IntPair findBridgeIndexes(PSArray<Point2D<T>> earlyHull, PSArray<Point2D<T>> laterHull, int earlyStart, int laterStart, MultipliableNumberSystem<T> ns) {
         int early = earlyStart;
         int later = laterStart;
         while (true) {
@@ -85,7 +85,7 @@ public class DivideAndConquerConvexHull {
             else
                 break;
         }
-        return new Index2D(early, later);
+        return new IntPair(early, later);
     }
 
     private static <T> PSArray<Point2D<T>> getPointsWithoutOnLine(PSArray<Point2D<T>> src, MultipliableNumberSystem<T> ns) {

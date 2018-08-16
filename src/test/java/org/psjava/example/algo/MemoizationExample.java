@@ -2,11 +2,11 @@ package org.psjava.example.algo;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.psjava.IntPair;
 import org.psjava.algo.math.optimization.Memoization;
 import org.psjava.algo.math.optimization.MemoizationFactory;
 import org.psjava.algo.math.optimization.MemoizationFunction;
 import org.psjava.goods.GoodMemoizationFactory;
-import org.psjava.util.Index2D;
 
 /**
  * @implementation {@link MemoizationFactory}
@@ -39,19 +39,16 @@ public class MemoizationExample {
         // let's be more complex. this is a memoization to calculate
         // combinations by recursion. (http://en.wikipedia.org/wiki/Combination)
 
-        Memoization<Index2D, Integer> combination = GoodMemoizationFactory.getInstance().create(new MemoizationFunction<Index2D, Integer>() {
-            @Override
-            public Integer get(Index2D input, Memoization<Index2D, Integer> memo) {
-                int n = input.i1;
-                int k = input.i2;
-                if (k == 0 || n == k)
-                    return 1;
-                else
-                    return memo.get(new Index2D(n - 1, k - 1)) + memo.get(new Index2D(n - 1, k));
-            }
+        Memoization<IntPair, Integer> combination = GoodMemoizationFactory.getInstance().create((input, self) -> {
+            int n = input.v1;
+            int k = input.v2;
+            if (k == 0 || n == k)
+                return 1;
+            else
+                return self.get(new IntPair(n - 1, k - 1)) + self.get(new IntPair(n - 1, k));
         });
 
-        int res3 = combination.get(new Index2D(10, 5)); // for (10, 5), the result is 252
+        int res3 = combination.get(new IntPair(10, 5)); // for (10, 5), the result is 252
         Assert.assertEquals(252, res3);
     }
 
