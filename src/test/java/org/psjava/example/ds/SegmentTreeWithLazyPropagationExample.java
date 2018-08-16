@@ -29,7 +29,7 @@ public class SegmentTreeWithLazyPropagationExample {
 
         // Update by range, this is done fast!
 
-        sumTree.updateRange(1, 4, 100);
+        sumTree.update(1, 4, 100);
         int sum2 = sumTree.query(0, 5); // must be 302=1+100+100+100+1
         Assert.assertEquals(302, sum2);
 

@@ -36,7 +36,7 @@ public class RangeUpdatableSegmentTree<T>  {
         return sub.queryRange(start, end);
     }
 
-    public void updateRange(int start, int end, T value) {
+    public void update(int start, int end, T value) {
         sub.updateRange(start, end, value);
     }
 
