@@ -2,12 +2,18 @@ package org.psjava.ds.tree.segmenttree;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.array.PSArray;
 import org.psjava.ds.array.MutableArrayFromVarargs;
 
 public class SegmentTreeByArrayImplementationTest {
 
     // TODO add performance test
+
+    @Test
+    public void testEmpty() {
+        new SegmentTreeByArrayImplementation<Integer>(DynamicArray.create(), Math::max);
+    }
 
     @Test
     public void testQueryRecursively() {
