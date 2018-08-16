@@ -3,7 +3,9 @@ package org.psjava.ds.tree.segmenttree;
 import org.psjava.ds.array.PSArray;
 import org.psjava.ds.tree.BinaryTreeByArray;
 import org.psjava.util.Assertion;
+import org.psjava.util.ListFromIterable;
 
+import java.util.List;
 import java.util.function.BinaryOperator;
 
 /**
@@ -16,7 +18,12 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
     private final BinaryTreeByArray<T> tree;
     private final int size;
 
+    @Deprecated
     public SegmentTreeByArrayImplementation(final PSArray<T> initialData, final BinaryOperator<T> merger) {
+        this(ListFromIterable.create(initialData), merger);
+    }
+
+    public SegmentTreeByArrayImplementation(final List<T> initialData, final BinaryOperator<T> merger) {
         this.merger = merger;
         size = initialData.size();
         tree = new BinaryTreeByArray<T>();
@@ -26,7 +33,7 @@ public class SegmentTreeByArrayImplementation<T> implements SegmentTree<T> {
         }
     }
 
-    private void construct(int node, PSArray<T> initialData, int start, int end) {
+    private void construct(int node, List<T> initialData, int start, int end) {
         if (end - start == 1) {
             tree.setValue(node, initialData.get(start));
         } else {
