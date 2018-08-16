@@ -1,5 +1,6 @@
 package org.psjava.ds.tree;
 
+// TODO remove interface. implementation is only one.
 public interface BinaryTreeNode<T> {
 
     T getData();
