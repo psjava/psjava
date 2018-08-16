@@ -2,10 +2,11 @@ package org.psjava.example.ds;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.array.PSArray;
-import org.psjava.ds.array.MutableArrayFromVarargs;
 import org.psjava.ds.tree.segmenttree.SegmentTree;
 import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @implementation {@link SegmentTreeByArrayImplementation}
@@ -17,7 +18,7 @@ public class SegmentTreeExample {
         // Create an initial tree with an array, and a binary operator.
         // The binary operator can be adder, multiplier or anything you define.
 
-        PSArray<Integer> init = MutableArrayFromVarargs.create(4, 3, 1, 5, 2);
+        List<Integer> init = Arrays.asList(4, 3, 1, 5, 2);
 
         SegmentTree<Integer> maxTree = new SegmentTreeByArrayImplementation<>(init, Math::max);
 

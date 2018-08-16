@@ -2,9 +2,10 @@ package org.psjava.ds.tree.segmenttree;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.psjava.ds.array.DynamicArray;
-import org.psjava.ds.array.PSArray;
-import org.psjava.ds.array.MutableArrayFromVarargs;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class SegmentTreeByArrayImplementationTest {
 
@@ -12,7 +13,7 @@ public class SegmentTreeByArrayImplementationTest {
 
     @Test
     public void testEmpty() {
-        new SegmentTreeByArrayImplementation<Integer>(DynamicArray.create(), Math::max);
+        new SegmentTreeByArrayImplementation<Integer>(Collections.emptyList(), Math::max);
     }
 
     @Test
@@ -29,7 +30,7 @@ public class SegmentTreeByArrayImplementationTest {
     }
 
     private SegmentTree<Integer> createInitTree() {
-        PSArray<Integer> init = MutableArrayFromVarargs.create(1, 2, 3, 4, 5, 6, 7, 8);
+        List<Integer> init = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
         return new SegmentTreeByArrayImplementation<>(init, (a, b) -> a + b);
     }
 }
