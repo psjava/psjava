@@ -2,7 +2,6 @@ package org.psjava.algo.graph;
 
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.SingleSourceDFS;
-import org.psjava.ds.array.DynamicArray;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.ds.map.MutableMap;
@@ -13,6 +12,8 @@ import org.psjava.ds.tree.segmenttree.SegmentTree;
 import org.psjava.ds.tree.segmenttree.SegmentTreeByArrayImplementation;
 import org.psjava.util.VisitorStopper;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 // TODO this is not used any problem. solve something to prove this.
@@ -27,7 +28,7 @@ public class DistanceCalculatorInRootedTree {
     }
 
     public <V, W, E extends DirectedEdge<V>> DistanceCalculatorInRootedTreeResult<V, W> calc(RootedTree<V, E> tree, final Function<E, W> weight, final AddableNumberSystem<W> ns) {
-        final DynamicArray<W> pathWeights = DynamicArray.create();
+        final List<W> pathWeights = new ArrayList<>();
         final MutableMap<V, Integer> discoverIndex = mapFactory.create();
         final MutableMap<V, Integer> indexOfWalkingDown = mapFactory.create();
         final MutableMap<V, Integer> indexOfWalkingUp = mapFactory.create();
@@ -44,14 +45,14 @@ public class DistanceCalculatorInRootedTree {
             public void onWalkDown(E outEdge) {
                 int index = pathWeights.size();
                 indexOfWalkingDown.add(outEdge.to(), index);
-                pathWeights.addToLast(weight.apply(outEdge));
+                pathWeights.add(weight.apply(outEdge));
             }
 
             @Override
             public void onWalkUp(E edge) {
                 int index = pathWeights.size();
                 indexOfWalkingUp.add(edge.to(), index);
-                pathWeights.addToLast(AddInvert.calc(ns, weight.apply(edge)));
+                pathWeights.add(AddInvert.calc(ns, weight.apply(edge)));
             }
         });
 
