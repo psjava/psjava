@@ -1,7 +1,7 @@
 package org.psjava.example;
 
 import org.psjava.UnweightedGraph;
-import org.psjava.algo.graph.dfs.SingleSourceDFS;
+import org.psjava.SingleSourceDFSV2;
 
 public class SingleSourceDFSExample {
 
@@ -22,7 +22,7 @@ public class SingleSourceDFSExample {
 
         // traverse and handle searching events.
 
-        SingleSourceDFS.traverse(
+        SingleSourceDFSV2.traverse(
                 graph,
                 "A",
                 vertex -> System.out.println("discover " + vertex),
