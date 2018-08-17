@@ -3,7 +3,7 @@ package org.psjava.algo.graph;
 import java.util.Comparator;
 
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
-import org.psjava.algo.graph.dfs.SingleSourceDFS;
+import org.psjava.algo.graph.dfs.SingleSourceDFSOld;
 import org.psjava.algo.sequence.rmq.RangeMinimumQuerySession;
 import org.psjava.algo.sequence.rmq.RangeMinimumQuery;
 import org.psjava.ds.array.DynamicArray;
@@ -38,7 +38,7 @@ public class LowestCommonAncestorAlgorithm {
         final MutableMap<V, Integer> discoverIndex = mapFactory.create();
         final DynamicArray<VertexAndDepth<V>> history = DynamicArray.create(); // stores vertex and depth
 
-        SingleSourceDFS.traverse(tree.graph, tree.root, new DFSVisitorBase<V, E>() {
+        SingleSourceDFSOld.traverse(tree.graph, tree.root, new DFSVisitorBase<V, E>() {
             @Override
             public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
                 discoverIndex.add(vertex, history.size());

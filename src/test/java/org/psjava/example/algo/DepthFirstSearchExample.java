@@ -7,7 +7,7 @@ import org.psjava.algo.graph.dfs.DFSCore;
 import org.psjava.algo.graph.dfs.DFSVisitor;
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
 import org.psjava.algo.graph.dfs.MultiSourceDFS;
-import org.psjava.algo.graph.dfs.SingleSourceDFS;
+import org.psjava.algo.graph.dfs.SingleSourceDFSOld;
 import org.psjava.ds.graph.MutableDirectedUnweightedGraph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.util.VarargsIterable;
@@ -38,7 +38,7 @@ public class DepthFirstSearchExample {
         // Use 'Visitor' for handling searching events.
         // Here, we will find the back-edge in the graph.
 
-        SingleSourceDFS.traverse(graph, "A", new DFSVisitor<String, DirectedEdge<String>>() {
+        SingleSourceDFSOld.traverse(graph, "A", new DFSVisitor<String, DirectedEdge<String>>() {
             @Override
             public void onDiscovered(String vertex, int depth, VisitorStopper stopper) {
             }

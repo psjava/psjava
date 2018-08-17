@@ -1,7 +1,7 @@
 package org.psjava.algo.graph;
 
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
-import org.psjava.algo.graph.dfs.SingleSourceDFS;
+import org.psjava.algo.graph.dfs.SingleSourceDFSOld;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.graph.RootedTree;
 import org.psjava.ds.map.MutableMap;
@@ -32,7 +32,7 @@ public class DistanceCalculatorInRootedTree {
         final MutableMap<V, Integer> indexOfWalkingDown = mapFactory.create();
         final MutableMap<V, Integer> indexOfWalkingUp = mapFactory.create();
 
-        SingleSourceDFS.traverse(tree.graph, tree.root, new DFSVisitorBase<V, E>() {
+        SingleSourceDFSOld.traverse(tree.graph, tree.root, new DFSVisitorBase<V, E>() {
 
             @Override
             public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {

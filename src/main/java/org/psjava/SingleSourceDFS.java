@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class SingleSourceDFSV2 {
+public class SingleSourceDFS {
 
     public static <V> void traverse(UnweightedGraph<V> unweightedGraph, V start, final Consumer<V> onDiscover, final Consumer<V> onFinish) {
         traverse(unweightedGraph.graph, start, onDiscover, onFinish);

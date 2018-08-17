@@ -1,7 +1,7 @@
 package org.psjava.algo.graph;
 
 import org.psjava.algo.graph.dfs.DFSVisitorBase;
-import org.psjava.algo.graph.dfs.SingleSourceDFS;
+import org.psjava.algo.graph.dfs.SingleSourceDFSOld;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.util.DataKeeper;
@@ -13,7 +13,7 @@ public class RootedTreeTester {
         if (CycleDetection.hasCycle(graph))
             return false;
         final DataKeeper<Integer> visitCount = DataKeeper.create(0);
-        SingleSourceDFS.traverse(graph, root, new DFSVisitorBase<V, E>() {
+        SingleSourceDFSOld.traverse(graph, root, new DFSVisitorBase<V, E>() {
             @Override
             public void onDiscovered(V vertex, int depth, VisitorStopper stopper) {
                 visitCount.set(visitCount.get() + 1);
