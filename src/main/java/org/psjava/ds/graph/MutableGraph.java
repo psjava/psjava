@@ -8,6 +8,8 @@ import org.psjava.util.Assertion;
 
 import java.util.Set;
 
+// TODO use GraphV2
+@Deprecated
 public class MutableGraph<V, E> implements Graph<V, E> {
 
     public static <V, E> MutableGraph<V, E> create() {
