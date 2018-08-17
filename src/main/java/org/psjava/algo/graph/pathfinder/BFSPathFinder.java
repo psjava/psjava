@@ -2,8 +2,6 @@ package org.psjava.algo.graph.pathfinder;
 
 import org.psjava.algo.graph.bfs.BFS;
 import org.psjava.algo.graph.bfs.BFSVisitor;
-import org.psjava.ds.PSCollection;
-import org.psjava.ds.deque.DoubleLinkedList;
 import org.psjava.ds.graph.Graph;
 import org.psjava.ds.graph.DirectedEdge;
 import org.psjava.ds.map.MutableMap;
@@ -11,12 +9,16 @@ import org.psjava.goods.GoodMutableMapFactory;
 import org.psjava.util.SingleElementCollection;
 import org.psjava.util.VisitorStopper;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class BFSPathFinder {
 
     public static PathFinder getInstance() {
         return new PathFinder() {
             @Override
-            public <V, E extends DirectedEdge<V>> PSCollection<E> find(Graph<V, E> adj, V start, final V target, PSCollection<E> def) {
+            public <V, E extends DirectedEdge<V>> Collection<E> find(Graph<V, E> adj, V start, final V target, Collection<E> def) {
                 final MutableMap<V, E> walked = GoodMutableMapFactory.getInstance().create(); // TODO factory to parameter.
                 BFS.traverse(adj, SingleElementCollection.create(start), new BFSVisitor<V, E>() {
                     @Override
@@ -38,17 +40,15 @@ public class BFSPathFinder {
         };
     }
 
-    private static <V, E extends DirectedEdge<V>> PSCollection<E> extractPath(final V target, final MutableMap<V, E> walked) {
-        DoubleLinkedList<E> a = DoubleLinkedList.create();
+    private static <V, E extends DirectedEdge<V>> Collection<E> extractPath(final V target, final MutableMap<V, E> walked) {
+        List<E> a = new ArrayList<>();
         V cur = target;
         while (walked.containsKey(cur)) {
             E e = walked.get(cur);
-            a.addToLast(e);
+            a.add(e);
             cur = e.from();
         }
         return a;
     }
 
-    private BFSPathFinder() {
-    }
 }
