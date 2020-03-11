@@ -29,7 +29,7 @@ public class BFSPathFinder {
 
                     @Override
                     public void onWalk(E e) {
-                        walked.add(e.to(), e);
+                        walked.add(e.to(), e); // TODO stopping here is more intuitive
                     }
                 });
                 if (!walked.containsKey(target))
