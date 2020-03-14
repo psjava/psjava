@@ -6,6 +6,9 @@ import org.psjava.ds.array.ArraySwapper;
 import org.psjava.ds.array.DynamicArray;
 import org.psjava.util.Assertion;
 
+//  TODO contains bug.
+//  TODO left should be  (i << 1) + 1, right should be (i << 1) + 2, parent should be (i-1) >> 1
+@Deprecated
 public class BinaryHeap<T> implements Heap<T> {
 
     private final DynamicArray<Node> array = DynamicArray.create();
